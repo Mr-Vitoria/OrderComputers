@@ -1,0 +1,37 @@
+﻿@model AdminPanel.Models.Order
+
+
+<div>
+    <h4>Заказ</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ExecutorId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ExecutorId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TotalPrice)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ComputerAssembly)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ComputerAssembly.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Удалить</a> |
+    <a asp-action="Index">Вернуться</a>
+</div>

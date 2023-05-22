@@ -1,0 +1,85 @@
+﻿@model IEnumerable<AdminPanel.Models.CompProcessor>
+
+
+<p>
+    <a asp-action="Create">Добавить процессор</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Producer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Socket)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CountCores)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CountThreads)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Frequency)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TurboTechnology)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeRam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HaveVideoCard)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Producer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Socket)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CountCores)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CountThreads)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Frequency)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TurboTechnology)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeRam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HaveVideoCard)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

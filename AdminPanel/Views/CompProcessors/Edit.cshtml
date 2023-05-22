@@ -1,0 +1,78 @@
+﻿@model AdminPanel.Models.CompProcessor
+
+<h4>Изменить процессор</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Название</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Producer" class="control-label">Производитель</label>
+                    <input asp-for="Producer" class="form-control" />
+                    <span asp-validation-for="Producer" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Socket" class="control-label">Сокет</label>
+                    <input asp-for="Socket" class="form-control" />
+                    <span asp-validation-for="Socket" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CountCores" class="control-label">Количество ядер</label>
+                    <input asp-for="CountCores" class="form-control" type="number" />
+                    <span asp-validation-for="CountCores" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CountThreads" class="control-label">Количество потоков</label>
+                    <input asp-for="CountThreads" class="form-control" type="number" />
+                    <span asp-validation-for="CountThreads" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Frequency" class="control-label">Частота</label>
+                    <input asp-for="Frequency" class="form-control" type="number" />
+                    <span asp-validation-for="Frequency" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TurboTechnology" class="control-label">Технология разгона</label>
+                    <select asp-for="TurboTechnology" class="form-control">
+                        <option value="NONE">Без технологии разгона</option>
+                        <option value="Turbo Boost">Turbo Boost</option>
+                        <option value="Turbo Core">Turbo Core</option>
+                    </select>
+                    <span asp-validation-for="TurboTechnology" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TypeRam" class="control-label">Тип поддерживаемой оперативной памяти</label>
+                    <select asp-for="TypeRam" class="form-control">
+                        <option value="DDR2">DDR2</option>
+                        <option value="DDR3">DDR3</option>
+                        <option value="DDR4">DDR4</option>
+                        <option value="DDR5">DDR5</option>
+                    </select>
+                    <span asp-validation-for="TypeRam" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="HaveVideoCard" /> Имеется ли встроенное графическое ядро
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label">Цена</label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Вернуться</a>
+</div>

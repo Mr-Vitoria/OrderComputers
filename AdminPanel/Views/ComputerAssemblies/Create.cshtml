@@ -1,0 +1,56 @@
+﻿@model AdminPanel.Models.ComputerAssembly
+
+
+<h4>Сборка компьютера</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CompBodyId" class="control-label">Корпус</label>
+                <select asp-for="CompBodyId" class="form-control" asp-items="ViewBag.CompBodyId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="MotherCardId" class="control-label">Материнская плата</label>
+                <select asp-for="MotherCardId" class="form-control" asp-items="ViewBag.MotherCardId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PowerSupplyUnitId" class="control-label">Блок питания</label>
+                <select asp-for="PowerSupplyUnitId" class="form-control" asp-items="ViewBag.PowerSupplyUnitId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompProcessorId" class="control-label">Процессор</label>
+                <select asp-for="CompProcessorId" class="form-control" asp-items="ViewBag.CompProcessorId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="RAMMemoryId" class="control-label">Оперативная память</label>
+                <select asp-for="RAMMemoryId" class="form-control" asp-items="ViewBag.RAMMemoryId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="StorageDeviceId" class="control-label">Запоминающее устройство</label>
+                <select asp-for="StorageDeviceId" class="form-control" asp-items="ViewBag.StorageDeviceId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="VideoCardId" class="control-label">Видеокарта</label>
+                <select asp-for="VideoCardId" class="form-control" asp-items="ViewBag.VideoCardId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="OwnerId" class="control-label">Создатель сборки</label>
+                <select asp-for="OwnerId" class="form-control" asp-items="ViewBag.OwnerId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CostPrice" class="control-label">Себестоимость сборки</label>
+                <input asp-for="CostPrice" class="form-control" />
+                <span asp-validation-for="CostPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Добавить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Вернуться</a>
+</div>

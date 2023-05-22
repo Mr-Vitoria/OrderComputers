@@ -1,0 +1,13 @@
+﻿namespace AdminPanel.Models
+{
+    public class StorageDevice
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Port { get; set; }
+        public double Count { get; set; }
+        public string Type { get; set; }
+
+        public double Price { get; set; }
+    }
+}
