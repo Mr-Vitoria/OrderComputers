@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { Layout } from '../Layout';
 
-export default class Detail extends Component {
+export default class Edit extends Component {
 
     constructor(props) {
         super(props);
@@ -29,7 +30,7 @@ export default class Detail extends Component {
             <div>
                 <div className="row">
                     <div className="col-md-4">
-                        <form method="post">
+                        <form>
                             <input defaultValue={item.id } ref={this.inputIdRef} type="hidden" className="form-control" />
                             <div className="form-group">
                                 <label className="control-label">Name</label>
@@ -48,9 +49,10 @@ export default class Detail extends Component {
                                 <input defaultValue={item.price} ref={this.inputPriceRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
-                                <input onClick={(ev) => {
+                                <button onClick={(ev) => {
+                                    ev.preventDefault();
                                     this.editItem();
-                                }} defaultValue="Save" className="btn btn-primary" />
+                                }} className="btn btn-primary" >Save</button>
                             </div>
                         </form>
                     </div>
@@ -70,7 +72,16 @@ export default class Detail extends Component {
 
     render() {
         let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
+            ? <div className="middle">
+                <div className="bar bar1"></div>
+                <div className="bar bar2"></div>
+                <div className="bar bar3"></div>
+                <div className="bar bar4"></div>
+                <div className="bar bar5"></div>
+                <div className="bar bar6"></div>
+                <div className="bar bar7"></div>
+                <div className="bar bar8"></div>
+            </div>
             : this.renderItem(this.state.item);
 
         return (
@@ -82,8 +93,14 @@ export default class Detail extends Component {
 
     async getItem(Id) {
         const response = await fetch('powersupplyunits/detail?id=' + Id);
-        const data = await response.json();
-        this.setState({ item: data, loading: false });
+        if (response.status == 200) {
+
+            const data = await response.json();
+            this.setState({ item: data, loading: false });
+        } else {
+
+            Layout.setMessage('Error get power supply unit: ' + response.statusText);
+        }
     }
 
     async editItem() {
@@ -93,11 +110,13 @@ export default class Detail extends Component {
             + '&formFactor=' + this.inputFormFactorRef.current.value
             + '&power=' + this.inputPowerRef.current.value
             + '&price=' + this.inputPriceRef.current.value);
+        if (response.status == 200) {
 
-        if (response.statusText == "OK")
             this.setTypePage("Index");
-        else {
-            console.log(response);
+            Layout.setMessage('Power supply unit was edited: ' + response.statusText);
+        } else {
+
+            Layout.setMessage('Error edit power supply unit: ' + response.statusText);
         }
     }
 }

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
+import { Layout } from '../Layout';
 
-export default class Index extends Component {
+export default class Create extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            items: [],
-            loading: true   
-        };
+
         this.inputNameRef = React.createRef();
         this.inputSurnameRef = React.createRef();
         this.inputEmailRef = React.createRef();
@@ -26,25 +24,25 @@ export default class Index extends Component {
             <div>
                 <div className="row">
                     <div className="col-md-4">
-                        <form method="post">
+                        <form>
                             <div className="form-group">
-                                <label htmlFor="Name" className="control-label">Name</label>
+                                <label className="control-label">Name</label>
                                 <input ref={this.inputNameRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="Surname" className="control-label">Surname</label>
+                                <label className="control-label">Surname</label>
                                 <input ref={this.inputSurnameRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="Email" className="control-label">Email</label>
+                                <label className="control-label">Email</label>
                                 <input ref={this.inputEmailRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="Phone" className="control-label">Phone</label>
+                                <label className="control-label">Phone</label>
                                 <input ref={this.inputPhoneRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="Password" className="control-label">Password</label>
+                                <label className="control-label">Password</label>
                                 <input ref={this.inputPasswordRef} className="form-control" />
                             </div>
                             <div className="form-group">
@@ -52,16 +50,17 @@ export default class Index extends Component {
                                 <input ref={this.inputImageRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="TypeUser" className="control-label">Type User</label>
+                                <label className="control-label">Type User</label>
                                 <select ref={this.inputTypeRef} className="form-control">
                                     <option value="Common">Common</option>
                                     <option value="Admin">Admin</option>
                                 </select>
                             </div>
                             <div className="form-group">
-                                <input onClick={(ev) => {
+                                <button onClick={(ev) => {
+                                    ev.preventDefault();
                                     this.createItem();
-                                }} defaultValue="Add" className="btn btn-primary" />
+                                }} className="btn btn-primary">Add</button>
                             </div>
                         </form>
                     </div>
@@ -87,10 +86,13 @@ export default class Index extends Component {
             + '&typeUser=' + this.inputTypeRef.current.value
             + '&imgUrl=' + this.inputImageRef.current.value);
 
-        if (response.statusText == "OK") 
+        if (response.status == 200) {
+
             this.setTypePage("Index");
-        
-        else
-            this.setState({ problem: response.statusText, loading: false });
+            Layout.setMessage('User was added! ');
+        } else {
+
+            Layout.setMessage('Error add user: ' + response.statusText);
+        }
     }
 }

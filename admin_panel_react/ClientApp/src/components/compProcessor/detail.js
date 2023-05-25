@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { Layout } from '../Layout';
 
 export default class Detail extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            items: [],
+            item: null,
             loading: true,
             itemId: props.itemId
         };
@@ -16,7 +17,7 @@ export default class Detail extends Component {
         this.getItem(this.state.itemId);
     }
 
-    renderCompBody(item) {
+    renderItem(item) {
         return (
             <>
                 <div>
@@ -100,8 +101,17 @@ export default class Detail extends Component {
 
     render() {
         let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
-            : this.renderCompBody(this.state.items);
+            ? <div className="middle">
+                <div className="bar bar1"></div>
+                <div className="bar bar2"></div>
+                <div className="bar bar3"></div>
+                <div className="bar bar4"></div>
+                <div className="bar bar5"></div>
+                <div className="bar bar6"></div>
+                <div className="bar bar7"></div>
+                <div className="bar bar8"></div>
+            </div>
+            : this.renderItem(this.state.item);
 
         return (
             <div>
@@ -112,9 +122,15 @@ export default class Detail extends Component {
 
     async getItem(Id) {
         const response = await fetch('compprocessors/detail?id=' + Id);
-        const data = await response.json();
 
-        console.log(data);
-        this.setState({ items: data, loading: false });
+        if (response.status == 200) {
+
+            const data = await response.json();
+            this.setState({ items: data, loading: false });
+        }
+        else {
+
+            Layout.setMessage('Error get computer processor: ' + response.statusText);
+        }
     }
 }

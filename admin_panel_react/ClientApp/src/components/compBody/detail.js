@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { Layout } from '../Layout';
 
 export default class Detail extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            items: [],
+            item: null,
             loading: true,
             itemId: props.itemId
         };
@@ -13,14 +14,14 @@ export default class Detail extends Component {
     }
 
     componentDidMount() {
-        this.getCompBody(this.state.itemId);
+        this.getItem(this.state.itemId);
     }
 
-    renderCompBody(item) {
+    renderItem(item) {
         return (
             <>
                 <div>
-                    <h4>Detail comp body</h4>
+                    <h4>Detail computer body</h4>
                     <hr />
                     <dl className="row">
                         <dt className="col-sm-2">
@@ -58,8 +59,17 @@ export default class Detail extends Component {
 
     render() {
         let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
-            : this.renderCompBody(this.state.items);
+            ? <div className="middle">
+                <div className="bar bar1"></div>
+                <div className="bar bar2"></div>
+                <div className="bar bar3"></div>
+                <div className="bar bar4"></div>
+                <div className="bar bar5"></div>
+                <div className="bar bar6"></div>
+                <div className="bar bar7"></div>
+                <div className="bar bar8"></div>
+            </div>
+            : this.renderItem(this.state.item);
 
         return (
             <div>
@@ -68,9 +78,17 @@ export default class Detail extends Component {
         );
     }
 
-    async getCompBody(Id) {
+    async getItem(Id) {
         const response = await fetch('compbodies/detail?id=' + Id);
-        const data = await response.json();
-        this.setState({ items: data, loading: false });
+        if (response.status != 200) {
+
+            Layout.setMessage('Error: ' + response.statusText);
+        }
+        else {
+            const data = await response.json();
+            this.setState({ item: data, loading: false });
+        }
+
+
     }
 }

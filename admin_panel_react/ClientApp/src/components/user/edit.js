@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { Layout } from '../Layout';
 
-export default class Detail extends Component {
+export default class Edit extends Component {
 
     constructor(props) {
         super(props);
@@ -34,23 +35,23 @@ export default class Detail extends Component {
                     <div className="col-md-4">
                         <form method="post">
                             <div className="form-group">
-                                <label htmlFor="Name" className="control-label">Name</label>
+                                <label className="control-label">Name</label>
                                 <input defaultValue={ item.name} ref={this.inputNameRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="Surname" className="control-label">Surname</label>
+                                <label className="control-label">Surname</label>
                                 <input defaultValue={item.surname} ref={this.inputSurnameRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="Email" className="control-label">Email</label>
+                                <label className="control-label">Email</label>
                                 <input defaultValue={item.email}  ref={this.inputEmailRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="Phone" className="control-label">Phone</label>
+                                <label className="control-label">Phone</label>
                                 <input defaultValue={item.phone}  ref={this.inputPhoneRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="Password" className="control-label">Password</label>
+                                <label className="control-label">Password</label>
                                 <input defaultValue={item.password}  ref={this.inputPasswordRef} className="form-control" />
                             </div>
                             <div className="form-group">
@@ -58,16 +59,17 @@ export default class Detail extends Component {
                                 <input defaultValue={ item.imgUrl} ref={this.inputImageRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="TypeUser" className="control-label">Type User</label>
+                                <label className="control-label">Type User</label>
                                 <select defaultValue={item.typeUser} ref={this.inputTypeRef} className="form-control">
                                     <option value="Common">Common</option>
                                     <option value="Admin">Admin</option>
                                 </select>
                             </div>
                             <div className="form-group">
-                                <input onClick={(ev) => {
+                                <button onClick={(ev) => {
+                                    ev.preventDefault();
                                     this.editItem();
-                                }} defaultValue="Save" className="btn btn-primary" />
+                                }} className="btn btn-primary">Save</button>
                             </div>
                         </form>
                     </div>
@@ -87,7 +89,16 @@ export default class Detail extends Component {
 
     render() {
         let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
+            ? <div className="middle">
+                <div className="bar bar1"></div>
+                <div className="bar bar2"></div>
+                <div className="bar bar3"></div>
+                <div className="bar bar4"></div>
+                <div className="bar bar5"></div>
+                <div className="bar bar6"></div>
+                <div className="bar bar7"></div>
+                <div className="bar bar8"></div>
+            </div>
             : this.renderItem(this.state.item);
 
         return (
@@ -99,10 +110,14 @@ export default class Detail extends Component {
 
     async getItem(Id) {
         const response = await fetch('users/detail?id=' + Id);
-        const data = await response.json();
-        this.setState({ item: data, loading: false });
+        if (response.status == 200) {
 
-        console.log(data);
+            const data = await response.json();
+            this.setState({ item: data, loading: false });
+        } else {
+
+            Layout.setMessage('Error get user: ' + response.statusText);
+        }
     }
 
     async editItem() {
@@ -115,11 +130,13 @@ export default class Detail extends Component {
             + '&password=' + this.inputPasswordRef.current.value
             + '&imgUrl=' + this.inputImageRef.current.value
             + '&typeUser=' + this.inputTypeRef.current.value);
+        if (response.status == 200) {
 
-        if (response.statusText == "OK")
             this.setTypePage("Index");
-        else {
-            console.log(response);
+            Layout.setMessage('User was edited: ' + response.statusText);
+        } else {
+
+            Layout.setMessage('Error edit user: ' + response.statusText);
         }
     }
 }

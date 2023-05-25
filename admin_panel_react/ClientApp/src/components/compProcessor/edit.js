@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { Layout } from '../Layout';
 
-export default class Detail extends Component {
+export default class Edit extends Component {
 
     constructor(props) {
         super(props);
@@ -30,40 +31,40 @@ export default class Detail extends Component {
 
     }
 
-    renderCompBody(item) {
+    renderItem(item) {
         return (
             <>
                 <div>
                     <div className="row">
                         <div className="col-md-4">
-                            <form method="post">
+                            <form>
                                 <input ref={this.inputIdRef} type="hidden" defaultValue={item.id}></input>
                                 <div className="form-group">
-                                    <label htmlFor="Name" className="control-label">Name</label>
+                                    <label className="control-label">Name</label>
                                     <input ref={this.inputNameRef} className="form-control" defaultValue={item.name } />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="Producer" className="control-label">Producer</label>
+                                    <label className="control-label">Producer</label>
                                     <input ref={this.inputProducerRef} className="form-control" defaultValue={item.producer} />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="Socket" className="control-label">Socket</label>
+                                    <label className="control-label">Socket</label>
                                     <input ref={this.inputSocketRef} className="form-control" defaultValue={item.socket} />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="CountCores" className="control-label">Count cores</label>
+                                    <label className="control-label">Count cores</label>
                                     <input ref={this.inputCoresRef} className="form-control" type="number" defaultValue={item.countCores} />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="CountThreads" className="control-label">Count threads</label>
+                                    <label className="control-label">Count threads</label>
                                     <input ref={this.inputThreadsRef} className="form-control" type="number" defaultValue={item.countThreads} />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="Frequency" className="control-label">Frequency</label>
+                                    <label className="control-label">Frequency</label>
                                     <input ref={this.inputFrequencyRef} className="form-control" type="number" defaultValue={item.frequency} />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="TurboTechnology" className="control-label">Turbo technology</label>
+                                    <label className="control-label">Turbo technology</label>
                                     <select ref={this.inputTurboRef} className="form-control" defaultValue={item.turboTechnology}>
                                         <option value="NONE">NONE</option>
                                         <option value="Turbo Boost">Turbo Boost</option>
@@ -71,7 +72,7 @@ export default class Detail extends Component {
                                     </select>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="TypeRam" className="control-label">Type of RAM</label>
+                                    <label className="control-label">Type of RAM</label>
                                     <select ref={this.inputRamRef} className="form-control" defaultValue={item.typeRam}>
                                         <option value="DDR2">DDR2</option>
                                         <option value="DDR3">DDR3</option>
@@ -85,7 +86,7 @@ export default class Detail extends Component {
                                     </label>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="Price" className="control-label">Price</label>
+                                    <label className="control-label">Price</label>
                                     <input ref={this.inputPriceRef} className="form-control" defaultValue={item.price} />
                                 </div>
                                 <div className="form-group">
@@ -113,8 +114,17 @@ export default class Detail extends Component {
 
     render() {
         let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
-            : this.renderCompBody(this.state.item);
+            ? <div className="middle">
+                <div className="bar bar1"></div>
+                <div className="bar bar2"></div>
+                <div className="bar bar3"></div>
+                <div className="bar bar4"></div>
+                <div className="bar bar5"></div>
+                <div className="bar bar6"></div>
+                <div className="bar bar7"></div>
+                <div className="bar bar8"></div>
+            </div>
+            : this.renderItem(this.state.item);
 
         return (
             <div>
@@ -125,8 +135,15 @@ export default class Detail extends Component {
 
     async getItem(Id) {
         const response = await fetch('compprocessors/detail?id=' + Id);
-        const data = await response.json();
-        this.setState({ item: data, loading: false });
+        if (response.status == 200) {
+
+            const data = await response.json();
+            this.setState({ item: data, loading: false });
+        }
+        else {
+
+            Layout.setMessage('Error get computer processor: ' + response.statusText);
+        }
     }
 
     async editItem() {
@@ -144,11 +161,14 @@ export default class Detail extends Component {
             + '&haveVideoCard=' + haveVideo
             + '&typeRam=' + this.inputRamRef.current.value);
 
-        console.log(response);
-        if (response.statusText == "OK")
+        if (response.status == 200) {
+
             this.setTypePage("Index");
+            Layout.setMessage('Computer processor is edited: ' + response.statusText);
+        }
         else {
-            console.log(response);
+
+            Layout.setMessage('Error edit computer processor: ' + response.statusText);
         }
     }
 }

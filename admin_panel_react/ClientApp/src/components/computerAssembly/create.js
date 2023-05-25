@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Layout } from '../Layout';
 
 export default class Create extends Component {
 
@@ -31,7 +32,7 @@ export default class Create extends Component {
             <div>
                 <div className="row">
                     <div className="col-md-4">
-                        <form method="post">
+                        <form>
                             <div className="form-group">
                                 <label className="control-label">Computer body</label>
                                 <select ref={this.inputBodyIdRef} className="form-control" >
@@ -109,14 +110,15 @@ export default class Create extends Component {
 
                             <div className="form-group">
                                 <label className="control-label">Cost price</label>
-                                <input ref={this.inputCostPriceRef}className="form-control" type="number" />
+                                <input ref={this.inputCostPriceRef} className="form-control" type="number" />
                             </div>
 
 
                             <div className="form-group">
-                                <input onClick={(ev) => {
+                                <button onClick={(ev) => {
+                                    ev.preventDefault();
                                     this.createItem();
-                                }} defaultValue="Add" className="btn btn-primary" />
+                                }} className="btn btn-primary" >Add</button>
                             </div>
                         </form>
                     </div>
@@ -133,7 +135,16 @@ export default class Create extends Component {
     }
     render() {
         let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
+            ? <div className="middle">
+                <div className="bar bar1"></div>
+                <div className="bar bar2"></div>
+                <div className="bar bar3"></div>
+                <div className="bar bar4"></div>
+                <div className="bar bar5"></div>
+                <div className="bar bar6"></div>
+                <div className="bar bar7"></div>
+                <div className="bar bar8"></div>
+            </div>
             : this.renderForm(this.state.data);
 
         return (
@@ -145,8 +156,15 @@ export default class Create extends Component {
 
     async getData() {
         const response = await fetch('computerassemblies/getselectlists');
-        const data = await response.json();
-        this.setState({ data: data, loading: false });
+        if (response.status == 200) {
+
+            const data = await response.json();
+            this.setState({ data: data, loading: false });
+        }
+        else {
+
+            Layout.setMessage('Error get computer assembly data: ' + response.statusText);
+        }
     }
 
     async createItem() {
@@ -162,11 +180,14 @@ export default class Create extends Component {
             + '&costPrice=' + this.inputCostPriceRef.current.value);
 
 
-        if (response.statusText == "OK") 
+        if (response.status == 200) {
+
+            Layout.setMessage('Computer assembly was created! ');
             this.setTypePage("Index");
-        
-        else
-            this.setState({ problem: response.statusText, loading: false });
-        console.log(response);
+        }
+        else {
+
+            Layout.setMessage('Error create computer assembly: ' + response.statusText);
+        }
     }
 }

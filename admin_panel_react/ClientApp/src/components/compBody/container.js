@@ -10,8 +10,6 @@ export class CompBodyContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: [],
-            loading: true,
             page: "Index",
             itemId:null
         };
@@ -29,7 +27,7 @@ export class CompBodyContainer extends Component {
 
         return (
             <div>
-                <h1 id="tableLabel">Comp Bodies</h1>
+                <h1 id="tableLabel">Computer bodies</h1>
 
 
                 {this.state.page == "Index" ?
@@ -48,7 +46,3 @@ export class CompBodyContainer extends Component {
         );
     }
 }
-
-
-//<Create loginUser={this.state.loginUser} setTypeRepos={this.setTypeRepos} changeUserName={this.setTypeUser} />
-//                    : null}

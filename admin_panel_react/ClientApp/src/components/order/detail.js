@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { Layout } from '../Layout';
 
 export default class Detail extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            items: [],
+            item: [],
             loading: true,
             itemId: props.itemId
         };
@@ -56,7 +57,16 @@ export default class Detail extends Component {
 
     render() {
         let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
+            ? <div className="middle">
+                <div className="bar bar1"></div>
+                <div className="bar bar2"></div>
+                <div className="bar bar3"></div>
+                <div className="bar bar4"></div>
+                <div className="bar bar5"></div>
+                <div className="bar bar6"></div>
+                <div className="bar bar7"></div>
+                <div className="bar bar8"></div>
+            </div>
             : this.renderItem(this.state.item);
 
         return (
@@ -67,9 +77,15 @@ export default class Detail extends Component {
     }
 
     async getItem(Id) {
-        const response = await fetch('orders/detail?id=' + 1);
-        const data = await response.json();
+        const response = await fetch('orders/detail?id=' + Id);
+        if (response.status == 200) {
 
-        this.setState({ item: data, loading: false });
+            const data = await response.json();
+            this.setState({ item: data, loading: false });
+        }
+        else {
+
+            Layout.setMessage('Error get order: ' + response.statusText);
+        }
     }
 }

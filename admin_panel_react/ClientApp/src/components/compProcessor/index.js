@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Layout } from '../Layout';
 
 export default class Index extends Component {
 
@@ -9,10 +10,10 @@ export default class Index extends Component {
     }
 
     componentDidMount() {
-        this.getItem();
+        this.getItems();
     }
 
-    renderCompBodiesTable(items) {
+    renderItemsTable(items) {
         return (
             <table className="table">
                 <thead>
@@ -104,8 +105,17 @@ export default class Index extends Component {
 
     render() {
         let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
-            : this.renderCompBodiesTable(this.state.items);
+            ? <div className="middle">
+                <div className="bar bar1"></div>
+                <div className="bar bar2"></div>
+                <div className="bar bar3"></div>
+                <div className="bar bar4"></div>
+                <div className="bar bar5"></div>
+                <div className="bar bar6"></div>
+                <div className="bar bar7"></div>
+                <div className="bar bar8"></div>
+            </div>
+            : this.renderItemsTable(this.state.items);
 
         return (
             <div>
@@ -114,26 +124,38 @@ export default class Index extends Component {
 
                         this.setTypePage("Create");
                     }
-                    }>Add computer body</a>
+                    }>Add computer processor</a>
                 </p>
                 {contents}
             </div>
         );
     }
 
-    async getItem() {
+    async getItems() {
         const response = await fetch('compprocessors');
-        const data = await response.json();
-        this.setState({ items: data, loading: false });
+        if (response.status == 200) {
+
+            const data = await response.json();
+            this.setState({ items: data, loading: false });
+        }
+        else {
+
+            Layout.setMessage('Error get computer processor list: ' + response.statusText);
+        }
     }
 
     async deleteItem(Id) {
         const response = await fetch('compprocessors/delete?id=' + Id);
-        //Сделай обработку ошибок
+        if (response.status == 200) {
 
-        const response2 = await fetch('compprocessors');
-        const data = await response2.json();
-        this.setState({ items: data, loading: false });
+            Layout.setMessage('Computer processor was deleted! ');
+            this.getItems();
+        }
+        else {
+
+            Layout.setMessage('Error delete computer processor: ' + response.statusText);
+        }
+
 
     }
 }
