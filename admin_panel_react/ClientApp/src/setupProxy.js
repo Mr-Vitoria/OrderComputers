@@ -14,7 +14,8 @@ const context = [
     "/rammemories",
     "/storagedevices",
     "/videocards",
-    "/computerassemblies"
+    "/computerassemblies",
+    "/orders"
 ];
 
 const onError = (err, req, resp, target) => {

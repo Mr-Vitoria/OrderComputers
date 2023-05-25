@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using AdminPanel.Models;
+using admin_panel_react.Models;
 
-namespace AdminPanel.Controllers
+namespace admin_panel_react.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class OrdersController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -18,137 +20,93 @@ namespace AdminPanel.Controllers
             _context = context;
         }
 
-        // GET: Orders
-        public async Task<IActionResult> Index()
+
+        [HttpGet]
+        public async Task<List<Order>> Index()
         {
-            var applicationDbContext = _context.Orders.Include(o => o.ComputerAssembly).Include(o => o.User);
-            return View(await applicationDbContext.ToListAsync());
+            var orders = _context.Orders.Include(o => o.ComputerAssembly).Include(o => o.User);
+            return await orders.ToListAsync();
         }
 
-        // GET: Orders/Details/5
-        public async Task<IActionResult> Details(int? id)
+        [Route("detail")]
+        public async Task<Order?> Details(int? id)
         {
             if (id == null || _context.Orders == null)
             {
-                return NotFound();
+                return null;
             }
 
             var order = await _context.Orders
                 .Include(o => o.ComputerAssembly)
                 .Include(o => o.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (order == null)
+
+            return order;
+        }
+
+        [Route("getselectlists")]
+        public object GetSelectLists()
+        {
+            var model = new
             {
-                return NotFound();
-            }
-
-            return View(order);
+                ComputerAssemblies = new SelectList(_context.ComputerAssemblies, "Id", "Id"),
+                Users = new SelectList(_context.Users, "Id", "Id")
+            };
+            return model;
         }
 
-        // GET: Orders/Create
-        public IActionResult Create()
+        [Route("create")]
+        public async Task<string> Create(int userId,int computerAssemblyId,int totalPrice)
         {
-            ViewData["ComputerAssemblyId"] = new SelectList(_context.ComputerAssemblies, "Id", "Id");
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
-            return View();
-        }
-
-        // POST: Orders/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ExecutorId,UserId,ComputerAssemblyId,TotalPrice")] Order order)
-        {
+            Order order = new Order()
+            {
+                UserId = userId,
+                ComputerAssemblyId = computerAssemblyId,
+                TotalPrice = totalPrice
+            };
             if (ModelState.IsValid)
             {
                 _context.Add(order);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return "Ok";
             }
-            ViewData["ComputerAssemblyId"] = new SelectList(_context.ComputerAssemblies, "Id", "Id", order.ComputerAssemblyId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", order.UserId);
-            return View(order);
+            return "Error for create order";
         }
 
-        // GET: Orders/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        [HttpGet]
+        [Route("edit")]
+        public async Task<string> Edit(int id, int userId, int computerAssemblyId, int totalPrice)
         {
-            if (id == null || _context.Orders == null)
+            Order order = new Order()
             {
-                return NotFound();
-            }
+                Id = id,
+                UserId = userId,
+                ComputerAssemblyId = computerAssemblyId,
+                TotalPrice = totalPrice
+            };
 
-            var order = await _context.Orders.FindAsync(id);
-            if (order == null)
-            {
-                return NotFound();
-            }
-            ViewData["ComputerAssemblyId"] = new SelectList(_context.ComputerAssemblies, "Id", "Id", order.ComputerAssemblyId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", order.UserId);
-            return View(order);
-        }
 
-        // POST: Orders/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ExecutorId,UserId,ComputerAssemblyId,TotalPrice")] Order order)
-        {
-            if (id != order.Id)
+            try
             {
-                return NotFound();
+                _context.Update(order);
+                await _context.SaveChangesAsync();
             }
-
-            if (ModelState.IsValid)
+            catch (DbUpdateConcurrencyException)
             {
-                try
+                if (!OrderExists(order.Id))
                 {
-                    _context.Update(order);
-                    await _context.SaveChangesAsync();
+                    return "Error update order";
                 }
-                catch (DbUpdateConcurrencyException)
+                else
                 {
-                    if (!OrderExists(order.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    throw;
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["ComputerAssemblyId"] = new SelectList(_context.ComputerAssemblies, "Id", "Id", order.ComputerAssemblyId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", order.UserId);
-            return View(order);
+            return "Ok";
         }
 
-        // GET: Orders/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.Orders == null)
-            {
-                return NotFound();
-            }
 
-            var order = await _context.Orders
-                .Include(o => o.ComputerAssembly)
-                .Include(o => o.User)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (order == null)
-            {
-                return NotFound();
-            }
-
-            return View(order);
-        }
-
-        // POST: Orders/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [Route("delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Orders == null)
