@@ -12,13 +12,21 @@ export default class App extends Component {
     constructor(props) {
         super(props);
         this.setTypePage = this.setTypePage.bind(this);
+        this.setMessage = this.setMessage.bind(this);
         this.state = {
-            typePage: ''
+            typePage: '',
+            message:null
 
         };
     }
     componentDidMount() {
         this.setTypePage('Login');
+    }
+
+    setMessage(Message) {
+        this.setState({
+            message: Message
+        });
     }
 
     setTypePage(Page) {
@@ -43,11 +51,10 @@ export default class App extends Component {
                   this.state.typePage == "Login" ?
                           <Login setTypePage={this.setTypePage} />
                       : null
-
               }
               {
                   this.state.typePage == "Main" ? <div>
-                      <Layout setTypePage={this.setTypePage}>
+                      <Layout setTypePage={this.setTypePage} setMessage={this.setMessage}>
                           <Routes>
                               {AppRoutes.map((route, index) => {
                                   const { element, ...rest } = route;
@@ -57,7 +64,24 @@ export default class App extends Component {
                       </Layout>
                       </div>
                       : null
-              }              
+              }          
+              {
+                  this.state.message != null ?
+
+                      <div className="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                          <div className="toast-header">
+                              {/*<img src="..." className="rounded me-2" alt="..." />*/}
+                              <button onClick={(ev) => {
+                                  this.setMessage(null);
+                              }} type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                          </div>
+                          <div className="toast-body">
+                              {this.state.message }
+                          </div>
+                      </div>
+                      : null
+              }      
+
           </>
           
     );

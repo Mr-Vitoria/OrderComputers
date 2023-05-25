@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
+import { Layout } from '../Layout';
 
-export default class Index extends Component {
+export default class Create extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            items: [],
-            loading: true,
-            name: "",
-            formFactor: "",
-            price:0
-        };
+
         this.inputNameRef = React.createRef();
         this.inputProducerRef = React.createRef();
         this.inputSocketRef = React.createRef();
@@ -32,34 +27,33 @@ export default class Index extends Component {
             <div>
                 <div className="row">
                     <div className="col-md-4">
-                        <form method="post">
-                            <div asp-validation-summary="ModelOnly" className="text-danger"></div>
+                        <form>
                             <div className="form-group">
-                                <label htmlFor="Name" className="control-label">Name</label>
+                                <label className="control-label">Name</label>
                                 <input ref={this.inputNameRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="Producer" className="control-label">Producer</label>
+                                <label className="control-label">Producer</label>
                                 <input ref={this.inputProducerRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="Socket" className="control-label">Socket</label>
+                                <label className="control-label">Socket</label>
                                 <input ref={this.inputSocketRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="CountCores" className="control-label">Count cores</label>
+                                <label className="control-label">Count cores</label>
                                 <input ref={this.inputCoresRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="CountThreads" className="control-label">Count threads</label>
+                                <label className="control-label">Count threads</label>
                                 <input ref={this.inputThreadsRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="Frequency" className="control-label">Frequency</label>
+                                <label className="control-label">Frequency</label>
                                 <input ref={this.inputFrequencyRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="TurboTechnology" className="control-label">Turbo technology</label>
+                                <label className="control-label">Turbo technology</label>
                                 <select ref={this.inputTurboRef} className="form-control">
                                     <option value="NONE">NONE</option>
                                     <option value="Turbo Boost">Turbo Boost</option>
@@ -67,7 +61,7 @@ export default class Index extends Component {
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="TypeRam" className="control-label">Type of RAM</label>
+                                <label className="control-label">Type of RAM</label>
                                 <select ref={this.inputRamRef} className="form-control">
                                     <option value="DDR2">DDR2</option>
                                     <option value="DDR3">DDR3</option>
@@ -81,7 +75,7 @@ export default class Index extends Component {
                                 </label>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="Price" className="control-label">Price</label>
+                                <label className="control-label">Price</label>
                                 <input ref={this.inputPriceRef} className="form-control" />
                             </div>
                             <div className="form-group">
@@ -118,10 +112,14 @@ export default class Index extends Component {
             + '&haveVideoCard=' + haveVideo
             + '&typeRam=' + this.inputRamRef.current.value);
 
-        if (response.statusText == "OK") 
+        if (response.status == 200) {
+
+            Layout.setMessage('Computer processor is added');
             this.setTypePage("Index");
-        
-        else
-            this.setState({ problem: response.statusText, loading: false });
+        }
+        else {
+
+            Layout.setMessage('Error added computer processor: ' + response.statusText);
+        }
     }
 }

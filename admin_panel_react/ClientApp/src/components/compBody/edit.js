@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { Layout } from '../Layout';
 
-export default class Detail extends Component {
+export default class Edit extends Component {
 
     constructor(props) {
         super(props);
@@ -18,26 +19,25 @@ export default class Detail extends Component {
     }
 
     componentDidMount() {
-        this.getCompBody(this.state.itemId);
+        this.getItem(this.state.itemId);
 
     }
 
-    renderCompBody(item) {
+    renderItem(item) {
         return (
             <>
                 <div>
                     <div className="row">
                         <div className="col-md-4">
-                            <form method="post">
+                            <form>
                                 <input ref={this.inputIdRef} type="hidden" defaultValue={item.id}></input>
-                                <div className="text-danger"></div>
                                 <div className="form-group">
-                                    <label htmlFor="Name" className="control-label">Name</label>
-                                    <input defaultValue={item.name} ref={this.inputNameRef} name="Name" className="form-control" />
+                                    <label className="control-label">Name</label>
+                                    <input defaultValue={item.name} ref={this.inputNameRef} className="form-control" />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="FormFactor" className="control-label">Form factor</label>
-                                    <select defaultValue={item.formFactor} ref={this.inputFormFactorRef} name="FormFactor" className="form-control">
+                                    <label className="control-label">Form factor</label>
+                                    <select defaultValue={item.formFactor} ref={this.inputFormFactorRef} className="form-control">
                                         <option value="Super/Ultra Tower">Super/Ultra Tower</option>
                                         <option value="Full Tower">Full Tower</option>
                                         <option value="Mid Tower">Mid Tower</option>
@@ -47,13 +47,13 @@ export default class Detail extends Component {
                                     </select>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="Price" className="control-label">Price</label>
-                                    <input defaultValue={item.price} ref={this.inputPriceRef} name="Price" className="form-control" type="number" />
+                                    <label className="control-label">Price</label>
+                                    <input defaultValue={item.price} ref={this.inputPriceRef} className="form-control" type="number" />
                                 </div>
                                 <div className="form-group">
                                     <button onClick={(ev) => {
                                         ev.preventDefault();
-                                        this.editCompBody();
+                                        this.editItem();
                                     }} className="btn btn-dark" >Save</button>
                                 </div>
                             </form>
@@ -75,8 +75,17 @@ export default class Detail extends Component {
 
     render() {
         let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
-            : this.renderCompBody(this.state.item);
+            ? <div className="middle">
+                <div className="bar bar1"></div>
+                <div className="bar bar2"></div>
+                <div className="bar bar3"></div>
+                <div className="bar bar4"></div>
+                <div className="bar bar5"></div>
+                <div className="bar bar6"></div>
+                <div className="bar bar7"></div>
+                <div className="bar bar8"></div>
+            </div>
+            : this.renderItem(this.state.item);
 
         return (
             <div>
@@ -85,23 +94,32 @@ export default class Detail extends Component {
         );
     }
 
-    async getCompBody(Id) {
+    async getItem(Id) {
         const response = await fetch('compbodies/detail?id=' + Id);
-        const data = await response.json();
-        this.setState({ item: data, loading: false });
+        if (response.status == 200) {
+
+            const data = await response.json();
+            this.setState({ item: data, loading: false });
+        }
+        else {
+
+            Layout.setMessage('Error get computer body: ' + response.statusText);
+        }
     }
 
-    async editCompBody() {
+    async editItem() {
         const response = await fetch('compbodies/edit?id=' + this.inputIdRef.current.value
             + '&name=' + this.inputNameRef.current.value
             + '&price=' + this.inputPriceRef.current.value
             + '&formFactor=' + this.inputFormFactorRef.current.value);
 
-        console.log(response);
-        if (response.statusText == "OK")
+        if (response.status == 200) {
+
+            Layout.setMessage('Computer body is edited');
             this.setTypePage("Index");
+        }
         else {
-            console.log(response);
+            Layout.setMessage('Error: ' + response.statusText);
         }
     }
 }

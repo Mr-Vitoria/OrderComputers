@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { Layout } from '../Layout';
 
-export default class Detail extends Component {
+export default class Edit extends Component {
 
     constructor(props) {
         super(props);
@@ -74,6 +75,7 @@ export default class Detail extends Component {
                             </div>
                             <div className="form-group">
                                 <input onClick={(ev) => {
+                                    ev.preventDefault();
                                     this.editItem();
                                 }} defaultValue="Save" className="btn btn-primary" />
                             </div>
@@ -95,7 +97,16 @@ export default class Detail extends Component {
 
     render() {
         let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
+            ? <div className="middle">
+                <div className="bar bar1"></div>
+                <div className="bar bar2"></div>
+                <div className="bar bar3"></div>
+                <div className="bar bar4"></div>
+                <div className="bar bar5"></div>
+                <div className="bar bar6"></div>
+                <div className="bar bar7"></div>
+                <div className="bar bar8"></div>
+            </div>
             : this.renderItem(this.state.item);
 
         return (
@@ -107,8 +118,14 @@ export default class Detail extends Component {
 
     async getItem(Id) {
         const response = await fetch('videocards/detail?id=' + Id);
-        const data = await response.json();
-        this.setState({ item: data, loading: false });
+        if (response.status == 200) {
+
+            const data = await response.json();
+            this.setState({ item: data, loading: false });
+        } else {
+
+            Layout.setMessage('Error get video card: ' + response.statusText);
+        }
     }
 
     async editItem() {
@@ -123,10 +140,13 @@ export default class Detail extends Component {
             + '&count=' + this.inputCountRef.current.value
             + '&price=' + this.inputPriceRef.current.value);
 
-        if (response.statusText == "OK")
+        if (response.status == 200) {
+
             this.setTypePage("Index");
-        else {
-            console.log(response);
+            Layout.setMessage('Video card was edited! ');
+        } else {
+
+            Layout.setMessage('Error edit video card: ' + response.statusText);
         }
     }
 }

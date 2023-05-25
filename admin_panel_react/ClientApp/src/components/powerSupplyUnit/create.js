@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
+import { Layout } from '../Layout';
 
-export default class Index extends Component {
+export default class Create extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            items: [],
-            loading: true   
-        };
+
         this.inputNameRef = React.createRef();
         this.inputFormFactorRef = React.createRef();
         this.inputPowerRef = React.createRef();
@@ -41,9 +39,10 @@ export default class Index extends Component {
                                 <input ref={this.inputPriceRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
-                                <input onClick={(ev) => {
+                                <button onClick={(ev) => {
+                                    ev.preventDefault();
                                     this.createItem();
-                                }} defaultValue="Add" className="btn btn-primary" />
+                                }} className="btn btn-primary">Add</button>
                             </div>
                         </form>
                     </div>
@@ -66,10 +65,13 @@ export default class Index extends Component {
             + '&power=' + this.inputPowerRef.current.value
             + '&price=' + this.inputPriceRef.current.value);
 
-        if (response.statusText == "OK") 
+        if (response.status == 200) {
+
             this.setTypePage("Index");
-        
-        else
-            this.setState({ problem: response.statusText, loading: false });
+            Layout.setMessage('Power supply unit was added! ');
+        } else {
+
+            Layout.setMessage('Error add power supply unit: ' + response.statusText);
+        }
     }
 }

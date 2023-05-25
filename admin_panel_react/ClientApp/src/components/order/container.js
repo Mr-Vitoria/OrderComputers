@@ -10,8 +10,6 @@ export class OrderContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: [],
-            loading: true,
             page: "Index",
             itemId:null
         };

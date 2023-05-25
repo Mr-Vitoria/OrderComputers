@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
+import { Layout } from '../Layout';
 
-export default class Index extends Component {
+export default class Create extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            items: [],
-            loading: true   
-        };
         this.inputNameRef = React.createRef();
         this.inputSizeRef = React.createRef();
         this.inputSocketRef = React.createRef();
@@ -26,17 +23,17 @@ export default class Index extends Component {
             <div>
                 <div className="row">
                     <div className="col-md-4">
-                        <form method="post">
+                        <form>
                             <div className="form-group">
-                                <label htmlFor="Name" className="control-label">Name</label>
+                                <label className="control-label">Name</label>
                                 <input ref={this.inputNameRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="Size" className="control-label">Size</label>
+                                <label className="control-label">Size</label>
                                 <input ref={this.inputSizeRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="Socket" className="control-label">Socket</label>
+                                <label className="control-label">Socket</label>
                                 <input ref={this.inputSocketRef} className="form-control" />
                             </div>
                             <div className="form-group form-check">
@@ -50,13 +47,14 @@ export default class Index extends Component {
                                 </label>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="Price" className="control-label">Price</label>
+                                <label className="control-label">Price</label>
                                 <input ref={this.inputPriceRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
-                                <input onClick={(ev) => {
+                                <button onClick={(ev) => {
+                                    ev.preventDefault();
                                     this.createItem();
-                                }} value="Add" className="btn btn-primary" />
+                                }} className="btn btn-primary">Add</button>
                             </div>
                         </form>
                     </div>
@@ -81,12 +79,15 @@ export default class Index extends Component {
             + '&size=' + this.inputSizeRef.current.value
             + '&socket=' + this.inputSocketRef.current.value
             + '&haveWiFiModel=' + haveWiFi
-            + '&haveBluetoothModel=' + haveBluetooth        );
+            + '&haveBluetoothModel=' + haveBluetooth);
 
-        if (response.statusText == "OK") 
+        if (response.status == 200) {
             this.setTypePage("Index");
-        
-        else
-            this.setState({ problem: response.statusText, loading: false });
+            Layout.setMessage('Mother card was added! ');
+        }
+        else {
+
+            Layout.setMessage('Error add mother card: ' + response.statusText);
+        }
     }
 }

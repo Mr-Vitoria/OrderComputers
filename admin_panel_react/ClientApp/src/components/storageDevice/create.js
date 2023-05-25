@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
+import { Layout } from '../Layout';
 
-export default class Index extends Component {
+export default class Create extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            items: [],
-            loading: true   
-        };
         this.inputNameRef = React.createRef();
         this.inputTypeRef = React.createRef();
         this.inputCountRef = React.createRef();
@@ -23,7 +20,7 @@ export default class Index extends Component {
             <div>
                 <div className="row">
                     <div className="col-md-4">
-                        <form method="post">
+                        <form>
                             <div className="form-group">
                                 <label className="control-label">Name</label>
                                 <input ref={this.inputNameRef} className="form-control" />
@@ -44,9 +41,10 @@ export default class Index extends Component {
                                 <input ref={this.inputPriceRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
-                                <input onClick={(ev) => {
+                                <button onClick={(ev) => {
+                                    ev.preventDefault();
                                     this.createItem();
-                                }} defaultValue="Add" className="btn btn-primary" />
+                                }} className="btn btn-primary">Add</button>
                             </div>
                         </form>
                     </div>
@@ -69,10 +67,13 @@ export default class Index extends Component {
             + '&count=' + this.inputCountRef.current.value
             + '&price=' + this.inputPriceRef.current.value);
 
-        if (response.statusText == "OK") 
+
+        if (response.status == 200) {
+
             this.setTypePage("Index");
-        
-        else
-            this.setState({ problem: response.statusText, loading: false });
+            Layout.setMessage('Storage device was add! ');
+        } else {
+            Layout.setMessage('Error add storage device: ' + response.statusText);
+        }
     }
 }

@@ -10,8 +10,6 @@ export class CompProcessorContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: [],
-            loading: true,
             page: "Index",
             itemId:null
         };
@@ -29,7 +27,7 @@ export class CompProcessorContainer extends Component {
 
         return (
             <div>
-                <h1 id="tableLabel">Comp Processors</h1>
+                <h1 id="tableLabel">Computer processors</h1>
 
 
                 {this.state.page == "Index" ?

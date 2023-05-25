@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { Layout } from '../Layout';
 
-export default class Detail extends Component {
+export default class Edit extends Component {
 
     constructor(props) {
         super(props);
@@ -35,7 +36,7 @@ export default class Detail extends Component {
             <div>
                 <div className="row">
                     <div className="col-md-4">
-                        <form method="post">
+                        <form>
                             <input defaultValue={item.id } ref={this.inputIdRef} type="hidden" className="form-control" />
                             <div className="form-group">
                                 <label className="control-label">Computer body</label>
@@ -117,9 +118,10 @@ export default class Detail extends Component {
                                 <input ref={this.inputCostPriceRef} defaultValue={item.costPrice} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
-                                <input onClick={(ev) => {
+                                <button onClick={(ev) => {
+                                    ev.preventDefault();
                                     this.editItem();
-                                }} defaultValue="Save" className="btn btn-primary" />
+                                }} className="btn btn-primary">Save</button>
                             </div>
                         </form>
                     </div>
@@ -139,7 +141,16 @@ export default class Detail extends Component {
 
     render() {
         let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
+            ? <div className="middle">
+                <div className="bar bar1"></div>
+                <div className="bar bar2"></div>
+                <div className="bar bar3"></div>
+                <div className="bar bar4"></div>
+                <div className="bar bar5"></div>
+                <div className="bar bar6"></div>
+                <div className="bar bar7"></div>
+                <div className="bar bar8"></div>
+            </div>
             : this.renderItem(this.state.data, this.state.item);
 
         return (
@@ -151,11 +162,17 @@ export default class Detail extends Component {
 
     async getItem(Id) {
         const response = await fetch('computerassemblies/detail?id=' + Id);
-        const data = await response.json();
-
         const responseSelectList = await fetch('computerassemblies/getselectlists');
-        const selectList = await responseSelectList.json();
-        this.setState({ item: data, data: selectList, loading: false });
+        if (response.status == 200 && responseSelectList.status == 200) {
+
+            const data = await response.json();
+            const selectList = await responseSelectList.json();
+            this.setState({ item: data, data: selectList, loading: false });
+        }
+        else {
+
+            Layout.setMessage('Error get computer assembly ');
+        }
     }
 
     async editItem() {
@@ -171,10 +188,13 @@ export default class Detail extends Component {
             + '&ownerId=' + this.inputOwnerIdRef.current.value
             + '&costPrice=' + this.inputCostPriceRef.current.value);
 
-        if (response.statusText == "OK")
+        if (response.status == 200) {
+
             this.setTypePage("Index");
+            Layout.setMessage('Computer assembly was edited! ');
+        }
         else {
-            console.log(response);
+            Layout.setMessage('Error edit computer assembly: ' + response.statusText);
         }
     }
 }

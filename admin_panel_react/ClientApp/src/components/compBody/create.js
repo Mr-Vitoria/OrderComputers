@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
+import {Layout} from '../Layout';
 
-export default class Index extends Component {
+export default class Create extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            items: [],
-            loading: true,
-            name: "",
-            formFactor: "",
-            price:0
-        };
+
+
         this.inputNameRef = React.createRef();
         this.inputFormFactorRef = React.createRef();
         this.inputPriceRef = React.createRef();
@@ -23,15 +19,14 @@ export default class Index extends Component {
             <div>
                 <div className="row">
                     <div className="col-md-4">
-                        <form method="post">
-                            <div className="text-danger"></div>
+                        <form>
                             <div className="form-group">
-                                <label htmlFor="Name" className="control-label">Name</label>
-                                <input ref={this.inputNameRef} name="Name" className="form-control" />
+                                <label className="control-label">Name</label>
+                                <input ref={this.inputNameRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="FormFactor" className="control-label">Form factor</label>
-                                <select ref={this.inputFormFactorRef} name="FormFactor" className="form-control">
+                                <label className="control-label">Form factor</label>
+                                <select ref={this.inputFormFactorRef} className="form-control">
                                     <option value="Super/Ultra Tower">Super/Ultra Tower</option>
                                     <option value="Full Tower">Full Tower</option>
                                     <option value="Mid Tower">Mid Tower</option>
@@ -41,13 +36,13 @@ export default class Index extends Component {
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="Price" className="control-label">Price</label>
-                                <input ref={this.inputPriceRef} name="Price" className="form-control" type="number" />
+                                <label className="control-label">Price</label>
+                                <input ref={this.inputPriceRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
                                 <button onClick={(ev) => {
                                     ev.preventDefault();
-                                    this.createCompBodies();
+                                    this.createItem();
                                 }} className="btn btn-dark" >Add</button>
                             </div>
                         </form>
@@ -65,15 +60,19 @@ export default class Index extends Component {
         );
     }
 
-    async createCompBodies() {
+    async createItem() {
         const response = await fetch('compbodies/create?name=' + this.inputNameRef.current.value
             + '&price=' + this.inputPriceRef.current.value
             + '&formFactor=' + this.inputFormFactorRef.current.value);
 
-        if (response.statusText == "OK") 
+        if (response.statusText == "OK") {
+
             this.setTypePage("Index");
-        
-        else
-            this.setState({ problem: response.statusText, loading: false });
+            Layout.setMessage('Computer body is added');
+        }
+        else {
+            Layout.setMessage('Error: ' + response.statusText);
+
+        }
     }
 }

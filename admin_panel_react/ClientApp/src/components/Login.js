@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Layout } from './Layout';
 import Cookies from 'universal-cookie';
 
 export class Login extends Component {
@@ -12,15 +13,31 @@ export class Login extends Component {
     }
     async checkUser() {
         const response = await fetch('users/getuser?phone=' + this.inputPhoneRef.current.value);
-        const data = await response.json();
-    if (data.password == this.inputPasswordRef.current.value && data.typeUser == "Admin") {
-        const cookies = new Cookies();
-        console.log(data);
-        cookies.set('userId',data.id , { path: '/' });
-            this.setTypePage("Main");
-            return;
+        if (response.status == 200) {
+
+            const data = await response.json();
+            if (data.password == this.inputPasswordRef.current.value) {
+                
+
+                if (data.typeUser == "Admin") {
+                    const cookies = new Cookies();
+                    cookies.set('userId', data.id, { path: '/' });
+                    this.setTypePage("Main");
+                    return;
+                } else {
+
+                    Layout.setMessage('Error user dont have Admin status: ' + response.statusText);
+                }
+            }
+            else {
+
+                Layout.setMessage('Password or login ercorrect: ' + response.statusText);
+            }
+        } else {
+
+            Layout.setMessage('Error get user info: ' + response.statusText);
         }
-        console.log("error");
+        
 
     }
 
