@@ -73,6 +73,9 @@ export class NavMenu extends Component {
                             <a href="/videoCardPanel" className="nav_link">
                                 <span className="nav_name">Video card</span>
                             </a>
+                            <a href="/compAssemblies" className="nav_link">
+                                <span className="nav_name">Comoputer assemblies</span>
+                            </a>
                         </div>
                     </div> <a onClick={(ev) => {
                         Layout.setTypePage("SignOut")

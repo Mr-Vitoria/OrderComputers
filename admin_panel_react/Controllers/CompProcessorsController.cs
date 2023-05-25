@@ -104,7 +104,7 @@ namespace admin_panel_react.Controllers
             {
                 if (!CompProcessorExists(compProcessor.Id))
                 {
-                    return "Error update from edit compBody";
+                    return "Error update from edit compProcessors";
                 }
                 else
                 {

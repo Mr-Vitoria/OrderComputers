@@ -6,6 +6,7 @@ import { PowerSupplyUnitContainer } from "./components/powerSupplyUnit/container
 import { RAMMemoryContainer } from "./components/ramMemory/container";
 import { StorageDeviceContainer } from "./components/storageDevice/container";
 import { VideoCardContainer } from "./components/videoCard/container";
+import { ComputerAssemblyContainer } from "./components/computerAssembly/container";
 import { Home } from "./components/Home";
 
 const AppRoutes = [
@@ -44,6 +45,10 @@ const AppRoutes = [
     {
         path: '/videoCardPanel',
         element: <VideoCardContainer />
+    },
+    {
+        path: '/compAssemblies',
+        element: <ComputerAssemblyContainer />
     }
 ];
 

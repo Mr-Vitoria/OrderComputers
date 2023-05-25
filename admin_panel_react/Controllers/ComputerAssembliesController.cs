@@ -9,6 +9,8 @@ using admin_panel_react.Models;
 
 namespace admin_panel_react.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class ComputerAssembliesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -18,19 +20,19 @@ namespace admin_panel_react.Controllers
             _context = context;
         }
 
-        // GET: ComputerAssemblies
-        public async Task<IActionResult> Index()
+        [HttpGet]
+        public async Task<List<ComputerAssembly>> Index()
         {
-            var applicationDbContext = _context.ComputerAssemblies.Include(c => c.CompBody).Include(c => c.CompProcessor).Include(c => c.MotherCard).Include(c => c.Owner).Include(c => c.PowerSupplyUnit).Include(c => c.RAMMemory).Include(c => c.StorageDevice).Include(c => c.VideoCard);
-            return View(await applicationDbContext.ToListAsync());
+            var computerAssemblies = _context.ComputerAssemblies.Include(c => c.CompBody).Include(c => c.CompProcessor).Include(c => c.MotherCard).Include(c => c.Owner).Include(c => c.PowerSupplyUnit).Include(c => c.RAMMemory).Include(c => c.StorageDevice).Include(c => c.VideoCard);
+            return await computerAssemblies.ToListAsync();
         }
 
-        // GET: ComputerAssemblies/Details/5
-        public async Task<IActionResult> Details(int? id)
+        [Route("detail")]
+        public async Task<ComputerAssembly?> Details(int? id)
         {
             if (id == null || _context.ComputerAssemblies == null)
             {
-                return NotFound();
+                return null;
             }
 
             var computerAssembly = await _context.ComputerAssemblies
@@ -43,167 +45,118 @@ namespace admin_panel_react.Controllers
                 .Include(c => c.StorageDevice)
                 .Include(c => c.VideoCard)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (computerAssembly == null)
+
+            return computerAssembly;
+        }
+
+        [Route("getselectlists")]
+        public object GetSelectLists()
+        {
+            var model = new
             {
-                return NotFound();
-            }
-
-            return View(computerAssembly);
+                CompBodies = new SelectList(_context.CompBodies, "Id", "Id"),
+                CompProcessors = new SelectList(_context.CompProcessors, "Id", "Id"),
+                MotherCards = new SelectList(_context.MotherCards, "Id", "Id"),
+                Owners = new SelectList(_context.Users, "Id", "Id"),
+                PowerSupplyUnits = new SelectList(_context.PowerSupplyUnits, "Id", "Id"),
+                RAMMemories = new SelectList(_context.RAMMemories, "Id", "Id"),
+                StorageDevices = new SelectList(_context.StorageDevices, "Id", "Id"),
+                VideoCards = new SelectList(_context.VideoCards, "Id", "Id")
+            };
+            return model;
         }
 
-        // GET: ComputerAssemblies/Create
-        public IActionResult Create()
+        [Route("create")]
+        public async Task<string> Create(int compBodyId, int motherCardId, 
+            int powerSupplyUnitId, int compProcessorId, 
+            int ramMemoryId, int storageDeviceId, 
+            int videoCardId, int ownerId, int costPrice)
         {
-            ViewData["CompBodyId"] = new SelectList(_context.CompBodies, "Id", "Id");
-            ViewData["CompProcessorId"] = new SelectList(_context.CompProcessors, "Id", "Id");
-            ViewData["MotherCardId"] = new SelectList(_context.MotherCards, "Id", "Id");
-            ViewData["OwnerId"] = new SelectList(_context.Users, "Id", "Id");
-            ViewData["PowerSupplyUnitId"] = new SelectList(_context.PowerSupplyUnits, "Id", "Id");
-            ViewData["RAMMemoryId"] = new SelectList(_context.RAMMemories, "Id", "Id");
-            ViewData["StorageDeviceId"] = new SelectList(_context.StorageDevices, "Id", "Id");
-            ViewData["VideoCardId"] = new SelectList(_context.VideoCards, "Id", "Id");
-            return View();
-        }
-
-        // POST: ComputerAssemblies/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CompBodyId,MotherCardId,PowerSupplyUnitId,CompProcessorId,RAMMemoryId,StorageDeviceId,VideoCardId,OwnerId,CostPrice")] ComputerAssembly computerAssembly)
-        {
+            ComputerAssembly computerAssembly = new ComputerAssembly()
+            {
+                CompBodyId = compBodyId,
+                MotherCardId = motherCardId,
+                PowerSupplyUnitId = powerSupplyUnitId,
+                CompProcessorId = compProcessorId,
+                RAMMemoryId = ramMemoryId,
+                StorageDeviceId = storageDeviceId,
+                VideoCardId = videoCardId,
+                OwnerId = ownerId,
+                CostPrice = costPrice
+            };
             if (ModelState.IsValid)
             {
                 _context.Add(computerAssembly);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return "Ok";
             }
-            ViewData["CompBodyId"] = new SelectList(_context.CompBodies, "Id", "Id", computerAssembly.CompBodyId);
-            ViewData["CompProcessorId"] = new SelectList(_context.CompProcessors, "Id", "Id", computerAssembly.CompProcessorId);
-            ViewData["MotherCardId"] = new SelectList(_context.MotherCards, "Id", "Id", computerAssembly.MotherCardId);
-            ViewData["OwnerId"] = new SelectList(_context.Users, "Id", "Id", computerAssembly.OwnerId);
-            ViewData["PowerSupplyUnitId"] = new SelectList(_context.PowerSupplyUnits, "Id", "Id", computerAssembly.PowerSupplyUnitId);
-            ViewData["RAMMemoryId"] = new SelectList(_context.RAMMemories, "Id", "Id", computerAssembly.RAMMemoryId);
-            ViewData["StorageDeviceId"] = new SelectList(_context.StorageDevices, "Id", "Id", computerAssembly.StorageDeviceId);
-            ViewData["VideoCardId"] = new SelectList(_context.VideoCards, "Id", "Id", computerAssembly.VideoCardId);
-            return View(computerAssembly);
+
+            return "Error for create computer assembly";
         }
 
-        // GET: ComputerAssemblies/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+
+        [HttpGet]
+        [Route("edit")]
+        public async Task<string> Edit(int id, int compBodyId, 
+            int motherCardId, int powerSupplyUnitId, 
+            int compProcessorId, int ramMemoryId, 
+            int storageDeviceId, int videoCardId, 
+            int ownerId, int costPrice)
         {
-            if (id == null || _context.ComputerAssemblies == null)
+            ComputerAssembly computerAssembly = new ComputerAssembly()
             {
-                return NotFound();
-            }
+                Id = id,
+                CompBodyId = compBodyId,
+                MotherCardId = motherCardId,
+                PowerSupplyUnitId = powerSupplyUnitId,
+                CompProcessorId = compProcessorId,
+                RAMMemoryId = ramMemoryId,
+                StorageDeviceId = storageDeviceId,
+                VideoCardId = videoCardId,
+                OwnerId = ownerId,
+                CostPrice = costPrice
+            };
 
-            var computerAssembly = await _context.ComputerAssemblies.FindAsync(id);
-            if (computerAssembly == null)
+            try
             {
-                return NotFound();
+                _context.Update(computerAssembly);
+                await _context.SaveChangesAsync();
             }
-            ViewData["CompBodyId"] = new SelectList(_context.CompBodies, "Id", "Id", computerAssembly.CompBodyId);
-            ViewData["CompProcessorId"] = new SelectList(_context.CompProcessors, "Id", "Id", computerAssembly.CompProcessorId);
-            ViewData["MotherCardId"] = new SelectList(_context.MotherCards, "Id", "Id", computerAssembly.MotherCardId);
-            ViewData["OwnerId"] = new SelectList(_context.Users, "Id", "Id", computerAssembly.OwnerId);
-            ViewData["PowerSupplyUnitId"] = new SelectList(_context.PowerSupplyUnits, "Id", "Id", computerAssembly.PowerSupplyUnitId);
-            ViewData["RAMMemoryId"] = new SelectList(_context.RAMMemories, "Id", "Id", computerAssembly.RAMMemoryId);
-            ViewData["StorageDeviceId"] = new SelectList(_context.StorageDevices, "Id", "Id", computerAssembly.StorageDeviceId);
-            ViewData["VideoCardId"] = new SelectList(_context.VideoCards, "Id", "Id", computerAssembly.VideoCardId);
-            return View(computerAssembly);
-        }
-
-        // POST: ComputerAssemblies/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CompBodyId,MotherCardId,PowerSupplyUnitId,CompProcessorId,RAMMemoryId,StorageDeviceId,VideoCardId,OwnerId,CostPrice")] ComputerAssembly computerAssembly)
-        {
-            if (id != computerAssembly.Id)
+            catch (DbUpdateConcurrencyException)
             {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
+                if (!ComputerAssemblyExists(computerAssembly.Id))
                 {
-                    _context.Update(computerAssembly);
-                    await _context.SaveChangesAsync();
+                    return "Error update computer assembly";
                 }
-                catch (DbUpdateConcurrencyException)
+                else
                 {
-                    if (!ComputerAssemblyExists(computerAssembly.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    throw;
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["CompBodyId"] = new SelectList(_context.CompBodies, "Id", "Id", computerAssembly.CompBodyId);
-            ViewData["CompProcessorId"] = new SelectList(_context.CompProcessors, "Id", "Id", computerAssembly.CompProcessorId);
-            ViewData["MotherCardId"] = new SelectList(_context.MotherCards, "Id", "Id", computerAssembly.MotherCardId);
-            ViewData["OwnerId"] = new SelectList(_context.Users, "Id", "Id", computerAssembly.OwnerId);
-            ViewData["PowerSupplyUnitId"] = new SelectList(_context.PowerSupplyUnits, "Id", "Id", computerAssembly.PowerSupplyUnitId);
-            ViewData["RAMMemoryId"] = new SelectList(_context.RAMMemories, "Id", "Id", computerAssembly.RAMMemoryId);
-            ViewData["StorageDeviceId"] = new SelectList(_context.StorageDevices, "Id", "Id", computerAssembly.StorageDeviceId);
-            ViewData["VideoCardId"] = new SelectList(_context.VideoCards, "Id", "Id", computerAssembly.VideoCardId);
-            return View(computerAssembly);
+            return "Ok";
         }
 
-        // GET: ComputerAssemblies/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.ComputerAssemblies == null)
-            {
-                return NotFound();
-            }
 
-            var computerAssembly = await _context.ComputerAssemblies
-                .Include(c => c.CompBody)
-                .Include(c => c.CompProcessor)
-                .Include(c => c.MotherCard)
-                .Include(c => c.Owner)
-                .Include(c => c.PowerSupplyUnit)
-                .Include(c => c.RAMMemory)
-                .Include(c => c.StorageDevice)
-                .Include(c => c.VideoCard)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (computerAssembly == null)
-            {
-                return NotFound();
-            }
-
-            return View(computerAssembly);
-        }
-
-        // POST: ComputerAssemblies/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        [Route("delete")]
+        public async Task<string> DeleteConfirmed(int id)
         {
             if (_context.ComputerAssemblies == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.ComputerAssemblies'  is null.");
+                return "Entity set 'ApplicationDbContext.ComputerAssemblies'  is null.";
             }
             var computerAssembly = await _context.ComputerAssemblies.FindAsync(id);
             if (computerAssembly != null)
             {
                 _context.ComputerAssemblies.Remove(computerAssembly);
             }
-            
+
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return "Ok";
         }
 
         private bool ComputerAssemblyExists(int id)
         {
-          return (_context.ComputerAssemblies?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.ComputerAssemblies?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
