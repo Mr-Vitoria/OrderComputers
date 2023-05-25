@@ -7,6 +7,7 @@ import { RAMMemoryContainer } from "./components/ramMemory/container";
 import { StorageDeviceContainer } from "./components/storageDevice/container";
 import { VideoCardContainer } from "./components/videoCard/container";
 import { ComputerAssemblyContainer } from "./components/computerAssembly/container";
+import { OrderContainer } from "./components/order/container";
 import { Home } from "./components/Home";
 
 const AppRoutes = [
@@ -15,7 +16,7 @@ const AppRoutes = [
         element: <Home />
   },
   {
-      path: '/compBodiesPanel',
+      path: '/compBodyPanel',
       element: <CompBodyContainer />
   },
   {
@@ -47,8 +48,12 @@ const AppRoutes = [
         element: <VideoCardContainer />
     },
     {
-        path: '/compAssemblies',
+        path: '/compAssemblyPanel',
         element: <ComputerAssemblyContainer />
+    },
+    {
+        path: '/orderPanel',
+        element: <OrderContainer />
     }
 ];
 

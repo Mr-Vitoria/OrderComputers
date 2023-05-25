@@ -49,7 +49,7 @@ export class NavMenu extends Component {
                                 <span className="nav_name">Main</span>
                             </a>
 
-                            <a href="/compBodiesPanel" className="nav_link">
+                            <a href="/compBodyPanel" className="nav_link">
                                 <span className="nav_name">Computer body</span>
                             </a>
                             <a href="/compProcessorPanel" className="nav_link">
@@ -73,8 +73,11 @@ export class NavMenu extends Component {
                             <a href="/videoCardPanel" className="nav_link">
                                 <span className="nav_name">Video card</span>
                             </a>
-                            <a href="/compAssemblies" className="nav_link">
+                            <a href="/compAssemblyPanel" className="nav_link">
                                 <span className="nav_name">Comoputer assemblies</span>
+                            </a>
+                            <a href="/orderPanel" className="nav_link">
+                                <span className="nav_name">Orders</span>
                             </a>
                         </div>
                     </div> <a onClick={(ev) => {
@@ -91,7 +94,6 @@ export class NavMenu extends Component {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
             : this.renderItem(this.state.item);
-        console.log(contents);
         return (
             <div>
                 {contents}
@@ -100,13 +102,10 @@ export class NavMenu extends Component {
     }
 
     async getUser() {
-
-
         const cookies = new Cookies();
         const response = await fetch('users/detail?id=' + cookies.get('userId'));
         const data = await response.json();
         this.setState({ item: data, loading: false });
-        console.log(data);
     }
 }
 
