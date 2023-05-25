@@ -1,12 +1,25 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace AdminPanel.Models
 {
     public class ApplicationDbContext : DbContext
     {
 
-        public ApplicationDbContext(DbContextOptions options) : base(options) { }
-
+        public ApplicationDbContext(DbContextOptions options) : base(options) {}
+        // конфигурация контекста
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //optionsBuilder.Use
+            //// получаем файл конфигурации
+            //IConfigurationRoot configuration = new ConfigurationBuilder()
+            //    .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            //    .AddJsonFile("appsettings.json")
+            //    .Build();
+            //// устанавливаем для контекста строку подключения
+            //// инициализируем саму строку подключения
+            //optionsBuilder.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+        }
 
 
         public DbSet<VideoCard> VideoCards { get; set; }

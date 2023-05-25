@@ -5,7 +5,9 @@ VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderComputers", "OrderComputers\OrderComputers.csproj", "{57EA852D-1BA4-4A88-976D-8DB414BEA959}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminPanel", "AdminPanel\AdminPanel.csproj", "{342DF4B1-0EE2-4CC7-ADDD-1F18F98238C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminPanel(ASP)", "AdminPanel\AdminPanel(ASP).csproj", "{342DF4B1-0EE2-4CC7-ADDD-1F18F98238C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "admin_panel_react", "admin_panel_react\admin_panel_react.csproj", "{35A0086B-4114-4C35-8AB6-04007A0430E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{342DF4B1-0EE2-4CC7-ADDD-1F18F98238C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{342DF4B1-0EE2-4CC7-ADDD-1F18F98238C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{342DF4B1-0EE2-4CC7-ADDD-1F18F98238C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35A0086B-4114-4C35-8AB6-04007A0430E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35A0086B-4114-4C35-8AB6-04007A0430E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35A0086B-4114-4C35-8AB6-04007A0430E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35A0086B-4114-4C35-8AB6-04007A0430E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
