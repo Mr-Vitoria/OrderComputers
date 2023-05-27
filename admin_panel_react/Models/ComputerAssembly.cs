@@ -12,6 +12,9 @@
         public int VideoCardId { get; set; }
         public int? OwnerId { get; set; }
 
+        public string TypeComputerAssembly { get; set; }
+        public string ImgUrl { get; set; }
+
 
         public CompBody CompBody { get; set; }
         public MotherCard MotherCard { get; set; }

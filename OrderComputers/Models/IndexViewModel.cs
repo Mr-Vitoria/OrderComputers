@@ -2,7 +2,7 @@
 {
     public class IndexViewModel
     {
-        public List<ComputerAssembly> bestComputerAssemblies { get; set; }
-        public List<Tuple<string, int>> typesComputerAssembly { get; set; } = new List<Tuple<string, int>>();
+        public List<ComputerAssembly> BestComputerAssemblies { get; set; } = new List<ComputerAssembly>();
+        public List<Tuple<string,string, int>> TypesComputerAssembly { get; set; } = new List<Tuple<string, string, int>>();
     }
 }

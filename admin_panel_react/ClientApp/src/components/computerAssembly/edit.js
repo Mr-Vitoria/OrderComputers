@@ -23,6 +23,8 @@ export default class Edit extends Component {
         this.inputStorageIdRef = React.createRef();
         this.inputVideoIdRef = React.createRef();
         this.inputCostPriceRef = React.createRef();
+        this.inputTypeRef = React.createRef();
+        this.inputImageRef = React.createRef();
 
     }
 
@@ -112,6 +114,21 @@ export default class Edit extends Component {
                                 </select>
                             </div>
 
+                            <div className="form-group">
+                                <label className="control-label">Type computer assembly</label>
+                                <select defaultValue={item.typeComputerAssembly} ref={this.inputTypeRef} className="form-control">
+                                    <option value="Game">Game</option>
+                                    <option value="Office">Office</option>
+                                    <option value="Common">Common</option>
+                                </select>
+                            </div>
+
+
+                            <div className="form-group">
+                                <label className="control-label">Image url</label>
+                                <input defaultValue={item.imgUrl } ref={this.inputImageRef} className="form-control" />
+                            </div>
+
 
                             <div className="form-group">
                                 <label className="control-label">Cost price</label>
@@ -186,6 +203,8 @@ export default class Edit extends Component {
             + '&storageDeviceId=' + this.inputStorageIdRef.current.value
             + '&videoCardId=' + this.inputVideoIdRef.current.value
             + '&ownerId=' + this.inputOwnerIdRef.current.value
+            + '&type=' + this.inputTypeRef.current.value
+            + '&imgUrl=' + this.inputImageRef.current.value
             + '&costPrice=' + this.inputCostPriceRef.current.value);
 
         if (response.status == 200) {

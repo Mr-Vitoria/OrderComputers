@@ -72,10 +72,22 @@ export default class Detail extends Component {
                         {item.owner.name}
                     </dd>
                     <dt className="col-sm-2">
+                        Type computer assembly
+                    </dt>
+                    <dd className="col-sm-10">
+                        {item.typeComputerAssembly}
+                    </dd>
+                    <dt className="col-sm-2">
                         Cost price
                     </dt>
                     <dd className="col-sm-10">
                         {item.costPrice}
+                    </dd>
+                    <dt className="col-sm-2">
+                        Image
+                    </dt>
+                    <dd className="col-sm-10">
+                        <img style={{ width: '400px', height: '300px', objectFit: 'cover' }} src={item.imgUrl} alt="Please, change image" />
                     </dd>
                 </div>
                 <div>

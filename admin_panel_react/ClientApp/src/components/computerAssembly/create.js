@@ -18,6 +18,8 @@ export default class Create extends Component {
         this.inputStorageIdRef = React.createRef();
         this.inputVideoIdRef = React.createRef();
         this.inputCostPriceRef = React.createRef();
+        this.inputTypeRef = React.createRef();
+        this.inputImageRef = React.createRef();
 
 
         this.setTypePage = props.setTypePage;
@@ -61,15 +63,6 @@ export default class Create extends Component {
                             </div>
 
                             <div className="form-group">
-                            <label className="control-label">Owner</label>
-                            <select ref={this.inputOwnerIdRef} className="form-control" >
-                                {data.owners.map((item, index) => {
-                                    return <option key={index} value={item.value}>{item.text}</option>;
-                                })}
-                                </select>
-                            </div>
-
-                            <div className="form-group">
                             <label className="control-label">Power supply unit</label>
                             <select ref={this.inputPowerIdRef} className="form-control" >
                                 {data.powerSupplyUnits.map((item, index) => {
@@ -107,6 +100,28 @@ export default class Create extends Component {
                                 </select>
                             </div>
 
+                            <div className="form-group">
+                                <label className="control-label">Owner</label>
+                                <select ref={this.inputOwnerIdRef} className="form-control" >
+                                    {data.owners.map((item, index) => {
+                                        return <option key={index} value={item.value}>{item.text}</option>;
+                                    })}
+                                </select>
+                            </div>
+
+                            <div className="form-group">
+                                <label className="control-label">Type computer assembly</label>
+                                <select ref={this.inputTypeRef} className="form-control">
+                                    <option value="Game">Game</option>
+                                    <option value="Office">Office</option>
+                                    <option value="Common">Common</option>
+                                </select>
+                            </div>
+
+                            <div className="form-group">
+                                <label className="control-label">Image url</label>
+                                <input ref={this.inputImageRef} className="form-control" />
+                            </div>
 
                             <div className="form-group">
                                 <label className="control-label">Cost price</label>
@@ -177,6 +192,8 @@ export default class Create extends Component {
             + '&storageDeviceId=' + this.inputStorageIdRef.current.value
             + '&videoCardId=' + this.inputVideoIdRef.current.value
             + '&ownerId=' + this.inputOwnerIdRef.current.value
+            + '&type=' + this.inputTypeRef.current.value
+            + '&imgUrl=' + this.inputImageRef.current.value
             + '&costPrice=' + this.inputCostPriceRef.current.value);
 
 
