@@ -8,6 +8,7 @@ import { StorageDeviceContainer } from "./components/storageDevice/container";
 import { VideoCardContainer } from "./components/videoCard/container";
 import { ComputerAssemblyContainer } from "./components/computerAssembly/container";
 import { OrderContainer } from "./components/order/container";
+import { PeripheryContainer } from "./components/periphery/container";
 import { Home } from "./components/Home";
 
 const AppRoutes = [
@@ -54,6 +55,10 @@ const AppRoutes = [
     {
         path: '/orderPanel',
         element: <OrderContainer />
+    },
+    {
+        path: '/peripheryPanel',
+        element: <PeripheryContainer />
     }
 ];
 

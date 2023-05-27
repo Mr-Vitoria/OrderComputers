@@ -54,14 +54,14 @@ namespace admin_panel_react.Controllers
         {
             var model = new
             {
-                CompBodies = new SelectList(_context.CompBodies, "Id", "Id"),
-                CompProcessors = new SelectList(_context.CompProcessors, "Id", "Id"),
-                MotherCards = new SelectList(_context.MotherCards, "Id", "Id"),
-                Owners = new SelectList(_context.Users, "Id", "Id"),
-                PowerSupplyUnits = new SelectList(_context.PowerSupplyUnits, "Id", "Id"),
-                RAMMemories = new SelectList(_context.RAMMemories, "Id", "Id"),
-                StorageDevices = new SelectList(_context.StorageDevices, "Id", "Id"),
-                VideoCards = new SelectList(_context.VideoCards, "Id", "Id")
+                CompBodies = new SelectList(_context.CompBodies, "Id", "Name"),
+                CompProcessors = new SelectList(_context.CompProcessors, "Id", "Name"),
+                MotherCards = new SelectList(_context.MotherCards, "Id", "Name"),
+                Owners = new SelectList(_context.Users, "Id", "Name"),
+                PowerSupplyUnits = new SelectList(_context.PowerSupplyUnits, "Id", "Name"),
+                RAMMemories = new SelectList(_context.RAMMemories, "Id", "Name"),
+                StorageDevices = new SelectList(_context.StorageDevices, "Id", "Name"),
+                VideoCards = new SelectList(_context.VideoCards, "Id", "Name")
             };
             return model;
         }
@@ -70,7 +70,8 @@ namespace admin_panel_react.Controllers
         public async Task<string> Create(int compBodyId, int motherCardId, 
             int powerSupplyUnitId, int compProcessorId, 
             int ramMemoryId, int storageDeviceId, 
-            int videoCardId, int ownerId, int costPrice)
+            int videoCardId, int ownerId, int costPrice, 
+            string type, string imgUrl)
         {
             ComputerAssembly computerAssembly = new ComputerAssembly()
             {
@@ -82,7 +83,9 @@ namespace admin_panel_react.Controllers
                 StorageDeviceId = storageDeviceId,
                 VideoCardId = videoCardId,
                 OwnerId = ownerId,
-                CostPrice = costPrice
+                CostPrice = costPrice,
+                TypeComputerAssembly = type,
+                ImgUrl = imgUrl
             };
             if (ModelState.IsValid)
             {
@@ -101,7 +104,8 @@ namespace admin_panel_react.Controllers
             int motherCardId, int powerSupplyUnitId, 
             int compProcessorId, int ramMemoryId, 
             int storageDeviceId, int videoCardId, 
-            int ownerId, int costPrice)
+            int ownerId, int costPrice,
+            string type, string imgUrl)
         {
             ComputerAssembly computerAssembly = new ComputerAssembly()
             {
@@ -114,7 +118,9 @@ namespace admin_panel_react.Controllers
                 StorageDeviceId = storageDeviceId,
                 VideoCardId = videoCardId,
                 OwnerId = ownerId,
-                CostPrice = costPrice
+                CostPrice = costPrice,
+                TypeComputerAssembly = type,
+                ImgUrl = imgUrl
             };
 
             try

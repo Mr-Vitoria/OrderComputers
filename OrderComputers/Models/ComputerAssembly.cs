@@ -12,6 +12,9 @@
         public int VideoCardId { get; set; }
         public int? OwnerId { get; set; }
 
+        public string TypeComputerAssembly { get; set; }
+        public string ImgUrl { get; set; }
+
 
         public CompBody CompBody { get; set; }
         public MotherCard MotherCard { get; set; }
@@ -22,8 +25,6 @@
         public VideoCard VideoCard { get; set; }
         public User? Owner { get; set; }
 
-
-        public string typeComputerAssembly { get; set; }
         public double CostPrice { get; set; }
     }
 }

@@ -2,18 +2,18 @@
 
 #nullable disable
 
-namespace OrderComputers.Migrations
+namespace admin_panel_react.Migrations
 {
     /// <inheritdoc />
-    public partial class AddTypeCompAssembly : Migration
+    public partial class AddImageUrlInComputerAssembly : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "typeComputerAssembly",
+                name: "ImgUrl",
                 table: "ComputerAssemblies",
-                type: "nvarchar(max)",
+                type: "text",
                 nullable: false,
                 defaultValue: "");
         }
@@ -22,7 +22,7 @@ namespace OrderComputers.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "typeComputerAssembly",
+                name: "ImgUrl",
                 table: "ComputerAssemblies");
         }
     }

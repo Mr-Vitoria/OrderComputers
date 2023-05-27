@@ -111,6 +111,10 @@ namespace admin_panel_react.Migrations
                     b.Property<double>("CostPrice")
                         .HasColumnType("double precision");
 
+                    b.Property<string>("ImgUrl")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<int>("MotherCardId")
                         .HasColumnType("integer");
 
@@ -125,6 +129,10 @@ namespace admin_panel_react.Migrations
 
                     b.Property<int>("StorageDeviceId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("TypeComputerAssembly")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("VideoCardId")
                         .HasColumnType("integer");
@@ -208,6 +216,30 @@ namespace admin_panel_react.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("admin_panel_react.Models.Periphery", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Peripheries");
                 });
 
             modelBuilder.Entity("admin_panel_react.Models.PowerSupplyUnit", b =>

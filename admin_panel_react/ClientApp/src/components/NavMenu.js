@@ -69,6 +69,9 @@ export class NavMenu extends Component {
                             <a href="/videoCardPanel" className={"nav_link" + (window.location.pathname == "/videoCardPanel" ? " active" : "")}>
                                 <span className="nav_name">Video card</span>
                             </a>
+                            <a href="/peripheryPanel" className={"nav_link" + (window.location.pathname == "/peripheryPanel" ? " active" : "")}>
+                                <span className="nav_name">Peripheries</span>
+                            </a>
                             <a href="/compAssemblyPanel" className={"nav_link" + (window.location.pathname == "/compAssemblyPanel" ? " active" : "")}>
                                 <span className="nav_name">Comoputer assemblies</span>
                             </a>

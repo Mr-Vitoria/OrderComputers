@@ -107,11 +107,11 @@ namespace admin_panel_react.Controllers
 
 
         [Route("delete")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<string> DeleteConfirmed(int id)
         {
             if (_context.Orders == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Orders'  is null.");
+                return "Entity set 'ApplicationDbContext.Orders'  is null.";
             }
             var order = await _context.Orders.FindAsync(id);
             if (order != null)
@@ -120,7 +120,7 @@ namespace admin_panel_react.Controllers
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return "Ok";
         }
 
         private bool OrderExists(int id)
