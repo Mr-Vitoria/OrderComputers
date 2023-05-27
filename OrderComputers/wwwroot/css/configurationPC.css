@@ -1,0 +1,46 @@
+﻿main{
+    padding:30px 15%;
+}
+
+h1,h2{
+    width:100%;
+    text-align:center
+}
+
+section{
+    margin-top:50px;
+}
+
+select.form-control {
+    background-color: #3e3e3e;
+    color: white;
+    border: 2px solid black;
+    padding: 10px;
+    font-size: 1.5em;
+    outline: none;
+}
+
+    select.form-control option {
+        background-color: #3e3e3e;
+        color: white;
+    }
+
+
+.btnOrder{
+    padding:15px 30px;
+    font-size:2em;
+}
+.btnForm{
+    display:flex;
+    justify-content:center;
+
+    margin-top:50px;
+}
+
+.form-group{
+    margin-top: 15px;
+}
+
+label {
+    margin: 10px 0;
+}

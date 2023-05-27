@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OrderComputers.Models;
 
@@ -18,13 +19,14 @@ namespace OrderComputers.Controllers
         public async Task<IActionResult> Index()
         {
             IndexViewModel model = new IndexViewModel();
-            model.bestComputerAssemblies = await _context.ComputerAssemblies.Take(4).ToListAsync();
-            foreach (var item in _context.ComputerAssemblies.Select(ca => ca.typeComputerAssembly).Distinct())
+            model.BestComputerAssemblies = await _context.ComputerAssemblies.Take(4).ToListAsync();;
+            foreach (var item in await _context.ComputerAssemblies.Select(ca => ca.TypeComputerAssembly).Distinct().ToListAsync())
             {
-                model.typesComputerAssembly.Add(new Tuple<string,int>(item,
-                    (int)await _context.ComputerAssemblies.Where(ca=>ca.typeComputerAssembly==item).MinAsync(ca=>ca.CostPrice)));
+                model.TypesComputerAssembly.Add(new Tuple<string, string, int>(item
+                    , (await _context.ComputerAssemblies.Where(ca => ca.TypeComputerAssembly == item).FirstAsync()).ImgUrl
+                    ,(int)await _context.ComputerAssemblies.Where(ca => ca.TypeComputerAssembly== item).MinAsync(ca => ca.CostPrice)));
             }
-            
+
             return View(model);
         }
 
@@ -69,9 +71,21 @@ namespace OrderComputers.Controllers
             return View();
         }
 
-        public IActionResult ConfigurationPc()
+        public async Task<IActionResult> ConfigurationPC()
         {
-            return View();
+            ViewData["CompBodies"] = await _context.CompBodies.ToListAsync();
+            ViewData["CompProcessors"] = await _context.CompProcessors.ToListAsync();
+            ViewData["MotherCards"] = await _context.MotherCards.ToListAsync();
+            ViewData["PowerSupplyUnits"] = await _context.PowerSupplyUnits.ToListAsync();
+            ViewData["RAMMemories"] = await _context.RAMMemories.ToListAsync();
+            ViewData["StorageDevices"] = await _context.StorageDevices.ToListAsync();
+            ViewData["VideoCards"] = await _context.VideoCards.ToListAsync();
+
+            ViewData["Monitors"] = await _context.Peripheries.Where(pr=>pr.Type == "Monitor").ToListAsync();
+            ViewData["Speakers"] = await _context.Peripheries.Where(pr => pr.Type == "Speaker/Headphones").ToListAsync();
+            ViewData["Mouses"] = await _context.Peripheries.Where(pr => pr.Type == "Mouse").ToListAsync();
+            ViewData["Keyboards"] = await _context.Peripheries.Where(pr => pr.Type == "Keyboard").ToListAsync();
+            return View(new ComputerAssembly());
         }
 
         public IActionResult CheckOut()
