@@ -12,6 +12,7 @@
         public string TurboTechnology { get; set; }
         public string TypeRam { get; set; }
         public bool HaveVideoCard { get; set; }
+        public string? ImgUrl { get; set; }
 
 
         public double Price { get; set; }

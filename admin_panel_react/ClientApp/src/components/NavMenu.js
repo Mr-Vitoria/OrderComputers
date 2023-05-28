@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Layout } from './Layout';
-import './NavMenu.css';
 import Cookies from 'universal-cookie';
 
 export class NavMenu extends Component {

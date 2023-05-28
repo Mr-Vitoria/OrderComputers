@@ -24,6 +24,7 @@ export default class SelectMenuVideoCard extends Component {
                     <div className="selectMenuValue">
                         {this.state.selectItem == null ? <span>Видеокарта</span>
                             : <div className="container">
+                                <img src={this.state.selectItem.imgUrl} />
                                 <span>{this.state.selectItem.name}</span>
                                 <div className="properties">
                                     <span>Тип памяти: {this.state.selectItem.type}</span>
@@ -41,10 +42,11 @@ export default class SelectMenuVideoCard extends Component {
                                     });
                                     this.changeItem(item);
                                 }}>
+                                    <img src={item.imgUrl} />
                                     <span>{item.name}</span>
                                     <div className="properties">
                                         <span>Тип памяти: {item.type}</span>
-                                        <span>Объем памяти: {item.count}</span>
+                                        <span>Объем памяти: {item.count} Мб</span>
                                     </div>
                                 </li>
                             })

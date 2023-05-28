@@ -24,6 +24,7 @@ export default class SelectMenuBodies extends Component {
                     <div className="selectMenuValue">
                         {this.state.selectItem == null ? <span>Корпус</span>
                             : <div className="container">
+                                <img src={this.state.selectItem.imgUrl} />
                                 <span>{this.state.selectItem.name}</span>
                                 <div className="properties">
                                     <span>Форм-фактор: {this.state.selectItem.formFactor}</span>
@@ -40,6 +41,7 @@ export default class SelectMenuBodies extends Component {
                                     });
                                     this.changeItem(item);
                                 }}>
+                                    <img src={ item.imgUrl} />
                                     <span>{item.name}</span>
                                     <div className="properties">
                                         <span>Форм-фактор: {item.formFactor}</span>

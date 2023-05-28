@@ -23,6 +23,7 @@ export default class SelectMenuMotherCards extends Component {
                     <div className="selectMenuValue">
                         {this.state.selectItem == null ? <span>Материнская плата</span>
                             : <div className="container">
+                                <img src={this.state.selectItem.imgUrl} />
                                 <span>{this.state.selectItem.name}</span>
                                 <div className="properties">
                                     <span>Размер: {this.state.selectItem.size}</span>
@@ -40,6 +41,7 @@ export default class SelectMenuMotherCards extends Component {
                                     });
                                     this.changeItem(item);
                                 }}>
+                                    <img src={item.imgUrl} />
                                     <span>{item.name}</span>
                                     <div className="properties">
                                         <span>Размер: {item.size}</span>

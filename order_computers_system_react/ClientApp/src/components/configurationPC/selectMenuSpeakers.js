@@ -24,6 +24,7 @@ export default class SelectMenuSpeakers extends Component {
                     <div className="selectMenuValue">
                         {this.state.selectItem == null ? <span>Динамики/наушники</span>
                             : <div className="container">
+                                <img src={this.state.selectItem.imgUrl} />
                                 <span>{this.state.selectItem.name}</span>
                             </div>}
 
@@ -37,6 +38,7 @@ export default class SelectMenuSpeakers extends Component {
                                     });
                                     this.changeItem(item);
                                 }}>
+                                    <img src={item.imgUrl} />
                                     <span>{item.name}</span>
                                 </li>
                             })

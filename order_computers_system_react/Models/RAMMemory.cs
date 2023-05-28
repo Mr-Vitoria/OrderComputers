@@ -7,6 +7,7 @@
         public string Type { get; set; }
         public int Count { get; set; }
         public int Frequency { get; set; }
+        public string? ImgUrl { get; set; }
 
 
         public double Price { get; set; }

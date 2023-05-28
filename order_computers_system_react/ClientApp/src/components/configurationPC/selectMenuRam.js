@@ -24,6 +24,7 @@ export default class SelectMenuRam extends Component {
                     <div className="selectMenuValue">
                         {this.state.selectItem == null ? <span>Оперативная память</span>
                             : <div className="container">
+                                <img src={this.state.selectItem.imgUrl} />
                                 <span>{this.state.selectItem.name}</span>
                                 <div className="properties">
                                     <span>Тип: {this.state.selectItem.type}</span>
@@ -42,11 +43,12 @@ export default class SelectMenuRam extends Component {
                                     });
                                     this.changeItem(item);
                                 }}>
+                                    <img src={item.imgUrl} />
                                     <span>{item.name}</span>
                                     <div className="properties">
                                         <span>Тип: {item.type}</span>
-                                        <span>Количество: {item.count}</span>
-                                        <span>Частота: {item.frequency}</span>
+                                        <span>Объем: {item.count} Гб</span>
+                                        <span>Частота: {item.frequency} МГц</span>
                                     </div>
                                 </li>
                             })

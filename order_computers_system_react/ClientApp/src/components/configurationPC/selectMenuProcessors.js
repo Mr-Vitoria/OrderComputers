@@ -24,6 +24,7 @@ export default class SelectMenuProcessors extends Component {
                     <div className="selectMenuValue">
                         {this.state.selectItem == null ? <span>Процессор</span>
                             : <div className="container">
+                                <img src={this.state.selectItem.imgUrl} />
                                 <span>{this.state.selectItem.name}</span>
                                 <div className="properties">
                                     <span>Количество ядер: {this.state.selectItem.countCores}</span>
@@ -42,11 +43,12 @@ export default class SelectMenuProcessors extends Component {
                                     });
                                     this.changeItem(item);
                                 }}>
+                                    <img src={item.imgUrl} />
                                     <span>{item.name}</span>
                                     <div className="properties">
                                         <span>Количество ядер: {item.countCores}</span>
                                         <span>Количество потоков: {item.countThreads}</span>
-                                        <span>Частота: {item.frequency}</span>
+                                        <span>Частота: {item.frequency} МГц</span>
                                     </div>
                                 </li>
                             })

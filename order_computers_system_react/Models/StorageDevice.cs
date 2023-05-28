@@ -6,6 +6,7 @@
         public string Name { get; set; }
         public double Count { get; set; }
         public string Type { get; set; }
+        public string? ImgUrl { get; set; }
 
         public double Price { get; set; }
     }
