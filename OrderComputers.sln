@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderComputers", "OrderComp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "admin_panel_react", "admin_panel_react\admin_panel_react.csproj", "{35A0086B-4114-4C35-8AB6-04007A0430E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "order_computers_system_react", "order_computers_system_react\order_computers_system_react.csproj", "{B51A7A68-2209-4BF0-88C1-44AA30608BF5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{35A0086B-4114-4C35-8AB6-04007A0430E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35A0086B-4114-4C35-8AB6-04007A0430E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35A0086B-4114-4C35-8AB6-04007A0430E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B51A7A68-2209-4BF0-88C1-44AA30608BF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B51A7A68-2209-4BF0-88C1-44AA30608BF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B51A7A68-2209-4BF0-88C1-44AA30608BF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B51A7A68-2209-4BF0-88C1-44AA30608BF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -27,6 +27,7 @@
     <Folder Include="Areas\Executor\Views\" />
     <Folder Include="wwwroot\admin\" />
     <Folder Include="wwwroot\executor\" />
+    <Folder Include="wwwroot\js\configurationPC\" />
   </ItemGroup>
 
 </Project>

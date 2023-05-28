@@ -1,0 +1,149 @@
+﻿main{
+    padding:30px 15%;
+}
+
+h1,h2{
+    width:100%;
+    text-align:center;
+    background-color:transparent;
+}
+
+section{
+    margin-top:50px;
+}
+
+
+.btnOrder{
+    padding:15px 30px;
+    font-size:2em;
+}
+.btnForm{
+    display:flex;
+    justify-content:center;
+
+    margin-top:50px;
+}
+
+.form-group{
+    margin-top: 15px;
+}
+
+
+
+
+
+
+
+div.select {
+    width: 100%;
+    position: relative;
+    height: 90px;
+    cursor: pointer;
+    overflow: hidden;
+
+
+    background-color: #323232;
+    color: white;
+    border: 2px solid black;
+    font-size: 1.5em;
+    outline: none;
+    transition-duration: .3s;
+}
+
+
+    div.select.show {
+        height: 200px;
+        overflow: auto;
+        
+        transition-duration: .3s;
+    }
+
+    div.select .selectMenuValue {
+        padding: 16px 31px 0px 16px;
+        cursor: pointer;
+        border-bottom: 4px solid black;
+        transition: .2s;
+        height: 90px;
+        margin: 0px;
+        pointer-events: none;
+        font-size: 1.1em;
+    }
+    div.select .container{
+        display:flex;
+        justify-content:left;
+        margin:0;
+        max-width:none;
+
+    }
+
+        div.select .container .properties {
+            display: flex;
+            flex-direction:column;
+            justify-content: space-between;
+            margin-left: 30px;
+        }
+        div.select .container .properties span{
+            font-size:0.5em;
+        }
+
+::-webkit-scrollbar {
+    background: transparent;
+    width: 0.5em;
+    position: absolute;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+    position: absolute;
+    z-index: -2;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background: #888;
+}
+
+ul.selectMenu {
+    background-color: #323232;
+    transition: .3s;
+    width: 100%;
+    height: fit-content;
+    overflow: hidden !important;
+    position: absolute;
+    margin-top: 0px;
+    display: block;
+    padding: 0px;
+    margin: 0px;
+}
+
+    ul.selectMenu > li {
+        display: block;
+        padding: 10px;
+        border-radius: 0px;
+        cursor: pointer;
+        font-size:0.9em;
+    }
+
+        ul.selectMenu > li.selectoption {
+            padding: 10px;
+        }
+
+            ul.selectMenu > li.selectoption:hover {
+                color: black !important;
+                background: #323232;
+                transition: .2s;
+            }
+
+
+
+.total {
+    border: 2px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 20px;
+}
+
+.total div{
+    width:50%;
+    margin: 5px 0;
+}
