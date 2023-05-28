@@ -8,6 +8,7 @@
         public string Socket { get; set; }
         public bool HaveWiFiModul { get; set; }
         public bool HaveBluetoothModul { get; set; }
+        public string? ImgUrl { get; set; }
 
 
         public double Price { get; set; }

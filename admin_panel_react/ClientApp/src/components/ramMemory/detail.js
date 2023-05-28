@@ -23,7 +23,14 @@ export default class Detail extends Component {
                 <div>
                     <h4>Detail RAM memory</h4>
                     <hr />
+
                     <dl className="row">
+                        <dt className="col-sm-2">
+                            Image
+                        </dt>
+                        <dd className="col-sm-10">
+                            <img src={item.imgUrl} />
+                        </dd>
                         <dt className="col-sm-2">
                             Name
                         </dt>

@@ -9,7 +9,8 @@ export default class Edit extends Component {
             item: null,
             data: null,
             loading: true,
-            itemId: props.itemId
+            itemId: props.itemId,
+            imageUrl:""
         };
         this.setTypePage = props.setTypePage;
 
@@ -24,7 +25,7 @@ export default class Edit extends Component {
         this.inputVideoIdRef = React.createRef();
         this.inputCostPriceRef = React.createRef();
         this.inputTypeRef = React.createRef();
-        this.inputImageRef = React.createRef();
+        this.inputNameRef = React.createRef();
 
     }
 
@@ -40,6 +41,11 @@ export default class Edit extends Component {
                     <div className="col-md-4">
                         <form>
                             <input defaultValue={item.id } ref={this.inputIdRef} type="hidden" className="form-control" />
+                            <div className="form-group">
+                                <label className="control-label">Name assembly</label>
+                                <input type="text" ref={this.inputNameRef} className="form-control" />
+                            </div>
+
                             <div className="form-group">
                                 <label className="control-label">Computer body</label>
                                 <select defaultValue={item.compBodyId} ref={this.inputBodyIdRef} className="form-control">
@@ -125,8 +131,11 @@ export default class Edit extends Component {
 
 
                             <div className="form-group">
-                                <label className="control-label">Image url</label>
-                                <input defaultValue={item.imgUrl } ref={this.inputImageRef} className="form-control" />
+                                <label className="control-label">ImageUrl</label>
+                                <input defaultValue={this.state.imageUrl} onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
+                            </div>
+                            <div className="form-group">
+                                <img src={this.state.imageUrl} />
                             </div>
 
 
@@ -204,7 +213,7 @@ export default class Edit extends Component {
             + '&videoCardId=' + this.inputVideoIdRef.current.value
             + '&ownerId=' + this.inputOwnerIdRef.current.value
             + '&type=' + this.inputTypeRef.current.value
-            + '&imgUrl=' + this.inputImageRef.current.value
+            + '&imgUrl=' + this.state.value
             + '&costPrice=' + this.inputCostPriceRef.current.value);
 
         if (response.status == 200) {

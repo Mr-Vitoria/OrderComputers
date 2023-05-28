@@ -50,7 +50,8 @@ namespace admin_panel_react.Controllers
                                         ,string socket,int countCores
                                         ,int countThreads,int frequency
                                         ,string turboTechnology,string typeRam
-                                        ,bool haveVideoCard,int price)
+                                        ,bool haveVideoCard,int price
+                                        , string imgUrl = "")
         {
             CompProcessor compProcessor = new CompProcessor
             {
@@ -79,7 +80,8 @@ namespace admin_panel_react.Controllers
                                         , string socket, int countCores
                                         , int countThreads, int frequency
                                         , string turboTechnology, string typeRam
-                                        , bool haveVideoCard, int price)
+                                        , bool haveVideoCard, int price
+                                        , string imgUrl = "")
         {
             CompProcessor compProcessor = new CompProcessor
             {

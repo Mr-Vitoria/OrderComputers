@@ -8,7 +8,8 @@ export default class Edit extends Component {
         this.state = {
             item: null,
             loading: true,
-            itemId: props.itemId
+            itemId: props.itemId,
+            imageUrl:""
         };
         this.setTypePage = props.setTypePage;
 
@@ -18,7 +19,6 @@ export default class Edit extends Component {
         this.inputEmailRef = React.createRef();
         this.inputPhoneRef = React.createRef();
         this.inputPasswordRef = React.createRef();
-        this.inputImageRef = React.createRef();
         this.inputTypeRef = React.createRef();
 
     }
@@ -55,8 +55,11 @@ export default class Edit extends Component {
                                 <input defaultValue={item.password}  ref={this.inputPasswordRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Image url</label>
-                                <input defaultValue={ item.imgUrl} ref={this.inputImageRef} className="form-control" />
+                                <label className="control-label">ImageUrl</label>
+                                <input defaultValue={this.state.imageUrl} onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
+                            </div>
+                            <div className="form-group">
+                                <img src={this.state.imageUrl} />
                             </div>
                             <div className="form-group">
                                 <label className="control-label">Type User</label>

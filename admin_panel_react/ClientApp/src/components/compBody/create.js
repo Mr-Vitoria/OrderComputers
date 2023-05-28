@@ -6,10 +6,14 @@ export default class Create extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            imageUrl:""
+        }
 
         this.inputNameRef = React.createRef();
         this.inputFormFactorRef = React.createRef();
         this.inputPriceRef = React.createRef();
+
         this.setTypePage = props.setTypePage;
     }
 
@@ -40,6 +44,13 @@ export default class Create extends Component {
                                 <input ref={this.inputPriceRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
+                                <label className="control-label">ImageUrl</label>
+                                <input onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
+                            </div>
+                            <div className="form-group">
+                                <img src={this.state.imageUrl} />
+                            </div>
+                            <div className="form-group">
                                 <button onClick={(ev) => {
                                     ev.preventDefault();
                                     this.createItem();
@@ -63,6 +74,7 @@ export default class Create extends Component {
     async createItem() {
         const response = await fetch('compbodies/create?name=' + this.inputNameRef.current.value
             + '&price=' + this.inputPriceRef.current.value
+            + '&imgUrl=' + this.state.imageUrl
             + '&formFactor=' + this.inputFormFactorRef.current.value);
 
         if (response.statusText == "OK") {

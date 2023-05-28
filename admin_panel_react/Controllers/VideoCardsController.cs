@@ -41,7 +41,11 @@ namespace admin_panel_react.Controllers
         }
 
         [Route("create")]
-        public async Task<string> Create(string name, string producer, string family,string generation, string series, string type, int count,int price)
+        public async Task<string> Create(string name, string producer,
+                                        string family,string generation, 
+                                        string series, string type, 
+                                        int count,int price, 
+                                        string imgUrl = "")
         {
             VideoCard videoCard = new VideoCard
             {
@@ -52,7 +56,8 @@ namespace admin_panel_react.Controllers
                 Series = series,
                 Type = type,
                 Count = count,
-                Price = price
+                Price = price,
+                ImgUrl = imgUrl
             };
 
             if (ModelState.IsValid)
@@ -66,7 +71,11 @@ namespace admin_panel_react.Controllers
 
         [HttpGet]
         [Route("edit")]
-        public async Task<string> Edit(int id, string name, string producer, string family, string generation, string series, string type, int count, int price)
+        public async Task<string> Edit(int id, string name, 
+                                    string producer, string family, 
+                                    string generation, string series, 
+                                    string type, int count, 
+                                    int price, string imgUrl = "")
         {
             VideoCard videoCard = new VideoCard
             {
@@ -78,7 +87,8 @@ namespace admin_panel_react.Controllers
                 Series = series,
                 Type = type,
                 Count = count,
-                Price = price
+                Price = price,
+                ImgUrl = imgUrl
             };
             try
             {

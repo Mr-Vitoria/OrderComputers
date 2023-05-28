@@ -24,6 +24,12 @@ export default class Detail extends Component {
                     <h4>Detail storage device</h4>
                     <hr />
                     <dl classNameName="row">
+                        <dt className="col-sm-2">
+                            Image
+                        </dt>
+                        <dd className="col-sm-10">
+                            <img src={item.imgUrl} />
+                        </dd>
                         <dt classNameName="col-sm-2">
                             Name
                         </dt>

@@ -41,9 +41,19 @@ namespace admin_panel_react.Controllers
         }
 
         [Route("create")]
-        public async Task<string> Create(string name, int price, string size,string socket, bool haveWiFiModel, bool haveBluetoothModel)
+        public async Task<string> Create(string name, int price,
+                                        string size,string socket, 
+                                        bool haveWiFiModel, bool haveBluetoothModel, 
+                                        string imgUrl = "")
         {
-            MotherCard motherCard = new MotherCard { Name = name, Price = price, Size = size,  HaveWiFiModul=haveWiFiModel, HaveBluetoothModul= haveBluetoothModel,Socket=socket};
+            MotherCard motherCard = new MotherCard { Name = name,
+                Price = price,
+                Size = size,  
+                HaveWiFiModul=haveWiFiModel,
+                HaveBluetoothModul= haveBluetoothModel,
+                Socket=socket,
+                ImgUrl = imgUrl
+            };
             
             if (ModelState.IsValid)
             {
@@ -56,9 +66,20 @@ namespace admin_panel_react.Controllers
 
         [HttpGet]
         [Route("edit")]
-        public async Task<string> Edit(int id, string name, int price, string size, string socket, bool haveWiFiModel, bool haveBluetoothModel)
+        public async Task<string> Edit(int id, string name,
+            int price, string size,
+            string socket, bool haveWiFiModel,
+            bool haveBluetoothModel, string imgUrl = "")
         {
-            MotherCard motherCard = new MotherCard { Id = id, Name = name, Price = price, Size = size, HaveWiFiModul = haveWiFiModel, HaveBluetoothModul = haveBluetoothModel, Socket = socket };
+            MotherCard motherCard = new MotherCard { Id = id, 
+                Name = name, 
+                Price = price, 
+                Size = size, 
+                HaveWiFiModul = haveWiFiModel, 
+                HaveBluetoothModul = haveBluetoothModel, 
+                Socket = socket,
+                ImgUrl = imgUrl
+                };
             try
             {
                 _context.Update(motherCard);

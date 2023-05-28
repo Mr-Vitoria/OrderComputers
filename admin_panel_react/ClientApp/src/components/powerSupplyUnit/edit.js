@@ -8,7 +8,8 @@ export default class Edit extends Component {
         this.state = {
             item: null,
             loading: true,
-            itemId: props.itemId
+            itemId: props.itemId,
+            imageUrl:""
         };
         this.setTypePage = props.setTypePage;
 
@@ -38,11 +39,21 @@ export default class Edit extends Component {
                             </div>
                             <div className="form-group">
                                 <label className="control-label">Form factor</label>
-                                <input defaultValue={ item.formFactor} ref={this.inputFormFactorRef} className="form-control" />
+                                <select defaultValue={item.formFactor} ref={this.inputFormFactorRef} className="form-control">
+                                    <option value="ATX">ATX</option>
+                                    <option value="SFX">SFX</option>
+                                </select>
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Power</label>
+                                <label className="control-label">Power(Vt)</label>
                                 <input defaultValue={item.power} ref={this.inputPowerRef} className="form-control" type="number" />
+                            </div>
+                            <div className="form-group">
+                                <label className="control-label">ImageUrl</label>
+                                <input defaultValue={this.state.imageUrl} onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
+                            </div>
+                            <div className="form-group">
+                                <img src={this.state.imageUrl} />
                             </div>
                             <div className="form-group">
                                 <label className="control-label">Price</label>
@@ -109,6 +120,7 @@ export default class Edit extends Component {
             + '&name=' + this.inputNameRef.current.value
             + '&formFactor=' + this.inputFormFactorRef.current.value
             + '&power=' + this.inputPowerRef.current.value
+            + '&imgUrl=' + this.state.imageUrl
             + '&price=' + this.inputPriceRef.current.value);
         if (response.status == 200) {
 

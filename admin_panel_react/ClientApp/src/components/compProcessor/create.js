@@ -6,6 +6,11 @@ export default class Create extends Component {
     constructor(props) {
         super(props);
 
+
+        this.state = {
+            imageUrl: ""
+        }
+
         this.inputNameRef = React.createRef();
         this.inputProducerRef = React.createRef();
         this.inputSocketRef = React.createRef();
@@ -49,7 +54,7 @@ export default class Create extends Component {
                                 <input ref={this.inputThreadsRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Frequency</label>
+                                <label className="control-label">Frequency(MGz)</label>
                                 <input ref={this.inputFrequencyRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
@@ -74,6 +79,15 @@ export default class Create extends Component {
                                     <input className="form-check-input" type="checkbox" ref={this.inputVideoCardRef} /> Have video card?
                                 </label>
                             </div>
+
+                            <div className="form-group">
+                                <label className="control-label">ImageUrl</label>
+                                <input onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
+                            </div>
+                            <div className="form-group">
+                                <img src={this.state.imageUrl} />
+                            </div>
+
                             <div className="form-group">
                                 <label className="control-label">Price</label>
                                 <input ref={this.inputPriceRef} className="form-control" />
@@ -110,6 +124,7 @@ export default class Create extends Component {
             + '&frequency=' + this.inputFrequencyRef.current.value
             + '&turboTechnology=' + this.inputTurboRef.current.value
             + '&haveVideoCard=' + haveVideo
+            + '&imgUrl=' + this.state.imageUrl
             + '&typeRam=' + this.inputRamRef.current.value);
 
         if (response.status == 200) {

@@ -8,7 +8,8 @@ export default class Edit extends Component {
         this.state = {
             item: null,
             loading: true,
-            itemId: props.itemId
+            itemId: props.itemId,
+            imageUrl:""
         };
         this.setTypePage = props.setTypePage;
 
@@ -41,7 +42,13 @@ export default class Edit extends Component {
                             </div>
                             <div className="form-group">
                                 <label className="control-label">Size</label>
-                                <input ref={this.inputSizeRef} defaultValue={item.size} className="form-control" />
+                                <select ref={this.inputSizeRef} defaultValue={item.size} className="form-control" >
+                                    <option value="E-ATX">E-ATX</option>
+                                    <option value="Micro-ATX">Micro-ATX</option>
+                                    <option value="Mini-DTX">Mini-DTX</option>
+                                    <option value="Mini-ITX">Mini-ITX</option>
+                                    <option value="Standart-ATX">Standart-ATX</option>
+                                </select>
                             </div>
                             <div className="form-group">
                                 <label className="control-label">Socket</label>
@@ -56,6 +63,13 @@ export default class Edit extends Component {
                                 <label className="form-check-label">
                                     <input className="form-check-input" type="checkbox" defaultValue={item.haveBluetoothModel} ref={this.inputBluetoothRef} /> Have bluetooth model
                                 </label>
+                            </div>
+                            <div className="form-group">
+                                <label className="control-label">ImageUrl</label>
+                                <input defaultValue={this.state.imageUrl} onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
+                            </div>
+                            <div className="form-group">
+                                <img src={this.state.imageUrl} />
                             </div>
                             <div className="form-group">
                                 <label className="control-label">Price</label>
@@ -127,7 +141,8 @@ export default class Edit extends Component {
             + '&size=' + this.inputSizeRef.current.value
             + '&socket=' + this.inputSocketRef.current.value
             + '&haveWiFiModel=' + haveWiFi
-            + '&haveBluetoothModel=' + haveBluetooth);
+            + '&haveBluetoothModel=' + haveBluetooth
+            + '&imgUrl=' + this.state.imageUrl);
 
         if (response.status == 200) {
 

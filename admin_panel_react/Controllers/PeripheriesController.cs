@@ -38,13 +38,14 @@ namespace admin_panel_react.Controllers
         }
 
         [Route("create")]
-        public async Task<string> Create(string name, string type, int price)
+        public async Task<string> Create(string name, string type, int price, string imgUrl = "")
         {
             Periphery order = new Periphery()
             {
                 Name = name,
                 Type = type,
-                Price = price
+                Price = price,
+                ImgUrl = imgUrl
             };
             if (ModelState.IsValid)
             {
@@ -57,14 +58,15 @@ namespace admin_panel_react.Controllers
 
         [HttpGet]
         [Route("edit")]
-        public async Task<string> Edit(int id, string name, string type,int price)
+        public async Task<string> Edit(int id, string name, string type,int price, string imgUrl = "")
         {
             Periphery order = new Periphery()
             {
                 Id = id,
                 Name = name,
                 Type = type,
-                Price = price
+                Price = price,
+                ImgUrl = imgUrl
             };
 
 

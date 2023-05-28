@@ -6,12 +6,15 @@ export default class Create extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            imageUrl: ""
+        }
+
         this.inputNameRef = React.createRef();
         this.inputSurnameRef = React.createRef();
         this.inputEmailRef = React.createRef();
         this.inputPhoneRef = React.createRef();
         this.inputPasswordRef = React.createRef();
-        this.inputImageRef = React.createRef();
         this.inputTypeRef = React.createRef();
 
 
@@ -46,8 +49,11 @@ export default class Create extends Component {
                                 <input ref={this.inputPasswordRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Image url</label>
-                                <input ref={this.inputImageRef} className="form-control" />
+                                <label className="control-label">ImageUrl</label>
+                                <input onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
+                            </div>
+                            <div className="form-group">
+                                <img src={this.state.imageUrl} />
                             </div>
                             <div className="form-group">
                                 <label className="control-label">Type User</label>

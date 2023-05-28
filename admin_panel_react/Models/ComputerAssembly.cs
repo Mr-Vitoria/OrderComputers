@@ -3,6 +3,7 @@
     public class ComputerAssembly
     {
         public int Id { get; set; }
+        public string Name { get; set; }
         public int CompBodyId { get; set; }
         public int MotherCardId { get; set; }
         public int PowerSupplyUnitId { get; set; }
@@ -13,7 +14,7 @@
         public int? OwnerId { get; set; }
 
         public string TypeComputerAssembly { get; set; }
-        public string ImgUrl { get; set; }
+        public string? ImgUrl { get; set; }
 
 
         public CompBody CompBody { get; set; }
