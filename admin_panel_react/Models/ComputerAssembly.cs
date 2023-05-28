@@ -25,6 +25,9 @@
         public VideoCard VideoCard { get; set; }
         public User? Owner { get; set; }
 
+
+        public IEnumerable<AssemblyPeripheries> AssemblyPeripheries { get; set; }
+
         public double CostPrice { get; set; }
     }
 }

@@ -102,6 +102,42 @@ namespace order_computers_system_react.Controllers
             };
         }
 
+        [HttpGet]
+        [Route("createorder")]
+        public async Task<object> CreateOrder(int userId,double totalPrice, double assemblyPrice
+            , int bodyId, int processorId
+            ,int motherCardId, int powerSupplyId
+            ,int ramId, int storageId
+            ,int videoId, int monitorId
+            ,int speakerId, int mouseId
+            ,int keyboardId)
+        {
+            Order order = new Order()
+            {
+                UserId = userId,
+                TotalPrice = totalPrice,
+                ComputerAssembly = new ComputerAssembly()
+                {
+                    CompBodyId = bodyId,
+                    CompProcessorId = processorId,
+                    MotherCardId = motherCardId,
+                    PowerSupplyUnitId = powerSupplyId,
+                    RAMMemoryId = ramId,
+                    StorageDeviceId = storageId,
+                    VideoCardId = videoId,
+                    TypeComputerAssembly = "Users",
+                    CostPrice = assemblyPrice,
+                    ImgUrl = "",
+                    OwnerId = userId
+                }
+            };
+            await _context.AddAsync(order);
+            await _context.SaveChangesAsync();
+
+
+            return "Ok";
+        }
+
         public IActionResult CheckOut()
         {
             return View();

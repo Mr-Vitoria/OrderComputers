@@ -63,6 +63,7 @@ export class ConfigurationPCContainer extends Component {
 
 
         this.calculatePrice = this.calculatePrice.bind(this);
+        this.onCreateOrder = this.onCreateOrder.bind(this);
     }
 
     calculatePrice() {
@@ -152,21 +153,21 @@ export class ConfigurationPCContainer extends Component {
     }
     changeSpeaker(item) {
         this.setState({
-            selectMonitor: item
+            selectSpeaker: item
         }, () => {
             this.calculatePrice();
         });
     }
     changeMouse(item) {
         this.setState({
-            selectMonitor: item
+            selectMouse: item
         }, () => {
             this.calculatePrice();
         });
     }
     changeKeyboard(item) {
         this.setState({
-            selectMonitor: item
+            selectKeyboard: item
         }, () => {
             this.calculatePrice();
         });
@@ -256,9 +257,7 @@ export class ConfigurationPCContainer extends Component {
 
                 <div className="form-group btnForm">
                     <a onClick={(ev) => {
-                        console.log(this.state.selectProcessor);
-                        console.log(this.state.selectBody);
-                        console.log(this.state.selectMotherCard);
+                        this.onCreateOrder();
                     }} className="btn btn-dark btnOrder">Заказать</a>
                 </div>
 
@@ -282,7 +281,43 @@ export class ConfigurationPCContainer extends Component {
     async getModel() {
         const response = await fetch('ordersystem/getconfigurationmodel');
         const data = await response.json();
-        console.log(data);
         this.setState({ model: data, loading: false });
+    }
+
+
+
+    async onCreateOrder() {
+
+
+        console.log(this.state.selectBody);
+        console.log(this.state.selectProcessor);
+        console.log(this.state.selectMotherCard);
+        console.log(this.state.selectPowerUnit);
+        console.log(this.state.selectStorageDevice);
+        console.log(this.state.selectVideoCard);
+        console.log(this.state.selectRam);
+        console.log(this.state.selectMonitor);
+        console.log(this.state.selectSpeaker);
+        console.log(this.state.selectMouse);
+        console.log(this.state.selectKeyboard);
+        const response = await fetch('ordersystem/createorder?userId=1'
+            + '&assemblyPrice=' + this.state.amountAssembly
+            + '&totalPrice=' + this.state.totalAmount
+
+
+            + '&bodyId=' + this.state.selectBody.id
+            + '&processorId=' + this.state.selectProcessor.id
+            + '&motherCardId=' + this.state.selectMotherCard.id
+            + '&powerSupplyId=' + this.state.selectPowerUnit.id
+            + '&storageId=' + this.state.selectStorageDevice.id
+            + '&videoId=' + this.state.selectVideoCard.id
+            + '&ramId=' + this.state.selectRam.id
+
+            + '&monitorId=' + this.state.selectMonitor.id
+            + '&speakerId=' + this.state.selectSpeaker.id
+            + '&mouseId=' + this.state.selectMouse.id
+            + '&keyboardId=' + this.state.selectKeyboard.id);
+
+        console.log(response);
     }
 }

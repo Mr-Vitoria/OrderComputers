@@ -10,7 +10,6 @@ namespace order_computers_system_react.Models
 
         public double TotalPrice { get; set; }
 
-
         public User User { get; set; }
         public ComputerAssembly ComputerAssembly { get; set; }
 

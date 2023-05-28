@@ -20,5 +20,6 @@ namespace admin_panel_react.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Periphery> Peripheries { get; set; }
+        public IEnumerable<AssemblyPeripheries> AssemblyPeripheries { get; set; }
     }
 }
