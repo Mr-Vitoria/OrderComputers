@@ -37,10 +37,10 @@ export default class Detail extends Component {
                             {item.name }
                         </dd>
                         <dt className="col-sm-2">
-                            Surname
+                            Login
                         </dt>
                         <dd className="col-sm-10">
-                            {item.surname}
+                            {item.login}
                         </dd>
                         <dt className="col-sm-2">
                             Phone

@@ -28,7 +28,9 @@ export class Header extends Component {
                               <img src={require('../public/images/gearWheel.png')} />
                           </a>
                           <img src={require('../public/images/Bag.png')} />
-                          <img src="https://www.pinclipart.com/picdir/big/178-1789203_user-icon-png-white-printer-logic-client-download.png" />
+                          <a href="/profile">
+                              <img src="https://www.pinclipart.com/picdir/big/178-1789203_user-icon-png-white-printer-logic-client-download.png" />
+                          </a>
                       </div>
                   </div>
               </nav>

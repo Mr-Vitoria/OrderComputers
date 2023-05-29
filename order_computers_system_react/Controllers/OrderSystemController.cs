@@ -44,31 +44,45 @@ namespace order_computers_system_react.Controllers
         {
             return View();
         }
-
         [HttpGet]
-        [ActionName("Login")]
-        public IActionResult LoginPage()
+        [Route("getuser")]
+        public async Task<User?> Details(string phone)
         {
-            return View();
-        }
+            var user = await _context.Users
+                .FirstOrDefaultAsync(m => m.Phone == phone);
 
-        [HttpPost]
-        public IActionResult Login()
-        {
-            return View();
+            return user;
         }
 
 
         [HttpGet]
-        [ActionName("Registration")]
-        public IActionResult RegistrationPage()
+        [Route("createuser")]
+        public async Task<object> Registration(string phone, string login, string name, string password)
         {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult Registration()
-        {
-            return View();
+            User user = await _context.Users.FirstOrDefaultAsync(us=>us.Phone==phone);
+            if(user!=null)
+            {
+                return new
+                {
+                    Status = -1,
+                    Message = "Пользователь с таким номером телефона уже есть"
+                };
+            }
+            user = new User()
+            {
+                Name = name,
+                Phone = phone,
+                Login = login,
+                Password = password,
+                TypeUser = "Common"
+            };
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
+            return new
+            {
+                Status = 0,
+                Message = "Вы успешно зарегестрировались"
+            };
         }
 
         public IActionResult Orders()

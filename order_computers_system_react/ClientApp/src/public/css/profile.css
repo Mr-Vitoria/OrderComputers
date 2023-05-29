@@ -1,0 +1,53 @@
+﻿
+.loginSection {
+    margin: auto;
+    padding: 47px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 700px;
+}
+
+    .loginSection h2 {
+        color: white;
+        font-size: 4em;
+        margin-bottom: 20px;
+    }
+
+    .loginSection form {
+        display: flex;
+        flex-direction: column;
+        color: white;
+        font-size: 1.5em;
+    }
+
+        .loginSection form input {
+            border: 2px solid black;
+            background-color:transparent;
+            padding: 20px;
+            height: 60px;
+            width: 750px;
+        }
+
+        .loginSection form label {
+            margin: 10px 0;
+        }
+
+        .loginSection form button {
+            border: 2px solid black;
+            color: white;
+            background-color: transparent;
+            width: 75%;
+            margin: auto;
+            padding:10px 0;
+            margin-top: 70px;
+            font-size: 1.7em;
+        }
+
+            .loginSection form button:hover {
+                background-color: #5a5a5a;
+            }
+    .loginSection .helpBlock{
+        margin-top:20px;
+        font-size:0.9em;
+    }

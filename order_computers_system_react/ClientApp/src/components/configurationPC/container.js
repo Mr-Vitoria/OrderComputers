@@ -314,19 +314,6 @@ export class ConfigurationPCContainer extends Component {
 
 
     async onCreateOrder() {
-
-
-        console.log(this.state.selectBody);
-        console.log(this.state.selectProcessor);
-        console.log(this.state.selectMotherCard);
-        console.log(this.state.selectPowerUnit);
-        console.log(this.state.selectStorageDevice);
-        console.log(this.state.selectVideoCard);
-        console.log(this.state.selectRam);
-        console.log(this.state.selectMonitor);
-        console.log(this.state.selectSpeaker);
-        console.log(this.state.selectMouse);
-        console.log(this.state.selectKeyboard);
         const response = await fetch('ordersystem/createorder?userId=1'
             + '&assemblyPrice=' + this.state.amountAssembly
             + '&totalPrice=' + this.state.totalAmount
@@ -344,7 +331,5 @@ export class ConfigurationPCContainer extends Component {
             + '&speakerId=' + this.state.selectSpeaker.id
             + '&mouseId=' + this.state.selectMouse.id
             + '&keyboardId=' + this.state.selectKeyboard.id);
-
-        console.log(response);
     }
 }

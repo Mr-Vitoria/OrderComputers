@@ -15,7 +15,7 @@ export default class Edit extends Component {
 
         this.inputIdRef = React.createRef();
         this.inputNameRef = React.createRef();
-        this.inputSurnameRef = React.createRef();
+        this.inputLoginRef = React.createRef();
         this.inputEmailRef = React.createRef();
         this.inputPhoneRef = React.createRef();
         this.inputPasswordRef = React.createRef();
@@ -39,8 +39,8 @@ export default class Edit extends Component {
                                 <input defaultValue={ item.name} ref={this.inputNameRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Surname</label>
-                                <input defaultValue={item.surname} ref={this.inputSurnameRef} className="form-control" />
+                                <label className="control-label">Login</label>
+                                <input defaultValue={item.login} ref={this.inputLoginRef} className="form-control" />
                             </div>
                             <div className="form-group">
                                 <label className="control-label">Email</label>
@@ -116,7 +116,7 @@ export default class Edit extends Component {
         if (response.status == 200) {
 
             const data = await response.json();
-            this.setState({ item: data, loading: false });
+            this.setState({ item: data, loading: false, imageUrl: data.imgUrl });
         } else {
 
             Layout.setMessage('Error get user: ' + response.statusText);
@@ -127,11 +127,11 @@ export default class Edit extends Component {
 
         const response = await fetch('users/edit?id=' + this.state.itemId
             + '&name=' + this.inputNameRef.current.value
-            + '&surname=' + this.inputSurnameRef.current.value
+            + '&login=' + this.inputLoginRef.current.value
             + '&email=' + this.inputEmailRef.current.value
             + '&phone=' + this.inputPhoneRef.current.value
             + '&password=' + this.inputPasswordRef.current.value
-            + '&imgUrl=' + this.inputImageRef.current.value
+            + '&imgUrl=' + this.state.imageUrl
             + '&typeUser=' + this.inputTypeRef.current.value);
         if (response.status == 200) {
 

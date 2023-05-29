@@ -11,7 +11,7 @@ export default class Create extends Component {
         }
 
         this.inputNameRef = React.createRef();
-        this.inputSurnameRef = React.createRef();
+        this.inputLoginRef = React.createRef();
         this.inputEmailRef = React.createRef();
         this.inputPhoneRef = React.createRef();
         this.inputPasswordRef = React.createRef();
@@ -33,8 +33,8 @@ export default class Create extends Component {
                                 <input ref={this.inputNameRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Surname</label>
-                                <input ref={this.inputSurnameRef} className="form-control" />
+                                <label className="control-label">Login</label>
+                                <input ref={this.inputLoginRef} className="form-control" />
                             </div>
                             <div className="form-group">
                                 <label className="control-label">Email</label>
@@ -85,12 +85,12 @@ export default class Create extends Component {
     async createItem() {
 
         const response = await fetch('users/create?name=' + this.inputNameRef.current.value
-            + '&surname=' + this.inputSurnameRef.current.value
+            + '&login=' + this.inputLoginRef.current.value
             + '&email=' + this.inputEmailRef.current.value
             + '&phone=' + this.inputPhoneRef.current.value
             + '&password=' + this.inputPasswordRef.current.value
             + '&typeUser=' + this.inputTypeRef.current.value
-            + '&imgUrl=' + this.inputImageRef.current.value);
+            + '&imgUrl=' + this.state.imageUrl);
 
         if (response.status == 200) {
 

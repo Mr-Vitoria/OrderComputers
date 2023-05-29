@@ -53,9 +53,9 @@ namespace admin_panel_react.Controllers
 
 
         [Route("create")]
-        public async Task<string> Create(string name, string surname, string email, string phone, string password, string imgUrl="", string typeUser="Common")
+        public async Task<string> Create(string name, string login, string email, string phone, string password, string imgUrl="", string typeUser="Common")
         {
-            User user = new User { Name = name, Surname = surname, Email = email, Phone = phone, Password = password, TypeUser = typeUser, ImgUrl=imgUrl };
+            User user = new User { Name = name, Login = login, Email = email, Phone = phone, Password = password, TypeUser = typeUser, ImgUrl=imgUrl };
 
             if (ModelState.IsValid)
             {
@@ -67,10 +67,10 @@ namespace admin_panel_react.Controllers
         }
         [HttpGet]
         [Route("edit")]
-        public async Task<string> Edit(int id, string name, string surname, string email, string phone, string password, string imgUrl="", string typeUser = "Common")
+        public async Task<string> Edit(int id, string name, string login, string email, string phone, string password, string imgUrl="", string typeUser = "Common")
         {
 
-            User user = new User { Id=id, Name = name, Surname = surname, Email = email, Phone = phone, Password = password, TypeUser = typeUser,ImgUrl=imgUrl }; 
+            User user = new User { Id=id, Name = name, Login = login, Email = email, Phone = phone, Password = password, TypeUser = typeUser,ImgUrl=imgUrl }; 
             try
             {
                 _context.Update(user);
