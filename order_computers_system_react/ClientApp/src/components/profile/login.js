@@ -18,7 +18,7 @@ export default class Login extends Component {
             const data = await response.json();
             if (data.password == this.inputPasswordRef.current.value) {
                 const cookies = new Cookies();
-                cookies.set('userId', data.id, { path: '/' });
+                cookies.set('userId', data.id, { path: '/', maxAge: 86400 });
                 this.setTypePage("Profile");
             }
             else {

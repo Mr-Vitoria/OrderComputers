@@ -77,6 +77,16 @@
         height: 60px;
         font-size: 1.4em;
     }
+    .historyContainer .totalContainer .buttonContainer {
+        display:flex;
+        flex-direction:column;
+        width:30%;
+        justify-content:space-around;
+    }
+    .historyContainer .totalContainer .buttonContainer button{
+        width:100%;
+        margin:5px 0;
+    }
 
 .historyContainer .orderDate {
     font-size: 1.4em;

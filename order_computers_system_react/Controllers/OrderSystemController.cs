@@ -146,7 +146,7 @@ namespace order_computers_system_react.Controllers
             ,int ramId, int storageId
             ,int videoId, int monitorId
             ,int speakerId, int mouseId
-            ,int keyboardId, string orderDate)
+            ,int keyboardId, DateOnly orderDate)
         {
             Order order = new Order()
             {
@@ -168,7 +168,7 @@ namespace order_computers_system_react.Controllers
                 },
                 TypeOrder = "Full",
                 Status = "Active",
-                OrderDate = orderDate
+                OrderDate = orderDate.ToString()
             };
             await _context.AddAsync(order);
             await _context.SaveChangesAsync();
@@ -181,7 +181,7 @@ namespace order_computers_system_react.Controllers
         public async Task<object> CreateOrderByPrice(int userId, double budjet, double totalPrice
             , int monitorId, string comment
             , int speakerId, int mouseId
-            , int keyboardId, string orderDate)
+            , int keyboardId, DateOnly orderDate)
         {
             Order order = new Order()
             {
@@ -197,7 +197,7 @@ namespace order_computers_system_react.Controllers
                 Comment = comment,
                 TypeOrder = "Price",
                 Status = "Active",
-                OrderDate = orderDate
+                OrderDate = orderDate.ToString()
             };
             await _context.AddAsync(order);
             await _context.SaveChangesAsync();
@@ -205,6 +205,36 @@ namespace order_computers_system_react.Controllers
 
             return "Ok";
         }
+
+        [HttpGet]
+        [Route("deleteorder")]
+        public async Task<object> DeleteOrder(int orderId)
+        {
+            _context.Orders.Remove(await _context.Orders.FirstOrDefaultAsync(or=>or.Id==orderId));
+            await _context.SaveChangesAsync();
+
+
+            return "Ok";
+        }
+        [HttpGet]
+        [Route("repeatorder")]
+        public async Task<object> RepeatOrder(int orderId)
+        {
+            (await _context.Orders.FirstOrDefaultAsync(or => or.Id == orderId)).Status = "Active";
+            await _context.SaveChangesAsync();
+
+            return "Ok";
+        }
+        [HttpGet]
+        [Route("cancelorder")]
+        public async Task<object> CancelOrder(int orderId)
+        {
+            (await _context.Orders.FirstOrDefaultAsync(or => or.Id == orderId)).Status = "Cancel";
+            await _context.SaveChangesAsync();
+
+            return "Ok";
+        }
+
 
         public IActionResult CheckOut()
         {

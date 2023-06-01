@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Cookies from 'universal-cookie';
 import '../../public/css/configurationPC.css';
 import SelectMenuProcessor from './selectMenuProcessors'
 import SelectMenuBodies from './selectMenuBodies'
@@ -47,8 +48,8 @@ export class ConfigurationPCContainer extends Component {
             amountComponents: 0,
             amountAssembly: 0,
             totalAmount: 0,
-            today: dd + '.' + mm + '.' + yyyy,
-            nextDay: dd2 + '.' + mm2 + '.' + yyyy2,
+            today: mm + '.' + dd + '.' + yyyy,
+            nextDay: mm2 + '.' + dd2 + '.' + yyyy2,
 
             typeConfiguration:"Full"
         };
@@ -381,9 +382,16 @@ export class ConfigurationPCContainer extends Component {
 
 
     async onCreateOrder() {
+        const cookies = new Cookies();
+        let userId = cookies.get('userId');
+        if (userId == null) {
+            console.log('user not login');
+            return;
+        }
+
         if (this.state.typeConfiguration == "Full")
         {
-            await fetch('ordersystem/createorder?userId=1'
+            await fetch('ordersystem/createorder?userId=' + userId
                 + '&assemblyPrice=' + this.state.amountAssembly
                 + '&totalPrice=' + this.state.totalAmount
 
@@ -404,7 +412,7 @@ export class ConfigurationPCContainer extends Component {
                 + '&keyboardId=' + this.state.selectKeyboard.id);
         }
         else if (this.state.typeConfiguration == "Price") {
-            await fetch('ordersystem/createorderbyprice?userId=1'
+            await fetch('ordersystem/createorderbyprice?userId=' + userId
                 + '&budjet=' + this.budjetInputRef.current.value
                 + '&comment=' + (this.commentInputRef.current.value??" ")
                 + '&totalPrice=' + this.state.totalAmount

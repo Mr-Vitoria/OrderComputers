@@ -9,6 +9,20 @@ export default class OrderBlock extends Component {
         };
     }
 
+    async deleteOrder() {
+        await fetch('ordersystem/deleteorder?orderId=' + this.state.item.id);
+        window.location.reload();
+    }
+
+    async repeatOrder() {
+        await fetch('ordersystem/repeatorder?orderId=' + this.state.item.id);
+        window.location.reload();
+    }
+    async cancelOrder() {
+        await fetch('ordersystem/cancelorder?orderId=' + this.state.item.id);
+        window.location.reload();
+    }
+
     render() {
         return (
             <>
@@ -65,7 +79,20 @@ export default class OrderBlock extends Component {
                             <p>Итого</p>
                             <input type="text" defaultValue={this.state.item.totalPrice} readOnly />
                         </div>
-                        <button>{this.state.item.status == "Active" ? " Отменить" : "Повторить"}</button>
+                        {this.state.item.status == "Active" ?
+                            <button onClick={(ev) => {
+                                this.cancelOrder();
+                            }}>Отменить</button>
+                            :
+                            <div className="buttonContainer">
+                                <button onClick={(ev) => {
+                                    this.repeatOrder();
+                                }}>Повторить</button>
+                                <button onClick={(ev) => {
+                                    this.deleteOrder();
+                                }}>Удалить</button>
+                            </div>
+                        }
                     </div>
                     <p className="orderDate">Дата заказа: {this.state.item.orderDate}</p>
                 </div>
