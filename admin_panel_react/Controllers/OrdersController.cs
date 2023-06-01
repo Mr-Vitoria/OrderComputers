@@ -24,7 +24,9 @@ namespace admin_panel_react.Controllers
         [HttpGet]
         public async Task<List<Order>> Index()
         {
-            var orders = _context.Orders.Include(o => o.ComputerAssembly).Include(o => o.User);
+            await _context.ComputerAssemblies.LoadAsync();
+            await _context.Users.LoadAsync();
+            var orders = _context.Orders;
             return await orders.ToListAsync();
         }
 
@@ -36,9 +38,10 @@ namespace admin_panel_react.Controllers
                 return null;
             }
 
+            await _context.ComputerAssemblies.LoadAsync();
+            await _context.Users.LoadAsync();
+
             var order = await _context.Orders
-                .Include(o => o.ComputerAssembly)
-                .Include(o => o.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             return order;
@@ -49,14 +52,17 @@ namespace admin_panel_react.Controllers
         {
             var model = new
             {
-                ComputerAssemblies = new SelectList(_context.ComputerAssemblies, "Id", "Id"),
-                Users = new SelectList(_context.Users, "Id", "Id")
+                ComputerAssemblies = new SelectList(_context.ComputerAssemblies, "Id", "Name"),
+                Users = new SelectList(_context.Users, "Id", "Login")
             };
             return model;
         }
 
         [Route("create")]
-        public async Task<string> Create(int userId,int computerAssemblyId,int totalPrice, DateOnly orderDate, string status)
+        public async Task<string> Create(int userId,int? computerAssemblyId,
+            int totalPrice, DateOnly orderDate, 
+            string status,string typeOrder,
+            double? budjet, string? comment)
         {
             Order order = new Order()
             {
@@ -64,8 +70,13 @@ namespace admin_panel_react.Controllers
                 ComputerAssemblyId = computerAssemblyId,
                 TotalPrice = totalPrice,
                 OrderDate = orderDate.ToString(),
-                Status = status
+                Status = status,
+                TypeOrder = typeOrder,
+                Budjet = budjet,
+                Comment = comment
             };
+
+
             if (ModelState.IsValid)
             {
                 _context.Add(order);
@@ -77,7 +88,11 @@ namespace admin_panel_react.Controllers
 
         [HttpGet]
         [Route("edit")]
-        public async Task<string> Edit(int id, int userId, int computerAssemblyId, int totalPrice, DateOnly orderDate, string status)
+        public async Task<string> Edit(int id, int userId, 
+            int? computerAssemblyId, int totalPrice,
+            DateOnly orderDate, string status,
+            string typeOrder, double? budjet, 
+            string? comment)
         {
             Order order = new Order()
             {
@@ -86,7 +101,10 @@ namespace admin_panel_react.Controllers
                 ComputerAssemblyId = computerAssemblyId,
                 TotalPrice = totalPrice,
                 OrderDate = orderDate.ToString(),
-                Status = status
+                Status = status,
+                TypeOrder = typeOrder,
+                Budjet = budjet,
+                Comment = comment
             };
 
 

@@ -25,7 +25,7 @@ export default class Index extends Component {
                             User
                         </th>
                         <th>
-                            Computer assembly
+                            Type order
                         </th>
                         <th>
                             Order date
@@ -47,7 +47,7 @@ export default class Index extends Component {
                                 {item.user.name}
                             </td>
                             <td>
-                                {item.computerAssemblyId}
+                                {item.typeOrder}
                             </td>
                             
                             <td>
