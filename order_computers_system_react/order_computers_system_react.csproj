@@ -34,7 +34,6 @@
     <None Remove="ClientApp\src\public\images\Bag.png" />
     <None Remove="ClientApp\src\public\images\gearWheel.png" />
     <None Remove="ClientApp\src\public\images\human.png" />
-    <None Remove="ClientApp\src\public\js\configurationPC.js" />
     <None Remove="ClientApp\src\public\js\site.js" />
   </ItemGroup>
 
@@ -75,10 +74,10 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Include="ClientApp\src\public\js\configurationPC.js">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\public\js\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

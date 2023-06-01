@@ -19,7 +19,7 @@ export class IndexContainer extends Component {
     renderModel(model) {
 
         return (
-            <>
+            <div className="indexContainer">
                 <div id="carouselExampleAutoplaying" className="carousel slide" data-bs-ride="carousel">
                     <div className="carousel-inner">
                         <div className="carousel-item active">
@@ -132,7 +132,7 @@ export class IndexContainer extends Component {
                         <p></p>
                     </div>
                 </section>
-            </>
+            </div>
         );
     }
 

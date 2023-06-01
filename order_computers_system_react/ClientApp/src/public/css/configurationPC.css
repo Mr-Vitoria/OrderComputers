@@ -1,30 +1,30 @@
-﻿main{
-    padding:30px 15%;
+﻿main {
+    padding: 30px 15%;
 }
 
-h1,h2{
-    width:100%;
-    text-align:center;
-    background-color:transparent;
+h1, h2 {
+    width: 100%;
+    text-align: center;
+    background-color: transparent;
 }
 
-section{
-    margin-top:50px;
+.configurationContainer section {
+    margin-top: 50px;
 }
 
 
-.btnOrder{
-    padding:15px 30px;
-    font-size:2em;
-}
-.btnForm{
-    display:flex;
-    justify-content:center;
-
-    margin-top:50px;
+.configurationContainer .btnOrder {
+    padding: 15px 30px;
+    font-size: 2em;
 }
 
-.form-group{
+.configurationContainer .btnForm {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.configurationContainer .form-group {
     margin-top: 15px;
 }
 
@@ -34,14 +34,12 @@ section{
 
 
 
-div.select {
+.configurationContainer div.select {
     width: 100%;
     position: relative;
     height: 120px;
     cursor: pointer;
     overflow: hidden;
-
-
     background-color: #323232;
     color: white;
     border: 2px solid black;
@@ -49,21 +47,21 @@ div.select {
     outline: none;
     transition-duration: .3s;
 }
-    div.select img {
+
+    .configurationContainer div.select img {
         width: 125px;
         height: 90px;
         margin-right: 20px;
     }
 
 
-    div.select.show {
+    .configurationContainer div.select.show {
         height: 300px;
         overflow: auto;
-        
         transition-duration: .3s;
     }
 
-    div.select .selectMenuValue {
+    .configurationContainer div.select .selectMenuValue {
         padding: 16px 31px 0px 16px;
         cursor: pointer;
         border-bottom: 4px solid black;
@@ -73,42 +71,43 @@ div.select {
         pointer-events: none;
         font-size: 1.1em;
     }
-    div.select .container{
-        display:flex;
-        justify-content:left;
-        margin:0;
-        max-width:none;
 
+    .configurationContainer div.select .container {
+        display: flex;
+        justify-content: left;
+        margin: 0;
+        max-width: none;
     }
 
-        div.select .container .properties {
+        .configurationContainer div.select .container .properties {
             display: flex;
-            flex-direction:column;
+            flex-direction: column;
             justify-content: space-evenly;
             margin-left: 30px;
         }
-        div.select .container .properties span{
-            font-size:0.5em;
-        }
 
-::-webkit-scrollbar {
+            .configurationContainer div.select .container .properties span {
+                font-size: 0.5em;
+            }
+
+.configurationContainer ::-webkit-scrollbar {
     background: transparent;
     width: 0.5em;
     position: absolute;
 }
 
-::-webkit-scrollbar-track {
+.configurationContainer ::-webkit-scrollbar-track {
     background: transparent;
     position: absolute;
     z-index: -2;
 }
 
-::-webkit-scrollbar-thumb {
+.configurationContainer ::-webkit-scrollbar-thumb {
     border-radius: 100px;
     background: #888;
 }
 
-ul.selectMenu {
+.configurationContainer ul.selectMenu {
     background-color: #323232;
     transition: .3s;
     width: 100%;
@@ -121,19 +120,19 @@ ul.selectMenu {
     margin: 0px;
 }
 
-    ul.selectMenu > li {
+    .configurationContainer ul.selectMenu > li {
         display: block;
         padding: 10px;
         border-radius: 0px;
         cursor: pointer;
-        font-size:0.9em;
+        font-size: 0.9em;
     }
 
-        ul.selectMenu > li.selectoption {
+        .configurationContainer ul.selectMenu > li.selectoption {
             padding: 10px;
         }
 
-            ul.selectMenu > li.selectoption:hover {
+            .configurationContainer ul.selectMenu > li.selectoption:hover {
                 color: black !important;
                 background: #323232;
                 transition: .2s;
@@ -141,14 +140,53 @@ ul.selectMenu {
 
 
 
-.total {
+.configurationContainer .total {
     border: 2px solid black;
     display: flex;
     flex-wrap: wrap;
     padding: 0 20px;
 }
 
-.total div{
-    width:50%;
-    margin: 5px 0;
+    .configurationContainer .total div {
+        width: 50%;
+        margin: 5px 0;
+    }
+
+.configurationContainer .partlyContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+    .configurationContainer .partlyContainer input {
+        background-color: transparent;
+        border: 2px solid black;
+        width: 800px;
+        padding: 8px;
+        font-size: 2em;
+    }
+
+    .configurationContainer .partlyContainer label {
+        font-size: 1.7em;
+    }
+
+    .configurationContainer .partlyContainer .form-group {
+        width: 800px;
+    }
+
+.configurationContainer .typesContainer {
+    display: flex;
+    font-size: 1.7em;
+    justify-content: space-evenly;
+}
+
+.configurationContainer .comments textarea {
+    width: 100%;
+    height: 201px;
+    border-radius: 20px;
+    background-color: #818181;
+    border: 5px solid black;
+    font-size: 2em;
+    padding: 20px;
 }

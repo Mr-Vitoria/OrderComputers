@@ -37,7 +37,7 @@ export class ProfileContainer extends Component {
         }
         if (Page == 'SignOut') {
             Page = 'Login';
-            cookies.set('userId', null, { path: '/' });
+            cookies.remove('userId', { path: '/' });
         }
         this.setState({
             page: Page
@@ -47,7 +47,7 @@ export class ProfileContainer extends Component {
     render() {
 
         return (
-            <>
+            <div className="profileContainer">
                 {
                     this.state.page == "Login" ? <Login setTypePage={this.setTypePage } />
                         : null
@@ -60,7 +60,7 @@ export class ProfileContainer extends Component {
                     this.state.page == "Profile" ? <Profile setTypePage={this.setTypePage} />
                         : null
                 }
-            </>
+            </div>
             
         );
     }

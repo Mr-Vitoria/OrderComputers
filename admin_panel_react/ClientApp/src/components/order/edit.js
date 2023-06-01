@@ -17,6 +17,8 @@ export default class Edit extends Component {
         this.inputUserIdRef = React.createRef();
         this.inputCompAssemblerIdeRef = React.createRef();
         this.inputTotalPriceRef = React.createRef();
+        this.inputOrderDateRef = React.createRef();
+        this.inputStatusRef = React.createRef();
 
     }
 
@@ -48,6 +50,20 @@ export default class Edit extends Component {
                                         return <option key={index} value={item.value}>{item.text}</option>;
                                     })}
                                 </select>
+                            </div>
+
+                            <div className="form-group">
+                                <label className="control-label">Status</label>
+                                <select defaultValue={item.status} ref={this.inputStatusRef} className="form-control" >
+                                    <option value="Active">Active</option>
+                                    <option value="Complete">Complete</option>
+                                    <option value="Cancel">Cancel</option>
+                                </select>
+                            </div>
+
+                            <div className="form-group">
+                                <label className="control-label">Order date</label>
+                                <input defaultValue={ item.orderDate} ref={this.inputOrderDateRef} className="form-control" type="date" />
                             </div>
 
                             <div className="form-group">
@@ -120,6 +136,8 @@ export default class Edit extends Component {
         const response = await fetch('orders/edit?id=' + this.inputIdRef.current.value
             + '&userId=' + this.inputUserIdRef.current.value
             + '&computerAssemblyId=' + this.inputCompAssemblerIdeRef.current.value
+            + '&status=' + this.inputStatusRef.current.value
+            + '&orderDate=' + this.inputOrderDateRef.current.value
             + '&totalPrice=' + this.inputTotalPriceRef.current.value);
         if (response.status == 200) {
 

@@ -1,6 +1,7 @@
 import { IndexContainer } from "./components/index/container";
-import { ConfigurationPCContainer } from './components/configurationPC/container'
+import { ConfigurationPCContainer } from './components/configurationPC/container';
 import { ProfileContainer } from "./components/profile/container";
+import { HistoryContainer } from "./components/history/container";
 
 const AppRoutes = [
     {
@@ -14,6 +15,10 @@ const AppRoutes = [
     {
         path: '/profile',
         element: <ProfileContainer />
+    },
+    {
+        path: '/history',
+        element: <HistoryContainer />
     }
 ];
 

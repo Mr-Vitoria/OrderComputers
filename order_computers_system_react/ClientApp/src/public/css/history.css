@@ -1,0 +1,84 @@
+﻿.historyContainer section {
+    margin: 0 auto !important;
+    padding-top: 40px;
+}
+
+.historyContainer h2 {
+    margin-bottom: 40px;
+    font-size: 4em;
+}
+
+.historyContainer section .container {
+    border: 2px solid #5f0000;
+    padding: 0;
+    margin-bottom: 100px;
+}
+
+    .historyContainer section .container.active {
+        border: 2px solid green;
+    }
+
+    .historyContainer section .container .totalContainer,
+    .historyContainer section .container .peripheryContainer,
+    .historyContainer section .container .statusContainer,
+    .historyContainer section .container .assemblyContainer {
+        border: 2px solid #5f0000;
+        font-size: 1.7em;
+        padding: 8px;
+    }
+
+    .historyContainer section .container.active .totalContainer,
+    .historyContainer section .container.active .peripheryContainer,
+    .historyContainer section .container.active .statusContainer,
+    .historyContainer section .container.active .assemblyContainer {
+        border: 2px solid green;
+        font-size: 1.7em;
+        padding: 8px;
+    }
+
+.historyContainer .statusContainer p {
+    margin: 0;
+}
+
+.historyContainer .assemblyContainer p {
+    margin-bottom: 2px;
+}
+
+.historyContainer .totalContainer {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+}
+
+    .historyContainer .totalContainer div {
+        display: flex;
+        align-items: center;
+        width: 60%;
+    }
+
+        .historyContainer .totalContainer div p {
+            font-size: 3em;
+            width: 45%;
+        }
+
+        .historyContainer .totalContainer div input {
+            background-color: transparent;
+            border: 2px solid black;
+            font-size: 2.7em;
+            width: 40%;
+            pointer-events: none;
+            text-align: center;
+        }
+
+    .historyContainer .totalContainer button {
+        background-color: transparent;
+        border: 2px solid black;
+        width: 30%;
+        height: 60px;
+        font-size: 1.4em;
+    }
+
+.historyContainer .orderDate {
+    font-size: 1.4em;
+    padding: 8px;
+}

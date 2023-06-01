@@ -53,6 +53,15 @@ namespace order_computers_system_react.Controllers
 
             return user;
         }
+        [HttpGet]
+        [Route("getuserbyid")]
+        public async Task<User?> Details(int id)
+        {
+            var user = await _context.Users
+                .FirstOrDefaultAsync(m => m.Id== id);
+
+            return user;
+        }
 
 
         [HttpGet]
@@ -85,9 +94,22 @@ namespace order_computers_system_react.Controllers
             };
         }
 
-        public IActionResult Orders()
+        [HttpGet]
+        [Route("gethistoryuser")]
+        public async Task<object> Orders(int id)
         {
-            return View();
+            await _context.Users.LoadAsync();
+            await _context.CompProcessors.LoadAsync();
+            await _context.CompBodies.LoadAsync();
+            await _context.VideoCards.LoadAsync();
+            await _context.MotherCards.LoadAsync();
+            await _context.PowerSupplyUnits.LoadAsync();
+            await _context.Peripheries.LoadAsync();
+            await _context.RAMMemories.LoadAsync();
+            await _context.StorageDevices.LoadAsync();
+            await _context.ComputerAssemblies.LoadAsync();
+            List<Order> orders = await _context.Orders.Where(or => or.UserId == id).ToListAsync();
+            return orders;
         }
 
         public IActionResult AssemblyList()
@@ -124,7 +146,7 @@ namespace order_computers_system_react.Controllers
             ,int ramId, int storageId
             ,int videoId, int monitorId
             ,int speakerId, int mouseId
-            ,int keyboardId)
+            ,int keyboardId, string orderDate)
         {
             Order order = new Order()
             {
@@ -143,7 +165,39 @@ namespace order_computers_system_react.Controllers
                     CostPrice = assemblyPrice,
                     ImgUrl = "",
                     OwnerId = userId
-                }
+                },
+                TypeOrder = "Full",
+                Status = "Active",
+                OrderDate = orderDate
+            };
+            await _context.AddAsync(order);
+            await _context.SaveChangesAsync();
+
+
+            return "Ok";
+        }
+        [HttpGet]
+        [Route("createorderbyprice")]
+        public async Task<object> CreateOrderByPrice(int userId, double budjet, double totalPrice
+            , int monitorId, string comment
+            , int speakerId, int mouseId
+            , int keyboardId, string orderDate)
+        {
+            Order order = new Order()
+            {
+                UserId = userId,
+                TotalPrice = totalPrice,
+                ComputerAssembly = new ComputerAssembly()
+                {
+                    TypeComputerAssembly = "Users",
+                    ImgUrl = "",
+                    OwnerId = userId
+                },
+                Budjet =budjet,
+                Comment = comment,
+                TypeOrder = "Price",
+                Status = "Active",
+                OrderDate = orderDate
             };
             await _context.AddAsync(order);
             await _context.SaveChangesAsync();

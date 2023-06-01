@@ -1,66 +1,58 @@
 import React, { Component } from 'react';
+import OrderBlock from './orderBlock'
+
+import '../../public/css/history.css';
 import Cookies from 'universal-cookie';
 
-export default class Profile extends Component {
-    static displayName = Profile.name;
+export class HistoryContainer extends Component {
+    static displayName = HistoryContainer.name;
 
     constructor(props) {
         super(props);
-        this.state = {
-            item: null,
-            loading:true
-        }
-
-        this.setTypePage = props.setTypePage;
-    }
-    async getUser() {
         const cookies = new Cookies();
-        
-        const response = await fetch('ordersystem/getuserbyid?id=' + cookies.get('userId'));
-        if (response.status == 200) {
-
-            const data = await response.json();
-
-            this.setState({
-                item: data,
-                loading: false
-            });
-        } else {
-            console.log('Error get user info: ');
-        }
+        this.state = {
+            model: null,
+            loading: true,
+            userId: cookies.get('userId')
+        };
     }
 
     componentDidMount() {
-        this.getUser();
+        const cookies = new Cookies();
+        if (this.state.userId != null) {
+
+            this.getModel();
+        }
+        else {
+            console.log('User not login');
+        }
     }
 
-    renderItem(item) {
+    renderModel(model) {
+
         return (
-            <section className="profileSection">
-                <h2>Профиль</h2>
-                <div className="imgContainer">
-                    <img src={item.imgUrl ??"https://webmg.ru/wp-content/uploads/2022/10/i-43-34.jpeg"} />
-                </div>
+            <div className="historyContainer">
 
-                <label>Имя</label>
-                <p>{item.name}</p>
-                <label>Логин</label>
-                <p>{item.login }</p>
-                <label>Телефон</label>
-                <p>{item.phone}</p>
-
-                <button>Изменить пароль</button>
-                <button onClick={(ev) => {
-                    ev.preventDefault();
-                    this.setTypePage("SignOut");
-                }}>Выйти</button>
-            </section>
+                <section>
+                    <h2>Заказы</h2>
+                    {model.filter(it=>it.status=="Active").map((item, key) =>
+                        <OrderBlock item={item} key={key} />
+                    )}
+                </section>
+                <section>
+                    <h2>История</h2>
+                    {model.filter(it => it.status != "Active").map((item, key) =>
+                        <OrderBlock item={item} key={key} />
+                    )}
+                </section>
+                
+            </div>
         );
     }
 
     render() {
-        let content = this.state.loading ?
-            <div className="preloader">
+        let contents = this.state.loading
+            ? <div className="preloader">
                 <svg className="ip" viewBox="0 0 256 128" width="256px" height="128px" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="0">
@@ -88,9 +80,24 @@ export default class Profile extends Component {
                     </g>
                 </svg>
             </div>
-            : this.renderItem(this.state.item);
-        return <>
-            {content}
-        </>
+            : this.renderModel(this.state.model);
+
+        return (
+            <div>
+                {contents}
+            </div>
+        );
+    }
+
+
+    async getModel() {
+        console.log(this.state.userId);
+        const response = await fetch('ordersystem/gethistoryuser?id=' + this.state.userId);
+        const data = await response.json();
+        console.log(data);
+        this.setState({ model: data, loading: false });
     }
 }
+
+
+

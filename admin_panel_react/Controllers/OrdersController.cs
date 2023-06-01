@@ -56,13 +56,15 @@ namespace admin_panel_react.Controllers
         }
 
         [Route("create")]
-        public async Task<string> Create(int userId,int computerAssemblyId,int totalPrice)
+        public async Task<string> Create(int userId,int computerAssemblyId,int totalPrice,string orderDate, string status)
         {
             Order order = new Order()
             {
                 UserId = userId,
                 ComputerAssemblyId = computerAssemblyId,
-                TotalPrice = totalPrice
+                TotalPrice = totalPrice,
+                OrderDate = orderDate,
+                Status = status
             };
             if (ModelState.IsValid)
             {
@@ -75,14 +77,16 @@ namespace admin_panel_react.Controllers
 
         [HttpGet]
         [Route("edit")]
-        public async Task<string> Edit(int id, int userId, int computerAssemblyId, int totalPrice)
+        public async Task<string> Edit(int id, int userId, int computerAssemblyId, int totalPrice, string orderDate, string status)
         {
             Order order = new Order()
             {
                 Id = id,
                 UserId = userId,
                 ComputerAssemblyId = computerAssemblyId,
-                TotalPrice = totalPrice
+                TotalPrice = totalPrice,
+                OrderDate = orderDate,
+                Status = status
             };
 
 

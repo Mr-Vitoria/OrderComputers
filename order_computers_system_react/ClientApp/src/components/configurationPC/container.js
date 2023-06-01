@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../../public/css/configurationPC.css';
-import '../../public/js/configurationPC.js';
 import SelectMenuProcessor from './selectMenuProcessors'
 import SelectMenuBodies from './selectMenuBodies'
 import SelectMenuMotherCards from './selectMenuMotherCards'
@@ -12,6 +11,8 @@ import SelectMenuMonitors from './selectMenuMonitors'
 import SelectMenuSpeakers from './selectMenuSpeakers'
 import SelectMenuMouses from './selectMenuMouses'
 import SelectMenuKeyboards from './selectMenuKeyboards'
+
+import SelectBodyFormFactor from './selectBodyFormFactor'
 
 export class ConfigurationPCContainer extends Component {
     static displayName = ConfigurationPCContainer.name;
@@ -47,7 +48,9 @@ export class ConfigurationPCContainer extends Component {
             amountAssembly: 0,
             totalAmount: 0,
             today: dd + '.' + mm + '.' + yyyy,
-            nextDay: dd2 + '.' + mm2 + '.' + yyyy2
+            nextDay: dd2 + '.' + mm2 + '.' + yyyy2,
+
+            typeConfiguration:"Full"
         };
         this.changeBody = this.changeBody.bind(this);
         this.changeProcessor = this.changeProcessor.bind(this);
@@ -64,22 +67,42 @@ export class ConfigurationPCContainer extends Component {
 
         this.calculatePrice = this.calculatePrice.bind(this);
         this.onCreateOrder = this.onCreateOrder.bind(this);
+
+        this.setTypeConfiguration = this.setTypeConfiguration.bind(this);
+
+
+        this.budjetInputRef = React.createRef();
+        this.commentInputRef = React.createRef();
+    }
+
+    setTypeConfiguration(Type) {
+        this.setState({
+            typeConfiguration:Type
+        });
     }
 
     calculatePrice() {
-        let amountComponents = 0 + (this.state.selectBody != null ? this.state.selectBody.price : 0)
-            + (this.state.selectProcessor != null ? this.state.selectProcessor.price : 0)
-            + (this.state.selectMotherCard != null ? this.state.selectMotherCard.price : 0)
-            + (this.state.selectPowerUnit != null ? this.state.selectPowerUnit.price : 0)
-            + (this.state.selectRam != null ? this.state.selectRam.price : 0)
-            + (this.state.selectStorageDevice != null ? this.state.selectStorageDevice.price : 0)
-            + (this.state.selectVideoCard != null ? this.state.selectVideoCard.price : 0);
+        let amountComponents = 0;
+        if (this.state.typeConfiguration == "Full") {
+            amountComponents = 0 + (this.state.selectBody != null ? this.state.selectBody.price : 0)
+                + (this.state.selectProcessor != null ? this.state.selectProcessor.price : 0)
+                + (this.state.selectMotherCard != null ? this.state.selectMotherCard.price : 0)
+                + (this.state.selectPowerUnit != null ? this.state.selectPowerUnit.price : 0)
+                + (this.state.selectRam != null ? this.state.selectRam.price : 0)
+                + (this.state.selectStorageDevice != null ? this.state.selectStorageDevice.price : 0)
+                + (this.state.selectVideoCard != null ? this.state.selectVideoCard.price : 0);
+        }
+        else {
+            amountComponents = 0 + parseInt(this.budjetInputRef.current.value);
+        }
+        
 
         let amountAssembly = amountComponents + (this.state.selectSpeaker != null ? this.state.selectSpeaker.price : 0)
             + (this.state.selectMonitor !=null ? this.state.selectMonitor.price : 0)
             + (this.state.selectMouse != null ? this.state.selectMouse.price : 0)
             + (this.state.selectKeyboard != null ? this.state.selectKeyboard.price : 0);
 
+        console.log(amountAssembly);
 
         let totalAmount = amountAssembly * 1.1;
 
@@ -180,39 +203,73 @@ export class ConfigurationPCContainer extends Component {
     renderModel(model) {
 
         return (
-            <>
+            <div className="configurationContainer">
                 <h1>Конфигуратор </h1>
-                <section>
-                    <h2>Основные комплектующие</h2>
-                    <div className="form-group">
-
-                        <SelectMenuProcessor model={this.state.model.compProcessors} changeItem={this.changeProcessor} />
+                <section className="typesContainer">
+                    <div className="form-check form-check-inline">
+                        <input onClick={(ev) => {
+                            this.setTypeConfiguration("Full");
+                        }} className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" defaultValue="option1" defaultChecked="false" />
+                        <label className="form-check-label" htmlFor="inlineRadio1">Собрать самому</label>
                     </div>
-                    <div className="form-group">
-
-                        <SelectMenuBodies model={model.compBodies} changeItem={this.changeBody} />
-                    </div>
-                    <div className="form-group">
-
-                        <SelectMenuMotherCards model={model.motherCards} changeItem={this.changeMotherCard} />
-                    </div>
-                    <div className="form-group">
-
-                        <SelectMenuPowerUnit model={model.powerSupplyUnits} changeItem={this.changePowerUnit} />
-                    </div>
-                    <div className="form-group">
-
-                        <SelectMenuRam model={model.ramMemories} changeItem={this.changeRam} />
-                    </div>
-                    <div className="form-group">
-
-                        <SelectMenuStorageDevice model={model.storageDevices} changeItem={this.changeStorageDevice} />
-                    </div>
-                    <div className="form-group">
-
-                        <SelectMenuVideoCard model={model.videoCards} changeItem={this.changeVideoCard} />
+                    <div className="form-check form-check-inline">
+                        <input onClick={(ev) => {
+                            this.setTypeConfiguration("Price");
+                        }} className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" defaultValue="option2" />
+                        <label className="form-check-label" htmlFor="inlineRadio2">Выбрать бюджет</label>
                     </div>
                 </section>
+                {this.state.typeConfiguration == "Full" ?
+
+                    <section>
+                        <h2>Основные комплектующие</h2>
+                        <div className="form-group">
+
+                            <SelectMenuProcessor model={this.state.model.compProcessors} changeItem={this.changeProcessor} />
+                        </div>
+                        <div className="form-group">
+
+                            <SelectMenuBodies model={model.compBodies} changeItem={this.changeBody} />
+                        </div>
+                        <div className="form-group">
+
+                            <SelectMenuMotherCards model={model.motherCards} changeItem={this.changeMotherCard} />
+                        </div>
+                        <div className="form-group">
+
+                            <SelectMenuPowerUnit model={model.powerSupplyUnits} changeItem={this.changePowerUnit} />
+                        </div>
+                        <div className="form-group">
+
+                            <SelectMenuRam model={model.ramMemories} changeItem={this.changeRam} />
+                        </div>
+                        <div className="form-group">
+
+                            <SelectMenuStorageDevice model={model.storageDevices} changeItem={this.changeStorageDevice} />
+                        </div>
+                        <div className="form-group">
+
+                            <SelectMenuVideoCard model={model.videoCards} changeItem={this.changeVideoCard} />
+                        </div>
+                    </section>
+                    :null
+                }
+                {this.state.typeConfiguration == "Price" ?
+
+                    <section className="partlyContainer">
+                        <h2>Заказ на сумму</h2>
+                        <div>
+                            <label>Бюджет</label>
+                            <br />
+                            <input onChange={(ev) => { this.calculatePrice(); }} ref={this.budjetInputRef} type="number" defaultValue="0" />
+                        </div>
+
+                        <div className="form-group">
+                            <label className="control-label">Форм фактор</label>
+                            <SelectBodyFormFactor />
+                        </div>
+                    </section>:null
+            }
                 <section>
                     <h2>Периферия</h2>
                     <div className="form-group">
@@ -232,6 +289,16 @@ export class ConfigurationPCContainer extends Component {
                         <SelectMenuKeyboards model={model.keyboards} changeItem={this.changeKeyboard} />
                     </div>
                 </section>
+
+                {this.state.typeConfiguration == "Price" ?
+
+                    <section className="comments">
+                        <h2>Комментарий</h2>
+                        <div>
+                            <textarea ref={this.commentInputRef}></textarea>
+                        </div>
+                    </section> : null
+                }
 
                 <section>
                     <h2>Итого</h2>
@@ -261,7 +328,7 @@ export class ConfigurationPCContainer extends Component {
                     }} className="btn btn-dark btnOrder">Заказать</a>
                 </div>
 
-            </>
+            </div>
         );
     }
 
@@ -314,22 +381,41 @@ export class ConfigurationPCContainer extends Component {
 
 
     async onCreateOrder() {
-        const response = await fetch('ordersystem/createorder?userId=1'
-            + '&assemblyPrice=' + this.state.amountAssembly
-            + '&totalPrice=' + this.state.totalAmount
+        if (this.state.typeConfiguration == "Full")
+        {
+            await fetch('ordersystem/createorder?userId=1'
+                + '&assemblyPrice=' + this.state.amountAssembly
+                + '&totalPrice=' + this.state.totalAmount
 
 
-            + '&bodyId=' + this.state.selectBody.id
-            + '&processorId=' + this.state.selectProcessor.id
-            + '&motherCardId=' + this.state.selectMotherCard.id
-            + '&powerSupplyId=' + this.state.selectPowerUnit.id
-            + '&storageId=' + this.state.selectStorageDevice.id
-            + '&videoId=' + this.state.selectVideoCard.id
-            + '&ramId=' + this.state.selectRam.id
+                + '&bodyId=' + this.state.selectBody.id
+                + '&processorId=' + this.state.selectProcessor.id
+                + '&motherCardId=' + this.state.selectMotherCard.id
+                + '&powerSupplyId=' + this.state.selectPowerUnit.id
+                + '&storageId=' + this.state.selectStorageDevice.id
+                + '&videoId=' + this.state.selectVideoCard.id
+                + '&ramId=' + this.state.selectRam.id
 
-            + '&monitorId=' + this.state.selectMonitor.id
-            + '&speakerId=' + this.state.selectSpeaker.id
-            + '&mouseId=' + this.state.selectMouse.id
-            + '&keyboardId=' + this.state.selectKeyboard.id);
+                + '&orderDate=' + this.state.today
+
+                + '&monitorId=' + this.state.selectMonitor.id
+                + '&speakerId=' + this.state.selectSpeaker.id
+                + '&mouseId=' + this.state.selectMouse.id
+                + '&keyboardId=' + this.state.selectKeyboard.id);
+        }
+        else if (this.state.typeConfiguration == "Price") {
+            await fetch('ordersystem/createorderbyprice?userId=1'
+                + '&budjet=' + this.budjetInputRef.current.value
+                + '&comment=' + (this.commentInputRef.current.value??" ")
+                + '&totalPrice=' + this.state.totalAmount
+
+                + '&orderDate=' + this.state.today
+
+
+                + '&monitorId=' + this.state.selectMonitor.id
+                + '&speakerId=' + this.state.selectSpeaker.id
+                + '&mouseId=' + this.state.selectMouse.id
+                + '&keyboardId=' + this.state.selectKeyboard.id);
+        }
     }
 }

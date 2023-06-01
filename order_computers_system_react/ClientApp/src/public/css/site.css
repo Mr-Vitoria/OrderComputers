@@ -32,11 +32,15 @@ header .profileContainer img{
     height:50px;
     margin:0 6px;
 }
+.profileIcon{
+    border-radius:100%;
+    object-fit:cover;
+}
 
-header div:nth-child(2){
-    color:white;
-    display:flex;
-    align-items:center;
+header div:nth-child(2) {
+    color: white;
+    display: flex;
+    align-items: center;
 }
 
 header div:nth-child(2) a:hover {
@@ -49,6 +53,7 @@ header div:nth-child(2) a {
     color:white;
     text-decoration:none;
 }
+
 
 main {
     width: 100%;

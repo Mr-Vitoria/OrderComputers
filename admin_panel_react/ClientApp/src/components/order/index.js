@@ -28,6 +28,12 @@ export default class Index extends Component {
                             Computer assembly
                         </th>
                         <th>
+                            Order date
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                        <th>
                             Total price
                         </th>
                         <th></th>
@@ -38,12 +44,18 @@ export default class Index extends Component {
                     {items.map(item =>
                         <tr key={item.id}>
                             <td>
-                                {item.user.name + '  ' + item.user.surname}
+                                {item.user.name}
                             </td>
                             <td>
                                 {item.computerAssemblyId}
                             </td>
                             
+                            <td>
+                                {item.orderDate}
+                            </td>
+                            <td>
+                                {item.status}
+                            </td>
                             <td>
                                 {item.totalPrice}
                             </td>

@@ -12,6 +12,8 @@ export default class Create extends Component {
         this.inputUserIdRef = React.createRef();
         this.inputCompAssemblerIdeRef = React.createRef();
         this.inputTotalPriceRef = React.createRef();
+        this.inputOrderDateRef = React.createRef();
+        this.inputStatusRef = React.createRef();
 
 
         this.setTypePage = props.setTypePage;
@@ -37,12 +39,26 @@ export default class Create extends Component {
                             </div>
 
                             <div className="form-group">
-                            <label className="control-label">Computer assembly</label>
+                                <label className="control-label">Computer assembly</label>
                                 <select ref={this.inputCompAssemblerIdeRef} className="form-control" >
                                     {data.computerAssemblies.map((item, index) => {
                                     return <option key={index} value={item.value}>{item.text}</option>;
                                 })}
                                 </select>
+                            </div>
+
+                            <div className="form-group">
+                                <label className="control-label">Status</label>
+                                <select ref={this.inputStatusRef} className="form-control" >
+                                    <option value="Active">Active</option>
+                                    <option value="Complete">Complete</option>
+                                    <option value="Cancel">Cancel</option>
+                                </select>
+                            </div>
+
+                            <div className="form-group">
+                                <label className="control-label">Order date</label>
+                                <input ref={this.inputOrderDateRef} className="form-control" type="date" />
                             </div>
 
                             <div className="form-group">
@@ -108,6 +124,8 @@ export default class Create extends Component {
         const response = await fetch('orders/create?'
             + 'userId=' + this.inputUserIdRef.current.value
             + '&computerAssemblyId=' + this.inputCompAssemblerIdeRef.current.value
+            + '&status=' + this.inputStatusRef.current.value
+            + '&orderDate=' + this.inputOrderDateRef.current.value
             + '&totalPrice=' + this.inputTotalPriceRef.current.value);
 
 

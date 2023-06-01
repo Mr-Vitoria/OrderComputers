@@ -1,5 +1,5 @@
 ﻿
-.loginSection {
+.profileContainer .loginSection {
     margin: auto;
     padding: 47px 0;
     display: flex;
@@ -8,46 +8,102 @@
     width: 700px;
 }
 
-    .loginSection h2 {
+    .profileContainer .loginSection h2 {
         color: white;
         font-size: 4em;
         margin-bottom: 20px;
     }
 
-    .loginSection form {
+    .profileContainer .loginSection form {
         display: flex;
         flex-direction: column;
         color: white;
         font-size: 1.5em;
     }
 
-        .loginSection form input {
+        .profileContainer .loginSection form input {
             border: 2px solid black;
-            background-color:transparent;
+            background-color: transparent;
             padding: 20px;
             height: 60px;
             width: 750px;
         }
 
-        .loginSection form label {
+        .profileContainer .loginSection form label {
             margin: 10px 0;
         }
 
-        .loginSection form button {
+        .profileContainer .loginSection form button {
             border: 2px solid black;
             color: white;
             background-color: transparent;
             width: 75%;
             margin: auto;
-            padding:10px 0;
+            padding: 10px 0;
             margin-top: 70px;
             font-size: 1.7em;
         }
 
-            .loginSection form button:hover {
+            .profileContainer .loginSection form button:hover {
                 background-color: #5a5a5a;
             }
-    .loginSection .helpBlock{
-        margin-top:20px;
-        font-size:0.9em;
+
+    .profileContainer .loginSection .helpBlock {
+        margin-top: 20px;
+        font-size: 0.9em;
     }
+
+
+
+
+
+
+
+.profileContainer .profileSection {
+    margin-top: 0;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+    .profileContainer .profileSection h2 {
+        font-size: 4em;
+        margin-bottom: 35px;
+    }
+
+    .profileContainer .profileSection .imgContainer {
+        width: 400px;
+        height: 400px;
+        overflow: hidden;
+        border-radius: 100%;
+    }
+
+.profileContainer .imgContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profileContainer .profileSection label {
+    text-align: left;
+    width: 730px;
+    font-size: 1.4em;
+}
+
+.profileContainer .profileSection p {
+    border: 2px solid black;
+    background-color: transparent;
+    padding: 15px 20px;
+    width: 750px;
+    font-size: 1.3em;
+}
+
+.profileContainer .profileSection button {
+    background-color: transparent;
+    border: 2px solid black;
+    margin: 10px 0;
+    font-size: 2.5em;
+    padding: 15px 40px;
+}
