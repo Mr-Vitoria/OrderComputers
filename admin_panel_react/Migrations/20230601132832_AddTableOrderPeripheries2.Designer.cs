@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using admin_panel_react.Models;
@@ -11,9 +12,11 @@ using admin_panel_react.Models;
 namespace admin_panel_react.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230601132832_AddTableOrderPeripheries2")]
+    partial class AddTableOrderPeripheries2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,7 +49,7 @@ namespace admin_panel_react.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CompBodies", (string)null);
+                    b.ToTable("CompBodies");
                 });
 
             modelBuilder.Entity("admin_panel_react.Models.CompProcessor", b =>
@@ -97,7 +100,7 @@ namespace admin_panel_react.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CompProcessors", (string)null);
+                    b.ToTable("CompProcessors");
                 });
 
             modelBuilder.Entity("admin_panel_react.Models.ComputerAssembly", b =>
@@ -163,7 +166,7 @@ namespace admin_panel_react.Migrations
 
                     b.HasIndex("VideoCardId");
 
-                    b.ToTable("ComputerAssemblies", (string)null);
+                    b.ToTable("ComputerAssemblies");
                 });
 
             modelBuilder.Entity("admin_panel_react.Models.MotherCard", b =>
@@ -200,7 +203,7 @@ namespace admin_panel_react.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MotherCards", (string)null);
+                    b.ToTable("MotherCards");
                 });
 
             modelBuilder.Entity("admin_panel_react.Models.Order", b =>
@@ -244,7 +247,7 @@ namespace admin_panel_react.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("admin_panel_react.Models.OrderPeriphery", b =>
@@ -267,7 +270,7 @@ namespace admin_panel_react.Migrations
 
                     b.HasIndex("PeripheryId");
 
-                    b.ToTable("OrderPeripheries", (string)null);
+                    b.ToTable("OrderPeripheries");
                 });
 
             modelBuilder.Entity("admin_panel_react.Models.Periphery", b =>
@@ -294,7 +297,7 @@ namespace admin_panel_react.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Peripheries", (string)null);
+                    b.ToTable("Peripheries");
                 });
 
             modelBuilder.Entity("admin_panel_react.Models.PowerSupplyUnit", b =>
@@ -324,7 +327,7 @@ namespace admin_panel_react.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PowerSupplyUnits", (string)null);
+                    b.ToTable("PowerSupplyUnits");
                 });
 
             modelBuilder.Entity("admin_panel_react.Models.RAMMemory", b =>
@@ -357,7 +360,7 @@ namespace admin_panel_react.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RAMMemories", (string)null);
+                    b.ToTable("RAMMemories");
                 });
 
             modelBuilder.Entity("admin_panel_react.Models.StorageDevice", b =>
@@ -387,7 +390,7 @@ namespace admin_panel_react.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("StorageDevices", (string)null);
+                    b.ToTable("StorageDevices");
                 });
 
             modelBuilder.Entity("admin_panel_react.Models.User", b =>
@@ -426,7 +429,7 @@ namespace admin_panel_react.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("admin_panel_react.Models.VideoCard", b =>
@@ -472,7 +475,7 @@ namespace admin_panel_react.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("VideoCards", (string)null);
+                    b.ToTable("VideoCards");
                 });
 
             modelBuilder.Entity("admin_panel_react.Models.ComputerAssembly", b =>

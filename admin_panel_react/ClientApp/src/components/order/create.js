@@ -20,6 +20,11 @@ export default class Create extends Component {
         this.inputCommentRef = React.createRef();
 
 
+        this.inputMonitorIdRef = React.createRef();
+        this.inputKeyboardIdRef = React.createRef();
+        this.inputMouseRef = React.createRef();
+        this.inputSpeakerIdRef = React.createRef();
+
         this.setTypePage = props.setTypePage;
     }
 
@@ -78,6 +83,46 @@ export default class Create extends Component {
                                     </div>
                                 </>
                             }
+
+                            <div className="form-group">
+                                <label className="control-label">Monitor</label>
+                                <select ref={this.inputMonitorIdRef} className="form-control" >
+                                    <option value="-1">NONE</option>
+                                    {data.monitors.map((item, index) => {
+                                        return <option key={index} value={item.value}>{item.text}</option>;
+                                    })}
+                                </select>
+                            </div>
+
+                            <div className="form-group">
+                                <label className="control-label">Keyboard</label>
+                                <select ref={this.inputKeyboardIdRef} className="form-control" >
+                                    <option value="-1">NONE</option>
+                                    {data.keyboards.map((item, index) => {
+                                        return <option key={index} value={item.value}>{item.text}</option>;
+                                    })}
+                                </select>
+                            </div>
+
+                            <div className="form-group">
+                                <label className="control-label">Mouse</label>
+                                <select ref={this.inputMouseRef} className="form-control" >
+                                    <option value="-1">NONE</option>
+                                    {data.mouses.map((item, index) => {
+                                        return <option key={index} value={item.value}>{item.text}</option>;
+                                    })}
+                                </select>
+                            </div>
+
+                            <div className="form-group">
+                                <label className="control-label">Speaker</label>
+                                <select ref={this.inputSpeakerIdRef} className="form-control" >
+                                    <option value="-1">NONE</option>
+                                    {data.speakers.map((item, index) => {
+                                        return <option key={index} value={item.value}>{item.text}</option>;
+                                    })}
+                                </select>
+                            </div>
 
                             <div className="form-group">
                                 <label className="control-label">Status</label>
@@ -166,7 +211,14 @@ export default class Create extends Component {
             + '&typeOrder=' + this.state.typeOrder
             + '&budjet=' + (this.inputBudjetRef.current != null ? this.inputBudjetRef.current.value : "")
             + '&comment=' + (this.inputCommentRef.current != null ? this.inputCommentRef.current.value : "")
-            + '&totalPrice=' + this.inputTotalPriceRef.current.value);
+            + '&totalPrice=' + this.inputTotalPriceRef.current.value
+
+
+            + '&monitorId=' + this.inputMonitorIdRef.current.value
+            + '&speakerId=' + this.inputSpeakerIdRef.current.value
+            + '&mouseId=' + this.inputMouseRef.current.value
+            + '&keyboardId=' + this.inputKeyboardIdRef.current.value
+        );
 
 
         if (response.status == 200) {

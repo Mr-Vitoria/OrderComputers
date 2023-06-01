@@ -12,13 +12,13 @@ namespace admin_panel_react.Models
         public string Status { get; set; }
         public string OrderDate { get; set; }
 
-        public string TypeOrder { get; set; } = "FullOrder";
+        public string TypeOrder { get; set; } = "Full";
         public double? Budjet { get; set; }
         public string? Comment { get; set; }
 
         public User User { get; set; }
         public ComputerAssembly? ComputerAssembly { get; set; }
-        public IEnumerable<OrderPeripheries> OrderPeripheries { get; set; }
+        public IEnumerable<OrderPeriphery> OrderPeripheries { get; set; }
 
     }
 }

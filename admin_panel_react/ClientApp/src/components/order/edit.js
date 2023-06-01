@@ -23,6 +23,7 @@ export default class Edit extends Component {
 
         this.inputBudjetRef = React.createRef();
         this.inputCommentRef = React.createRef();
+
     }
 
     componentDidMount() {

@@ -73,6 +73,14 @@ export default class Detail extends Component {
                         {item.status}
                     </dd>
                     <dt className="col-sm-2">
+                        Peripheries
+                    </dt>
+                    {item.orderPeripheries.map((orderPeriphery, index) => {
+                        return <dd key={index} className="col-sm-10">
+                            {orderPeriphery.periphery.name}
+                        </dd>
+                    })}
+                    <dt className="col-sm-2">
                         Total price
                     </dt>
                     <dd className="col-sm-10">

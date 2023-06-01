@@ -108,6 +108,9 @@ namespace order_computers_system_react.Controllers
             await _context.RAMMemories.LoadAsync();
             await _context.StorageDevices.LoadAsync();
             await _context.ComputerAssemblies.LoadAsync();
+            await _context.OrderPeripheries.LoadAsync();
+
+
             List<Order> orders = await _context.Orders.Where(or => or.UserId == id).ToListAsync();
             return orders;
         }
@@ -170,6 +173,33 @@ namespace order_computers_system_react.Controllers
                 Status = "Active",
                 OrderDate = orderDate.ToString()
             };
+
+
+            if (speakerId != -1)
+                await _context.OrderPeripheries.AddAsync(new OrderPeriphery()
+                {
+                    Order = order,
+                    PeripheryId = speakerId
+                });
+            if (mouseId != -1)
+                await _context.OrderPeripheries.AddAsync(new OrderPeriphery()
+                {
+                    Order = order,
+                    PeripheryId = mouseId
+                });
+            if (keyboardId != -1)
+                await _context.OrderPeripheries.AddAsync(new OrderPeriphery()
+                {
+                    Order = order,
+                    PeripheryId = keyboardId
+                });
+            if (monitorId != -1)
+                await _context.OrderPeripheries.AddAsync(new OrderPeriphery()
+                {
+                    Order = order,
+                    PeripheryId = monitorId
+                });
+
             await _context.AddAsync(order);
             await _context.SaveChangesAsync();
 
@@ -199,6 +229,33 @@ namespace order_computers_system_react.Controllers
                 Status = "Active",
                 OrderDate = orderDate.ToString()
             };
+
+
+            if (speakerId != -1)
+                await _context.OrderPeripheries.AddAsync(new OrderPeriphery()
+                {
+                    Order = order,
+                    PeripheryId = speakerId
+                });
+            if (mouseId != -1)
+                await _context.OrderPeripheries.AddAsync(new OrderPeriphery()
+                {
+                    Order = order,
+                    PeripheryId = mouseId
+                });
+            if (keyboardId != -1)
+                await _context.OrderPeripheries.AddAsync(new OrderPeriphery()
+                {
+                    Order = order,
+                    PeripheryId = keyboardId
+                });
+            if (monitorId != -1)
+                await _context.OrderPeripheries.AddAsync(new OrderPeriphery()
+                {
+                    Order = order,
+                    PeripheryId = monitorId
+                });
+
             await _context.AddAsync(order);
             await _context.SaveChangesAsync();
 

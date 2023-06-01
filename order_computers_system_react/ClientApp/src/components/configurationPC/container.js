@@ -406,10 +406,10 @@ export class ConfigurationPCContainer extends Component {
 
                 + '&orderDate=' + this.state.today
 
-                + '&monitorId=' + this.state.selectMonitor.id
-                + '&speakerId=' + this.state.selectSpeaker.id
-                + '&mouseId=' + this.state.selectMouse.id
-                + '&keyboardId=' + this.state.selectKeyboard.id);
+                + '&monitorId=' + (this.state.selectMonitor != null ? this.state.selectMonitor.id : -1)
+                + '&speakerId=' + (this.state.selectSpeaker != null ? this.state.selectSpeaker.id : -1)
+                + '&mouseId=' + (this.state.selectMouse != null ? this.state.selectMouse.id : -1)
+                + '&keyboardId=' + (this.state.selectKeyboard != null ? this.state.selectKeyboard.id : -1));
         }
         else if (this.state.typeConfiguration == "Price") {
             await fetch('ordersystem/createorderbyprice?userId=' + userId
@@ -420,10 +420,10 @@ export class ConfigurationPCContainer extends Component {
                 + '&orderDate=' + this.state.today
 
 
-                + '&monitorId=' + this.state.selectMonitor.id
-                + '&speakerId=' + this.state.selectSpeaker.id
-                + '&mouseId=' + this.state.selectMouse.id
-                + '&keyboardId=' + this.state.selectKeyboard.id);
+                + '&monitorId=' +  (this.state.selectMonitor != null ? this.state.selectMonitor.id:-1)
+                + '&speakerId=' +  (this.state.selectSpeaker != null ?this.state.selectSpeaker.id: -1)
+                + '&mouseId=' +    (this.state.selectMouse != null ?this.state.selectMouse.id: -1)
+                + '&keyboardId=' + (this.state.selectKeyboard != null ?this.state.selectKeyboard.id: -1));
         }
     }
 }

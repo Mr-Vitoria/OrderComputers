@@ -35,13 +35,13 @@ export class HistoryContainer extends Component {
 
                 <section>
                     <h2>Заказы</h2>
-                    {model.filter(it=>it.status=="Active").map((item, key) =>
+                    {model.filter(it => it.status =="Активен").map((item, key) =>
                         <OrderBlock item={item} key={key} />
                     )}
                 </section>
                 <section>
                     <h2>История</h2>
-                    {model.filter(it => it.status != "Active").map((item, key) =>
+                    {model.filter(it => it.status != "Активен").map((item, key) =>
                         <OrderBlock item={item} key={key} />
                     )}
                 </section>

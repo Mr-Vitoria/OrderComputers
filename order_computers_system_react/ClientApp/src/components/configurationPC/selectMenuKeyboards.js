@@ -30,6 +30,14 @@ export default class SelectMenuKeyboards extends Component {
 
                     </div>
                     <ul className="selectMenu">
+                        <li className="selectoption container" onClick={(ev) => {
+                            this.setState({
+                                selectItem: null
+                            });
+                            this.changeItem(null);
+                        }}>
+                            <span>Без клавиатуры</span>
+                        </li>
                         {
                             this.state.model.map(item => {
                                 return <li key={item.id} className="selectoption container" onClick={(ev) => {

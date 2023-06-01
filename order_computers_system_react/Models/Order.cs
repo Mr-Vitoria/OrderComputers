@@ -18,7 +18,7 @@ namespace order_computers_system_react.Models
 
         public User User { get; set; }
         public ComputerAssembly? ComputerAssembly { get; set; }
-        public IEnumerable<OrderPeripheries> OrderPeripheries { get; set; }
+        public IEnumerable<OrderPeriphery> OrderPeripheries { get; set; }
 
     }
 }
