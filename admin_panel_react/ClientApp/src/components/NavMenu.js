@@ -80,6 +80,9 @@ export class NavMenu extends Component {
                             <a href="/orderPanel" className={"nav_link" + (window.location.pathname == "/orderPanel" ? " active" : "")}>
                                 <span className="nav_name">Orders</span>
                             </a>
+                            <a href="/feedbackPanel" className={"nav_link" + (window.location.pathname == "/feedbackPanel" ? " active" : "")}>
+                                <span className="nav_name">Feedbacks</span>
+                            </a>
                         </div>
                     </div> <a onClick={(ev) => {
                         Layout.setTypePage("SignOut")

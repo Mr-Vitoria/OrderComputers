@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Cookies from 'universal-cookie';
 
 export class Header extends Component {
     constructor(props) {
@@ -18,7 +17,7 @@ export class Header extends Component {
                         </a>
                     </div>
                     <div>
-                        <a href="#">Модели</a>
+                        <a href="/assemblyList">Модели</a>
                         <a href="/configuration">Конфигуратор</a>
                         <a href="#">Услуги</a>
                         <a href="#">Поддержка</a>

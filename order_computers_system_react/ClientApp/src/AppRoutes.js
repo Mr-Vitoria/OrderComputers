@@ -2,6 +2,7 @@ import { IndexContainer } from "./components/index/container";
 import { ConfigurationPCContainer } from './components/configurationPC/container';
 import { ProfileContainer } from "./components/profile/container";
 import { HistoryContainer } from "./components/history/container";
+import { AssemblyListContainer } from "./components/assemblyList/container";
 
 const AppRoutes = [
     {
@@ -19,6 +20,10 @@ const AppRoutes = [
     {
         path: '/history',
         element: <HistoryContainer />
+    },
+    {
+        path: '/assemblyList',
+        element: <AssemblyListContainer />
     }
 ];
 

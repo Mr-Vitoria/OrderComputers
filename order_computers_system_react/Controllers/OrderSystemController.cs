@@ -298,9 +298,46 @@ namespace order_computers_system_react.Controllers
             return View();
         }
 
-        public IActionResult ExecutorsList()
+        [HttpGet]
+        [Route("getassemblylist")]
+        public async Task<object> GetAssemblyList()
         {
-            return View();
+            await _context.CompProcessors.LoadAsync();
+            await _context.CompBodies.LoadAsync();
+            await _context.VideoCards.LoadAsync();
+            await _context.MotherCards.LoadAsync();
+            await _context.PowerSupplyUnits.LoadAsync();
+            await _context.Peripheries.LoadAsync();
+            await _context.RAMMemories.LoadAsync();
+            await _context.StorageDevices.LoadAsync();
+
+
+            return await _context.ComputerAssemblies.Where(assembly=>assembly.CompProcessor.Name!=null).ToListAsync();
+        }
+        [HttpGet]
+        [Route("getselectoption")]
+        public async Task<object> GetSelectOption()
+        {
+            await _context.CompProcessors.LoadAsync();
+            await _context.CompBodies.LoadAsync();
+            await _context.VideoCards.LoadAsync();
+            await _context.MotherCards.LoadAsync();
+            await _context.PowerSupplyUnits.LoadAsync();
+            await _context.Peripheries.LoadAsync();
+            await _context.RAMMemories.LoadAsync();
+            await _context.StorageDevices.LoadAsync();
+
+
+            return new {
+                Processors = new {
+                    Producers = _context.CompProcessors.Select(proc => proc.Producer).Distinct(),
+                    Sockets = _context.CompProcessors.Select(proc => proc.Socket).Distinct(),
+                    MinCountCores = await _context.CompProcessors.Select(proc => proc.CountCores).MinAsync(),
+                    MaxCountCores = await _context.CompProcessors.Select(proc => proc.CountCores).MaxAsync(),
+                    MinFrequency = await _context.CompProcessors.Select(proc => proc.Frequency).MinAsync(),
+                    MaxFrequency = await _context.CompProcessors.Select(proc => proc.Frequency).MaxAsync()
+                }
+            };
         }
 
         public IActionResult Executor()

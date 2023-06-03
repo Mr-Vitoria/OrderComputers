@@ -15,7 +15,8 @@ const context = [
     "/storagedevices",
     "/videocards",
     "/computerassemblies",
-    "/orders"
+    "/orders",
+    "/feedbacks"
 ];
 
 const onError = (err, req, resp, target) => {

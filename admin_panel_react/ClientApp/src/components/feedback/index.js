@@ -25,16 +25,7 @@ export default class Index extends Component {
                             User
                         </th>
                         <th>
-                            Type order
-                        </th>
-                        <th>
-                            Order date
-                        </th>
-                        <th>
-                            Status
-                        </th>
-                        <th>
-                            Total price
+                            Text
                         </th>
                         <th></th>
                     </tr>
@@ -47,18 +38,9 @@ export default class Index extends Component {
                                 {item.user.name}
                             </td>
                             <td>
-                                {item.typeOrder}
+                                {item.text}
                             </td>
                             
-                            <td>
-                                {item.orderDate}
-                            </td>
-                            <td>
-                                {item.status}
-                            </td>
-                            <td>
-                                {item.totalPrice}
-                            </td>
                             <td>
                                 <a onClick={(ev) => {
                                     this.setTypePage("Edit", item.id);
@@ -100,7 +82,7 @@ export default class Index extends Component {
 
                         this.setTypePage("Create");
                     }
-                    }>Add order</a>
+                    }>Add feedback</a>
                 </p>
                 {contents}
             </div>
@@ -108,27 +90,25 @@ export default class Index extends Component {
     }
 
     async getItems() {
-        const response = await fetch('orders');
+        const response = await fetch('feedbacks');
         if (response.status == 200) {
 
             const data = await response.json();
             this.setState({ items: data, loading: false });
-        } else {
-
-            Layout.setMessage('Error get order list: ' + response.statusText);
         }
+        else {
+
+            Layout.setMessage('Error get feedbacks: ' + response.statusText);
+        }
+
     }
 
     async deleteItem(Id) {
-        const response = await fetch('orders/delete?id=' + Id);
+        const response = await fetch('feedbacks/delete?id=' + Id);
         if (response.status == 200) {
 
-            Layout.setMessage('Order was deleted! ');
+            Layout.setMessage('Feedback was deleted! ');
             this.getItems();
-
-        } else {
-
-            Layout.setMessage('Error delete order: ' + response.statusText);
         }
 
     }

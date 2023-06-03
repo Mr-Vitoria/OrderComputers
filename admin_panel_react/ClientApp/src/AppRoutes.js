@@ -9,6 +9,7 @@ import { VideoCardContainer } from "./components/videoCard/container";
 import { ComputerAssemblyContainer } from "./components/computerAssembly/container";
 import { OrderContainer } from "./components/order/container";
 import { PeripheryContainer } from "./components/periphery/container";
+import { FeedbackContainer } from "./components/feedback/container";
 import { Home } from "./components/Home";
 
 const AppRoutes = [
@@ -59,6 +60,10 @@ const AppRoutes = [
     {
         path: '/peripheryPanel',
         element: <PeripheryContainer />
+    },
+    {
+        path: '/feedbackPanel',
+        element: <FeedbackContainer />
     }
 ];
 
