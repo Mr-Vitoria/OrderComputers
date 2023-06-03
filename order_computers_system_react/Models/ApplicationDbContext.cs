@@ -20,6 +20,8 @@ namespace order_computers_system_react.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Periphery> Peripheries { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
+
         public DbSet<OrderPeriphery> OrderPeripheries { get; set; }
     }
 }

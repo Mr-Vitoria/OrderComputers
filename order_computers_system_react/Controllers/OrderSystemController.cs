@@ -24,16 +24,18 @@ namespace order_computers_system_react.Controllers
         [Route("getindexmodel")]
         public async Task<object> Index()
         {
+            await _context.Users.LoadAsync();
             var model= new {
                 BestComputerAssemblies = new List<ComputerAssembly>(),
-                TypesComputerAssembly = new List<Tuple<string,string,int>>()
+                TypesComputerAssembly = new List<Tuple<string,string,int>>(),
+                Feedbacks = (await _context.Feedbacks.ToListAsync()).TakeLast(4)
 
-            };
+        };
             model.BestComputerAssemblies.AddRange(await _context.ComputerAssemblies.Take(4).ToListAsync());
             foreach (var item in await _context.ComputerAssemblies.Select(ca => ca.TypeComputerAssembly).Distinct().ToListAsync())
             {
                 model.TypesComputerAssembly.Add(new Tuple<string, string, int>(item
-                    , (await _context.ComputerAssemblies.Where(ca => ca.TypeComputerAssembly == item).FirstAsync()).ImgUrl
+                    , (await _context.ComputerAssemblies.Where(ca => ca.TypeComputerAssembly == item).FirstOrDefaultAsync()).ImgUrl
                     ,(int)await _context.ComputerAssemblies.Where(ca => ca.TypeComputerAssembly== item).MinAsync(ca => ca.CostPrice)));
             }
 
@@ -293,6 +295,22 @@ namespace order_computers_system_react.Controllers
         }
 
 
+        [HttpGet]
+        [Route("addFeedback")]
+        public async Task<object> AddFeedback(int userId,string text)
+        {
+            Feedback feedback = new Feedback()
+            {
+                UserId = userId,
+                Text = text
+            };
+            await _context.Feedbacks.AddAsync(feedback);
+
+            await _context.SaveChangesAsync();
+            return "Ok";
+        }
+
+
         public IActionResult CheckOut()
         {
             return View();
@@ -314,6 +332,7 @@ namespace order_computers_system_react.Controllers
 
             return await _context.ComputerAssemblies.Where(assembly=>assembly.CompProcessor.Name!=null).ToListAsync();
         }
+
         [HttpGet]
         [Route("getselectoption")]
         public async Task<object> GetSelectOption()

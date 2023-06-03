@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Cookies from 'universal-cookie';
 import '../../public/css/index.css';
 
 export class IndexContainer extends Component {
@@ -8,12 +9,23 @@ export class IndexContainer extends Component {
         super(props);
         this.state = {
             model: null,
-            loading: true
+            loading: true,
+            user: null
         };
+
+        this.inputTextFeedbackRef = React.createRef();
+
+        this.addFeedback = this.addFeedback.bind(this);
     }
 
     componentDidMount() {
         this.getModel();
+    }
+
+    async addFeedback() {
+
+        await fetch('ordersystem/addFeedback?userId=' + this.state.user.id
+            +'&text=' + this.inputTextFeedbackRef.current.value);
     }
 
     renderModel(model) {
@@ -41,10 +53,10 @@ export class IndexContainer extends Component {
                         {model.typesComputerAssembly.map((item, key) =>
                             <a key={key} href="#">
 
-                                <div className="card" style={{width:'18rem'}}>
+                                <div className="card" style={{ width: '18rem' }}>
                                     <img src={item.item2} className="card-img-top" alt="..." />
                                     <div className="card-body">
-                                        <p className="card-text">{item.item1 }</p>
+                                        <p className="card-text">{item.item1}</p>
                                         <p className="card-text">От {item.item3} руб.</p>
                                     </div>
                                 </div>
@@ -59,7 +71,7 @@ export class IndexContainer extends Component {
                     <div className="cardsContainer">
 
                         {model.bestComputerAssemblies.map(item =>
-                            <a key={item.id } href="#">
+                            <a key={item.id} href="#">
 
                                 <div className="card" style={{ width: '18rem' }}>
                                     <img src={item.imgUrl} className="card-img-top" alt="..." />
@@ -104,33 +116,36 @@ export class IndexContainer extends Component {
                     </div>
                 </section>
 
-               
-                <section>
+
+                <section className="feedbackSection">
                     <h1>Отзывы о нас</h1>
-                    <div className="feedBack">
-                        <div className="imgContainer">
-                            <img src="https://games.mail.ru/hotbox/content_files/gallery/2020/12/24/0bfa60d58df9494580c305d074a4908e.jpg" />
+                    {this.state.user != null ? <>
+                        <h2 style={{ textAlign: "left" }}>Оставить отзыв о нас</h2>
+                        <div className="feedBack">
+                            <div className="imgContainer">
+                                <img src={this.state.user.imgUrl} /> <span>{this.state.user.name}</span>
+                            </div>
+                            <textarea ref={this.inputTextFeedbackRef}>
+                            </textarea>
                         </div>
-                        <p></p>
-                    </div>
-                    <div className="feedBack">
-                        <div className="imgContainer">
-                            <img src="https://games.mail.ru/hotbox/content_files/gallery/2020/12/24/0bfa60d58df9494580c305d074a4908e.jpg" />
+                        <button onClick={(ev) => {
+                            this.addFeedback();
+                            window.location.reload();
+                        }}>Оставить</button>
+                    </>
+                        : null
+                    }
+                    <h2 style={{ textAlign: "left", margin: "40px 0" }}>Последние отзывы</h2>
+                    {model.feedbacks.map(item =>
+                        <div key={item.id} className="feedBack">
+                            <div className="imgContainer">
+                                <img src={item.user.imgUrl} /> <span>{item.user.name}</span>
+                            </div>
+                            <p>{item.text}</p>
                         </div>
-                        <p></p>
-                    </div>
-                    <div className="feedBack">
-                        <div className="imgContainer">
-                            <img src="https://games.mail.ru/hotbox/content_files/gallery/2020/12/24/0bfa60d58df9494580c305d074a4908e.jpg" />
-                        </div>
-                        <p></p>
-                    </div>
-                    <div className="feedBack">
-                        <div className="imgContainer">
-                            <img src="https://games.mail.ru/hotbox/content_files/gallery/2020/12/24/0bfa60d58df9494580c305d074a4908e.jpg" />
-                        </div>
-                        <p></p>
-                    </div>
+                    )}
+
+
                 </section>
             </div>
         );
@@ -178,79 +193,30 @@ export class IndexContainer extends Component {
 
     async getModel() {
         const response = await fetch('ordersystem/getindexmodel');
-        console.log(response);
         const data = await response.json();
-        console.log(data);
+
+
+
         this.setState({ model: data, loading: false });
+
+        this.getUser();
+    }
+
+
+    async getUser() {
+
+        const cookies = new Cookies();
+        const response = await fetch('ordersystem/getuserbyid?id=' + cookies.get('userId'));
+        if (response.status == 200) {
+
+            const data = await response.json();
+
+            this.setState({
+                user: data,
+                loading: false
+            });
+        } else {
+            console.log('Error get user info: ');
+        }
     }
 }
-
-
- //<section>
- //                   <h1>��� ������</h1>
- //                   <div className="cardsContainer">
- //                       <div className="card" style="width: 18rem;">
- //                           <img src="..." className="card-img-top" alt="...">
- //                               <div className="card-body">
- //                                   <p className="card-text">������</p>
- //                                   <p className="card-text">�� 10000</p>
- //                               </div>
- //                       </div>
- //                       <div className="card" style="width: 18rem;">
- //                           <img src="..." className="card-img-top" alt="..." />
- //                           <div className="card-body">
- //                               <p className="card-text">������</p>
- //                               <p className="card-text">�� 10000</p>
- //                           </div>
- //                       </div>
- //                       <div className="card" style="width: 18rem;">
- //                           <img src="..." className="card-img-top" alt="..." />
- //                           <div className="card-body">
- //                               <p className="card-text">������</p>
- //                               <p className="card-text">�� 10000</p>
- //                           </div>
- //                       </div>
- //                       <div className="card" style="width: 18rem;">
- //                           <img src="..." className="card-img-top" alt="..." />
- //                           <div className="card-body">
- //                               <p className="card-text">������</p>
- //                               <p className="card-text">�� 10000</p>
- //                           </div>
- //                       </div>
- //                   </div>
- //               </section>
-
-
- //               <section>
- //                   <h1>���������</h1>
- //                   <div className="cardsContainer">
- //                       <div className="card" style="width: 18rem;">
- //                           <img src="..." className="card-img-top" alt="..." />
- //                           <div className="card-body">
- //                               <p className="card-text">���������</p>
- //                               <p className="card-text">�� 10000</p>
- //                           </div>
- //                       </div>
- //                       <div className="card" style="width: 18rem;">
- //                           <img src="..." className="card-img-top" alt="..." />
- //                           <div className="card-body">
- //                               <p className="card-text">���������</p>
- //                               <p className="card-text">�� 10000</p>
- //                           </div>
- //                       </div>
- //                       <div className="card" style="width: 18rem;">
- //                           <img src="..." className="card-img-top" alt="..." />
- //                           <div className="card-body">
- //                               <p className="card-text">���������</p>
- //                               <p className="card-text">�� 10000</p>
- //                           </div>
- //                       </div>
- //                       <div className="card" style="width: 18rem;">
- //                           <img src="..." className="card-img-top" alt="..." />
- //                           <div className="card-body">
- //                               <p className="card-text">���������</p>
- //                               <p className="card-text">�� 10000</p>
- //                           </div>
- //                       </div>
- //                   </div>
- //               </section>

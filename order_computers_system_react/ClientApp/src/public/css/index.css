@@ -55,7 +55,7 @@
 }
 
     .indexContainer .TextContainer img,
-    .indexContainer .TextContainer p {
+    .indexContainer .TextContainer p{
         width: 50%;
         height: 300px;
         font-size: 2em;
@@ -77,7 +77,8 @@
         object-position: center;
     }
 
-.indexContainer .feedBack p {
+.indexContainer .feedBack p,
+.indexContainer .feedBack textarea {
     width: 80%;
     margin-left: 40px;
     padding: 30px;
@@ -85,3 +86,15 @@
     background-color: gray;
     border-radius: 25px;
 }
+    .indexContainer .feedBack textarea{
+        width:100%;
+    }
+
+    .indexContainer .feedbackSection button {
+        width: 25%;
+        margin-top: 30px;
+        margin-left: 40%;
+        padding: 15px 0;
+        background-color: gray;
+        border-radius: 10px;
+    }
