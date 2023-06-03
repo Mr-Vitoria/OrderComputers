@@ -103,7 +103,6 @@ export class ConfigurationPCContainer extends Component {
             + (this.state.selectMouse != null ? this.state.selectMouse.price : 0)
             + (this.state.selectKeyboard != null ? this.state.selectKeyboard.price : 0);
 
-        console.log(amountAssembly);
 
         let totalAmount = amountAssembly * 1.1;
 
@@ -117,11 +116,8 @@ export class ConfigurationPCContainer extends Component {
     }
 
     changeProcessor(item) {
-        //var model = this.state.model;
-        //model.compProcessors.shift();
         this.setState({
             selectProcessor: item
-            //model:model
         }, () => {
             this.calculatePrice();
         });
@@ -389,6 +385,13 @@ export class ConfigurationPCContainer extends Component {
             return;
         }
 
+
+        var peripheryString = JSON.stringify([
+            (this.state.selectMonitor != null ? this.state.selectMonitor.id : null),
+            (this.state.selectSpeaker != null ? this.state.selectSpeaker.id : null),
+            (this.state.selectMouse != null ? this.state.selectMouse.id : null),
+            (this.state.selectKeyboard != null ? this.state.selectKeyboard.id : null)
+        ].filter((item) => item != null));
         if (this.state.typeConfiguration == "Full")
         {
             await fetch('ordersystem/createorder?userId=' + userId
@@ -406,10 +409,7 @@ export class ConfigurationPCContainer extends Component {
 
                 + '&orderDate=' + this.state.today
 
-                + '&monitorId=' + (this.state.selectMonitor != null ? this.state.selectMonitor.id : -1)
-                + '&speakerId=' + (this.state.selectSpeaker != null ? this.state.selectSpeaker.id : -1)
-                + '&mouseId=' + (this.state.selectMouse != null ? this.state.selectMouse.id : -1)
-                + '&keyboardId=' + (this.state.selectKeyboard != null ? this.state.selectKeyboard.id : -1));
+                + '&peripheryIds=' + peripheryString);
         }
         else if (this.state.typeConfiguration == "Price") {
             await fetch('ordersystem/createorderbyprice?userId=' + userId
@@ -420,10 +420,7 @@ export class ConfigurationPCContainer extends Component {
                 + '&orderDate=' + this.state.today
 
 
-                + '&monitorId=' +  (this.state.selectMonitor != null ? this.state.selectMonitor.id:-1)
-                + '&speakerId=' +  (this.state.selectSpeaker != null ?this.state.selectSpeaker.id: -1)
-                + '&mouseId=' +    (this.state.selectMouse != null ?this.state.selectMouse.id: -1)
-                + '&keyboardId=' + (this.state.selectKeyboard != null ?this.state.selectKeyboard.id: -1));
+                + '&peripheryIds=' + peripheryString);
         }
     }
 }

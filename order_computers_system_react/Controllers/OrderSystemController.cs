@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using order_computers_system_react.Models;
+using System.Text.Json;
 using System.Threading;
 using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
@@ -40,11 +41,6 @@ namespace order_computers_system_react.Controllers
             }
 
             return model;
-        }
-
-        public IActionResult Profile()
-        {
-            return View();
         }
         [HttpGet]
         [Route("getuser")]
@@ -117,11 +113,6 @@ namespace order_computers_system_react.Controllers
             return orders;
         }
 
-        public IActionResult AssemblyList()
-        {
-            return View();
-        }
-
         [HttpGet]
         [Route("getconfigurationmodel")]
         public async Task<object> ConfigurationPC()
@@ -149,9 +140,8 @@ namespace order_computers_system_react.Controllers
             , int bodyId, int processorId
             ,int motherCardId, int powerSupplyId
             ,int ramId, int storageId
-            ,int videoId, int monitorId
-            ,int speakerId, int mouseId
-            ,int keyboardId, DateOnly orderDate)
+            ,int videoId, string peripheryIds
+            , DateOnly orderDate)
         {
             Order order = new Order()
             {
@@ -176,31 +166,16 @@ namespace order_computers_system_react.Controllers
                 OrderDate = orderDate.ToString()
             };
 
+            int[] peripheries = JsonSerializer.Deserialize<int[]>(peripheryIds);
 
-            if (speakerId != -1)
+            foreach (int periipheryId in peripheries)
+            {
                 await _context.OrderPeripheries.AddAsync(new OrderPeriphery()
                 {
                     Order = order,
-                    PeripheryId = speakerId
+                    PeripheryId = periipheryId
                 });
-            if (mouseId != -1)
-                await _context.OrderPeripheries.AddAsync(new OrderPeriphery()
-                {
-                    Order = order,
-                    PeripheryId = mouseId
-                });
-            if (keyboardId != -1)
-                await _context.OrderPeripheries.AddAsync(new OrderPeriphery()
-                {
-                    Order = order,
-                    PeripheryId = keyboardId
-                });
-            if (monitorId != -1)
-                await _context.OrderPeripheries.AddAsync(new OrderPeriphery()
-                {
-                    Order = order,
-                    PeripheryId = monitorId
-                });
+            }
 
             await _context.AddAsync(order);
             await _context.SaveChangesAsync();
@@ -210,10 +185,9 @@ namespace order_computers_system_react.Controllers
         }
         [HttpGet]
         [Route("createorderbyprice")]
-        public async Task<object> CreateOrderByPrice(int userId, double budjet, double totalPrice
-            , int monitorId, string comment
-            , int speakerId, int mouseId
-            , int keyboardId, DateOnly orderDate)
+        public async Task<object> CreateOrderByPrice(int userId, double budjet
+            , double totalPrice, string comment
+            , string peripheryIds, DateOnly orderDate)
         {
             Order order = new Order()
             {
@@ -233,30 +207,16 @@ namespace order_computers_system_react.Controllers
             };
 
 
-            if (speakerId != -1)
+            int[] peripheries = JsonSerializer.Deserialize<int[]>(peripheryIds);
+
+            foreach (int periipheryId in peripheries)
+            {
                 await _context.OrderPeripheries.AddAsync(new OrderPeriphery()
                 {
                     Order = order,
-                    PeripheryId = speakerId
+                    PeripheryId = periipheryId
                 });
-            if (mouseId != -1)
-                await _context.OrderPeripheries.AddAsync(new OrderPeriphery()
-                {
-                    Order = order,
-                    PeripheryId = mouseId
-                });
-            if (keyboardId != -1)
-                await _context.OrderPeripheries.AddAsync(new OrderPeriphery()
-                {
-                    Order = order,
-                    PeripheryId = keyboardId
-                });
-            if (monitorId != -1)
-                await _context.OrderPeripheries.AddAsync(new OrderPeriphery()
-                {
-                    Order = order,
-                    PeripheryId = monitorId
-                });
+            }
 
             await _context.AddAsync(order);
             await _context.SaveChangesAsync();
@@ -310,12 +270,6 @@ namespace order_computers_system_react.Controllers
             return "Ok";
         }
 
-
-        public IActionResult CheckOut()
-        {
-            return View();
-        }
-
         [HttpGet]
         [Route("getassemblylist")]
         public async Task<object> GetAssemblyList()
@@ -357,11 +311,6 @@ namespace order_computers_system_react.Controllers
                     MaxFrequency = await _context.CompProcessors.Select(proc => proc.Frequency).MaxAsync()
                 }
             };
-        }
-
-        public IActionResult Executor()
-        {
-            return View();
         }
     }
 }
