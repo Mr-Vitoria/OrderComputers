@@ -25,7 +25,7 @@ export default class Index extends Component {
                             Name
                         </th>
                         <th>
-                            Surname
+                            Login
                         </th>
                         <th>
                             Email
@@ -50,7 +50,7 @@ export default class Index extends Component {
                                 {item.name }
                             </td>
                             <td>
-                                {item.surname }
+                                {item.login }
                             </td>
                             <td>
                                 {item.email }

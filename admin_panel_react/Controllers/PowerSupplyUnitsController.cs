@@ -41,9 +41,15 @@ namespace admin_panel_react.Controllers
         }
 
         [Route("create")]
-        public async Task<string> Create(string name, string formFactor, int power,int price)
+        public async Task<string> Create(string name, string formFactor, int power,int price, string imgUrl = "")
         {
-            PowerSupplyUnit powerSupplyUnit = new PowerSupplyUnit { Name = name, Price = price, FormFactor = formFactor, Power = power};
+            PowerSupplyUnit powerSupplyUnit = new PowerSupplyUnit {
+                Name = name, 
+                Price = price,
+                FormFactor = formFactor,
+                Power = power,
+                ImgUrl = imgUrl
+            };
 
             if (ModelState.IsValid)
             {
@@ -56,9 +62,16 @@ namespace admin_panel_react.Controllers
 
         [HttpGet]
         [Route("edit")]
-        public async Task<string> Edit(int id, string name, string formFactor, int power, int price)
+        public async Task<string> Edit(int id, string name, string formFactor, int power, int price, string imgUrl = "")
         {
-            PowerSupplyUnit powerSupplyUnit = new PowerSupplyUnit { Id=id, Name = name, Price = price, FormFactor = formFactor, Power = power };
+            PowerSupplyUnit powerSupplyUnit = new PowerSupplyUnit { 
+                Id=id,
+                Name = name,
+                Price = price,
+                FormFactor = formFactor,
+                Power = power,
+                ImgUrl = imgUrl
+            };
             try
             {
                 _context.Update(powerSupplyUnit);

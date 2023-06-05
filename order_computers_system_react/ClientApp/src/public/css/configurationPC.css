@@ -1,0 +1,192 @@
+﻿main {
+    padding: 30px 15%;
+}
+
+h1, h2 {
+    width: 100%;
+    text-align: center;
+    background-color: transparent;
+}
+
+.configurationContainer section {
+    margin-top: 50px;
+}
+
+
+.configurationContainer .btnOrder {
+    padding: 15px 30px;
+    font-size: 2em;
+}
+
+.configurationContainer .btnForm {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.configurationContainer .form-group {
+    margin-top: 15px;
+}
+
+
+
+
+
+
+
+.configurationContainer div.select {
+    width: 100%;
+    position: relative;
+    height: 120px;
+    cursor: pointer;
+    overflow: hidden;
+    background-color: #323232;
+    color: white;
+    border: 2px solid black;
+    font-size: 1.5em;
+    outline: none;
+    transition-duration: .3s;
+}
+
+    .configurationContainer div.select img {
+        width: 125px;
+        height: 90px;
+        margin-right: 20px;
+    }
+
+
+    .configurationContainer div.select.show {
+        height: 300px;
+        overflow: auto;
+        transition-duration: .3s;
+    }
+
+    .configurationContainer div.select .selectMenuValue {
+        padding: 16px 31px 0px 16px;
+        cursor: pointer;
+        border-bottom: 4px solid black;
+        transition: .2s;
+        height: 120px;
+        margin: 0px;
+        pointer-events: none;
+        font-size: 1.1em;
+    }
+
+    .configurationContainer div.select .container {
+        display: flex;
+        justify-content: left;
+        margin: 0;
+        max-width: none;
+    }
+
+        .configurationContainer div.select .container .properties {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            margin-left: 30px;
+        }
+
+            .configurationContainer div.select .container .properties span {
+                font-size: 0.5em;
+            }
+
+.configurationContainer ::-webkit-scrollbar {
+    background: transparent;
+    width: 0.5em;
+    position: absolute;
+}
+
+.configurationContainer ::-webkit-scrollbar-track {
+    background: transparent;
+    position: absolute;
+    z-index: -2;
+}
+
+.configurationContainer ::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background: #888;
+}
+
+.configurationContainer ul.selectMenu {
+    background-color: #323232;
+    transition: .3s;
+    width: 100%;
+    height: fit-content;
+    overflow: hidden !important;
+    position: absolute;
+    margin-top: 0px;
+    display: block;
+    padding: 0px;
+    margin: 0px;
+}
+
+    .configurationContainer ul.selectMenu > li {
+        display: block;
+        padding: 10px;
+        border-radius: 0px;
+        cursor: pointer;
+        font-size: 0.9em;
+    }
+
+        .configurationContainer ul.selectMenu > li.selectoption {
+            padding: 10px;
+        }
+
+            .configurationContainer ul.selectMenu > li.selectoption:hover {
+                color: black !important;
+                background: #323232;
+                transition: .2s;
+            }
+
+
+
+.configurationContainer .total {
+    border: 2px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 20px;
+}
+
+    .configurationContainer .total div {
+        width: 50%;
+        margin: 5px 0;
+    }
+
+.configurationContainer .partlyContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+    .configurationContainer .partlyContainer input {
+        background-color: transparent;
+        border: 2px solid black;
+        width: 800px;
+        padding: 8px;
+        font-size: 2em;
+    }
+
+    .configurationContainer .partlyContainer label {
+        font-size: 1.7em;
+    }
+
+    .configurationContainer .partlyContainer .form-group {
+        width: 800px;
+    }
+
+.configurationContainer .typesContainer {
+    display: flex;
+    font-size: 1.7em;
+    justify-content: space-evenly;
+}
+
+.configurationContainer .comments textarea {
+    width: 100%;
+    height: 201px;
+    border-radius: 20px;
+    background-color: #818181;
+    border: 5px solid black;
+    font-size: 2em;
+    padding: 20px;
+}

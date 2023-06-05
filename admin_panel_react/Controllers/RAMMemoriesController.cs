@@ -41,9 +41,16 @@ namespace admin_panel_react.Controllers
         }
 
         [Route("create")]
-        public async Task<string> Create(string name, string type, int count, int frequency , int price)
+        public async Task<string> Create(string name, string type, int count, int frequency , int price, string imgUrl = "")
         {
-            RAMMemory ramMemory = new RAMMemory { Name = name, Price = price, Type = type, Count = count,Frequency = frequency };
+            RAMMemory ramMemory = new RAMMemory { 
+                Name = name, 
+                Price = price, 
+                Type = type, 
+                Count = count,
+                Frequency = frequency,
+                ImgUrl = imgUrl
+            };
 
             if (ModelState.IsValid)
             {
@@ -56,9 +63,17 @@ namespace admin_panel_react.Controllers
 
         [HttpGet]
         [Route("edit")]
-        public async Task<string> Edit(int id, string name, string type, int count, int frequency, int price)
+        public async Task<string> Edit(int id, string name, string type, int count, int frequency, int price, string imgUrl = "")
         {
-            RAMMemory ramMemory = new RAMMemory { Id = id, Name = name, Price = price, Type = type, Count = count, Frequency = frequency };
+            RAMMemory ramMemory = new RAMMemory { 
+                Id = id, 
+                Name = name, 
+                Price = price,
+                Type = type,
+                Count = count,
+                Frequency = frequency,
+                ImgUrl = imgUrl
+            };
             try
             {
                 _context.Update(ramMemory);

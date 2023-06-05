@@ -27,14 +27,59 @@ export default class Detail extends Component {
                     User
                     </dt>
                     <dd className="col-sm-10">
-                        {item.user.name + '  ' + item.user.surname}
+                        {item.user.name}
                     </dd>
                     <dt className="col-sm-2">
-                        Computer assembly
+                        Type order
                     </dt>
                     <dd className="col-sm-10">
-                        {item.computerAssemblyId}
+                        {item.typeOrder}
                     </dd>
+                    {item.typeOrder == "Full" ?
+                        <>
+                            <dt className="col-sm-2">
+                                Computer assembly
+                            </dt>
+                            <dd className="col-sm-10">
+                                {item.computerAssembly.name}
+                            </dd>
+                        </>
+                        :
+                        <>
+                            <dt className="col-sm-2">
+                                Budjet
+                            </dt>
+                            <dd className="col-sm-10">
+                                {item.budjet}
+                            </dd>
+                            <dt className="col-sm-2">
+                                Comment
+                            </dt>
+                            <dd className="col-sm-10">
+                                {item.comment}
+                            </dd>
+                        </>
+                    }
+                    <dt className="col-sm-2">
+                        Order date
+                    </dt>
+                    <dd className="col-sm-10">
+                        {item.orderDate}
+                    </dd>
+                    <dt className="col-sm-2">
+                        Status
+                    </dt>
+                    <dd className="col-sm-10">
+                        {item.status}
+                    </dd>
+                    <dt className="col-sm-2">
+                        Peripheries
+                    </dt>
+                    {item.orderPeripheries.map((orderPeriphery, index) => {
+                        return <dd key={index} className="col-sm-10">
+                            {orderPeriphery.periphery.name}
+                        </dd>
+                    })}
                     <dt className="col-sm-2">
                         Total price
                     </dt>

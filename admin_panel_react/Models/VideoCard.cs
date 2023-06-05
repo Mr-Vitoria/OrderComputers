@@ -10,6 +10,7 @@
         public string Series { get; set; }
         public string Type { get; set; }
         public int Count { get; set; }
+        public string? ImgUrl { get; set; }
 
 
         public double Price { get; set; }

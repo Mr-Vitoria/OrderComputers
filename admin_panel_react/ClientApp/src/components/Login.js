@@ -21,7 +21,7 @@ export class Login extends Component {
 
                 if (data.typeUser == "Admin") {
                     const cookies = new Cookies();
-                    cookies.set('userId', data.id, { path: '/' });
+                    cookies.set('userId', data.id, { path: '/', maxAge: 86400 });
                     this.setTypePage("Main");
                     return;
                 } else {

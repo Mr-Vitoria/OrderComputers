@@ -41,9 +41,15 @@ namespace admin_panel_react.Controllers
         }
 
         [Route("create")]
-        public async Task<string> Create(string name, int count, string type, int price)
+        public async Task<string> Create(string name, int count, string type, int price, string imgUrl = "")
         {
-            StorageDevice storageDevice = new StorageDevice { Name = name, Price = price, Type = type, Count = count};
+            StorageDevice storageDevice = new StorageDevice {
+                Name = name,
+                Price = price, 
+                Type = type,
+                Count = count,
+                ImgUrl = imgUrl
+            };
 
             if (ModelState.IsValid)
             {
@@ -56,9 +62,17 @@ namespace admin_panel_react.Controllers
 
         [HttpGet]
         [Route("edit")]
-        public async Task<string> Edit(int id, string name, int count, string type, int price)
+        public async Task<string> Edit(int id, string name, int count, string type, int price, string imgUrl = "")
         {
-            StorageDevice storageDevice = new StorageDevice {Id=id, Name = name, Price = price, Type = type, Count = count };
+            StorageDevice storageDevice = new StorageDevice {
+                Id=id,
+                Name = name,
+                Price = price, 
+                Type = type,
+                Count = count,
+                ImgUrl = imgUrl
+                
+            };
             try
             {
                 _context.Update(storageDevice);

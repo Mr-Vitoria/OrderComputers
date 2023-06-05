@@ -6,6 +6,10 @@ export default class Create extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            imageUrl: ""
+        }
+
         this.inputNameRef = React.createRef();
         this.inputProducerRef = React.createRef();
         this.inputFamilyRef = React.createRef();
@@ -56,8 +60,15 @@ export default class Create extends Component {
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Count</label>
+                                <label className="control-label">Count(Mb)</label>
                                 <input ref={this.inputCountRef} className="form-control" type="number" />
+                            </div>
+                            <div className="form-group">
+                                <label className="control-label">ImageUrl</label>
+                                <input onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
+                            </div>
+                            <div className="form-group">
+                                <img src={this.state.imageUrl} />
                             </div>
                             <div className="form-group">
                                 <label className="control-label">Price</label>
@@ -92,6 +103,7 @@ export default class Create extends Component {
             + '&series=' + this.inputSeriesRef.current.value
             + '&type=' + this.inputTypeRef.current.value
             + '&count=' + this.inputCountRef.current.value
+            + '&imgUrl=' + this.state.imageUrl
             + '&price=' + this.inputPriceRef.current.value);
         if (response.status == 200) {
 

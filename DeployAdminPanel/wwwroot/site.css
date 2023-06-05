@@ -224,6 +224,11 @@ a {
 .form-group{
     margin:20px 0;
 }
+    .form-group img,
+    .row img{
+        width: 300px;
+        height: 250px;
+    }
 
 
 .l-navbar .header_toggle {

@@ -8,7 +8,9 @@ export default class Edit extends Component {
         this.state = {
             item: null,
             loading: true,
-            itemId: props.itemId
+            itemId: props.itemId,
+            imageUrl: ""
+
         };
         this.setTypePage = props.setTypePage;
 
@@ -45,6 +47,17 @@ export default class Edit extends Component {
                                         <option value="Small form factor">Small form factor</option>
                                         <option value="HTPC">HTPC</option>
                                     </select>
+                                </div>
+                                <div className="form-group">
+                                    <label className="control-label">ImageUrl</label>
+                                    <input defaultValue={this.state.imageUrl} onChange={(ev) => {
+                                        this.setState({
+                                            imageUrl: ev.target.value
+                                        })
+                                    }} ref={this.inputImageRef} className="form-control" type="url" />
+                                </div>
+                                <div className="form-group">
+                                    <img src={this.state.imageUrl} />
                                 </div>
                                 <div className="form-group">
                                     <label className="control-label">Price</label>
@@ -99,7 +112,11 @@ export default class Edit extends Component {
         if (response.status == 200) {
 
             const data = await response.json();
-            this.setState({ item: data, loading: false });
+            this.setState({
+                item: data,
+                imageUrl: data.imgUrl,
+                loading: false
+            });
         }
         else {
 
@@ -111,6 +128,7 @@ export default class Edit extends Component {
         const response = await fetch('compbodies/edit?id=' + this.inputIdRef.current.value
             + '&name=' + this.inputNameRef.current.value
             + '&price=' + this.inputPriceRef.current.value
+            + '&imgUrl=' + this.state.imageUrl
             + '&formFactor=' + this.inputFormFactorRef.current.value);
 
         if (response.status == 200) {

@@ -38,7 +38,7 @@ export default class App extends Component {
         }
         if (Page == 'SignOut') {
             Page = 'Login';
-            cookies.set('userId', null, { path: '/' });
+            cookies.remove('userId', { path: '/' });
         }
         this.setState({
             typePage: Page

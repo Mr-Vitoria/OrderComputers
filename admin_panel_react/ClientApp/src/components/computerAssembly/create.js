@@ -7,9 +7,11 @@ export default class Create extends Component {
         super(props);
         this.state = {
             data: [],
-            loading: true   
+            loading: true,
+            imageUrl:""
         };
         this.inputBodyIdRef = React.createRef();
+        this.inputNameRef = React.createRef();
         this.inputProcIdeRef = React.createRef();
         this.inputMotherIdRef = React.createRef();
         this.inputOwnerIdRef = React.createRef();
@@ -19,7 +21,6 @@ export default class Create extends Component {
         this.inputVideoIdRef = React.createRef();
         this.inputCostPriceRef = React.createRef();
         this.inputTypeRef = React.createRef();
-        this.inputImageRef = React.createRef();
 
 
         this.setTypePage = props.setTypePage;
@@ -35,6 +36,11 @@ export default class Create extends Component {
                 <div className="row">
                     <div className="col-md-4">
                         <form>
+                            <div className="form-group">
+                                <label className="control-label">Name assembly</label>
+                                <input type="text" ref={this.inputNameRef} className="form-control" />
+                            </div>
+
                             <div className="form-group">
                                 <label className="control-label">Computer body</label>
                                 <select ref={this.inputBodyIdRef} className="form-control" >
@@ -115,12 +121,16 @@ export default class Create extends Component {
                                     <option value="Game">Game</option>
                                     <option value="Office">Office</option>
                                     <option value="Common">Common</option>
+                                    <option value="User">User</option>
                                 </select>
                             </div>
 
                             <div className="form-group">
-                                <label className="control-label">Image url</label>
-                                <input ref={this.inputImageRef} className="form-control" />
+                                <label className="control-label">ImageUrl</label>
+                                <input onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
+                            </div>
+                            <div className="form-group">
+                                <img src={this.state.imageUrl} />
                             </div>
 
                             <div className="form-group">
@@ -193,7 +203,7 @@ export default class Create extends Component {
             + '&videoCardId=' + this.inputVideoIdRef.current.value
             + '&ownerId=' + this.inputOwnerIdRef.current.value
             + '&type=' + this.inputTypeRef.current.value
-            + '&imgUrl=' + this.inputImageRef.current.value
+            + '&imgUrl=' + this.state.imageUrl
             + '&costPrice=' + this.inputCostPriceRef.current.value);
 
 

@@ -5,9 +5,9 @@ namespace admin_panel_react.Models
     public class ApplicationDbContext : DbContext
     {
 
-        public ApplicationDbContext(DbContextOptions options) : base(options) { }
-
-
+        public ApplicationDbContext(DbContextOptions options) : base(options) {
+        
+        }
 
         public DbSet<VideoCard> VideoCards { get; set; }
         public DbSet<CompBody> CompBodies { get; set; }
@@ -20,5 +20,8 @@ namespace admin_panel_react.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Periphery> Peripheries { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
+
+        public DbSet<OrderPeriphery> OrderPeripheries { get; set; }
     }
 }

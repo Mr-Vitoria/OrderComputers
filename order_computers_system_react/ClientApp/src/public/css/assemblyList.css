@@ -1,0 +1,67 @@
+﻿.assemblyListContainer {
+    padding-top:60px;
+}
+
+    .assemblyListContainer .assemblyList {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 0 20px;
+        margin-top: 80px;
+    }
+.assemblyListContainer .card {
+    width:30%;
+    height:400px;
+    background-color:transparent;
+    border:none;
+    box-shadow:0px 0px 10px black;
+}
+    .assemblyListContainer .card-body button {
+        background-color: transparent;
+        float:right;
+        padding:10px;
+        font-size:1.3em;
+        border:none;
+    }
+    .assemblyListContainer .card-body button:hover {
+        color:gray;
+    }
+    .assemblyListContainer .card img {
+        height: 400px;
+        object-fit: cover;
+    }
+
+.assemblyListContainer .sortContainer{
+    margin:0 20px;
+}
+
+    .assemblyListContainer .accordion-item {
+        width: 400px;
+    }
+    .assemblyListContainer .accordion-item,
+    .assemblyListContainer .accordion-header,
+    .assemblyListContainer .accordion-button {
+        background-color: transparent;
+        color: white;
+        border: none;
+    }
+    .assemblyListContainer .accordion-button{
+        box-shadow:none;
+    }
+
+
+    .assemblyListContainer .errorContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: start;
+        margin: 0 20px;
+        margin-top: 80px;
+        height:200px;
+    }
+
+.modal-content {
+    background-color: #323232;
+}
+.modal-content img{
+    width:100%;
+}

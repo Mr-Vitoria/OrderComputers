@@ -34,6 +34,9 @@ namespace admin_panel_react.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("ImgUrl")
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -65,6 +68,9 @@ namespace admin_panel_react.Migrations
 
                     b.Property<bool>("HaveVideoCard")
                         .HasColumnType("boolean");
+
+                    b.Property<string>("ImgUrl")
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -102,39 +108,41 @@ namespace admin_panel_react.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CompBodyId")
+                    b.Property<int?>("CompBodyId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CompProcessorId")
+                    b.Property<int?>("CompProcessorId")
                         .HasColumnType("integer");
 
                     b.Property<double>("CostPrice")
                         .HasColumnType("double precision");
 
                     b.Property<string>("ImgUrl")
-                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("MotherCardId")
+                    b.Property<int?>("MotherCardId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
 
                     b.Property<int?>("OwnerId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("PowerSupplyUnitId")
+                    b.Property<int?>("PowerSupplyUnitId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("RAMMemoryId")
+                    b.Property<int?>("RAMMemoryId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("StorageDeviceId")
+                    b.Property<int?>("StorageDeviceId")
                         .HasColumnType("integer");
 
                     b.Property<string>("TypeComputerAssembly")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("VideoCardId")
+                    b.Property<int?>("VideoCardId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -158,6 +166,28 @@ namespace admin_panel_react.Migrations
                     b.ToTable("ComputerAssemblies");
                 });
 
+            modelBuilder.Entity("admin_panel_react.Models.Feedback", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Feedbacks");
+                });
+
             modelBuilder.Entity("admin_panel_react.Models.MotherCard", b =>
                 {
                     b.Property<int>("Id")
@@ -171,6 +201,9 @@ namespace admin_panel_react.Migrations
 
                     b.Property<bool>("HaveWiFiModul")
                         .HasColumnType("boolean");
+
+                    b.Property<string>("ImgUrl")
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -200,11 +233,29 @@ namespace admin_panel_react.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ComputerAssemblyId")
+                    b.Property<double?>("Budjet")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("ComputerAssemblyId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("OrderDate")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<double>("TotalPrice")
                         .HasColumnType("double precision");
+
+                    b.Property<string>("TypeOrder")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
@@ -218,6 +269,29 @@ namespace admin_panel_react.Migrations
                     b.ToTable("Orders");
                 });
 
+            modelBuilder.Entity("admin_panel_react.Models.OrderPeriphery", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("PeripheryId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("PeripheryId");
+
+                    b.ToTable("OrderPeripheries");
+                });
+
             modelBuilder.Entity("admin_panel_react.Models.Periphery", b =>
                 {
                     b.Property<int>("Id")
@@ -225,6 +299,9 @@ namespace admin_panel_react.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ImgUrl")
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -252,6 +329,9 @@ namespace admin_panel_react.Migrations
 
                     b.Property<string>("FormFactor")
                         .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ImgUrl")
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
@@ -283,6 +363,9 @@ namespace admin_panel_react.Migrations
                     b.Property<int>("Frequency")
                         .HasColumnType("integer");
 
+                    b.Property<string>("ImgUrl")
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -310,6 +393,9 @@ namespace admin_panel_react.Migrations
                     b.Property<double>("Count")
                         .HasColumnType("double precision");
 
+                    b.Property<string>("ImgUrl")
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -335,10 +421,13 @@ namespace admin_panel_react.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("ImgUrl")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Login")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
@@ -350,9 +439,6 @@ namespace admin_panel_react.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Phone")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -384,6 +470,9 @@ namespace admin_panel_react.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("ImgUrl")
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -412,21 +501,15 @@ namespace admin_panel_react.Migrations
                 {
                     b.HasOne("admin_panel_react.Models.CompBody", "CompBody")
                         .WithMany()
-                        .HasForeignKey("CompBodyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CompBodyId");
 
                     b.HasOne("admin_panel_react.Models.CompProcessor", "CompProcessor")
                         .WithMany()
-                        .HasForeignKey("CompProcessorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CompProcessorId");
 
                     b.HasOne("admin_panel_react.Models.MotherCard", "MotherCard")
                         .WithMany()
-                        .HasForeignKey("MotherCardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MotherCardId");
 
                     b.HasOne("admin_panel_react.Models.User", "Owner")
                         .WithMany()
@@ -434,27 +517,19 @@ namespace admin_panel_react.Migrations
 
                     b.HasOne("admin_panel_react.Models.PowerSupplyUnit", "PowerSupplyUnit")
                         .WithMany()
-                        .HasForeignKey("PowerSupplyUnitId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PowerSupplyUnitId");
 
                     b.HasOne("admin_panel_react.Models.RAMMemory", "RAMMemory")
                         .WithMany()
-                        .HasForeignKey("RAMMemoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RAMMemoryId");
 
                     b.HasOne("admin_panel_react.Models.StorageDevice", "StorageDevice")
                         .WithMany()
-                        .HasForeignKey("StorageDeviceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("StorageDeviceId");
 
                     b.HasOne("admin_panel_react.Models.VideoCard", "VideoCard")
                         .WithMany()
-                        .HasForeignKey("VideoCardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("VideoCardId");
 
                     b.Navigation("CompBody");
 
@@ -473,13 +548,22 @@ namespace admin_panel_react.Migrations
                     b.Navigation("VideoCard");
                 });
 
+            modelBuilder.Entity("admin_panel_react.Models.Feedback", b =>
+                {
+                    b.HasOne("admin_panel_react.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("admin_panel_react.Models.Order", b =>
                 {
                     b.HasOne("admin_panel_react.Models.ComputerAssembly", "ComputerAssembly")
                         .WithMany()
-                        .HasForeignKey("ComputerAssemblyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ComputerAssemblyId");
 
                     b.HasOne("admin_panel_react.Models.User", "User")
                         .WithMany()
@@ -490,6 +574,30 @@ namespace admin_panel_react.Migrations
                     b.Navigation("ComputerAssembly");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("admin_panel_react.Models.OrderPeriphery", b =>
+                {
+                    b.HasOne("admin_panel_react.Models.Order", "Order")
+                        .WithMany("OrderPeripheries")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("admin_panel_react.Models.Periphery", "Periphery")
+                        .WithMany()
+                        .HasForeignKey("PeripheryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Periphery");
+                });
+
+            modelBuilder.Entity("admin_panel_react.Models.Order", b =>
+                {
+                    b.Navigation("OrderPeripheries");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,100 @@
+﻿.indexContainer .carousel img {
+    object-fit: cover;
+    object-position: center;
+    max-height: 70vh;
+}
+
+.indexContainer h1 {
+    text-align: center;
+    color: white;
+    background-color: black;
+    padding: 20px 0;
+    margin-bottom: 20px;
+    border-radius: 20px;
+}
+
+.indexContainer section {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.indexContainer .cardsContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+    .indexContainer .cardsContainer .card {
+        background-color: transparent;
+        border: none;
+        box-shadow: -5px 5px 20px black;
+        transition-duration: 300ms;
+    }
+
+        .indexContainer .cardsContainer .card:hover {
+            transform: scale(1.05);
+            transition-duration: 300ms;
+        }
+
+        .indexContainer .cardsContainer .card img {
+            height: 250px;
+        }
+
+.indexContainer .card-text {
+    text-align: center;
+    color: white;
+}
+
+.indexContainer .cardsContainer a {
+    text-decoration: none;
+}
+
+
+.indexContainer .TextContainer {
+    display: flex;
+}
+
+    .indexContainer .TextContainer img,
+    .indexContainer .TextContainer p{
+        width: 50%;
+        height: 300px;
+        font-size: 2em;
+        color: white;
+    }
+
+
+.indexContainer .feedBack .imgContainer {
+    overflow: hidden;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+}
+
+    .indexContainer .feedBack .imgContainer img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+.indexContainer .feedBack p,
+.indexContainer .feedBack textarea {
+    width: 80%;
+    margin-left: 40px;
+    padding: 30px;
+    border: 2px solid black;
+    background-color: gray;
+    border-radius: 25px;
+}
+    .indexContainer .feedBack textarea{
+        width:100%;
+    }
+
+    .indexContainer .feedbackSection button {
+        width: 25%;
+        margin-top: 30px;
+        margin-left: 40%;
+        padding: 15px 0;
+        background-color: gray;
+        border-radius: 10px;
+    }

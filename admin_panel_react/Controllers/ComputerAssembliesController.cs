@@ -71,7 +71,7 @@ namespace admin_panel_react.Controllers
             int powerSupplyUnitId, int compProcessorId, 
             int ramMemoryId, int storageDeviceId, 
             int videoCardId, int ownerId, int costPrice, 
-            string type, string imgUrl)
+            string type, string imgUrl="")
         {
             ComputerAssembly computerAssembly = new ComputerAssembly()
             {
@@ -105,7 +105,7 @@ namespace admin_panel_react.Controllers
             int compProcessorId, int ramMemoryId, 
             int storageDeviceId, int videoCardId, 
             int ownerId, int costPrice,
-            string type, string imgUrl)
+            string type, string imgUrl="")
         {
             ComputerAssembly computerAssembly = new ComputerAssembly()
             {

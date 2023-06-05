@@ -46,9 +46,12 @@ namespace admin_panel_react.Controllers
 
 
         [Route("create")]
-        public async Task<string> Create(string name,int price,string formFactor)
+        public async Task<string> Create(string name,int price,string formFactor,string imgUrl="")
         {
-            CompBody compBody = new CompBody { Name = name, Price = price, FormFactor = formFactor };
+            CompBody compBody = new CompBody { Name = name,
+                Price = price, 
+                FormFactor = formFactor,
+                ImgUrl = imgUrl};
             if (ModelState.IsValid)
             {
                 _context.Add(compBody);
@@ -59,9 +62,14 @@ namespace admin_panel_react.Controllers
         }
         [HttpGet]
         [Route("edit")]
-        public async Task<string> Edit(int id, string name, int price, string formFactor)
+        public async Task<string> Edit(int id, string name, int price, string formFactor, string imgUrl = "")
         {
-            CompBody compBody = new CompBody { Id= id, Name = name, Price = price, FormFactor = formFactor };
+            CompBody compBody = new CompBody { 
+                Id= id,
+                Name = name,
+                Price = price, 
+                FormFactor = formFactor,
+                ImgUrl = imgUrl};
             try
             {
                 _context.Update(compBody);

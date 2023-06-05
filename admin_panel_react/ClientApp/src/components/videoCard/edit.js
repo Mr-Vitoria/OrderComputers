@@ -8,7 +8,8 @@ export default class Edit extends Component {
         this.state = {
             item: null,
             loading: true,
-            itemId: props.itemId
+            itemId: props.itemId,
+            imageUrl:""
         };
         this.setTypePage = props.setTypePage;
 
@@ -66,8 +67,15 @@ export default class Edit extends Component {
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Count</label>
+                                <label className="control-label">Count(Mb)</label>
                                 <input defaultValue={item.count} ref={this.inputCountRef} className="form-control" type="number" />
+                            </div>
+                            <div className="form-group">
+                                <label className="control-label">ImageUrl</label>
+                                <input defaultValue={this.state.imageUrl} onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
+                            </div>
+                            <div className="form-group">
+                                <img src={this.state.imageUrl} />
                             </div>
                             <div className="form-group">
                                 <label className="control-label">Price</label>
@@ -138,6 +146,7 @@ export default class Edit extends Component {
             + '&series=' + this.inputSeriesRef.current.value
             + '&type=' + this.inputTypeRef.current.value
             + '&count=' + this.inputCountRef.current.value
+            + '&imgUrl=' + this.state.imageUrl
             + '&price=' + this.inputPriceRef.current.value);
 
         if (response.status == 200) {

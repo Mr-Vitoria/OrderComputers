@@ -8,7 +8,8 @@ export default class Edit extends Component {
         this.state = {
             item: null,
             loading: true,
-            itemId: props.itemId
+            itemId: props.itemId,
+            imageUrl: ""
         };
         this.setTypePage = props.setTypePage;
 
@@ -60,7 +61,7 @@ export default class Edit extends Component {
                                     <input ref={this.inputThreadsRef} className="form-control" type="number" defaultValue={item.countThreads} />
                                 </div>
                                 <div className="form-group">
-                                    <label className="control-label">Frequency</label>
+                                    <label className="control-label">Frequency(MGz)</label>
                                     <input ref={this.inputFrequencyRef} className="form-control" type="number" defaultValue={item.frequency} />
                                 </div>
                                 <div className="form-group">
@@ -85,6 +86,15 @@ export default class Edit extends Component {
                                         <input className="form-check-input" type="checkbox" ref={this.inputVideoCardRef} defaultValue={item.haveVideoCard} /> Have video card?
                                     </label>
                                 </div>
+
+                                <div className="form-group">
+                                    <label className="control-label">ImageUrl</label>
+                                    <input defaultValue={this.state.imageUrl} onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
+                                </div>
+                                <div className="form-group">
+                                    <img src={this.state.imageUrl} />
+                                </div>
+
                                 <div className="form-group">
                                     <label className="control-label">Price</label>
                                     <input ref={this.inputPriceRef} className="form-control" defaultValue={item.price} />
@@ -159,6 +169,7 @@ export default class Edit extends Component {
             + '&frequency=' + this.inputFrequencyRef.current.value
             + '&turboTechnology=' + this.inputTurboRef.current.value
             + '&haveVideoCard=' + haveVideo
+            + '&imgUrl=' + this.state.imageUrl
             + '&typeRam=' + this.inputRamRef.current.value);
 
         if (response.status == 200) {

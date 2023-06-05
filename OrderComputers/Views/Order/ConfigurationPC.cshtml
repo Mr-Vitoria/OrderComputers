@@ -1,77 +1,110 @@
 ﻿@model ComputerAssembly
 @section CSSFiles{
     <link rel="stylesheet" href="~/css/configurationPC.css" />
-  
 }
 
 <h1>Конфигуратор </h1>
+<form>
 <section>
     <h2>Основные комплектующие</h2>
     <div class="form-group">
-        <label class="control-label">Процессор</label>
-        <select class="form-control">
-            @foreach (var item in ViewBag.CompProcessors)
-            {
-                <option value="@item.Id">
-                    @item.Name
-                </option>
-            }
-        </select>
+        <div class="selectboxss">
+            <div class="selectboxssvalue"><input asp-for="CompProcessorId" value="Процессор" readonly/><img src="~/images/arrow.png" class="arrowselect" /></div>
+            <ul class="selectboxssmenu">
+                @foreach (var item in ViewBag.CompProcessors)
+                {
+                    <li class="selectoption">
+                        <input type="hidden" value="@item.Id"/>
+                        @item.Name
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+   @* <div class="form-group">
+        <div class="selectboxss">
+            <div class="selectboxssvalue"><span>Материнская плата</span><img src="~/images/arrow.png" class="arrowselect" /></div>
+            <ul class="selectboxssmenu">
+                @foreach (var item in ViewBag.MotherCards)
+                {
+                    <li class="selectoption">
+                        <input type="hidden" value="@item.Id" />
+                        @item.Name
+                    </li>
+                }
+            </ul>
+        </div>
     </div>
     <div class="form-group">
-        <label class="control-label">Материнская плата</label>
-        <select class="form-control">
-            @foreach (var item in ViewBag.MotherCards)
-            {
-                <option value="@item.Id">@item.Name</option>
-            }
-        </select>
+        <div class="selectboxss">
+            <div class="selectboxssvalue"><span>Корпус</span><img src="~/images/arrow.png" class="arrowselect" /></div>
+            <ul class="selectboxssmenu">
+                @foreach (var item in ViewBag.CompBodies)
+                {
+                    <li class="selectoption">
+                        <input type="hidden" value="@item.Id" />
+                        @item.Name
+                    </li>
+                }
+            </ul>
+        </div>
     </div>
     <div class="form-group">
-        <label class="control-label">Корпус</label>
-        <select class="form-control">
-            @foreach (var item in ViewBag.CompBodies)
-            {
-                <option value="@item.Id">@item.Name</option>
-            }
-        </select>
+        <div class="selectboxss">
+            <div class="selectboxssvalue"><span>Блок питания</span><img src="~/images/arrow.png" class="arrowselect" /></div>
+            <ul class="selectboxssmenu">
+                @foreach (var item in ViewBag.PowerSupplyUnits)
+                {
+                    <li class="selectoption">
+                        <input type="hidden" value="@item.Id" />
+                        @item.Name
+                    </li>
+                }
+            </ul>
+        </div>
     </div>
     <div class="form-group">
-        <label class="control-label">Блок питания</label>
-        <select class="form-control">
-            @foreach (var item in ViewBag.PowerSupplyUnits)
-            {
-                <option value="@item.Id">@item.Name</option>
-            }
-        </select>
+        <div class="selectboxss">
+            <div class="selectboxssvalue"><span>Оперативная память</span><img src="~/images/arrow.png" class="arrowselect" /></div>
+            <ul class="selectboxssmenu">
+                @foreach (var item in ViewBag.RAMMemories)
+                {
+                    <li class="selectoption">
+                        <input type="hidden" value="@item.Id" />
+                        @item.Name
+                    </li>
+                }
+            </ul>
+        </div>
     </div>
     <div class="form-group">
-        <label class="control-label">Оперативная память</label>
-        <select class="form-control" >
-            @foreach (var item in ViewBag.RAMMemories)
-            {
-                <option value="@item.Id">@item.Name</option>
-            }
-        </select>
+        <div class="selectboxss">
+            <div class="selectboxssvalue"><span>SSD/HDD</span><img src="~/images/arrow.png" class="arrowselect" /></div>
+            <ul class="selectboxssmenu">
+                @foreach (var item in ViewBag.StorageDevices)
+                {
+                    <li class="selectoption">
+                        <input type="hidden" value="@item.Id" />
+                        @item.Name
+                    </li>
+                }
+            </ul>
+        </div>
     </div>
     <div class="form-group">
-        <label class="control-label">SSD/HDD</label>
-        <select class="form-control">
-            @foreach (var item in ViewBag.StorageDevices)
-            {
-                <option value="@item.Id">@item.Name</option>
-            }
-        </select>
-    </div>
-    <div class="form-group">
-        <label class="control-label">Видеокарта</label>
-        <select class="form-control" >
-            @foreach (var item in ViewBag.VideoCards)
-            {
-                <option value="@item.Id">@item.Name</option>
-            }
-        </select>
-    </div>
+        <div class="selectboxss">
+            <div class="selectboxssvalue"><span>Видеокарта</span><img src="~/images/arrow.png" class="arrowselect" /></div>
+            <ul class="selectboxssmenu">
+                @foreach (var item in ViewBag.VideoCards)
+                {
+                    <li class="selectoption">
+                        <input type="hidden" value="@item.Id" />
+                        @item.Name
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>*@
 </section>
 
 
@@ -102,44 +135,70 @@
     <h2>Периферия</h2>
 
     <div class="form-group">
-        <label class="control-label">Монитор</label>
-        <select class="form-control">
-            @foreach (var item in ViewBag.Monitors)
-            {
-                <option value="@item.Id">@item.Name</option>
-            }
-        </select>
+        <div class="selectboxss">
+            <div class="selectboxssvalue"><span>Монитор</span><img src="~/images/arrow.png" class="arrowselect" /></div>
+            <ul class="selectboxssmenu">
+                @foreach (var item in ViewBag.Monitors)
+                {
+                    <li class="selectoption">
+                        <input type="hidden" value="@item.Id" />
+                        @item.Name
+                    </li>
+                }
+            </ul>
+        </div>
     </div>
     <div class="form-group">
-        <label class="control-label">Мышка</label>
-        <select class="form-control">
-            @foreach (var item in ViewBag.Mouses)
-            {
-                <option value="@item.Id">@item.Name</option>
-            }
-        </select>
+        <div class="selectboxss">
+            <div class="selectboxssvalue"><span>Мышка</span><img src="~/images/arrow.png" class="arrowselect" /></div>
+            <ul class="selectboxssmenu">
+                @foreach (var item in ViewBag.Mouses)
+                {
+                    <li class="selectoption">
+                        <input type="hidden" value="@item.Id" />
+                        @item.Name
+                    </li>
+                }
+            </ul>
+        </div>
     </div>
     <div class="form-group">
-        <label class="control-label">Клавиатура</label>
-        <select class="form-control">
-            @foreach (var item in ViewBag.Keyboards)
-            {
-                <option value="@item.Id">@item.Name</option>
-            }
-        </select>
+        <div class="selectboxss">
+            <div class="selectboxssvalue"><span>Клавиатура</span><img src="~/images/arrow.png" class="arrowselect" /></div>
+            <ul class="selectboxssmenu">
+                @foreach (var item in ViewBag.Keyboards)
+                {
+                    <li class="selectoption">
+                        <input type="hidden" value="@item.Id" />
+                        @item.Name
+                    </li>
+                }
+            </ul>
+        </div>
     </div>
     <div class="form-group">
-        <label class="control-label">Наушники/колонки</label>
-        <select class="form-control">
-            @foreach (var item in ViewBag.Speakers)
-            {
-                <option value="@item.Id">@item.Name</option>
-            }
-        </select>
+        <div class="selectboxss">
+            <div class="selectboxssvalue"><span>Наушники/колонки</span><img src="~/images/arrow.png" class="arrowselect" /></div>
+            <ul class="selectboxssmenu">
+                @foreach (var item in ViewBag.Speakers)
+                {
+                    <li class="selectoption">
+                        <input type="hidden" value="@item.Id" />
+                        @item.Name
+                    </li>
+                }
+            </ul>
+        </div>
     </div>
 </section>
-
+</form>
 
 <div class="form-group btnForm">
     <a class="btn btn-dark btnOrder">Заказать</a>
 </div>
+
+
+@section Scripts{
+    <script src="~/js/configurationPC.js"></script>
+    <script>$(document).ready(function () { $('.selectboxss').selectbox(); });</script>
+}
