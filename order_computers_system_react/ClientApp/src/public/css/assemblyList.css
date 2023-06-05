@@ -16,6 +16,16 @@
     border:none;
     box-shadow:0px 0px 10px black;
 }
+    .assemblyListContainer .card-body button {
+        background-color: transparent;
+        float:right;
+        padding:10px;
+        font-size:1.3em;
+        border:none;
+    }
+    .assemblyListContainer .card-body button:hover {
+        color:gray;
+    }
     .assemblyListContainer .card img {
         height: 400px;
         object-fit: cover;
@@ -48,3 +58,10 @@
         margin-top: 80px;
         height:200px;
     }
+
+.modal-content {
+    background-color: #323232;
+}
+.modal-content img{
+    width:100%;
+}

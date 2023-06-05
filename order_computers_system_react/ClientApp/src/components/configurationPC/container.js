@@ -419,7 +419,6 @@ export class ConfigurationPCContainer extends Component {
 
                 + '&orderDate=' + this.state.today
 
-
                 + '&peripheryIds=' + peripheryString);
         }
     }

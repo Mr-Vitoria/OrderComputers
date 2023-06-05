@@ -309,8 +309,51 @@ namespace order_computers_system_react.Controllers
                     MaxCountCores = await _context.CompProcessors.Select(proc => proc.CountCores).MaxAsync(),
                     MinFrequency = await _context.CompProcessors.Select(proc => proc.Frequency).MinAsync(),
                     MaxFrequency = await _context.CompProcessors.Select(proc => proc.Frequency).MaxAsync()
-                }
+
+                },
+
+                Body = new
+                {
+                    FormFactor = _context.CompBodies.Select(body => body.FormFactor).Distinct()
+                },
+
+                VideoCard = new
+                {
+                    Producers = _context.VideoCards.Select(videoCard => videoCard.Producer).Distinct(),
+                    Types = _context.VideoCards.Select(videoCard => videoCard.Type).Distinct(),
+                    MinCount = await _context.VideoCards.Select(videoCard => videoCard.Count).MinAsync(),
+                    MaxCount = await _context.VideoCards.Select(videoCard => videoCard.Count).MaxAsync()
+                },
+
+                MotherCard = new
+                {
+                    Sizes = _context.MotherCards.Select(motherCard => motherCard.Size).Distinct(),
+                    Sockets = _context.MotherCards.Select(motherCard => motherCard.Socket).Distinct()
+                },
+
+                PowerSupplyUnit = new
+                {
+                    FormFactor = _context.PowerSupplyUnits.Select(unit => unit.FormFactor).Distinct(),
+                    MinPower = await _context.PowerSupplyUnits.Select(unit => unit.Power).MinAsync(),
+                    MaxPower = await _context.PowerSupplyUnits.Select(unit => unit.Power).MaxAsync()
+                },
+
+                RAMMemory = new
+                {
+                    Type = _context.RAMMemories.Select(memory => memory.Type).Distinct(),
+                    MinCount = await _context.RAMMemories.Select(memory => memory.Count).MinAsync(),
+                    MaxCount = await _context.RAMMemories.Select(memory => memory.Count).MaxAsync(),
+                    MinFrequency = await _context.RAMMemories.Select(memory => memory.Frequency).MinAsync(),
+                    MaxFrequency = await _context.RAMMemories.Select(memory => memory.Frequency).MaxAsync()
+                },
+
+                StorageDevice = new
+                {
+                    Type = _context.StorageDevices.Select(storage => storage.Type).Distinct(),
+                    MinCount = await _context.StorageDevices.Select(storage => storage.Count).MinAsync(),
+                    MaxCount = await _context.StorageDevices.Select(storage => storage.Count).MaxAsync(),
+                 }
             };
-        }
+    }
     }
 }

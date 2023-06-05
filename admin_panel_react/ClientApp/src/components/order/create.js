@@ -87,7 +87,7 @@ export default class Create extends Component {
                             <div className="form-group">
                                 <label className="control-label">Monitor</label>
                                 <select ref={this.inputMonitorIdRef} className="form-control" >
-                                    <option value="-1">NONE</option>
+                                    <option value={-1}>NONE</option>
                                     {data.monitors.map((item, index) => {
                                         return <option key={index} value={item.value}>{item.text}</option>;
                                     })}
@@ -97,7 +97,7 @@ export default class Create extends Component {
                             <div className="form-group">
                                 <label className="control-label">Keyboard</label>
                                 <select ref={this.inputKeyboardIdRef} className="form-control" >
-                                    <option value="-1">NONE</option>
+                                    <option value={-1}>NONE</option>
                                     {data.keyboards.map((item, index) => {
                                         return <option key={index} value={item.value}>{item.text}</option>;
                                     })}
@@ -107,7 +107,7 @@ export default class Create extends Component {
                             <div className="form-group">
                                 <label className="control-label">Mouse</label>
                                 <select ref={this.inputMouseRef} className="form-control" >
-                                    <option value="-1">NONE</option>
+                                    <option value={-1}>NONE</option>
                                     {data.mouses.map((item, index) => {
                                         return <option key={index} value={item.value}>{item.text}</option>;
                                     })}
@@ -117,7 +117,7 @@ export default class Create extends Component {
                             <div className="form-group">
                                 <label className="control-label">Speaker</label>
                                 <select ref={this.inputSpeakerIdRef} className="form-control" >
-                                    <option value="-1">NONE</option>
+                                    <option value={-1}>NONE</option>
                                     {data.speakers.map((item, index) => {
                                         return <option key={index} value={item.value}>{item.text}</option>;
                                     })}
@@ -203,6 +203,15 @@ export default class Create extends Component {
 
     async createItem() {
 
+
+        var peripheryString = JSON.stringify([
+            parseInt(this.inputMonitorIdRef.current.value),
+            parseInt(this.inputSpeakerIdRef.current.value),
+            parseInt(this.inputMouseRef.current.value),
+            parseInt(this.inputKeyboardIdRef.current.value)
+        ].filter((item) => item != -1));
+
+
         const response = await fetch('orders/create?'
             + 'userId=' + this.inputUserIdRef.current.value
             + '&computerAssemblyId=' + (this.inputCompAssemblerIdRef.current != null ? this.inputCompAssemblerIdRef.current.value : "")
@@ -214,10 +223,7 @@ export default class Create extends Component {
             + '&totalPrice=' + this.inputTotalPriceRef.current.value
 
 
-            + '&monitorId=' + this.inputMonitorIdRef.current.value
-            + '&speakerId=' + this.inputSpeakerIdRef.current.value
-            + '&mouseId=' + this.inputMouseRef.current.value
-            + '&keyboardId=' + this.inputKeyboardIdRef.current.value
+            + '&peripheryIds=' + peripheryString
         );
 
 

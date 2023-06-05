@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using admin_panel_react.Models;
+using System.Text.Json;
 
 namespace admin_panel_react.Controllers
 {
@@ -69,8 +70,7 @@ namespace admin_panel_react.Controllers
             int totalPrice, DateOnly orderDate,
             string status, string typeOrder,
             double? budjet, string? comment,
-            int monitorId, int speakerId,
-            int mouseId, int keyboardId)
+            string peripheryIds)
         {
             Order order = new Order()
             {
@@ -85,30 +85,16 @@ namespace admin_panel_react.Controllers
             };
 
 
-            if (speakerId != -1)
+            int[] peripheries = JsonSerializer.Deserialize<int[]>(peripheryIds);
+
+            foreach (int periipheryId in peripheries)
+            {
                 await _context.OrderPeripheries.AddAsync(new OrderPeriphery()
                 {
                     Order = order,
-                    PeripheryId = speakerId
+                    PeripheryId = periipheryId
                 });
-            if (mouseId != -1)
-                await _context.OrderPeripheries.AddAsync(new OrderPeriphery()
-                {
-                    Order = order,
-                    PeripheryId = mouseId
-                });
-            if (keyboardId != -1)
-                await _context.OrderPeripheries.AddAsync(new OrderPeriphery()
-                {
-                    Order = order,
-                    PeripheryId = keyboardId
-                });
-            if (monitorId != -1)
-                await _context.OrderPeripheries.AddAsync(new OrderPeriphery()
-                {
-                    Order = order,
-                    PeripheryId = monitorId
-                });
+            }
 
 
             if (ModelState.IsValid)
