@@ -64,6 +64,7 @@ export default class Edit extends Component {
                                     <option value="GDDR3">GDDR3</option>
                                     <option value="GDDR4">GDDR4</option>
                                     <option value="GDDR5">GDDR5</option>
+                                    <option value="GDDR6">GDDR6</option>
                                 </select>
                             </div>
                             <div className="form-group">
@@ -129,7 +130,8 @@ export default class Edit extends Component {
         if (response.status == 200) {
 
             const data = await response.json();
-            this.setState({ item: data, loading: false });
+            console.log(data);
+            this.setState({ item: data, loading: false, imageUrl:data.imgUrl });
         } else {
 
             Layout.setMessage('Error get video card: ' + response.statusText);

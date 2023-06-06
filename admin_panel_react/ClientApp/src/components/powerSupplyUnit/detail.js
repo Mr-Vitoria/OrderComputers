@@ -23,14 +23,14 @@ export default class Detail extends Component {
                 <div>
                     <h4>Detail power supply units</h4>
                     <hr />
-                    <dl classNameName="row">
+                    <dl className="row">
                         <dt className="col-sm-2">
                             Image
                         </dt>
                         <dd className="col-sm-10">
                             <img src={item.imgUrl} />
                         </dd>
-                        <dt classNameName="col-sm-2">
+                        <dt className="col-sm-2">
                             Name
                         </dt>
                         <dd className="col-sm-10">
@@ -95,7 +95,7 @@ export default class Detail extends Component {
         if (response.status == 200) {
 
             const data = await response.json();
-            this.setState({ items: data, loading: false });
+            this.setState({ item: data, loading: false });
 
         } else {
 

@@ -89,15 +89,13 @@ export default class Create extends Component {
     }
 
     async createItem() {
-        let haveWiFi = this.inputWiFiRef.current.value == "on" ? "true" : "false";
-        let haveBluetooth = this.inputBluetoothRef.current.value == "on" ? "true" : "false";
 
         const response = await fetch('mothercards/create?name=' + this.inputNameRef.current.value
             + '&price=' + this.inputPriceRef.current.value
             + '&size=' + this.inputSizeRef.current.value
             + '&socket=' + this.inputSocketRef.current.value
-            + '&haveWiFiModel=' + haveWiFi
-            + '&haveBluetoothModel=' + haveBluetooth
+            + '&haveWiFiModel=' + this.inputWiFiRef.current.checked
+            + '&haveBluetoothModel=' + this.inputBluetoothRef.current.checked
             + '&imgUrl=' + this.state.imageUrl);
 
         if (response.status == 200) {

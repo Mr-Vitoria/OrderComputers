@@ -100,14 +100,14 @@ export default class Edit extends Component {
     }
 
     async getItem(Id) {
-        const response = await fetch('rammemories/detail?id=' + Id);
+        const response = await fetch('peripheries/detail?id=' + Id);
         if (response.status == 200) {
 
             const data = await response.json();
-            this.setState({ item: data, loading: false });
+            this.setState({ item: data, loading: false, imageUrl: data.imgUrl });
         } else {
 
-            Layout.setMessage('Error get RAM: ' + response.statusText);
+            Layout.setMessage('Error get Periphery: ' + response.statusText);
         }
     }
 

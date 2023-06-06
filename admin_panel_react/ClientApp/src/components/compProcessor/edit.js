@@ -33,6 +33,7 @@ export default class Edit extends Component {
     }
 
     renderItem(item) {
+        console.log(item);
         return (
             <>
                 <div>
@@ -83,7 +84,7 @@ export default class Edit extends Component {
                                 </div>
                                 <div className="form-group form-check">
                                     <label className="form-check-label">
-                                        <input className="form-check-input" type="checkbox" ref={this.inputVideoCardRef} defaultValue={item.haveVideoCard} /> Have video card?
+                                        <input className="form-check-input" type="checkbox" ref={this.inputVideoCardRef} defaultChecked={item.haveVideoCard} /> Have video card?
                                     </label>
                                 </div>
 
@@ -148,7 +149,7 @@ export default class Edit extends Component {
         if (response.status == 200) {
 
             const data = await response.json();
-            this.setState({ item: data, loading: false });
+            this.setState({ item: data, loading: false, imageUrl: data.imgUrl });
         }
         else {
 
@@ -157,8 +158,6 @@ export default class Edit extends Component {
     }
 
     async editItem() {
-        let haveVideo = this.inputVideoCardRef.current.value == "on" ? "true" : "false";
-
         const response = await fetch('compprocessors/edit?id=' + this.inputIdRef.current.value
             + '&name= ' + this.inputNameRef.current.value
             + '&price=' + this.inputPriceRef.current.value
@@ -168,7 +167,7 @@ export default class Edit extends Component {
             + '&countThreads=' + this.inputThreadsRef.current.value
             + '&frequency=' + this.inputFrequencyRef.current.value
             + '&turboTechnology=' + this.inputTurboRef.current.value
-            + '&haveVideoCard=' + haveVideo
+            + '&haveVideoCard=' + this.inputVideoCardRef.current.checked
             + '&imgUrl=' + this.state.imageUrl
             + '&typeRam=' + this.inputRamRef.current.value);
 

@@ -57,6 +57,7 @@ export default class Create extends Component {
                                     <option value="GDDR3">GDDR3</option>
                                     <option value="GDDR4">GDDR4</option>
                                     <option value="GDDR5">GDDR5</option>
+                                    <option value="GDDR6">GDDR6</option>
                                 </select>
                             </div>
                             <div className="form-group">

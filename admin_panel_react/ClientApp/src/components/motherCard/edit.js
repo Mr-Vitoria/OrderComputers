@@ -30,6 +30,7 @@ export default class Edit extends Component {
     }
 
     renderItem(item) {
+        console.log(item);
         return (
             <div>
                 <div className="row">
@@ -56,12 +57,12 @@ export default class Edit extends Component {
                             </div>
                             <div className="form-group form-check">
                                 <label className="form-check-label">
-                                    <input className="form-check-input" type="checkbox" defaultValue={item.haveWiFiModel} ref={this.inputWiFiRef} /> Have WiFi modul
+                                    <input className="form-check-input" type="checkbox" defaultChecked={item.haveWiFiModul} ref={this.inputWiFiRef} /> Have WiFi modul
                                 </label>
                             </div>
                             <div className="form-group form-check">
                                 <label className="form-check-label">
-                                    <input className="form-check-input" type="checkbox" defaultValue={item.haveBluetoothModel} ref={this.inputBluetoothRef} /> Have bluetooth model
+                                    <input className="form-check-input" type="checkbox" defaultChecked={item.haveBluetoothModul} ref={this.inputBluetoothRef} /> Have bluetooth model
                                 </label>
                             </div>
                             <div className="form-group">
@@ -123,7 +124,7 @@ export default class Edit extends Component {
         if (response.status == 200) {
 
             const data = await response.json();
-            this.setState({ item: data, loading: false });
+            this.setState({ item: data, loading: false, imageUrl:data.imgUrl });
         }
         else {
 
@@ -132,16 +133,14 @@ export default class Edit extends Component {
     }
 
     async editItem() {
-        let haveWiFi = this.inputWiFiRef.current.value == "on" ? "true" : "false";
-        let haveBluetooth = this.inputBluetoothRef.current.value == "on" ? "true" : "false";
 
         const response = await fetch('mothercards/edit?id=' + this.inputIdRef.current.value
             + '&name=' + this.inputNameRef.current.value
             + '&price=' + this.inputPriceRef.current.value
             + '&size=' + this.inputSizeRef.current.value
             + '&socket=' + this.inputSocketRef.current.value
-            + '&haveWiFiModel=' + haveWiFi
-            + '&haveBluetoothModel=' + haveBluetooth
+            + '&haveWiFiModel=' + this.inputWiFiRef.current.checked
+            + '&haveBluetoothModel=' + this.inputBluetoothRef.current.checked
             + '&imgUrl=' + this.state.imageUrl);
 
         if (response.status == 200) {

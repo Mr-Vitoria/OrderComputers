@@ -99,7 +99,7 @@ export default class Create extends Component {
                             <div className="form-group">
                             <label className="control-label">Video card</label>
                             <select ref={this.inputVideoIdRef} className="form-control" >
-                                <option value="NONE">NONE</option>
+                                <option value="-1">NONE</option>
                                 {data.videoCards.map((item, index) => {
                                     return <option key={index} value={item.value}>{item.text}</option>;
                                 })}

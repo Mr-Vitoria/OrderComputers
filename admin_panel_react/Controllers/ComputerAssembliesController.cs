@@ -81,7 +81,7 @@ namespace admin_panel_react.Controllers
                 CompProcessorId = compProcessorId,
                 RAMMemoryId = ramMemoryId,
                 StorageDeviceId = storageDeviceId,
-                VideoCardId = videoCardId,
+                VideoCardId = (videoCardId==-1?null:videoCardId),
                 OwnerId = ownerId,
                 CostPrice = costPrice,
                 TypeComputerAssembly = type,

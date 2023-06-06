@@ -113,7 +113,6 @@ export default class Create extends Component {
     }
 
     async createItem() {
-        let haveVideo = this.inputVideoCardRef.current.value == "on" ? "true" : "false";
 
         const response = await fetch('compprocessors/create?name=' + this.inputNameRef.current.value
             + '&price=' + this.inputPriceRef.current.value
@@ -123,7 +122,7 @@ export default class Create extends Component {
             + '&countThreads=' + this.inputThreadsRef.current.value
             + '&frequency=' + this.inputFrequencyRef.current.value
             + '&turboTechnology=' + this.inputTurboRef.current.value
-            + '&haveVideoCard=' + haveVideo
+            + '&haveVideoCard=' + this.inputVideoCardRef.current.checked
             + '&imgUrl=' + this.state.imageUrl
             + '&typeRam=' + this.inputRamRef.current.value);
 

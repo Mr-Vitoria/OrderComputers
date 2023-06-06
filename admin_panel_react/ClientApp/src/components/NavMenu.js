@@ -71,7 +71,7 @@ export class NavMenu extends Component {
                                 <span className="nav_name">Peripheries</span>
                             </a>
                             <a href="/compAssemblyPanel" className={"nav_link" + (window.location.pathname == "/compAssemblyPanel" ? " active" : "")}>
-                                <span className="nav_name">Comoputer assemblies</span>
+                                <span className="nav_name">Computer assemblies</span>
                             </a>
                             <a href="/userPanel" className={"nav_link" + (window.location.pathname == "/userPanel" ? " active" : "")}>
                                 <span className="nav_name">Users</span>

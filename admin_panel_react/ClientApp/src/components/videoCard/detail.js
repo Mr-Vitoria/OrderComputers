@@ -23,7 +23,7 @@ export default class Detail extends Component {
                 <div>
                     <h4>Detail video card</h4>
                     <hr />
-                    <dl classNameName="row">
+                    <dl className="row">
                         <dt className="col-sm-2">
                             Image
                         </dt>
@@ -116,10 +116,11 @@ export default class Detail extends Component {
 
     async getItem(Id) {
         const response = await fetch('videocards/detail?id=' + Id);
-        if (response.status == 299) {
+        if (response.status == 200) {
 
             const data = await response.json();
-            this.setState({ items: data, loading: false });
+            console.log(data);
+            this.setState({ item: data, loading: false });
         } else {
 
             Layout.setMessage('Error get video card: ' + response.statusText);
