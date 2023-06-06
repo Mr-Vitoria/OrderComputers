@@ -33,14 +33,13 @@ export class NavMenu extends Component {
     renderItem(item) {
         return <><div id="body-pd">
             <header className="header" id="header">
-                <div onClick={(ev) => { this.menuClickHandler(); }} className="header_toggle"> <i className="bi bi-list" id="header-toggle"></i> </div>
+                <div className="header_toggle"> </div>
                 <div className="header_img"> <img src={item.imgUrl ?? 'https://cdn.onlinewebfonts.com/svg/img_266351.png'} alt="" /> </div>
             </header>
 
-            <div ref={this.headerRef} className="l-navbar" id="nav-bar">
+            <div ref={this.headerRef} className="l-navbar show" id="nav-bar">
                 <nav className="nav">
-                    <div onClick={(ev) => { this.closeClickHandler(); }} className="header_toggle"> <i className="bi bi-list" id="header-toggle"></i> </div>
-                    <div>
+                   <div>
                         <a href="/" className="nav_logo"><span className="nav_logo-name">OuTouch</span> </a>
                         <div className="nav_list">
                             <a href="/" className={"nav_link" + (window.location.pathname == "/" ? " active" : "")}>

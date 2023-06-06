@@ -24,11 +24,10 @@ export default class SelectMenuPowerUnit extends Component {
                     <div className="selectMenuValue">
                         {this.state.selectItem == null ? <span>Блок питания</span>
                             : <div className="container">
-                                <img src={this.state.selectItem.imgUrl} />
                                 <span>{this.state.selectItem.name}</span>
                                 <div className="properties">
                                     <span>Форм фактор: {this.state.selectItem.formFactor}</span>
-                                    <span>Мощность: {this.state.selectItem.power}</span>
+                                    <span>Мощность: {this.state.selectItem.power} Вт</span>
                                 </div>
                             </div>}
 
@@ -44,7 +43,6 @@ export default class SelectMenuPowerUnit extends Component {
                                 }}>
                                     <span>{item.name}</span>
                                     <div className="properties">
-                                        <img src={item.imgUrl} />
                                         <span>Форм фактор: {item.formFactor}</span>
                                         <span>Мощность: {item.power} Вт</span>
                                     </div>

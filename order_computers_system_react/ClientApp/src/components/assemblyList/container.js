@@ -37,6 +37,8 @@ export class AssemblyListContainer extends Component {
     renderModel(model) {
         return (
             <>
+
+
                 <div className="modal fade" id="descriptionModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
                         <div className="modal-content">
@@ -117,11 +119,28 @@ export class AssemblyListContainer extends Component {
                     </div>
                 </div>
                 <div className="assemblyListContainer">
+                    <div className="offcanvas offcanvas-start" tabIndex="-1" id="offcanvasSortModels" aria-labelledby="offcanvasSortModelsLabel">
+                        <div className="offcanvas-header">
+                            <h5 className="offcanvas-title" id="offcanvasSortModelsLabel">OuTouch</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div className="offcanvas-body">
 
-                    <section>
-                        <h2>Наши сборки</h2>
-                        <div className="d-flex flex-row justify-content-between">
                             <SortBlock defaultItems={this.state.defaultItems} changeSortItems={this.changeSortItems} />
+                        </div>
+                    </div>
+                    <section className="d-flex flex-column align-items-center">
+                        <h2>Наши сборки</h2>
+                        <a className="sortOffcanvasButton mt-5" data-bs-toggle="offcanvas" href="#offcanvasSortModels" role="button" aria-controls="offcanvasSortModels">
+                            Сортировать
+                        </a>
+                        <div className="d-flex flex-row justify-content-between">
+                            {/*{document.body.clientWidth <= 1200 ?*/}
+                            {/*    <></>*/}
+                            {/*    : <SortBlock defaultItems={this.state.defaultItems} changeSortItems={this.changeSortItems} />*/}
+                            {/*}*/}
+
+                            
                             {model.length != 0 ?
                                 <div className="assemblyList">
                                     {model.map((item) => {

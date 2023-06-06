@@ -24,7 +24,6 @@ export default class SelectMenuMonitors extends Component {
                     <div className="selectMenuValue">
                         {this.state.selectItem == null ? <span>Монитор</span>
                             : <div className="container">
-                                <img src={this.state.selectItem.imgUrl} />
                                 <span>{this.state.selectItem.name}</span>
                             </div>}
 
@@ -46,7 +45,6 @@ export default class SelectMenuMonitors extends Component {
                                     });
                                     this.changeItem(item);
                                 }}>
-                                    <img src={item.imgUrl} />
                                     <span>{item.name}</span>
                                 </li>
                             })

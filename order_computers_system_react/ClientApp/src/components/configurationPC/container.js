@@ -302,19 +302,19 @@ export class ConfigurationPCContainer extends Component {
 
                     <div className="form-group total">
                         <div>
-                            <span>Сумма комплектующих: {this.state.amountComponents}</span>
+                            <span>Сумма комплектующих: {this.state.amountComponents} руб.</span>
                         </div>
                         <div>
                             <span>Дата создания заказа: {this.state.today}</span>
                         </div>
                         <div>
-                            <span>Сумма сборки: {this.state.amountAssembly}</span>
+                            <span>Сумма сборки: {this.state.amountAssembly} руб.</span>
                         </div>
                         <div>
                             <span>Примерная дата готовности: {this.state.nextDay}</span>
                         </div>
                         <div>
-                            <span>Итоговая сумма: {this.state.totalAmount}</span>
+                            <span>Итоговая сумма: {this.state.totalAmount} руб.</span>
                         </div>
                     </div>
                 </section>

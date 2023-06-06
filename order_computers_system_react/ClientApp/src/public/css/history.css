@@ -50,18 +50,18 @@
     justify-content: space-between;
 }
 
-    .historyContainer .totalContainer div {
+    .historyContainer .totalContainer .totalPriceContainer {
         display: flex;
         align-items: center;
         width: 60%;
     }
 
-        .historyContainer .totalContainer div p {
+        .historyContainer .totalContainer .totalPriceContainer p {
             font-size: 3em;
             width: 45%;
         }
 
-        .historyContainer .totalContainer div input {
+        .historyContainer .totalContainer .totalPriceContainer input {
             background-color: transparent;
             border: 2px solid black;
             font-size: 2.7em;
@@ -91,4 +91,41 @@
 .historyContainer .orderDate {
     font-size: 1.4em;
     padding: 8px;
+}
+
+
+@media (max-width:1200px){
+    .historyContainer .totalContainer .totalPriceContainer {
+        
+        width: 70%;
+    }
+
+        .historyContainer .totalContainer .totalPriceContainer p {
+            font-size: 2.3em;
+            width: 45%;
+        }
+
+        .historyContainer .totalContainer .totalPriceContainer input {
+            font-size: 2em;
+        }
+}
+
+@media (max-width:1000px){
+    .historyContainer .totalContainer .totalPriceContainer {
+       width:100%;
+       justify-content:space-evenly;
+    }
+    .historyContainer .totalContainer {
+        display: flex;
+        flex-direction:column;
+    }
+        .historyContainer .totalContainer .buttonContainer
+        {
+            width:100%;
+            align-items:center;
+        }
+        .historyContainer .totalContainer .buttonContainer button
+        {
+            width:300px;
+        }
 }

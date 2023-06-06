@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
+
 import '../../public/css/index.css';
 
 export class IndexContainer extends Component {
@@ -48,12 +52,12 @@ export class IndexContainer extends Component {
 
                 <section>
                     <h1>Наши модели</h1>
-                    <div className="cardsContainer">
+                    <div className="cardsContainer modelsContainer">
 
                         {model.typesComputerAssembly.map((item, key) =>
                             <a key={key} href="#">
 
-                                <div className="card" style={{ width: '18rem' }}>
+                                <div className="card">
                                     <img src={item.item2} className="card-img-top" alt="..." />
                                     <div className="card-body">
                                         <p className="card-text">{item.item1}</p>
@@ -68,12 +72,11 @@ export class IndexContainer extends Component {
 
                 <section>
                     <h1>Лучшие сборки</h1>
-                    <div className="cardsContainer">
-
+                    <OwlCarousel className='cardsContainer' loop items={3 } margin={30} autoWidth={ true } dots={ false } autoplay={ true }>
                         {model.bestComputerAssemblies.map(item =>
                             <a key={item.id} href="#">
 
-                                <div className="card" style={{ width: '18rem' }}>
+                                <div className="card">
                                     <img src={item.imgUrl} className="card-img-top" alt="..." />
                                     <div className="card-body">
                                         <p className="card-text">{item.name}</p>
@@ -82,25 +85,29 @@ export class IndexContainer extends Component {
                                 </div>
                             </a>
                         )}
-                    </div>
+                    </OwlCarousel>
                 </section>
 
 
                 <section>
                     <h1>Собрать самому</h1>
-                    <div className="cardsContainer">
-                        <div className="card" style={{ width: '18rem' }}>
+                    <div className="cardsContainer servicesContainer">
+                        <a href="/configuration">
+                        <div className="card" >
                             <img src="..." className="card-img-top" alt="..." />
                             <div className="card-body">
                                 <p className="card-text">Конфигуратор</p>
                             </div>
-                        </div>
-                        <div className="card" style={{ width: '18rem' }}>
+                            </div>
+                        </a>
+                        <a href="/configuration">
+                        <div className="card">
                             <img src="..." className="card-img-top" alt="..." />
                             <div className="card-body">
                                 <p className="card-text">Заказать</p>
                             </div>
                         </div>
+                    </a>
                     </div>
                 </section>
 

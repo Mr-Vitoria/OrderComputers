@@ -38,6 +38,7 @@ export class ProfileContainer extends Component {
         if (Page == 'SignOut') {
             Page = 'Login';
             cookies.remove('userId', { path: '/' });
+            window.location.reload();
         }
         this.setState({
             page: Page

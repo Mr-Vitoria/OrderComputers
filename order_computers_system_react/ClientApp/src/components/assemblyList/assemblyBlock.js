@@ -27,8 +27,6 @@ export default class AssemblyBlock extends Component {
 
                                     <p>Видеокарта: {this.state.item.videoCard.name}</p>
 
-                                    <p>Оперативная память: {this.state.item.ramMemory.name}</p>
-
                                     <p>SSD/HDD: {this.state.item.storageDevice.name}</p>
                                 </div>
                                 <p className="card-text">Цена сборки: {this.state.item.costPrice} руб.</p>

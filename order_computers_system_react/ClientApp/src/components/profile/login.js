@@ -20,6 +20,7 @@ export default class Login extends Component {
                 const cookies = new Cookies();
                 cookies.set('userId', data.id, { path: '/', maxAge: 86400 });
                 this.setTypePage("Profile");
+                window.location.reload();
             }
             else {
                 console.log('Password or phone ercorrect: ');

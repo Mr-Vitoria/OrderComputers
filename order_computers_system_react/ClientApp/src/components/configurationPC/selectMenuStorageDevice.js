@@ -24,11 +24,10 @@ export default class SelectMenuStorageDevice extends Component {
                     <div className="selectMenuValue">
                         {this.state.selectItem == null ? <span>SSD/HDD</span>
                             : <div className="container">
-                                <img src={this.state.selectItem.imgUrl} />
                                 <span>{this.state.selectItem.name}</span>
                                 <div className="properties">
                                     <span>Тип: {this.state.selectItem.type}</span>
-                                    <span>Объем: {this.state.selectItem.count}</span>
+                                    <span>Объем: {this.state.selectItem.count} Гб</span>
                                 </div>
                             </div>}
 
@@ -42,7 +41,6 @@ export default class SelectMenuStorageDevice extends Component {
                                     });
                                     this.changeItem(item);
                                 }}>
-                                    <img src={item.imgUrl} />
                                     <span>{item.name}</span>
                                     <div className="properties">
                                         <span>Тип: {item.type}</span>
