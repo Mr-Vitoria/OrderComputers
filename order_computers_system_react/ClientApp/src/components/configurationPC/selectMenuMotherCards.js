@@ -27,6 +27,7 @@ export default class SelectMenuMotherCards extends Component {
                                 <div className="properties">
                                     <span>Размер: {this.state.selectItem.size}</span>
                                     <span>Сокет: {this.state.selectItem.socket}</span>
+                                    <span>Цена: {this.state.selectItem.price} руб.</span>
                                 </div>
                             </div>}
 
@@ -44,6 +45,7 @@ export default class SelectMenuMotherCards extends Component {
                                     <div className="properties">
                                         <span>Размер: {item.size}</span>
                                         <span>Сокет: {item.socket}</span>
+                                        <span>Цена: {item.price} руб.</span>
                                     </div>
                                 </li>
                             })

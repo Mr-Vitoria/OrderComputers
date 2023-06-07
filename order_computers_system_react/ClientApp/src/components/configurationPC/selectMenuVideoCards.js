@@ -28,6 +28,7 @@ export default class SelectMenuVideoCard extends Component {
                                 <div className="properties">
                                     <span>Тип памяти: {this.state.selectItem.type}</span>
                                     <span>Объем памяти: {this.state.selectItem.count} Мб</span>
+                                    <span>Цена: {this.state.selectItem.price} руб.</span>
                                 </div>
                             </div>}
 
@@ -45,6 +46,7 @@ export default class SelectMenuVideoCard extends Component {
                                     <div className="properties">
                                         <span>Тип памяти: {item.type}</span>
                                         <span>Объем памяти: {item.count} Мб</span>
+                                        <span>Цена: {item.price} руб.</span>
                                     </div>
                                 </li>
                             })

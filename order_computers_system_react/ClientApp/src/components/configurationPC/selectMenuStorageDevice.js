@@ -28,6 +28,7 @@ export default class SelectMenuStorageDevice extends Component {
                                 <div className="properties">
                                     <span>Тип: {this.state.selectItem.type}</span>
                                     <span>Объем: {this.state.selectItem.count} Гб</span>
+                                    <span>Цена: {this.state.selectItem.price} руб.</span>
                                 </div>
                             </div>}
 
@@ -45,6 +46,7 @@ export default class SelectMenuStorageDevice extends Component {
                                     <div className="properties">
                                         <span>Тип: {item.type}</span>
                                         <span>Объем: {item.count} Гб</span>
+                                        <span>Цена: {item.price} руб.</span>
                                     </div>
                                 </li>
                             })

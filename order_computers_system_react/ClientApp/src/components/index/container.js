@@ -36,19 +36,17 @@ export class IndexContainer extends Component {
 
         return (
             <div className="indexContainer">
-                <div id="carouselExampleAutoplaying" className="carousel slide" data-bs-ride="carousel">
-                    <div className="carousel-inner">
-                        <div className="carousel-item active">
-                            <img src="https://games.mail.ru/hotbox/content_files/gallery/2020/12/24/0bfa60d58df9494580c305d074a4908e.jpg" className="d-block w-100" alt="..." />
-                        </div>
-                        <div className="carousel-item">
-                            <img src="https://games.mail.ru/hotbox/content_files/gallery/2020/12/24/0bfa60d58df9494580c305d074a4908e.jpg" className="d-block w-100" alt="..." />
-                        </div>
-                        <div className="carousel-item">
-                            <img src="https://games.mail.ru/hotbox/content_files/gallery/2020/12/24/0bfa60d58df9494580c305d074a4908e.jpg" className="d-block w-100" alt="..." />
-                        </div>
+                <OwlCarousel className='infoCarousel' loop items={1} margin={30} dots={false} autoplay={true}>
+                    <div className="item ">
+                        <img src="https://voltcave.com/wp-content/uploads/2020/05/Tech4Gaming-Retrowave-Featured-Image.png" className="d-block w-100" alt="..." />
                     </div>
-                </div>
+                    <div className="item">
+                        <img src="https://modguru.net/wp-content/uploads/2016/12/ttces1.jpg" className="d-block w-100" alt="..." />
+                    </div>
+                    <div className="item">
+                        <img src="https://i.pinimg.com/originals/8a/6c/2e/8a6c2e45cfb9e32859e9e7fa80350ad1.jpg" className="d-block w-100" alt="..." />
+                    </div>
+                </OwlCarousel>
 
                 <section>
                     <h1>Наши модели</h1>
@@ -94,7 +92,7 @@ export class IndexContainer extends Component {
                     <div className="cardsContainer servicesContainer">
                         <a href="/configuration">
                         <div className="card" >
-                            <img src="..." className="card-img-top" alt="..." />
+                                <img src="https://cdn.onlinewebfonts.com/svg/download_542828.png" className="card-img-top" alt="..." />
                             <div className="card-body">
                                 <p className="card-text">Конфигуратор</p>
                             </div>
@@ -102,7 +100,7 @@ export class IndexContainer extends Component {
                         </a>
                         <a href="/configuration">
                         <div className="card">
-                            <img src="..." className="card-img-top" alt="..." />
+                                <img src="https://cdn.onlinewebfonts.com/svg/download_542828.png" className="card-img-top" alt="..." />
                             <div className="card-body">
                                 <p className="card-text">Заказать</p>
                             </div>
@@ -115,7 +113,7 @@ export class IndexContainer extends Component {
                     <h1>Доверяй нам</h1>
                     <div className="TextContainer">
                         <img src="https://games.mail.ru/hotbox/content_files/gallery/2020/12/24/0bfa60d58df9494580c305d074a4908e.jpg" />
-                        <p>Лучшие специалисты</p>
+                        <p>С нами работают только профессионалы своего дела</p>
                     </div>
                     <div className="TextContainer">
                         <p>Наша цель - помочь вам</p>

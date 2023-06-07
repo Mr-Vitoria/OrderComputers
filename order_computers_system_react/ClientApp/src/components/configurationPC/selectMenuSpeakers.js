@@ -25,6 +25,9 @@ export default class SelectMenuSpeakers extends Component {
                         {this.state.selectItem == null ? <span>Динамики/наушники</span>
                             : <div className="container">
                                 <span>{this.state.selectItem.name}</span>
+                                <div className="properties">
+                                    <span>Цена: {this.state.selectItem.price} руб.</span>
+                                </div>
                             </div>}
 
                     </div>
@@ -46,6 +49,9 @@ export default class SelectMenuSpeakers extends Component {
                                     this.changeItem(item);
                                 }}>
                                     <span>{item.name}</span>
+                                    <div className="properties">
+                                        <span>Цена: {item.price} руб.</span>
+                                    </div>
                                 </li>
                             })
                         }

@@ -1,7 +1,7 @@
-﻿.indexContainer .carousel img {
+﻿.indexContainer .infoCarousel img {
     object-fit: cover;
     object-position: center;
-    max-height: 70vh;
+    max-height: 80vh;
 }
 
 .indexContainer h1 {

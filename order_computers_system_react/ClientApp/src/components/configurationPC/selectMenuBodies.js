@@ -27,6 +27,7 @@ export default class SelectMenuBodies extends Component {
                                 <span>{this.state.selectItem.name}</span>
                                 <div className="properties">
                                     <span>Форм-фактор: {this.state.selectItem.formFactor}</span>
+                                    <span>Цена: {this.state.selectItem.price} руб.</span>
                                 </div>
                             </div>}
 
@@ -43,6 +44,7 @@ export default class SelectMenuBodies extends Component {
                                     <span>{item.name}</span>
                                     <div className="properties">
                                         <span>Форм-фактор: {item.formFactor}</span>
+                                        <span>Цена: {item.price} руб.</span>
                                     </div>
                                 </li>
                             })

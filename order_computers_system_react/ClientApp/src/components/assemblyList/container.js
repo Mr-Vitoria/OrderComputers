@@ -65,9 +65,11 @@ export class AssemblyListContainer extends Component {
                                     <p>Встроенное графическое ядро: {this.state.descriptionItem.compProcessor.haveVideoCard ? "Имеет" : "Не имеет"}</p>
                                     <p>Цена: {this.state.descriptionItem.compProcessor.price} руб.</p>
 
-
+                                    
                                     <h2>Видеокарта:</h2>
-                                    <p>Название: {this.state.descriptionItem.videoCard.name}</p>
+                                    {this.state.descriptionItem.videoCard != null ?
+                                        <>
+                                        <p>Название: {this.state.descriptionItem.videoCard.name}</p>
                                     <p>Производитель: {this.state.descriptionItem.videoCard.producer}</p>
                                     <p>Семейство: {this.state.descriptionItem.videoCard.family}</p>
                                     <p>Поколение: {this.state.descriptionItem.videoCard.generation}</p>
@@ -75,7 +77,9 @@ export class AssemblyListContainer extends Component {
                                     <p>Тип памяти: {this.state.descriptionItem.videoCard.type}</p>
                                     <p>Объем памяти(Мб): {this.state.descriptionItem.videoCard.count}</p>
                                     <p>Цена: {this.state.descriptionItem.videoCard.price} руб.</p>
-
+                                    </>
+                                    :<p>Отсутствует</p>    
+                                }
 
                                     <h2>Материнская плата:</h2>
                                     <p>Название: {this.state.descriptionItem.motherCard.name}</p>
@@ -100,7 +104,7 @@ export class AssemblyListContainer extends Component {
 
                                     <h2>{this.state.descriptionItem.storageDevice.type}:</h2>
                                     <p>Название: {this.state.descriptionItem.storageDevice.name}</p>
-                                    <p>Объем памяти(Мб): {this.state.descriptionItem.storageDevice.count}</p>
+                                    <p>Объем памяти(Гб): {this.state.descriptionItem.storageDevice.count}</p>
                                     <p>Цена: {this.state.descriptionItem.storageDevice.price} руб.</p>
 
 

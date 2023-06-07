@@ -28,6 +28,7 @@ export default class SelectMenuPowerUnit extends Component {
                                 <div className="properties">
                                     <span>Форм фактор: {this.state.selectItem.formFactor}</span>
                                     <span>Мощность: {this.state.selectItem.power} Вт</span>
+                                    <span>Цена: {this.state.selectItem.price} руб.</span>
                                 </div>
                             </div>}
 
@@ -45,6 +46,7 @@ export default class SelectMenuPowerUnit extends Component {
                                     <div className="properties">
                                         <span>Форм фактор: {item.formFactor}</span>
                                         <span>Мощность: {item.power} Вт</span>
+                                        <span>Цена: {item.price} руб.</span>
                                     </div>
                                 </li>
                             })

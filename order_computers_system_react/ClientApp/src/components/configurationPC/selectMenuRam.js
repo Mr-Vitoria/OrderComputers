@@ -28,7 +28,7 @@ export default class SelectMenuRam extends Component {
                                 <div className="properties">
                                     <span>Тип: {this.state.selectItem.type}</span>
                                     <span>Объем: {this.state.selectItem.count} Мб</span>
-                                    <span>Частота: {this.state.selectItem.frequency} МГц</span>
+                                    <span>Цена: {this.state.selectItem.price} руб.</span>
                                 </div>
                             </div>}
 
@@ -46,7 +46,7 @@ export default class SelectMenuRam extends Component {
                                     <div className="properties">
                                         <span>Тип: {item.type}</span>
                                         <span>Объем: {item.count} Мб</span>
-                                        <span>Частота: {item.frequency} МГц</span>
+                                        <span>Цена: {item.price} руб.</span>
                                     </div>
                                 </li>
                             })

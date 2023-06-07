@@ -27,8 +27,8 @@ export default class SelectMenuProcessors extends Component {
                                 <span>{this.state.selectItem.name}</span>
                                 <div className="properties">
                                     <span>Количество ядер: {this.state.selectItem.countCores}</span>
-                                    <span>Количество потоков: {this.state.selectItem.countThreads}</span>
                                     <span>Частота: {this.state.selectItem.frequency} МГц</span>
+                                    <span>Цена: {this.state.selectItem.price} руб.</span>
                                 </div>
                             </div>}
 
@@ -45,8 +45,8 @@ export default class SelectMenuProcessors extends Component {
                                     <span>{item.name}</span>
                                     <div className="properties">
                                         <span>Количество ядер: {item.countCores}</span>
-                                        <span>Количество потоков: {item.countThreads}</span>
                                         <span>Частота: {item.frequency} МГц</span>
+                                        <span>Цена: {item.price} руб.</span>
                                     </div>
                                 </li>
                             })
