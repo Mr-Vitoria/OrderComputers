@@ -14,7 +14,8 @@ export class IndexContainer extends Component {
         this.state = {
             model: null,
             loading: true,
-            user: null
+            user: null,
+            descriptionItem: null
         };
 
         this.inputTextFeedbackRef = React.createRef();
@@ -28,13 +29,101 @@ export class IndexContainer extends Component {
 
     async addFeedback() {
 
+
         await fetch('ordersystem/addFeedback?userId=' + this.state.user.id
-            +'&text=' + this.inputTextFeedbackRef.current.value);
+            +'&text=' + this.inputTextFeedbackRef.current.value
+            + '&date=' + new Date().toISOString().substring(0, 10));
     }
 
     renderModel(model) {
 
         return (
+            <>
+                <div className="modal fade" id="descriptionModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                {this.state.descriptionItem != null ? <>
+                                    <h1 className="modal-title fs-5" id="exampleModalLabel">{this.state.descriptionItem.name}</h1>
+                                </>
+                                    : null
+                                }
+                                
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className="modal-body">
+                                {this.state.descriptionItem != null ? <>
+                                    <img src={this.state.descriptionItem.imgUrl} />
+
+                                    <h2>Процессор:</h2>
+                                    <p>Название: {this.state.descriptionItem.compProcessor.name}</p>
+                                    <p>Производитель: {this.state.descriptionItem.compProcessor.producer}</p>
+                                    <p>Сокет: {this.state.descriptionItem.compProcessor.socket}</p>
+                                    <p>Количество ядер: {this.state.descriptionItem.compProcessor.countCores}</p>
+                                    <p>Количество потоков: {this.state.descriptionItem.compProcessor.countThreads}</p>
+                                    <p>Частота(МГц): {this.state.descriptionItem.compProcessor.frequency}</p>
+                                    <p>Встроенное графическое ядро: {this.state.descriptionItem.compProcessor.haveVideoCard ? "Имеет" : "Не имеет"}</p>
+                                    <p>Цена: {this.state.descriptionItem.compProcessor.price} руб.</p>
+
+                                    
+                                    <h2>Видеокарта:</h2>
+                                    {this.state.descriptionItem.videoCard != null ?
+                                        <>
+                                        <p>Название: {this.state.descriptionItem.videoCard.name}</p>
+                                    <p>Производитель: {this.state.descriptionItem.videoCard.producer}</p>
+                                    <p>Семейство: {this.state.descriptionItem.videoCard.family}</p>
+                                    <p>Поколение: {this.state.descriptionItem.videoCard.generation}</p>
+                                    <p>Серия: {this.state.descriptionItem.videoCard.series}</p>
+                                    <p>Тип памяти: {this.state.descriptionItem.videoCard.type}</p>
+                                    <p>Объем памяти(Мб): {this.state.descriptionItem.videoCard.count}</p>
+                                    <p>Цена: {this.state.descriptionItem.videoCard.price} руб.</p>
+                                    </>
+                                    :<p>Отсутствует</p>    
+                                }
+
+                                    <h2>Материнская плата:</h2>
+                                    <p>Название: {this.state.descriptionItem.motherCard.name}</p>
+                                    <p>Размер: {this.state.descriptionItem.motherCard.size}</p>
+                                    <p>Сокет для процессора: {this.state.descriptionItem.motherCard.socket}</p>
+                                    <p>Цена: {this.state.descriptionItem.motherCard.price} руб.</p>
+
+
+                                    <h2>Блок питания:</h2>
+                                    <p>Название: {this.state.descriptionItem.powerSupplyUnit.name}</p>
+                                    <p>Форм фактор: {this.state.descriptionItem.powerSupplyUnit.formFactor}</p>
+                                    <p>Мощность(Вт): {this.state.descriptionItem.powerSupplyUnit.power}</p>
+                                    <p>Цена: {this.state.descriptionItem.powerSupplyUnit.price} руб.</p>
+                                    
+                                    <h2>Оперативная память:</h2>
+                                    <p>Название: {this.state.descriptionItem.ramMemory.name}</p>
+                                    <p>Тип памяти: {this.state.descriptionItem.ramMemory.type}</p>
+                                    <p>Объем памяти(Мб): {this.state.descriptionItem.ramMemory.count}</p>
+                                    <p>Частота(МГц): {this.state.descriptionItem.ramMemory.frequency}</p>
+                                    <p>Цена: {this.state.descriptionItem.ramMemory.price} руб.</p>
+
+
+                                    <h2>{this.state.descriptionItem.storageDevice.type}:</h2>
+                                    <p>Название: {this.state.descriptionItem.storageDevice.name}</p>
+                                    <p>Объем памяти(Гб): {this.state.descriptionItem.storageDevice.count}</p>
+                                    <p>Цена: {this.state.descriptionItem.storageDevice.price} руб.</p>
+
+
+                                    <h2>Корпус:</h2>
+                                    <p>Название: {this.state.descriptionItem.compBody.name}</p>
+                                    <p>Форм фактор: {this.state.descriptionItem.compBody.formFactor}</p>
+                                    <p>Цена: {this.state.descriptionItem.compBody.price} руб.</p>
+                                </>
+                                    : null
+                                }
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             <div className="indexContainer">
                 <OwlCarousel className='infoCarousel' loop items={1} margin={30} dots={false} autoplay={true}>
                     <div className="item ">
@@ -71,8 +160,12 @@ export class IndexContainer extends Component {
                 <section>
                     <h1>Лучшие сборки</h1>
                     <OwlCarousel className='cardsContainer' loop items={3 } margin={30} autoWidth={ true } dots={ false } autoplay={ true }>
-                        {model.bestComputerAssemblies.map(item =>
-                            <a key={item.id} href="#">
+                            {model.bestComputerAssemblies.map(item =>
+                                <a key={item.id} href="#" onClick={(ev) => {
+                                    this.setState({
+                                        descriptionItem: item
+                                    });
+                                }}>
 
                                 <div className="card">
                                     <img src={item.imgUrl} className="card-img-top" alt="..." />
@@ -133,7 +226,8 @@ export class IndexContainer extends Component {
                             <textarea ref={this.inputTextFeedbackRef}>
                             </textarea>
                         </div>
-                        <button onClick={(ev) => {
+                            <button onClick={(ev) => {
+
                             this.addFeedback();
                             window.location.reload();
                         }}>Оставить</button>
@@ -143,16 +237,22 @@ export class IndexContainer extends Component {
                     <h2 style={{ textAlign: "left", margin: "40px 0" }}>Последние отзывы</h2>
                     {model.feedbacks.map(item =>
                         <div key={item.id} className="feedBack">
+                            <div className="feedBackHeader">
+                            
                             <div className="imgContainer">
-                                <img src={item.user.imgUrl} /> <span>{item.user.name}</span>
+                                <img src={item.user.imgUrl} /> 
                             </div>
-                            <p>{item.text}</p>
+                            <span>{item.user.name}</span>
+                                <span>{item.date.slice(8, 10) + '.' + item.date.slice(5, 7) + '.' + item.date.slice(0, 4)}</span>
+                            </div>
+                                <p>{item.text}</p>
                         </div>
                     )}
 
 
                 </section>
-            </div>
+                </div>
+            </>
         );
     }
 

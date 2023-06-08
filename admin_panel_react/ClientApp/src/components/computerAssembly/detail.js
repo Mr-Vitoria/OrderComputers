@@ -33,7 +33,7 @@ export default class Detail extends Component {
                         Name
                     </dt>
                     <dd className="col-sm-10">
-                        <img src={item.name} />
+                        {item.name}
                     </dd>
                     <dt className="col-sm-2">
                     Computer body

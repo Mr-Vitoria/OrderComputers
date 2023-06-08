@@ -204,6 +204,7 @@ export default class Edit extends Component {
     async editItem() {
 
         const response = await fetch('computerassemblies/edit?id=' + this.inputIdRef.current.value
+            + '&name=' + this.inputNameRef.current.value
             + '&compBodyId=' + this.inputBodyIdRef.current.value
             + '&motherCardId=' + this.inputMotherIdRef.current.value
             + '&powerSupplyUnitId=' + this.inputPowerIdRef.current.value

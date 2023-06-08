@@ -89,23 +89,6 @@ h1, h2 {
                 font-size: 0.5em;
             }
 
-/*.configurationContainer ::-webkit-scrollbar {
-    background: transparent;
-    width: 0.5em;
-    position: absolute;
-}
-
-.configurationContainer ::-webkit-scrollbar-track {
-    background: transparent;
-    position: absolute;
-    z-index: -2;
-}
-
-.configurationContainer ::-webkit-scrollbar-thumb {
-    border-radius: 100px;
-    background: #888;
-}*/
-
 .configurationContainer ul.selectMenu {
     background-color: #323232;
     transition: .3s;
@@ -126,6 +109,14 @@ h1, h2 {
         cursor: pointer;
         font-size: 0.9em;
     }
+        .configurationContainer ul.selectMenu > li .btnChange {
+            background-color:transparent;
+            border:none;
+            margin-left:20px;
+        }
+        .configurationContainer ul.selectMenu > li .btnChange:hover {
+            color:gray;
+        }
 
         .configurationContainer ul.selectMenu > li.selectoption {
             padding: 10px;
@@ -133,7 +124,7 @@ h1, h2 {
 
             .configurationContainer ul.selectMenu > li.selectoption:hover {
                 color: black !important;
-                background: #323232;
+                background: #575757;
                 transition: .2s;
             }
 
@@ -206,7 +197,7 @@ h1, h2 {
     .configurationContainer section {
         margin: 0 5% ;
         margin-top: 50px !important;
-        font-size: 0.9em;
+        font-size: 0.8em;
     }
     .configurationContainer .partlyContainer input,
     .configurationContainer .partlyContainer .form-group {

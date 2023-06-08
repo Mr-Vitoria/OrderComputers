@@ -35,6 +35,12 @@ export default class Detail extends Component {
                     <dd className="col-sm-10">
                         {item.text}
                     </dd>
+                    <dt className="col-sm-2">
+                        Date
+                    </dt>
+                    <dd className="col-sm-10">
+                        {item.date}
+                    </dd>
                 </div>
                 <div>
                     <a onClick={(ev) => {

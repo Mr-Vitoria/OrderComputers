@@ -194,7 +194,8 @@ export default class Create extends Component {
 
     async createItem() {
         const response = await fetch('computerassemblies/create?'
-            + 'compBodyId=' + this.inputBodyIdRef.current.value
+            + 'name=' + this.inputNameRef.current.value
+            + '&compBodyId=' + this.inputBodyIdRef.current.value
             + '&motherCardId=' + this.inputMotherIdRef.current.value
             + '&powerSupplyUnitId=' + this.inputPowerIdRef.current.value
             + '&compProcessorId=' + this.inputProcIdeRef.current.value

@@ -111,6 +111,10 @@
 
 
 @media (max-width:850px){
+    .profileContainer .loginSection {
+        width: 100%;
+        padding: 40px;
+    }
     .profileContainer .loginSection form input{
         width:100%;
     }

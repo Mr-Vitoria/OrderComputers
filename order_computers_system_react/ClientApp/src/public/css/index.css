@@ -71,6 +71,15 @@
     width: 50px;
     height: 50px;
 }
+.indexContainer .feedBack .feedBackHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: fit-content;
+}
+.indexContainer .feedBack .feedBackHeader span{
+    margin: 0 15px;
+}
 
     .indexContainer .feedBack .imgContainer img {
         width: 100%;
@@ -94,6 +103,7 @@
 
     .indexContainer .feedbackSection button {
         width: 25%;
+        min-width:150px;
         margin-top: 30px;
         margin-left: 40%;
         padding: 15px 0;
@@ -124,9 +134,10 @@
             width: 400px;
         }
     .indexContainer .TextContainer p {
-        height:fit-content;
-        text-align:center;
-        width:100%;
+        height: fit-content;
+        text-align: center;
+        width: 100%;
+        font-size: 1.4em;
     }
     .indexContainer .TextContainer img {
         width:100%;

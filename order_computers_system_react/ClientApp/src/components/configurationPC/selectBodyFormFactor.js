@@ -4,7 +4,7 @@ export default class SelectBodyFormFactor extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            model: ["Super/Ultra Tower", "Full Tower", "Mid Tower", "Mini Tower", "Small form factor","HTPC"],
+            model: ["Super/Ultra Tower", "Full Tower", "Mid Tower", "Mini Tower", "Small form factor"],
             loading: true,
             selectItem: null
         };

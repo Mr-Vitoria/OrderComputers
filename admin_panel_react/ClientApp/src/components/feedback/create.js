@@ -12,6 +12,7 @@ export default class Create extends Component {
         };
         this.inputUserIdRef = React.createRef();
         this.inputTextRef = React.createRef();
+        this.inputDateRef = React.createRef();
 
 
         this.setTypePage = props.setTypePage;
@@ -43,6 +44,10 @@ export default class Create extends Component {
                                 </textarea>
                             </div>
 
+                            <div className="form-group">
+                                <label className="control-label">Date</label>
+                                <input ref={this.inputDateRef} className="form-control" type="date" />
+                            </div>
 
                             <div className="form-group">
                                 <button onClick={(ev) => {
@@ -100,6 +105,7 @@ export default class Create extends Component {
     async createItem() {
         const response = await fetch('feedbacks/create?'
             + 'userId=' + this.inputUserIdRef.current.value
+            + '&date=' + this.inputDateRef.current.value
             + '&text=' + this.inputTextRef.current.value);
 
 

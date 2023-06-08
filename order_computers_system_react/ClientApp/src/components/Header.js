@@ -15,7 +15,6 @@ export class Header extends Component {
         this.getUser();
     }
     render() {
-        console.log(this.state.userImg);
         return <header>
             <div className="offcanvas offcanvas-start" tabIndex="-1" id="offcanvasHeader" aria-labelledby="offcanvasHeaderLabel">
                 <div className="offcanvas-header">
@@ -31,7 +30,8 @@ export class Header extends Component {
                         <a href="/">Главная</a>
                         <a href="/assemblyList">Модели</a>
                         <a href="/configuration">Конфигуратор</a>
-                        {this.state.userImg != null ? <a href="/configuration">Заказы</a> : null}
+                        <a href="/profile">Профиль</a>
+                        {this.state.userImg != null ? <a href="/history">Заказы</a> : null}
                         <a href="#">Поддержка</a>
                         {this.state.userImg != null ? <a href="/profile">Профиль</a> : null}
                     </div>

@@ -21,15 +21,10 @@ export class ConfigurationPCContainer extends Component {
     constructor(props) {
         super(props);
 
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0');
-        var yyyy = today.getFullYear();
-        today.setDate(today.getDate() + 3);
-        var dd2 = String(today.getDate()).padStart(2, '0');
-        var mm2 = String(today.getMonth() + 1).padStart(2, '0');
-        var yyyy2 = today.getFullYear();
-
+        let todayDate = new Date();
+        let today = todayDate.toISOString();
+        todayDate.setDate(todayDate.getDate() + 3);
+        let nextday = todayDate.toISOString();
         this.state = {
             model: null,
             loading: true,
@@ -48,8 +43,8 @@ export class ConfigurationPCContainer extends Component {
             amountComponents: 0,
             amountAssembly: 0,
             totalAmount: 0,
-            today: mm + '.' + dd + '.' + yyyy,
-            nextDay: mm2 + '.' + dd2 + '.' + yyyy2,
+            today: today.substring(8, 10) + '.' + today.substring(5, 7) + '.' + today.substring(0, 4),
+            nextDay: nextday.substring(8, 10) + '.' + nextday.substring(5, 7) + '.' + nextday.substring(0, 4),
 
             typeConfiguration:"Full"
         };
@@ -407,7 +402,7 @@ export class ConfigurationPCContainer extends Component {
                 + '&videoId=' + this.state.selectVideoCard.id
                 + '&ramId=' + this.state.selectRam.id
 
-                + '&orderDate=' + this.state.today
+                + '&orderDate=' + (this.state.today.substring(6, 10) + '-' + this.state.today.substring(3, 5) + '-' + this.state.today.substring(0, 2))
 
                 + '&peripheryIds=' + peripheryString);
         }
@@ -417,9 +412,10 @@ export class ConfigurationPCContainer extends Component {
                 + '&comment=' + (this.commentInputRef.current.value??" ")
                 + '&totalPrice=' + this.state.totalAmount
 
-                + '&orderDate=' + this.state.today
+                + '&orderDate=' + (this.state.today.substring(6, 10) + '-' + this.state.today.substring(3, 5) + '-' + this.state.today.substring(0, 2))
 
                 + '&peripheryIds=' + peripheryString);
         }
+        window.location.href = '/';
     }
 }

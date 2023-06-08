@@ -6,7 +6,8 @@ export default class SelectMenuMotherCards extends Component {
         this.state = {
             model: props.model,
             loading: true,
-            selectItem: null
+            selectItem: null,
+            infoItem: null
         };
         this.changeItem = props.changeItem;
         this.parentRef = React.createRef();
@@ -16,9 +17,43 @@ export default class SelectMenuMotherCards extends Component {
         return (
             <>
 
+                <div className="modal fade" id="aboutMotherCardModal" tabIndex="-1" aria-labelledby="aboutMotherCardModalLabel" aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                {this.state.infoItem != null ? <>
+                                    <h1 className="modal-title fs-5" id="aboutMotherCardModalLabel">{this.state.infoItem.name}</h1>
+                                </>
+                                    : null
+                                }
+
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className="modal-body">
+                                {this.state.infoItem != null ? <>
+                                    <img src={this.state.infoItem.imgUrl} />
+
+                                    <h2>Материнская плата:</h2>
+                                    <p>Название: {this.state.infoItem.name}</p>
+                                    <p>Размер: {this.state.infoItem.size}</p>
+                                    <p>Сокет для процессора: {this.state.infoItem.socket}</p>
+                                    <p>Цена: {this.state.infoItem.price} руб.</p>
+
+                                </>
+                                    : null
+                                }
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div ref={this.parentRef} onClick={(ev) => {
-                    this.parentRef.current.classList.toggle('show');
-                    this.parentRef.current.scrollTo(0, 0);
+                    if (ev.target.classList.contains('select')) {
+                        this.parentRef.current.classList.toggle('show');
+                        this.parentRef.current.scrollTo(0, 0);
+                    }
                 }} className="select">
                     <div className="selectMenuValue">
                         {this.state.selectItem == null ? <span>Материнская плата</span>
@@ -35,17 +70,29 @@ export default class SelectMenuMotherCards extends Component {
                     <ul className="selectMenu">
                         {
                             this.state.model.map(item => {
-                                return <li key={item.id} className="selectoption container" onClick={(ev) => {
-                                    this.setState({
-                                        selectItem: item
-                                    });
-                                    this.changeItem(item);
-                                }}>
+                                return <li key={item.id} className="selectoption container" >
                                     <span>{item.name}</span>
                                     <div className="properties">
                                         <span>Размер: {item.size}</span>
                                         <span>Сокет: {item.socket}</span>
                                         <span>Цена: {item.price} руб.</span>
+                                    </div>
+
+                                    <div className="btnContainer">
+                                        <button className="btnChange" onClick={(ev) => {
+                                            this.setState({
+                                                infoItem: item
+                                            });
+                                        }} data-bs-toggle="modal" data-bs-target="#aboutMotherCardModal">Подробнее</button>
+                                        <button className="btnChange" onClick={(ev) => {
+
+                                            this.setState({
+                                                selectItem: item
+                                            });
+                                            this.changeItem(item);
+                                            this.parentRef.current.classList.toggle('show');
+                                            this.parentRef.current.scrollTo(0, 0);
+                                        }}>Выбрать</button>
                                     </div>
                                 </li>
                             })
