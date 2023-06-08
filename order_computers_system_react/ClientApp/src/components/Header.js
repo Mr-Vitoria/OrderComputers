@@ -79,7 +79,6 @@ export class Header extends Component {
         if (response.status == 200) {
 
             const data = await response.json();
-            console.log(data);
 
             this.setState({
                 userImg: data.imgUrl

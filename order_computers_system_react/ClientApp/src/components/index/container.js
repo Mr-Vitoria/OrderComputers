@@ -5,6 +5,7 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 
 import '../../public/css/index.css';
+import { Layout } from '../Layout';
 
 export class IndexContainer extends Component {
     static displayName = IndexContainer.name;
@@ -36,15 +37,14 @@ export class IndexContainer extends Component {
     }
 
     renderModel(model) {
-
         return (
             <>
-                <div className="modal fade" id="descriptionModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal fade" id="descriptionModal" tabIndex="-1" aria-labelledby="descriptionModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <div className="modal-header">
                                 {this.state.descriptionItem != null ? <>
-                                    <h1 className="modal-title fs-5" id="exampleModalLabel">{this.state.descriptionItem.name}</h1>
+                                    <h1 className="modal-title fs-5" id="descriptionModalLabel">{this.state.descriptionItem.name}</h1>
                                 </>
                                     : null
                                 }
@@ -141,8 +141,8 @@ export class IndexContainer extends Component {
                     <h1>Наши модели</h1>
                     <div className="cardsContainer modelsContainer">
 
-                        {model.typesComputerAssembly.map((item, key) =>
-                            <a key={key} href="#">
+                            {model.typesComputerAssembly.map((item, key) =>
+                                <a key={key} href="#">
 
                                 <div className="card">
                                     <img src={item.item2} className="card-img-top" alt="..." />
@@ -161,12 +161,12 @@ export class IndexContainer extends Component {
                     <h1>Лучшие сборки</h1>
                     <OwlCarousel className='cardsContainer' loop items={3 } margin={30} autoWidth={ true } dots={ false } autoplay={ true }>
                             {model.bestComputerAssemblies.map(item =>
-                                <a key={item.id} href="#" onClick={(ev) => {
+                                <a key={item.id} href="" onClick={(ev) => {
                                     this.setState({
                                         descriptionItem: item
                                     });
-                                }}>
-
+                                }} data-bs-toggle="modal" data-bs-target="#descriptionModal">
+                                    
                                 <div className="card">
                                     <img src={item.imgUrl} className="card-img-top" alt="..." />
                                     <div className="card-body">

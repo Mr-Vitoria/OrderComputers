@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
+import { Layout } from '../Layout';
 
 export default class Profile extends Component {
     static displayName = Profile.name;
@@ -26,7 +27,7 @@ export default class Profile extends Component {
                 loading: false
             });
         } else {
-            console.log('Error get user info: ');
+            Layout.changeMessage('Ошибка при получении информации о пользователе, повторите попытку позже');
         }
     }
 

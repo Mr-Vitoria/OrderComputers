@@ -656,7 +656,6 @@ export default class SortBlock extends Component {
     async getSelectOption() {
         const response = await fetch('ordersystem/getselectoption');
         const data = await response.json();
-        console.log(data);
         this.setState({
             selectOption: data,
             minProcessorCores: data.processors.minCountCores,

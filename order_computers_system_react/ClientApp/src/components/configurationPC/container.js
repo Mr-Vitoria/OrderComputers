@@ -15,6 +15,7 @@ import SelectMenuKeyboards from './selectMenuKeyboards'
 
 import SelectBodyFormFactor from './selectBodyFormFactor'
 
+import { Layout } from '../Layout';
 export class ConfigurationPCContainer extends Component {
     static displayName = ConfigurationPCContainer.name;
 
@@ -376,7 +377,7 @@ export class ConfigurationPCContainer extends Component {
         const cookies = new Cookies();
         let userId = cookies.get('userId');
         if (userId == null) {
-            console.log('user not login');
+            Layout.changeMessage("Пожалуйста, авторизуйтесь чтобы создавать заказы");
             return;
         }
 
@@ -416,6 +417,7 @@ export class ConfigurationPCContainer extends Component {
 
                 + '&peripheryIds=' + peripheryString);
         }
+        Layout.changeMessage('Сборка успешно создана');
         window.location.href = '/';
     }
 }

@@ -25,6 +25,13 @@ namespace order_computers_system_react.Controllers
         [Route("getindexmodel")]
         public async Task<object> Index()
         {
+            await _context.CompProcessors.LoadAsync();
+            await _context.CompBodies.LoadAsync();
+            await _context.VideoCards.LoadAsync();
+            await _context.MotherCards.LoadAsync();
+            await _context.PowerSupplyUnits.LoadAsync();
+            await _context.RAMMemories.LoadAsync();
+            await _context.StorageDevices.LoadAsync();
             await _context.Users.LoadAsync();
             var model= new {
                 BestComputerAssemblies = new List<ComputerAssembly>(),
@@ -284,7 +291,6 @@ namespace order_computers_system_react.Controllers
             await _context.VideoCards.LoadAsync();
             await _context.MotherCards.LoadAsync();
             await _context.PowerSupplyUnits.LoadAsync();
-            await _context.Peripheries.LoadAsync();
             await _context.RAMMemories.LoadAsync();
             await _context.StorageDevices.LoadAsync();
 

@@ -18,7 +18,6 @@ export class HistoryContainer extends Component {
     }
 
     componentDidMount() {
-        const cookies = new Cookies();
         if (this.state.userId != null) {
 
             this.getModel();
