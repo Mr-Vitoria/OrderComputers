@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "react-owl-carousel": "^2.3.3",
     "universal-cookie": "^4.0.4"
   }
 }

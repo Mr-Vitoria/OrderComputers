@@ -50,25 +50,25 @@ export default class Index extends Component {
                     {items.map(item =>
                         <tr key={item.id}>
                             <td>
-                                {item.compBody.name}
+                                {item.compBody != null ? item.compBody.name:null}
                             </td>
                             <td>
-                                {item.compProcessor.name}
+                                {item.compProcessor != null ? item.compProcessor.name:null}
                             </td>
                             <td>
-                                {item.motherCard.name}
+                                {item.motherCard != null ? item.motherCard.name:null}
                             </td>
                             <td>
-                                {item.powerSupplyUnit.name}
+                                {item.powerSupplyUnit != null ? item.powerSupplyUnit.name:null}
                             </td>
                             <td>
-                                {item.ramMemory.name}
+                                {item.ramMemory != null ? item.ramMemory.name:null}
                             </td>
                             <td>
-                                {item.storageDevice.name}
+                                {item.storageDevice != null ? item.storageDevice.name:null}
                             </td>
                             <td>
-                                {item.videoCard.name}
+                                {item.videoCard != null ? item.videoCard.name:null}
                             </td>
                             <td>
                                 <a onClick={(ev) => {

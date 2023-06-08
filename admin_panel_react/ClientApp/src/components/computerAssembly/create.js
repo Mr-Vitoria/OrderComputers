@@ -99,7 +99,7 @@ export default class Create extends Component {
                             <div className="form-group">
                             <label className="control-label">Video card</label>
                             <select ref={this.inputVideoIdRef} className="form-control" >
-                                <option value="NONE">NONE</option>
+                                <option value="-1">NONE</option>
                                 {data.videoCards.map((item, index) => {
                                     return <option key={index} value={item.value}>{item.text}</option>;
                                 })}
@@ -194,7 +194,8 @@ export default class Create extends Component {
 
     async createItem() {
         const response = await fetch('computerassemblies/create?'
-            + 'compBodyId=' + this.inputBodyIdRef.current.value
+            + 'name=' + this.inputNameRef.current.value
+            + '&compBodyId=' + this.inputBodyIdRef.current.value
             + '&motherCardId=' + this.inputMotherIdRef.current.value
             + '&powerSupplyUnitId=' + this.inputPowerIdRef.current.value
             + '&compProcessorId=' + this.inputProcIdeRef.current.value

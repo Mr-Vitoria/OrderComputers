@@ -82,24 +82,25 @@ export default class OrderBlock extends Component {
                     }
                     
                     <div className="totalContainer">
-                        <div>
+                        <div className="totalPriceContainer">
                             <p>Итого</p>
                             <input type="text" defaultValue={this.state.item.totalPrice} readOnly />
                         </div>
+                        <div className="buttonContainer">
                         {this.state.item.status == "Активен" ?
                             <button onClick={(ev) => {
                                 this.cancelOrder();
                             }}>Отменить</button>
-                            :
-                            <div className="buttonContainer">
+                            :<>
                                 <button onClick={(ev) => {
                                     this.repeatOrder();
                                 }}>Повторить</button>
                                 <button onClick={(ev) => {
                                     this.deleteOrder();
-                                }}>Удалить</button>
-                            </div>
-                        }
+                                    }}>Удалить</button>
+                                </>
+                            }
+                        </div>
                     </div>
                     <p className="orderDate">Дата заказа: {this.state.item.orderDate}</p>
                 </div>

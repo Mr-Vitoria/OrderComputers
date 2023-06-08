@@ -1,7 +1,4 @@
-﻿main {
-    padding: 30px 15%;
-}
-
+﻿
 h1, h2 {
     width: 100%;
     text-align: center;
@@ -9,7 +6,9 @@ h1, h2 {
 }
 
 .configurationContainer section {
+    margin:0 300px;
     margin-top: 50px;
+    
 }
 
 
@@ -90,23 +89,6 @@ h1, h2 {
                 font-size: 0.5em;
             }
 
-.configurationContainer ::-webkit-scrollbar {
-    background: transparent;
-    width: 0.5em;
-    position: absolute;
-}
-
-.configurationContainer ::-webkit-scrollbar-track {
-    background: transparent;
-    position: absolute;
-    z-index: -2;
-}
-
-.configurationContainer ::-webkit-scrollbar-thumb {
-    border-radius: 100px;
-    background: #888;
-}
-
 .configurationContainer ul.selectMenu {
     background-color: #323232;
     transition: .3s;
@@ -127,6 +109,14 @@ h1, h2 {
         cursor: pointer;
         font-size: 0.9em;
     }
+        .configurationContainer ul.selectMenu > li .btnChange {
+            background-color:transparent;
+            border:none;
+            margin-left:20px;
+        }
+        .configurationContainer ul.selectMenu > li .btnChange:hover {
+            color:gray;
+        }
 
         .configurationContainer ul.selectMenu > li.selectoption {
             padding: 10px;
@@ -134,7 +124,7 @@ h1, h2 {
 
             .configurationContainer ul.selectMenu > li.selectoption:hover {
                 color: black !important;
-                background: #323232;
+                background: #575757;
                 transition: .2s;
             }
 
@@ -157,6 +147,8 @@ h1, h2 {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    margin: 0;
+    margin-top: 50px;
 }
 
     .configurationContainer .partlyContainer input {
@@ -179,6 +171,8 @@ h1, h2 {
     display: flex;
     font-size: 1.7em;
     justify-content: space-evenly;
+    margin: 0;
+    margin-top:50px;
 }
 
 .configurationContainer .comments textarea {
@@ -189,4 +183,25 @@ h1, h2 {
     border: 5px solid black;
     font-size: 2em;
     padding: 20px;
+}
+
+
+@media (max-width:1400px){
+    .configurationContainer section {
+        margin: 0 100px;
+        margin-top: 50px;
+    }
+
+}
+@media (max-width:950px){
+    .configurationContainer section {
+        margin: 0 5% ;
+        margin-top: 50px !important;
+        font-size: 0.8em;
+    }
+    .configurationContainer .partlyContainer input,
+    .configurationContainer .partlyContainer .form-group {
+        width: 400px;
+    }
+
 }

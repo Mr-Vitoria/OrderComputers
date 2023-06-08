@@ -45,7 +45,7 @@ namespace admin_panel_react.Controllers
                                         string family,string generation, 
                                         string series, string type, 
                                         int count,int price, 
-                                        string imgUrl = "")
+                                        string imgUrl)
         {
             VideoCard videoCard = new VideoCard
             {

@@ -1,7 +1,7 @@
-﻿.indexContainer .carousel img {
+﻿.indexContainer .infoCarousel img {
     object-fit: cover;
     object-position: center;
-    max-height: 70vh;
+    max-height: 80vh;
 }
 
 .indexContainer h1 {
@@ -29,6 +29,8 @@
         border: none;
         box-shadow: -5px 5px 20px black;
         transition-duration: 300ms;
+        margin: 30px 0;
+        width: 18rem;
     }
 
         .indexContainer .cardsContainer .card:hover {
@@ -69,6 +71,15 @@
     width: 50px;
     height: 50px;
 }
+.indexContainer .feedBack .feedBackHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: fit-content;
+}
+.indexContainer .feedBack .feedBackHeader span{
+    margin: 0 15px;
+}
 
     .indexContainer .feedBack .imgContainer img {
         width: 100%;
@@ -92,9 +103,49 @@
 
     .indexContainer .feedbackSection button {
         width: 25%;
+        min-width:150px;
         margin-top: 30px;
         margin-left: 40%;
         padding: 15px 0;
         background-color: gray;
         border-radius: 10px;
     }
+
+@media (max-width:1150px){
+    .indexContainer .modelsContainer {
+        flex-direction: column;
+        align-items:center;
+    }
+        .indexContainer .modelsContainer .card {
+            width: 400px;
+        }
+    .indexContainer .feedBack p{
+        width:100%;
+    }
+}
+
+@media (max-width:750px) {
+    .indexContainer .servicesContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .indexContainer .servicesContainer .card {
+            width: 400px;
+        }
+    .indexContainer .TextContainer p {
+        height: fit-content;
+        text-align: center;
+        width: 100%;
+        font-size: 1.4em;
+    }
+    .indexContainer .TextContainer img {
+        width:100%;
+    }
+    .indexContainer .TextContainer:nth-child(2n) {
+        flex-direction: column;
+    }
+    .indexContainer .TextContainer:nth-child(2n+1) {
+        flex-direction: column-reverse;
+    }
+}

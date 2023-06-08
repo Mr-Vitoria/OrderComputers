@@ -23,7 +23,7 @@ export default class Detail extends Component {
                 <div>
                     <h4>Detail mother card</h4>
                     <hr />
-                    <dl classNameName="row">
+                    <dl className="row">
                         <dt className="col-sm-2">
                             Image
                         </dt>
@@ -82,6 +82,7 @@ export default class Detail extends Component {
     }
 
     render() {
+
         let contents = this.state.loading
             ? <div className="middle">
                 <div className="bar bar1"></div>
@@ -107,7 +108,7 @@ export default class Detail extends Component {
         if (response.status == 200) {
 
             const data = await response.json();
-            this.setState({ items: data, loading: false });
+            this.setState({ item: data, loading: false });
         }
         else {
 

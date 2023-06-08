@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Cookies from 'universal-cookie';
+import { Layout } from '../Layout';
 
 export default class Registration extends Component {
     static displayName = Registration.name;
@@ -27,12 +27,10 @@ export default class Registration extends Component {
                 this.setTypePage("Login");
             }
             else {
-                console.log('Error create user');
-                //Layout.setMessage('Password or phone ercorrect: ' + response.statusText);
+                Layout.changeMessage('Ошибка! Проверьте правильность ввода данных и попробуйте еще раз');
             }
         } else {
-            console.log('Error response in create user: ');
-            //Layout.setMessage('Error get user info: ' + response.statusText);
+            Layout.changeMessage('Не удалось создать пользователя. Повторите попытку похже');
         }
 
 

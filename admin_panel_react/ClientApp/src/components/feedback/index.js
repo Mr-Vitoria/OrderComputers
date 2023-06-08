@@ -27,6 +27,9 @@ export default class Index extends Component {
                         <th>
                             Text
                         </th>
+                        <th>
+                            Date
+                        </th>
                         <th></th>
                     </tr>
                 </thead>
@@ -39,6 +42,9 @@ export default class Index extends Component {
                             </td>
                             <td>
                                 {item.text}
+                            </td>
+                            <td>
+                                {item.date}
                             </td>
                             
                             <td>

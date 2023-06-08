@@ -64,7 +64,8 @@ namespace admin_panel_react.Controllers
                 TurboTechnology = turboTechnology,
                 TypeRam = typeRam,
                 HaveVideoCard = haveVideoCard,
-                Price = price
+                Price = price,
+                ImgUrl = imgUrl
             };
             if (ModelState.IsValid)
             {
@@ -95,7 +96,8 @@ namespace admin_panel_react.Controllers
                 TurboTechnology = turboTechnology,
                 TypeRam = typeRam,
                 HaveVideoCard = haveVideoCard,
-                Price = price
+                Price = price,
+                ImgUrl = imgUrl
             };
             try
             {

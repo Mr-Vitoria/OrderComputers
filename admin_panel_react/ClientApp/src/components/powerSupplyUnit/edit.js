@@ -107,7 +107,7 @@ export default class Edit extends Component {
         if (response.status == 200) {
 
             const data = await response.json();
-            this.setState({ item: data, loading: false });
+            this.setState({ item: data, loading: false, imageUrl: data.imgUrl });
         } else {
 
             Layout.setMessage('Error get power supply unit: ' + response.statusText);

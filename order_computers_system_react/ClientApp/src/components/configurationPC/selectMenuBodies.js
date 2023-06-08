@@ -6,7 +6,8 @@ export default class SelectMenuBodies extends Component {
         this.state = {
             model: props.model,
             loading: true,
-            selectItem: null
+            selectItem: null,
+            infoItem: null
         };
         this.changeItem = props.changeItem;
 
@@ -17,17 +18,50 @@ export default class SelectMenuBodies extends Component {
         return (
             <>
 
+                <div className="modal fade" id="aboutBodyModal" tabIndex="-1" aria-labelledby="aboutBodyModalLabel" aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                {this.state.infoItem != null ? <>
+                                    <h1 className="modal-title fs-5" id="aboutBodyModalLabel">{this.state.infoItem.name}</h1>
+                                </>
+                                    : null
+                                }
+
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className="modal-body">
+                                {this.state.infoItem != null ? <>
+                                    <img src={this.state.infoItem.imgUrl} />
+
+                                    <h2>Корпус:</h2>
+                                    <p>Название: {this.state.infoItem.name}</p>
+                                    <p>Форм фактор: {this.state.infoItem.formFactor}</p>
+                                    <p>Цена: {this.state.infoItem.price} руб.</p>
+
+                                </>
+                                    : null
+                                }
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div ref={this.parentRef} onClick={(ev) => {
-                    this.parentRef.current.classList.toggle('show');
-                    this.parentRef.current.scrollTo(0, 0);
+                    if (ev.target.classList.contains('select')) {
+                        this.parentRef.current.classList.toggle('show');
+                        this.parentRef.current.scrollTo(0, 0);
+                    }
                 }} className="select">
                     <div className="selectMenuValue">
                         {this.state.selectItem == null ? <span>Корпус</span>
                             : <div className="container">
-                                <img src={this.state.selectItem.imgUrl} />
                                 <span>{this.state.selectItem.name}</span>
                                 <div className="properties">
                                     <span>Форм-фактор: {this.state.selectItem.formFactor}</span>
+                                    <span>Цена: {this.state.selectItem.price} руб.</span>
                                 </div>
                             </div>}
 
@@ -35,16 +69,27 @@ export default class SelectMenuBodies extends Component {
                     <ul className="selectMenu">
                         {
                             this.state.model.map(item => {
-                                return <li key={item.id} className="selectoption container" onClick={(ev) => {
-                                    this.setState({
-                                        selectItem: item
-                                    });
-                                    this.changeItem(item);
-                                }}>
-                                    <img src={ item.imgUrl} />
+                                return <li key={item.id} className="selectoption container">
                                     <span>{item.name}</span>
                                     <div className="properties">
                                         <span>Форм-фактор: {item.formFactor}</span>
+                                        <span>Цена: {item.price} руб.</span>
+                                    </div>
+                                    <div className="btnContainer">
+                                        <button className="btnChange" onClick={(ev) => {
+                                            this.setState({
+                                                infoItem: item
+                                            });
+                                        }} data-bs-toggle="modal" data-bs-target="#aboutBodyModal">Подробнее</button>
+                                        <button className="btnChange" onClick={(ev) => {
+
+                                            this.setState({
+                                                selectItem: item
+                                            });
+                                            this.changeItem(item);
+                                            this.parentRef.current.classList.toggle('show');
+                                            this.parentRef.current.scrollTo(0, 0);
+                                        }}>Выбрать</button>
                                     </div>
                                 </li>
                             })

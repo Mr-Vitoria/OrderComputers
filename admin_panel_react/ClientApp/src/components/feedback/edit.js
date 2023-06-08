@@ -17,6 +17,7 @@ export default class Edit extends Component {
         this.inputIdRef = React.createRef();
         this.inputUserIdRef = React.createRef();
         this.inputTextRef = React.createRef();
+        this.inputDateRef = React.createRef();
 
     }
 
@@ -46,6 +47,14 @@ export default class Edit extends Component {
 
                                 </textarea>
                             </div>
+
+                            <div className="form-group">
+                                <label className="control-label">Date</label>
+                                <input defaultValue={
+                                    item.date
+                                } ref={this.inputDateRef} className="form-control" type="date" />
+                            </div>
+
                             <div className="form-group">
                                 <button onClick={(ev) => {
                                     ev.preventDefault();
@@ -108,6 +117,7 @@ export default class Edit extends Component {
 
         const response = await fetch('feedbacks/edit?id=' + this.inputIdRef.current.value
             + '&userId=' + this.inputUserIdRef.current.value
+            + '&date=' + this.inputDateRef.current.value
             + '&text=' + this.inputTextRef.current.value);
 
         if (response.status == 200) {

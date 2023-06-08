@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using admin_panel_react.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace admin_panel_react.Controllers
 {
@@ -55,12 +56,13 @@ namespace admin_panel_react.Controllers
         }
 
         [Route("create")]
-        public async Task<string> Create(int userId, string Text)
+        public async Task<string> Create(int userId, string text,string date)
         {
             Feedback feedback = new Feedback
             {
                 UserId = userId,
-                Text = Text
+                Text = text,
+                Date = date
             };
 
             if (ModelState.IsValid)
@@ -74,13 +76,14 @@ namespace admin_panel_react.Controllers
 
         [HttpGet]
         [Route("edit")]
-        public async Task<string> Edit(int id, int userId, string Text)
+        public async Task<string> Edit(int id, int userId, string text, string date)
         {
             Feedback feedback = new Feedback
             {
                 Id = id,
                 UserId = userId,
-                Text = Text
+                Text = text,
+                Date = date
 
             };
             try

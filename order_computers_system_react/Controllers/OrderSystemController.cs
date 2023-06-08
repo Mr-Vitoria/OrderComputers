@@ -25,15 +25,27 @@ namespace order_computers_system_react.Controllers
         [Route("getindexmodel")]
         public async Task<object> Index()
         {
+            await _context.CompProcessors.LoadAsync();
+            await _context.CompBodies.LoadAsync();
+            await _context.VideoCards.LoadAsync();
+            await _context.MotherCards.LoadAsync();
+            await _context.PowerSupplyUnits.LoadAsync();
+            await _context.RAMMemories.LoadAsync();
+            await _context.StorageDevices.LoadAsync();
             await _context.Users.LoadAsync();
             var model= new {
                 BestComputerAssemblies = new List<ComputerAssembly>(),
                 TypesComputerAssembly = new List<Tuple<string,string,int>>(),
-                Feedbacks = (await _context.Feedbacks.ToListAsync()).TakeLast(4)
+                Feedbacks = (await _context.Feedbacks.ToListAsync()).TakeLast(4).Reverse()
 
         };
-            model.BestComputerAssemblies.AddRange(await _context.ComputerAssemblies.Take(4).ToListAsync());
-            foreach (var item in await _context.ComputerAssemblies.Select(ca => ca.TypeComputerAssembly).Distinct().ToListAsync())
+            model.BestComputerAssemblies
+                .AddRange(await _context.ComputerAssemblies.Where(assembly=> assembly.TypeComputerAssembly!="Order")
+                                                            .Take(4).ToListAsync());
+            foreach (var item in await _context.ComputerAssemblies.Select(ca => ca.TypeComputerAssembly)
+                                                                .Distinct()
+                                                                .Where(typeAssembly => typeAssembly != "Order")
+                                                                .ToListAsync())
             {
                 model.TypesComputerAssembly.Add(new Tuple<string, string, int>(item
                     , (await _context.ComputerAssemblies.Where(ca => ca.TypeComputerAssembly == item).FirstOrDefaultAsync()).ImgUrl
@@ -109,8 +121,7 @@ namespace order_computers_system_react.Controllers
             await _context.OrderPeripheries.LoadAsync();
 
 
-            List<Order> orders = await _context.Orders.Where(or => or.UserId == id).ToListAsync();
-            return orders;
+            return await _context.Orders.Where(or => or.UserId == id).OrderBy(or=>or.Id).Reverse().ToListAsync();
         }
 
         [HttpGet]
@@ -156,13 +167,13 @@ namespace order_computers_system_react.Controllers
                     RAMMemoryId = ramId,
                     StorageDeviceId = storageId,
                     VideoCardId = videoId,
-                    TypeComputerAssembly = "Users",
+                    TypeComputerAssembly = "Order",
                     CostPrice = assemblyPrice,
                     ImgUrl = "",
                     OwnerId = userId
                 },
                 TypeOrder = "Full",
-                Status = "Active",
+                Status = "Активен",
                 OrderDate = orderDate.ToString()
             };
 
@@ -195,14 +206,14 @@ namespace order_computers_system_react.Controllers
                 TotalPrice = totalPrice,
                 ComputerAssembly = new ComputerAssembly()
                 {
-                    TypeComputerAssembly = "Users",
+                    TypeComputerAssembly = "Order",
                     ImgUrl = "",
                     OwnerId = userId
                 },
                 Budjet =budjet,
                 Comment = comment,
                 TypeOrder = "Price",
-                Status = "Active",
+                Status = "Активен",
                 OrderDate = orderDate.ToString()
             };
 
@@ -239,7 +250,7 @@ namespace order_computers_system_react.Controllers
         [Route("repeatorder")]
         public async Task<object> RepeatOrder(int orderId)
         {
-            (await _context.Orders.FirstOrDefaultAsync(or => or.Id == orderId)).Status = "Active";
+            (await _context.Orders.FirstOrDefaultAsync(or => or.Id == orderId)).Status = "Активен";
             await _context.SaveChangesAsync();
 
             return "Ok";
@@ -248,7 +259,7 @@ namespace order_computers_system_react.Controllers
         [Route("cancelorder")]
         public async Task<object> CancelOrder(int orderId)
         {
-            (await _context.Orders.FirstOrDefaultAsync(or => or.Id == orderId)).Status = "Cancel";
+            (await _context.Orders.FirstOrDefaultAsync(or => or.Id == orderId)).Status = "Отменен";
             await _context.SaveChangesAsync();
 
             return "Ok";
@@ -257,12 +268,13 @@ namespace order_computers_system_react.Controllers
 
         [HttpGet]
         [Route("addFeedback")]
-        public async Task<object> AddFeedback(int userId,string text)
+        public async Task<object> AddFeedback(int userId,string text, string date)
         {
             Feedback feedback = new Feedback()
             {
                 UserId = userId,
-                Text = text
+                Text = text,
+                Date = date
             };
             await _context.Feedbacks.AddAsync(feedback);
 
@@ -279,12 +291,11 @@ namespace order_computers_system_react.Controllers
             await _context.VideoCards.LoadAsync();
             await _context.MotherCards.LoadAsync();
             await _context.PowerSupplyUnits.LoadAsync();
-            await _context.Peripheries.LoadAsync();
             await _context.RAMMemories.LoadAsync();
             await _context.StorageDevices.LoadAsync();
 
 
-            return await _context.ComputerAssemblies.Where(assembly=>assembly.CompProcessor.Name!=null).ToListAsync();
+            return await _context.ComputerAssemblies.Where(assembly=> assembly.TypeComputerAssembly!="Order").ToListAsync();
         }
 
         [HttpGet]

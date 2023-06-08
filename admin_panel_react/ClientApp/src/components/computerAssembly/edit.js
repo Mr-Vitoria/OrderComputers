@@ -34,7 +34,7 @@ export default class Edit extends Component {
 
     }
 
-    renderItem(data,item) {
+    renderItem(data, item) {
         return (
             <div>
                 <div className="row">
@@ -43,7 +43,7 @@ export default class Edit extends Component {
                             <input defaultValue={item.id } ref={this.inputIdRef} type="hidden" className="form-control" />
                             <div className="form-group">
                                 <label className="control-label">Name assembly</label>
-                                <input type="text" ref={this.inputNameRef} className="form-control" />
+                                <input defaultValue={item.name} type="text" ref={this.inputNameRef} className="form-control" />
                             </div>
 
                             <div className="form-group">
@@ -104,7 +104,7 @@ export default class Edit extends Component {
                             <div className="form-group">
                                 <label className="control-label">Video card</label>
                                 <select defaultValue={item.videoCardId} ref={this.inputVideoIdRef} className="form-control">
-                                    <option value="NONE">NONE</option>
+                                    <option value="-1">NONE</option>
                                     {data.videoCards.map((item, index) => {
                                         return <option key={index} value={item.value}>{item.text}</option>;
                                     })}
@@ -193,7 +193,7 @@ export default class Edit extends Component {
 
             const data = await response.json();
             const selectList = await responseSelectList.json();
-            this.setState({ item: data, data: selectList, loading: false });
+            this.setState({ item: data, data: selectList, loading: false, imageUrl: data.imgUrl });
         }
         else {
 
@@ -204,6 +204,7 @@ export default class Edit extends Component {
     async editItem() {
 
         const response = await fetch('computerassemblies/edit?id=' + this.inputIdRef.current.value
+            + '&name=' + this.inputNameRef.current.value
             + '&compBodyId=' + this.inputBodyIdRef.current.value
             + '&motherCardId=' + this.inputMotherIdRef.current.value
             + '&powerSupplyUnitId=' + this.inputPowerIdRef.current.value
@@ -213,7 +214,7 @@ export default class Edit extends Component {
             + '&videoCardId=' + this.inputVideoIdRef.current.value
             + '&ownerId=' + this.inputOwnerIdRef.current.value
             + '&type=' + this.inputTypeRef.current.value
-            + '&imgUrl=' + this.state.value
+            + '&imgUrl=' + this.state.imageUrl
             + '&costPrice=' + this.inputCostPriceRef.current.value);
 
         if (response.status == 200) {

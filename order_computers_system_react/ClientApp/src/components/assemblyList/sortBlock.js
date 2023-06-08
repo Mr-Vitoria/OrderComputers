@@ -49,6 +49,7 @@ export default class SortBlock extends Component {
         };
 
         this.filterItems = this.filterItems.bind(this);
+        this.resetSort = this.resetSort.bind(this);
     }
     componentDidMount() {
 
@@ -113,7 +114,7 @@ export default class SortBlock extends Component {
             sortItems = sortItems.filter(item => {
                 for (var i = 0; i < this.state.selectVideoCardProducers.length; i++) {
 
-                    if (item.videoCard.producer == this.state.selectVideoCardProducers[i]) {
+                    if (item.videoCard != null &&(item.videoCard.producer == this.state.selectVideoCardProducers[i])) {
                         return true;
                     }
                 }
@@ -123,15 +124,15 @@ export default class SortBlock extends Component {
             sortItems = sortItems.filter(item => {
                 for (var i = 0; i < this.state.selectVideoCardType.length; i++) {
 
-                    if (item.videoCard.type == this.state.selectVideoCardType[i]) {
+                    if (item.videoCard != null &&item.videoCard.type == this.state.selectVideoCardType[i]) {
                         return true;
                     }
                 }
                 return false;
             });
         sortItems = sortItems.filter(item => {
-            if (item.videoCard.count < this.state.minVideoCardCount
-                || item.videoCard.count > this.state.maxVideoCardCount) {
+            if (item.videoCard!=null &&( item.videoCard.count < this.state.minVideoCardCount
+                || item.videoCard.count > this.state.maxVideoCardCount)) {
                 return false;
             }
             return true;
@@ -231,6 +232,12 @@ export default class SortBlock extends Component {
 
         this.state.changeSortItems(sortItems);
 
+    }
+
+    resetSort() {
+
+        //this.state.changeSortItems(this.state.defaultItems);
+        window.location.reload();
     }
 
     render() {
@@ -637,6 +644,7 @@ export default class SortBlock extends Component {
                                 </div>
                             </div>
                         </div>
+                        <button className="resetBtn" onClick={(ev) => { this.resetSort(); }}>Сбросить</button>
                     </div>
                 </div>
                     : null}
@@ -648,7 +656,6 @@ export default class SortBlock extends Component {
     async getSelectOption() {
         const response = await fetch('ordersystem/getselectoption');
         const data = await response.json();
-        console.log(data);
         this.setState({
             selectOption: data,
             minProcessorCores: data.processors.minCountCores,

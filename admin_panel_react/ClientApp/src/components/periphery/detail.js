@@ -89,7 +89,7 @@ export default class Detail extends Component {
         if (response.status == 200) {
 
             const data = await response.json();
-            this.setState({ items: data, loading: false });
+            this.setState({ item: data, loading: false });
         } else {
 
             Layout.setMessage('Error get Periphery: ' + response.statusText);

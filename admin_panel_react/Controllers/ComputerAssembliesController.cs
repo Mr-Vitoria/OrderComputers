@@ -70,18 +70,20 @@ namespace admin_panel_react.Controllers
         public async Task<string> Create(int compBodyId, int motherCardId, 
             int powerSupplyUnitId, int compProcessorId, 
             int ramMemoryId, int storageDeviceId, 
-            int videoCardId, int ownerId, int costPrice, 
-            string type, string imgUrl="")
+            int videoCardId, int ownerId, 
+            int costPrice, string type,
+            string name, string imgUrl="")
         {
             ComputerAssembly computerAssembly = new ComputerAssembly()
             {
+                Name = name,
                 CompBodyId = compBodyId,
                 MotherCardId = motherCardId,
                 PowerSupplyUnitId = powerSupplyUnitId,
                 CompProcessorId = compProcessorId,
                 RAMMemoryId = ramMemoryId,
                 StorageDeviceId = storageDeviceId,
-                VideoCardId = videoCardId,
+                VideoCardId = (videoCardId==-1?null:videoCardId),
                 OwnerId = ownerId,
                 CostPrice = costPrice,
                 TypeComputerAssembly = type,
@@ -105,18 +107,20 @@ namespace admin_panel_react.Controllers
             int compProcessorId, int ramMemoryId, 
             int storageDeviceId, int videoCardId, 
             int ownerId, int costPrice,
-            string type, string imgUrl="")
+            string type, string name,
+            string imgUrl="")
         {
             ComputerAssembly computerAssembly = new ComputerAssembly()
             {
                 Id = id,
+                Name = name,
                 CompBodyId = compBodyId,
                 MotherCardId = motherCardId,
                 PowerSupplyUnitId = powerSupplyUnitId,
                 CompProcessorId = compProcessorId,
                 RAMMemoryId = ramMemoryId,
                 StorageDeviceId = storageDeviceId,
-                VideoCardId = videoCardId,
+                VideoCardId = (videoCardId == -1 ? null : videoCardId),
                 OwnerId = ownerId,
                 CostPrice = costPrice,
                 TypeComputerAssembly = type,

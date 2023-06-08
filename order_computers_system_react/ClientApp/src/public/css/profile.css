@@ -6,6 +6,7 @@
     flex-direction: column;
     align-items: center;
     width: 700px;
+    min-height:80vh;
 }
 
     .profileContainer .loginSection h2 {
@@ -106,4 +107,22 @@
     margin: 10px 0;
     font-size: 2.5em;
     padding: 15px 40px;
+}
+
+
+@media (max-width:850px){
+    .profileContainer .loginSection {
+        width: 100%;
+        padding: 40px;
+    }
+    .profileContainer .loginSection form input{
+        width:100%;
+    }
+    .profileContainer .loginSection form button {
+        font-size: 0.8em;
+    }
+    .profileContainer .profileSection p,
+    .profileContainer .profileSection label {
+        width: 400px;
+    }
 }

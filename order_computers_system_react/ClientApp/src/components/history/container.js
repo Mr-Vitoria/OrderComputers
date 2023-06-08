@@ -18,7 +18,6 @@ export class HistoryContainer extends Component {
     }
 
     componentDidMount() {
-        const cookies = new Cookies();
         if (this.state.userId != null) {
 
             this.getModel();
@@ -91,10 +90,8 @@ export class HistoryContainer extends Component {
 
 
     async getModel() {
-        console.log(this.state.userId);
         const response = await fetch('ordersystem/gethistoryuser?id=' + this.state.userId);
         const data = await response.json();
-        console.log(data);
         this.setState({ model: data, loading: false });
     }
 }
