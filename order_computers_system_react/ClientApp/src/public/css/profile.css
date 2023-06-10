@@ -22,17 +22,21 @@
         font-size: 1.5em;
     }
 
-        .profileContainer .loginSection form input {
+        .profileContainer .loginSection form input,
+        .profileContainer .modal input {
             border: 2px solid black;
             background-color: transparent;
             padding: 20px;
             height: 60px;
             width: 750px;
         }
+.profileContainer .modal input {
+    width:100%;
+}
 
-        .profileContainer .loginSection form label {
-            margin: 10px 0;
-        }
+.profileContainer .loginSection form label {
+    margin: 10px 0;
+}
 
         .profileContainer .loginSection form button {
             border: 2px solid black;
@@ -115,9 +119,10 @@
         width: 100%;
         padding: 40px;
     }
-    .profileContainer .loginSection form input{
-        width:100%;
-    }
+        .profileContainer .loginSection form input,
+        .profileContainer .modal input {
+            width: 100%;
+        }
     .profileContainer .loginSection form button {
         font-size: 0.8em;
     }

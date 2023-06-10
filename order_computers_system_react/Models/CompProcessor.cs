@@ -9,7 +9,6 @@
         public int CountCores { get; set; }
         public int CountThreads { get; set; }
         public int Frequency { get; set; }
-        public string TurboTechnology { get; set; }
         public string TypeRam { get; set; }
         public bool HaveVideoCard { get; set; }
         public string? ImgUrl { get; set; }
