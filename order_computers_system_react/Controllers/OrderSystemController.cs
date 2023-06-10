@@ -57,7 +57,7 @@ namespace order_computers_system_react.Controllers
 
         [HttpGet]
         [Route("getuser")]
-        public async Task<User?> Details(string phone)
+        public async Task<User?> UserDetails(string phone)
         {
             var user = await _context.Users
                 .FirstOrDefaultAsync(m => m.Phone == phone);
@@ -67,7 +67,7 @@ namespace order_computers_system_react.Controllers
 
         [HttpGet]
         [Route("getuserbyid")]
-        public async Task<User?> Details(int id)
+        public async Task<User?> UserDetailsById(int id)
         {
             var user = await _context.Users
                 .FirstOrDefaultAsync(m => m.Id== id);
@@ -77,7 +77,7 @@ namespace order_computers_system_react.Controllers
 
         [HttpGet]
         [Route("changeuserinfo")]
-        public async Task<User?> ChngeUserInfo(int id, string imgUrl)
+        public async Task<object> ChangeUserInfo(int id, string imgUrl)
         {
             var user = await _context.Users
                 .FirstOrDefaultAsync(m => m.Id== id);
@@ -85,7 +85,7 @@ namespace order_computers_system_react.Controllers
 
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
-            return user;
+            return "Ok";
         }
 
 
@@ -121,7 +121,7 @@ namespace order_computers_system_react.Controllers
 
         [HttpGet]
         [Route("gethistoryuser")]
-        public async Task<object> Orders(int id)
+        public async Task<object> UserOrders(int id)
         {
             await _context.Users.LoadAsync();
             await _context.CompProcessors.LoadAsync();
