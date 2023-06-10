@@ -32,7 +32,7 @@ export class Header extends Component {
                         <a href="/configuration">Конфигуратор</a>
                         <a href="/profile">Профиль</a>
                         {this.state.userImg != null ? <a href="/history">Заказы</a> : null}
-                        <a href="#">Поддержка</a>
+                        {/*<a href="#">Поддержка</a>*/}
                         {this.state.userImg != null ? <a href="/profile">Профиль</a> : null}
                     </div>
                 </div>
@@ -47,7 +47,7 @@ export class Header extends Component {
                     <div className="linksContainer">
                         <a href="/assemblyList">Модели</a>
                         <a href="/configuration">Конфигуратор</a>
-                        <a href="#">Поддержка</a>
+                        {/*<a href="#">Поддержка</a>*/}
                     </div>
                     <div className="profileContainer">
                         <a href="/configuration">

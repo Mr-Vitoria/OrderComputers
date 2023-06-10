@@ -9,6 +9,6 @@ namespace order_computers_system_react.Models
         [JsonIgnore]
         public Order Order { get; set; }
         public int PeripheryId { get; set; }
-        public Periphery? Periphery { get; set; }
+        public Periphery Periphery { get; set; }
     }
 }

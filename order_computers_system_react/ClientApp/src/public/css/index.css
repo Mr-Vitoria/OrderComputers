@@ -54,6 +54,7 @@
 
 .indexContainer .TextContainer {
     display: flex;
+    justify-content: space-between;
 }
 
     .indexContainer .TextContainer img,
@@ -62,6 +63,9 @@
         height: 300px;
         font-size: 2em;
         color: white;
+    }
+    .indexContainer .TextContainer img {
+        max-width: 500px;
     }
 
 

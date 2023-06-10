@@ -20,7 +20,6 @@ export default class Edit extends Component {
         this.inputCoresRef = React.createRef();
         this.inputThreadsRef = React.createRef();
         this.inputFrequencyRef = React.createRef();
-        this.inputTurboRef = React.createRef();
         this.inputVideoCardRef = React.createRef();
         this.inputRamRef = React.createRef();
         this.inputPriceRef = React.createRef();
@@ -33,7 +32,6 @@ export default class Edit extends Component {
     }
 
     renderItem(item) {
-        console.log(item);
         return (
             <>
                 <div>
@@ -64,14 +62,6 @@ export default class Edit extends Component {
                                 <div className="form-group">
                                     <label className="control-label">Frequency(MGz)</label>
                                     <input ref={this.inputFrequencyRef} className="form-control" type="number" defaultValue={item.frequency} />
-                                </div>
-                                <div className="form-group">
-                                    <label className="control-label">Turbo technology</label>
-                                    <select ref={this.inputTurboRef} className="form-control" defaultValue={item.turboTechnology}>
-                                        <option value="NONE">NONE</option>
-                                        <option value="Turbo Boost">Turbo Boost</option>
-                                        <option value="Turbo Core">Turbo Core</option>
-                                    </select>
                                 </div>
                                 <div className="form-group">
                                     <label className="control-label">Type of RAM</label>

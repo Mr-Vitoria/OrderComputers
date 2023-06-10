@@ -133,7 +133,7 @@ export class IndexContainer extends Component {
                         <img src="https://modguru.net/wp-content/uploads/2016/12/ttces1.jpg" className="d-block w-100" alt="..." />
                     </div>
                     <div className="item">
-                        <img src="https://i.pinimg.com/originals/8a/6c/2e/8a6c2e45cfb9e32859e9e7fa80350ad1.jpg" className="d-block w-100" alt="..." />
+                            <img src="https://4news.it/wp-content/uploads/2020/09/gamingrig4news.jpg" className="d-block w-100" alt="..." />
                     </div>
                 </OwlCarousel>
 
@@ -185,7 +185,7 @@ export class IndexContainer extends Component {
                     <div className="cardsContainer servicesContainer">
                         <a href="/configuration">
                         <div className="card" >
-                                <img src="https://cdn.onlinewebfonts.com/svg/download_542828.png" className="card-img-top" alt="..." />
+                                    <img src="https://www.svgrepo.com/show/105479/television.svg" className="card-img-top" alt="..." />
                             <div className="card-body">
                                 <p className="card-text">Конфигуратор</p>
                             </div>
@@ -193,7 +193,7 @@ export class IndexContainer extends Component {
                         </a>
                         <a href="/configuration">
                         <div className="card">
-                                <img src="https://cdn.onlinewebfonts.com/svg/download_542828.png" className="card-img-top" alt="..." />
+                                    <img src="https://www.svgrepo.com/show/105479/television.svg" className="card-img-top" alt="..." />
                             <div className="card-body">
                                 <p className="card-text">Заказать</p>
                             </div>
@@ -205,12 +205,12 @@ export class IndexContainer extends Component {
                 <section>
                     <h1>Доверяй нам</h1>
                     <div className="TextContainer">
-                        <img src="https://games.mail.ru/hotbox/content_files/gallery/2020/12/24/0bfa60d58df9494580c305d074a4908e.jpg" />
+                            <img src="https://darksave.ru/UserFiles/Image/fix-laptop-home.jpg" />
                         <p>С нами работают только профессионалы своего дела</p>
                     </div>
                     <div className="TextContainer">
                         <p>Наша цель - помочь вам</p>
-                        <img src="https://games.mail.ru/hotbox/content_files/gallery/2020/12/24/0bfa60d58df9494580c305d074a4908e.jpg" />
+                            <img src="https://com-business.ru/wp-content/uploads/9/a/3/9a31c003edb16d2ffc83f71579a3a382.jpeg" />
                     </div>
                 </section>
 
@@ -262,16 +262,16 @@ export class IndexContainer extends Component {
                 <svg className="ip" viewBox="0 0 256 128" width="256px" height="128px" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="0">
-                            <stop offset="0%" stopColor="#5ebd3e" />
-                            <stop offset="33%" stopColor="#ffb900" />
-                            <stop offset="67%" stopColor="#f78200" />
-                            <stop offset="100%" stopColor="#e23838" />
+                            <stop offset="0%" stopColor="white" />
+                            <stop offset="33%" stopColor="black" />
+                            <stop offset="55%" stopColor="black" />
+                            <stop offset="100%" stopColor="white" />
                         </linearGradient>
                         <linearGradient id="grad2" x1="1" y1="0" x2="0" y2="0">
-                            <stop offset="0%" stopColor="#e23838" />
-                            <stop offset="33%" stopColor="#973999" />
-                            <stop offset="67%" stopColor="#009cdf" />
-                            <stop offset="100%" stopColor="#5ebd3e" />
+                            <stop offset="0%" stopColor="white" />
+                            <stop offset="33%" stopColor="black" />
+                            <stop offset="55%" stopColor="black" />
+                            <stop offset="100%" stopColor="white" />
                         </linearGradient>
                     </defs>
                     <g fill="none" strokeLinecap="round" strokeWidth="16">

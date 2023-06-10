@@ -1,4 +1,6 @@
-﻿namespace admin_panel_react.Models
+﻿using System.Text.Json.Serialization;
+
+namespace admin_panel_react.Models
 {
     public class Periphery
     {
@@ -7,6 +9,8 @@
         public string Type { get; set; }
         public double Price { get; set; }
         public string? ImgUrl { get; set; }
+        [JsonIgnore]
+        public IEnumerable<OrderPeriphery> OrderPeripheries { get; set; }
 
     }
 }

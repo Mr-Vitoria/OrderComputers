@@ -18,7 +18,6 @@ export default class Edit extends Component {
         this.inputBodyIdRef = React.createRef();
         this.inputProcIdeRef = React.createRef();
         this.inputMotherIdRef = React.createRef();
-        this.inputOwnerIdRef = React.createRef();
         this.inputPowerIdRef = React.createRef();
         this.inputRAMIdRef = React.createRef();
         this.inputStorageIdRef = React.createRef();
@@ -106,15 +105,6 @@ export default class Edit extends Component {
                                 <select defaultValue={item.videoCardId} ref={this.inputVideoIdRef} className="form-control">
                                     <option value="-1">NONE</option>
                                     {data.videoCards.map((item, index) => {
-                                        return <option key={index} value={item.value}>{item.text}</option>;
-                                    })}
-                                </select>
-                            </div>
-
-                            <div className="form-group">
-                                <label className="control-label">Owner</label>
-                                <select defaultValue={item.ownerId} ref={this.inputOwnerIdRef} className="form-control">
-                                    {data.owners.map((item, index) => {
                                         return <option key={index} value={item.value}>{item.text}</option>;
                                     })}
                                 </select>
@@ -212,7 +202,6 @@ export default class Edit extends Component {
             + '&ramMemoryId=' + this.inputRAMIdRef.current.value
             + '&storageDeviceId=' + this.inputStorageIdRef.current.value
             + '&videoCardId=' + this.inputVideoIdRef.current.value
-            + '&ownerId=' + this.inputOwnerIdRef.current.value
             + '&type=' + this.inputTypeRef.current.value
             + '&imgUrl=' + this.state.imageUrl
             + '&costPrice=' + this.inputCostPriceRef.current.value);

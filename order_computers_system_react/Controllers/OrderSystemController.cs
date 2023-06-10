@@ -54,6 +54,7 @@ namespace order_computers_system_react.Controllers
 
             return model;
         }
+
         [HttpGet]
         [Route("getuser")]
         public async Task<User?> Details(string phone)
@@ -63,6 +64,7 @@ namespace order_computers_system_react.Controllers
 
             return user;
         }
+
         [HttpGet]
         [Route("getuserbyid")]
         public async Task<User?> Details(int id)
@@ -70,6 +72,19 @@ namespace order_computers_system_react.Controllers
             var user = await _context.Users
                 .FirstOrDefaultAsync(m => m.Id== id);
 
+            return user;
+        }
+
+        [HttpGet]
+        [Route("changeuserinfo")]
+        public async Task<User?> ChngeUserInfo(int id, string imgUrl)
+        {
+            var user = await _context.Users
+                .FirstOrDefaultAsync(m => m.Id== id);
+            user.ImgUrl = imgUrl;
+
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
             return user;
         }
 
@@ -169,8 +184,7 @@ namespace order_computers_system_react.Controllers
                     VideoCardId = videoId,
                     TypeComputerAssembly = "Order",
                     CostPrice = assemblyPrice,
-                    ImgUrl = "",
-                    OwnerId = userId
+                    ImgUrl = ""
                 },
                 TypeOrder = "Full",
                 Status = "Активен",
@@ -207,8 +221,7 @@ namespace order_computers_system_react.Controllers
                 ComputerAssembly = new ComputerAssembly()
                 {
                     TypeComputerAssembly = "Order",
-                    ImgUrl = "",
-                    OwnerId = userId
+                    ImgUrl = ""
                 },
                 Budjet =budjet,
                 Comment = comment,
@@ -240,7 +253,11 @@ namespace order_computers_system_react.Controllers
         [Route("deleteorder")]
         public async Task<object> DeleteOrder(int orderId)
         {
-            _context.Orders.Remove(await _context.Orders.FirstOrDefaultAsync(or=>or.Id==orderId));
+            var order = await _context.Orders.FirstOrDefaultAsync(or => or.Id == orderId);
+
+            _context.ComputerAssemblies.Remove(await _context.ComputerAssemblies.FirstOrDefaultAsync(ca=>ca.Id==order.ComputerAssemblyId));
+            
+            _context.Orders.Remove(order);
             await _context.SaveChangesAsync();
 
 

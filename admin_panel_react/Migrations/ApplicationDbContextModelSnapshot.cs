@@ -87,10 +87,6 @@ namespace admin_panel_react.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("TurboTechnology")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("TypeRam")
                         .IsRequired()
                         .HasColumnType("text");
@@ -126,9 +122,6 @@ namespace admin_panel_react.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.Property<int?>("OwnerId")
-                        .HasColumnType("integer");
-
                     b.Property<int?>("PowerSupplyUnitId")
                         .HasColumnType("integer");
 
@@ -152,8 +145,6 @@ namespace admin_panel_react.Migrations
                     b.HasIndex("CompProcessorId");
 
                     b.HasIndex("MotherCardId");
-
-                    b.HasIndex("OwnerId");
 
                     b.HasIndex("PowerSupplyUnitId");
 
@@ -504,7 +495,7 @@ namespace admin_panel_react.Migrations
             modelBuilder.Entity("admin_panel_react.Models.ComputerAssembly", b =>
                 {
                     b.HasOne("admin_panel_react.Models.CompBody", "CompBody")
-                        .WithMany()
+                        .WithMany("ComputerAssemblies")
                         .HasForeignKey("CompBodyId");
 
                     b.HasOne("admin_panel_react.Models.CompProcessor", "CompProcessor")
@@ -514,10 +505,6 @@ namespace admin_panel_react.Migrations
                     b.HasOne("admin_panel_react.Models.MotherCard", "MotherCard")
                         .WithMany()
                         .HasForeignKey("MotherCardId");
-
-                    b.HasOne("admin_panel_react.Models.User", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId");
 
                     b.HasOne("admin_panel_react.Models.PowerSupplyUnit", "PowerSupplyUnit")
                         .WithMany()
@@ -540,8 +527,6 @@ namespace admin_panel_react.Migrations
                     b.Navigation("CompProcessor");
 
                     b.Navigation("MotherCard");
-
-                    b.Navigation("Owner");
 
                     b.Navigation("PowerSupplyUnit");
 
@@ -589,7 +574,7 @@ namespace admin_panel_react.Migrations
                         .IsRequired();
 
                     b.HasOne("admin_panel_react.Models.Periphery", "Periphery")
-                        .WithMany()
+                        .WithMany("OrderPeripheries")
                         .HasForeignKey("PeripheryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -599,7 +584,17 @@ namespace admin_panel_react.Migrations
                     b.Navigation("Periphery");
                 });
 
+            modelBuilder.Entity("admin_panel_react.Models.CompBody", b =>
+                {
+                    b.Navigation("ComputerAssemblies");
+                });
+
             modelBuilder.Entity("admin_panel_react.Models.Order", b =>
+                {
+                    b.Navigation("OrderPeripheries");
+                });
+
+            modelBuilder.Entity("admin_panel_react.Models.Periphery", b =>
                 {
                     b.Navigation("OrderPeripheries");
                 });

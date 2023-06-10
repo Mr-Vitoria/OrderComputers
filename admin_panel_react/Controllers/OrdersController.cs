@@ -187,6 +187,10 @@ namespace admin_panel_react.Controllers
             var order = await _context.Orders.FindAsync(id);
             if (order != null)
             {
+                _context.ComputerAssemblies.RemoveRange(_context.ComputerAssemblies
+                                                                                .Where(ca => ca.Id == order.ComputerAssemblyId 
+                                                                                       && ca.TypeComputerAssembly == "Order"));
+             
                 _context.Orders.Remove(order);
             }
 

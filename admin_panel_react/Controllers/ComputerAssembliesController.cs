@@ -23,8 +23,16 @@ namespace admin_panel_react.Controllers
         [HttpGet]
         public async Task<List<ComputerAssembly>> Index()
         {
-            var computerAssemblies = _context.ComputerAssemblies.Include(c => c.CompBody).Include(c => c.CompProcessor).Include(c => c.MotherCard).Include(c => c.Owner).Include(c => c.PowerSupplyUnit).Include(c => c.RAMMemory).Include(c => c.StorageDevice).Include(c => c.VideoCard);
-            return await computerAssemblies.ToListAsync();
+            await _context.CompBodies.LoadAsync();
+            await _context.CompProcessors.LoadAsync();
+            await _context.MotherCards.LoadAsync();
+            await _context.PowerSupplyUnits.LoadAsync();
+            await _context.RAMMemories.LoadAsync();
+            await _context.StorageDevices.LoadAsync();
+            await _context.VideoCards.LoadAsync();
+
+
+            return await _context.ComputerAssemblies.ToListAsync();
         }
 
         [Route("detail")]
@@ -35,18 +43,16 @@ namespace admin_panel_react.Controllers
                 return null;
             }
 
-            var computerAssembly = await _context.ComputerAssemblies
-                .Include(c => c.CompBody)
-                .Include(c => c.CompProcessor)
-                .Include(c => c.MotherCard)
-                .Include(c => c.Owner)
-                .Include(c => c.PowerSupplyUnit)
-                .Include(c => c.RAMMemory)
-                .Include(c => c.StorageDevice)
-                .Include(c => c.VideoCard)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            await _context.CompBodies.LoadAsync();
+            await _context.CompProcessors.LoadAsync();
+            await _context.MotherCards.LoadAsync();
+            await _context.PowerSupplyUnits.LoadAsync();
+            await _context.RAMMemories.LoadAsync();
+            await _context.StorageDevices.LoadAsync();
+            await _context.VideoCards.LoadAsync();
 
-            return computerAssembly;
+            return await _context.ComputerAssemblies
+                                            .FirstOrDefaultAsync(m => m.Id == id);
         }
 
         [Route("getselectlists")]
@@ -57,7 +63,6 @@ namespace admin_panel_react.Controllers
                 CompBodies = new SelectList(_context.CompBodies, "Id", "Name"),
                 CompProcessors = new SelectList(_context.CompProcessors, "Id", "Name"),
                 MotherCards = new SelectList(_context.MotherCards, "Id", "Name"),
-                Owners = new SelectList(_context.Users, "Id", "Name"),
                 PowerSupplyUnits = new SelectList(_context.PowerSupplyUnits, "Id", "Name"),
                 RAMMemories = new SelectList(_context.RAMMemories, "Id", "Name"),
                 StorageDevices = new SelectList(_context.StorageDevices, "Id", "Name"),
@@ -70,9 +75,9 @@ namespace admin_panel_react.Controllers
         public async Task<string> Create(int compBodyId, int motherCardId, 
             int powerSupplyUnitId, int compProcessorId, 
             int ramMemoryId, int storageDeviceId, 
-            int videoCardId, int ownerId, 
-            int costPrice, string type,
-            string name, string imgUrl="")
+            int videoCardId, int costPrice, 
+            string type, string name,
+            string imgUrl = "")
         {
             ComputerAssembly computerAssembly = new ComputerAssembly()
             {
@@ -84,7 +89,6 @@ namespace admin_panel_react.Controllers
                 RAMMemoryId = ramMemoryId,
                 StorageDeviceId = storageDeviceId,
                 VideoCardId = (videoCardId==-1?null:videoCardId),
-                OwnerId = ownerId,
                 CostPrice = costPrice,
                 TypeComputerAssembly = type,
                 ImgUrl = imgUrl
@@ -105,10 +109,9 @@ namespace admin_panel_react.Controllers
         public async Task<string> Edit(int id, int compBodyId, 
             int motherCardId, int powerSupplyUnitId, 
             int compProcessorId, int ramMemoryId, 
-            int storageDeviceId, int videoCardId, 
-            int ownerId, int costPrice,
-            string type, string name,
-            string imgUrl="")
+            int storageDeviceId, int videoCardId,
+            int costPrice, string type, 
+            string name, string imgUrl = "")
         {
             ComputerAssembly computerAssembly = new ComputerAssembly()
             {
@@ -121,7 +124,6 @@ namespace admin_panel_react.Controllers
                 RAMMemoryId = ramMemoryId,
                 StorageDeviceId = storageDeviceId,
                 VideoCardId = (videoCardId == -1 ? null : videoCardId),
-                OwnerId = ownerId,
                 CostPrice = costPrice,
                 TypeComputerAssembly = type,
                 ImgUrl = imgUrl
@@ -148,15 +150,18 @@ namespace admin_panel_react.Controllers
 
 
         [Route("delete")]
-        public async Task<string> DeleteConfirmed(int id)
+        public async Task<string> Delete(int id)
         {
             if (_context.ComputerAssemblies == null)
             {
                 return "Entity set 'ApplicationDbContext.ComputerAssemblies'  is null.";
             }
             var computerAssembly = await _context.ComputerAssemblies.FindAsync(id);
+
             if (computerAssembly != null)
             {
+                _context.Orders.RemoveRange(_context.Orders.Where(or => or.ComputerAssemblyId == computerAssembly.Id));
+
                 _context.ComputerAssemblies.Remove(computerAssembly);
             }
 

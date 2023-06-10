@@ -5,9 +5,9 @@ namespace order_computers_system_react.Models
     public class ApplicationDbContext : DbContext
     {
 
-        public ApplicationDbContext(DbContextOptions options) : base(options) { }
-
-
+        public ApplicationDbContext(DbContextOptions options) : base(options) {
+        
+        }
 
         public DbSet<VideoCard> VideoCards { get; set; }
         public DbSet<CompBody> CompBodies { get; set; }

@@ -338,18 +338,6 @@ main {
     animation-name: worm2;
 }
 
-/* Dark theme */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg: hsl(var(--hue),90%,5%);
-        --fg: hsl(var(--hue),90%,95%);
-    }
-
-    .ip__track {
-        stroke: hsl(var(--hue),90%,15%);
-    }
-}
-
 /* Animation */
 @keyframes worm1 {
     from {
@@ -481,4 +469,14 @@ main {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
     border-radius: 10px;
     background-color: #323232;
+}
+
+
+.chibiImg {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    height: 210px;
+    width: 140px;
+    z-index:-1;
 }

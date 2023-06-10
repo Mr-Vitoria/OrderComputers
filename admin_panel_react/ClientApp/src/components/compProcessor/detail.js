@@ -68,12 +68,6 @@ export default class Detail extends Component {
                             {item.frequency }
                         </dd>
                         <dt className="col-sm-2">
-                            TurboTechnology
-                        </dt>
-                        <dd className="col-sm-10">
-                            {item.turboTechnology }
-                        </dd>
-                        <dt className="col-sm-2">
                             TypeRam
                         </dt>
                         <dd className="col-sm-10">

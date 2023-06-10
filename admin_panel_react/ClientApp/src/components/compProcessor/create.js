@@ -17,7 +17,6 @@ export default class Create extends Component {
         this.inputCoresRef = React.createRef();
         this.inputThreadsRef = React.createRef();
         this.inputFrequencyRef = React.createRef();
-        this.inputTurboRef = React.createRef();
         this.inputVideoCardRef = React.createRef();
         this.inputRamRef = React.createRef();
         this.inputPriceRef = React.createRef();
@@ -56,14 +55,6 @@ export default class Create extends Component {
                             <div className="form-group">
                                 <label className="control-label">Frequency(MGz)</label>
                                 <input ref={this.inputFrequencyRef} className="form-control" type="number" />
-                            </div>
-                            <div className="form-group">
-                                <label className="control-label">Turbo technology</label>
-                                <select ref={this.inputTurboRef} className="form-control">
-                                    <option value="NONE">NONE</option>
-                                    <option value="Turbo Boost">Turbo Boost</option>
-                                    <option value="Turbo Core">Turbo Core</option>
-                                </select>
                             </div>
                             <div className="form-group">
                                 <label className="control-label">Type of RAM</label>
@@ -121,7 +112,6 @@ export default class Create extends Component {
             + '&countCores=' + this.inputCoresRef.current.value
             + '&countThreads=' + this.inputThreadsRef.current.value
             + '&frequency=' + this.inputFrequencyRef.current.value
-            + '&turboTechnology=' + this.inputTurboRef.current.value
             + '&haveVideoCard=' + this.inputVideoCardRef.current.checked
             + '&imgUrl=' + this.state.imageUrl
             + '&typeRam=' + this.inputRamRef.current.value);
