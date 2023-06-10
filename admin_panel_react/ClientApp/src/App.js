@@ -46,7 +46,7 @@ export default class App extends Component {
     }
   render() {
       return (
-           <>
+          <>
               {
                   this.state.typePage == "Login" ?
                           <Login setTypePage={this.setTypePage} />
@@ -82,6 +82,8 @@ export default class App extends Component {
                       : null
               }      
 
+              {/*<img className="chibiImg" src="https://sun6-23.userapi.com/impg/MfbIkixM8vbvnkIiz3sZcah4yHlEO_bfRxZplQ/l7qiy32ZodU.jpg?size=604x604&quality=96&sign=ebd61ead561be6f64dbdc02f404a022d&c_uniq_tag=xHqTKFttY3FtB54arr1dk_iOHCrZ4h6SNTtXxBuWh0c&type=album" />*/}
+              <img className="chibiImg" src="https://sun6-23.userapi.com/s/v1/ig2/2J2_vsBto7pdIrKHpbr1MU6gVlPhSitwgv5DlYAPIKIenWG8HgWNZCFRbJe13gb7CL-o8AGQL4iQxjZvRkzjKUqF.jpg?size=414x672&quality=96&crop=157,0,414,672&ava=1" />
           </>
           
     );

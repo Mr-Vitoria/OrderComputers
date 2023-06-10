@@ -139,11 +139,6 @@ export class AssemblyListContainer extends Component {
                             Сортировать
                         </a>
                         <div className="d-flex flex-row justify-content-between">
-                            {/*{document.body.clientWidth <= 1200 ?*/}
-                            {/*    <></>*/}
-                            {/*    : <SortBlock defaultItems={this.state.defaultItems} changeSortItems={this.changeSortItems} />*/}
-                            {/*}*/}
-
                             
                             {model.length != 0 ?
                                 <div className="assemblyList">
