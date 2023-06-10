@@ -37,9 +37,6 @@ export default class Index extends Component {
                             Frequency
                         </th>
                         <th>
-                            TurboTechnology
-                        </th>
-                        <th>
                             TypeRam
                         </th>
                         <th>
@@ -70,9 +67,6 @@ export default class Index extends Component {
                             </td>
                             <td>
                                 {item.frequency}
-                            </td>
-                            <td>
-                                {item.turboTechnology}
                             </td>
                             <td>
                                 {item.typeRam}

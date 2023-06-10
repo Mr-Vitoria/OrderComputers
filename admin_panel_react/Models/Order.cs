@@ -17,7 +17,7 @@ namespace admin_panel_react.Models
         public string? Comment { get; set; }
 
         public User User { get; set; }
-        public ComputerAssembly? ComputerAssembly { get; set; }
+        public ComputerAssembly ComputerAssembly { get; set; }
         public IEnumerable<OrderPeriphery> OrderPeripheries { get; set; }
 
     }

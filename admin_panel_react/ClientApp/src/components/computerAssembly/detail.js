@@ -39,49 +39,43 @@ export default class Detail extends Component {
                     Computer body
                     </dt>
                     <dd className="col-sm-10">
-                        {item.compBody.name}
+                        {item.compBody != null ? item.compBody.name:"Null"}
                     </dd>
                     <dt className="col-sm-2">
                         Computer processor
                     </dt>
                     <dd className="col-sm-10">
-                        {item.compProcessor.name}
+                        {item.compProcessor != null ?item.compProcessor.name:"Null"}
                     </dd>
                     <dt className="col-sm-2">
                         Mother card
                     </dt>
                     <dd className="col-sm-10">
-                        {item.motherCard.name}
+                        {item.motherCard != null ?item.motherCard.name:"Null"}
                     </dd>
                     <dt className="col-sm-2">
                         Power Supply Unit
                     </dt>
                     <dd className="col-sm-10">
-                        {item.powerSupplyUnit.name}
+                        {item.powerSupplyUnit != null ?item.powerSupplyUnit.name:"Null"}
                     </dd>
                     <dt className="col-sm-2">
                         RAM memory
                     </dt>
                     <dd className="col-sm-10">
-                        {item.ramMemory.name}
+                        {item.ramMemory != null ?item.ramMemory.name:"Null"}
                     </dd>
                     <dt className="col-sm-2">
                         Storage device
                     </dt>
                     <dd className="col-sm-10">
-                        {item.storageDevice.name}
+                        {item.storageDevice != null ?item.storageDevice.name:"Null"}
                     </dd>
                     <dt className="col-sm-2">
                         Video card
                     </dt>
                     <dd className="col-sm-10">
                         {item.videoCard != null?item.videoCard.name:null}
-                    </dd>
-                    <dt className="col-sm-2">
-                        Owner
-                    </dt>
-                    <dd className="col-sm-10">
-                        {item.owner.name}
                     </dd>
                     <dt className="col-sm-2">
                         Type computer assembly

@@ -14,7 +14,6 @@ export default class Create extends Component {
         this.inputNameRef = React.createRef();
         this.inputProcIdeRef = React.createRef();
         this.inputMotherIdRef = React.createRef();
-        this.inputOwnerIdRef = React.createRef();
         this.inputPowerIdRef = React.createRef();
         this.inputRAMIdRef = React.createRef();
         this.inputStorageIdRef = React.createRef();
@@ -107,15 +106,6 @@ export default class Create extends Component {
                             </div>
 
                             <div className="form-group">
-                                <label className="control-label">Owner</label>
-                                <select ref={this.inputOwnerIdRef} className="form-control" >
-                                    {data.owners.map((item, index) => {
-                                        return <option key={index} value={item.value}>{item.text}</option>;
-                                    })}
-                                </select>
-                            </div>
-
-                            <div className="form-group">
                                 <label className="control-label">Type computer assembly</label>
                                 <select ref={this.inputTypeRef} className="form-control">
                                     <option value="Game">Game</option>
@@ -202,7 +192,6 @@ export default class Create extends Component {
             + '&ramMemoryId=' + this.inputRAMIdRef.current.value
             + '&storageDeviceId=' + this.inputStorageIdRef.current.value
             + '&videoCardId=' + this.inputVideoIdRef.current.value
-            + '&ownerId=' + this.inputOwnerIdRef.current.value
             + '&type=' + this.inputTypeRef.current.value
             + '&imgUrl=' + this.state.imageUrl
             + '&costPrice=' + this.inputCostPriceRef.current.value);

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using admin_panel_react.Models.Configuration;
+using Microsoft.EntityFrameworkCore;
 
 namespace admin_panel_react.Models
 {
@@ -8,6 +9,15 @@ namespace admin_panel_react.Models
         public ApplicationDbContext(DbContextOptions options) : base(options) {
         
         }
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.ApplyConfiguration(new CompBodyConfiguration());
+        //    //modelBuilder.ApplyConfiguration(new CompProcessor());
+        //    modelBuilder.ApplyConfiguration(new ComputerAssemblyConfiguration());
+        //    modelBuilder.ApplyConfiguration(new UserConfiguration());
+        //    modelBuilder.ApplyConfiguration(new OrderPeripheryConfiguration());
+        //}
 
         public DbSet<VideoCard> VideoCards { get; set; }
         public DbSet<CompBody> CompBodies { get; set; }
