@@ -22,12 +22,12 @@ export class RAMMemoryContainer extends Component {
             itemId: keepItemId
         });
     }
-
+    
     render() {
 
         return (
             <div>
-                <h1 id="tableLabel">RAM memory</h1>
+                <h1 id="tableLabel">Оперативная память</h1>
 
 
                 {this.state.page == "Index" ?

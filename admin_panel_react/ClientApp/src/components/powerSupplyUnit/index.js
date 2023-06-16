@@ -15,23 +15,23 @@ export default class Index extends Component {
     componentDidMount() {
         this.getItems();
     }
-
+    
     renderItemsTable(items) {
         return (
             <table className="table">
                 <thead>
                     <tr>
                         <th>
-                            Name
+                            Название
                         </th>
                         <th>
-                            Form factor
+                            Форм фактор
                         </th>
                         <th>
-                            Power
+                            Мощность(Вт)
                         </th>
                         <th>
-                            Price
+                            Цена
                         </th>
                         <th></th>
                     </tr>
@@ -55,13 +55,13 @@ export default class Index extends Component {
                             <td>
                                 <a onClick={(ev) => {
                                     this.setTypePage("Edit", item.id);
-                                }}>Edit</a> |
+                                }}>Измениить</a> |
                                 <a onClick={(ev) => {
                                     this.setTypePage("Detail", item.id);
-                                }}>Detail</a> |
+                                }}>Подробнее</a> |
                                 <a onClick={(ev) => {
                                     this.deleteItem(item.id);
-                                }}>Delete</a>
+                                }}>Удалить</a>
                             </td>
                         </tr>
                     )}
@@ -93,7 +93,7 @@ export default class Index extends Component {
 
                         this.setTypePage("Create");
                     }
-                    }>Add power supply unit</a>
+                    }>Добавить блок питания</a>
                 </p>
                 {contents}
             </div>
@@ -108,7 +108,7 @@ export default class Index extends Component {
             this.setState({ items: data, loading: false });
         } else {
 
-            Layout.setMessage('Error get power supply unit: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении списка блоков питания: ' + response.status);
         }
 
     }
@@ -117,11 +117,11 @@ export default class Index extends Component {
         const response = await fetch('powersupplyunits/delete?id=' + Id);
         if (response.status == 200) {
 
-            Layout.setMessage('Power supply unit was deleted! ');
+            Layout.setMessage('Блок питания удален! ');
             this.getItems();
         } else {
 
-            Layout.setMessage('Error delete power supply unit: ' + response.statusText);
+            Layout.setMessage('Ошибка при удалении блока питания: ' + response.status);
         }
 
     }

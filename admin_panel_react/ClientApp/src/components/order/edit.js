@@ -25,7 +25,6 @@ export default class Edit extends Component {
         this.inputCommentRef = React.createRef();
 
     }
-
     componentDidMount() {
         this.getItem(this.state.itemId);
     }
@@ -38,7 +37,7 @@ export default class Edit extends Component {
                         <form method="post">
                             <input defaultValue={item.id } ref={this.inputIdRef} type="hidden" className="form-control" />
                             <div className="form-group">
-                                <label className="control-label">User</label>
+                                <label className="control-label">Пользователь</label>
                                 <select defaultValue={item.userId } ref={this.inputUserIdRef} className="form-control" >
                                     {data.users.map((item, index) => {
                                         return <option key={index} value={item.value}>{item.text}</option>;
@@ -46,20 +45,20 @@ export default class Edit extends Component {
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Computer assembly</label>
+                                <label className="control-label">Тип сборки</label>
                                 <select defaultValue={this.state.typeOrder} onChange={(ev) => {
                                     this.setState({
                                         typeOrder: ev.target.value
                                     });
                                 }} className="form-control" >
-                                    <option value="Full">Full order</option>
-                                    <option value="Price">Order by price</option>
+                                    <option value="Full">Полный заказ</option>
+                                    <option value="Price">Заказ на определенный бюджет</option>
                                 </select>
                             </div>
                             {this.state.typeOrder == "Full" ?
                                 <>
                                     <div className="form-group">
-                                        <label className="control-label">Computer assembly</label>
+                                        <label className="control-label">Сборка ПК</label>
                                         <select defaultValue={item.computerAssemblyId} ref={this.inputCompAssemblerIdRef} className="form-control" >
                                             {data.computerAssemblies.map((item, index) => {
                                                 return <option key={index} value={item.value}>{item.text}</option>;
@@ -72,44 +71,44 @@ export default class Edit extends Component {
 
 
                                     <div className="form-group">
-                                        <label className="control-label">Budjet</label>
+                                        <label className="control-label">Бюджет</label>
                                         <input defaultValue={ item.budjet } ref={this.inputBudjetRef} className="form-control" type="number" />
                                     </div>
 
                                     <div className="form-group">
-                                        <label className="control-label">Comment</label>
+                                        <label className="control-label">Комментарий</label>
                                         <textarea defaultValue={item.comment} ref={this.inputCommentRef} className="form-control" ></textarea>
                                     </div>
                                 </>
                             }
 
                             <div className="form-group">
-                                <label className="control-label">Status</label>
+                                <label className="control-label">Статус</label>
                                 <select defaultValue={item.status} ref={this.inputStatusRef} className="form-control" >
-                                    <option value="Активен">Active</option>
-                                    <option value="Закончен">Complete</option>
-                                    <option value="Отменен">Cancel</option>
-                                    <option value="В сборке">Being collected</option>
+                                    <option value="Активен">Активен</option>
+                                    <option value="Закончен">Закончен</option>
+                                    <option value="Отменен">Отменен</option>
+                                    <option value="В сборке">В сборке</option>
                                 </select>
                             </div>
 
                             <div className="form-group">
-                                <label className="control-label">Order date</label>
+                                <label className="control-label">Дата заказа</label>
                                 <input defaultValue={
                                     item.orderDate.slice(6, 10) + '-' + item.orderDate.slice(3, 5) + '-' + item.orderDate.slice(0, 2)
                                 } ref={this.inputOrderDateRef} className="form-control" type="date" />
                             </div>
 
                             <div className="form-group">
-                                <label className="control-label">Total price</label>
+                                <label className="control-label">Итоговая цена</label>
                                 <input defaultValue={ item.totalPrice} ref={this.inputTotalPriceRef} className="form-control" type="number" />
                             </div>
 
                             <div className="form-group">
-                                <input onClick={(ev) => {
+                                <button onClick={(ev) => {
                                     ev.preventDefault();
                                     this.editItem();
-                                }} defaultValue="Save" className="btn btn-primary" />
+                                }} className="btn btn-primary">Сохранить</button>
                             </div>
                         </form>
                     </div>
@@ -120,7 +119,7 @@ export default class Edit extends Component {
 
                         this.setTypePage("Index");
                     }
-                    }>Back to list</a>
+                    }>Вернуться к списку</a>
                 </div>
             </div>
 
@@ -164,7 +163,8 @@ export default class Edit extends Component {
         }
         else {
 
-            Layout.setMessage('Error get data for order: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении заказа: ' + response.status
+            +'Ошибка при получении данных: ' + responseSelectList.status);
         }
 
 
@@ -184,10 +184,10 @@ export default class Edit extends Component {
         if (response.status == 200) {
 
             this.setTypePage("Index");
-            Layout.setMessage('Order was edited! ');
+            Layout.setMessage('Заказ изменен! ');
         }else{
 
-            Layout.setMessage('Error edit order: ' + response.statusText);
+            Layout.setMessage('Ошибка при изменении заказа: ' + response.status);
         }
     }
 }

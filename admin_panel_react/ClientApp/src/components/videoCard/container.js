@@ -22,12 +22,12 @@ export class VideoCardContainer extends Component {
             itemId: keepItemId
         });
     }
-
+    
     render() {
 
         return (
             <div>
-                <h1 id="tableLabel">Video card</h1>
+                <h1 id="tableLabel">Видеокарты</h1>
 
 
                 {this.state.page == "Index" ?

@@ -22,13 +22,13 @@ export default class Index extends Component {
                 <thead>
                     <tr>
                         <th>
-                            Name
+                            Название
                         </th>
                         <th>
-                            Form factor
+                            Форм фактор
                         </th>
                         <th>
-                            Price
+                            Цена
                         </th>
                         <th></th>
                     </tr>
@@ -42,13 +42,13 @@ export default class Index extends Component {
                             <td>
                                 <a onClick={(ev) => {
                                     this.setTypePage("Edit", item.id);
-                                }}>Edit</a> |
+                                }}>Изменить</a> |
                                 <a onClick={(ev) => {
                                     this.setTypePage("Detail", item.id);
-                                }}>Detail</a> |
+                                }}>Подробнее</a> |
                                 <a onClick={(ev) => {
                                     this.deleteItem(item.id);
-                                }}>Delete</a>
+                                }}>Удалить</a>
                             </td>
                         </tr>
                     )}
@@ -79,7 +79,7 @@ export default class Index extends Component {
 
                         this.setTypePage("Create");
                     }
-                    }>Add computer body</a>
+                    }>Добавить новый корпус</a>
                 </p>
                 {contents}
             </div>
@@ -98,7 +98,7 @@ export default class Index extends Component {
         }
         else {
 
-            Layout.setMessage('Error get computer body list: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении списка корпусов: ' + response.status);
         }
 
     }
@@ -107,12 +107,12 @@ export default class Index extends Component {
         const response = await fetch('compbodies/delete?id=' + Id);
         if (response.status == 200) {
 
-            Layout.setMessage('Computer body was deleted! ');
+            Layout.setMessage('Корпус был удален!');
             this.getItems();
         }
         else {
 
-            Layout.setMessage('Error delete computer body: ' + response.statusText);
+            Layout.setMessage('Ошибка при удалении корпуса: ' + response.status);
         }
 
 

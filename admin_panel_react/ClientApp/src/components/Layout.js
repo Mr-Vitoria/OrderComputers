@@ -11,7 +11,7 @@ export class Layout extends Component {
         Layout.setTypePage = props.setTypePage;
         Layout.setMessage = props.setMessage;
     }
-
+    //тест
 
   render() {
       return (

@@ -20,7 +20,7 @@ export default class Edit extends Component {
         this.inputPriceRef = React.createRef();
 
     }
-
+    
     componentDidMount() {
         this.getItem(this.state.itemId);
 
@@ -34,36 +34,37 @@ export default class Edit extends Component {
                         <form>
                             <input defaultValue={item.id } ref={this.inputIdRef} type="hidden" className="form-control" />
                             <div className="form-group">
-                                <label className="control-label">Name</label>
+                                <label className="control-label">Название</label>
                                 <input defaultValue={item.name} ref={this.inputNameRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Type</label>
+                                <label className="control-label">Тип</label>
                                 <select defaultValue={item.type} ref={this.inputTypeRef} className="form-control">
                                     <option value="SSD">SSD</option>
                                     <option value="HDD">HDD</option>
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Count(Gb)</label>
+                                <label className="control-label">Объем(Gb)</label>
                                 <input defaultValue={item.count} ref={this.inputCountRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">ImageUrl</label>
-                                <input defaultValue={this.state.imageUrl} onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
+                                <label className="control-label">URL изображения</label>
+                                <input defaultValue={this.state.imageUrl} 
+                                onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
                             </div>
                             <div className="form-group">
                                 <img src={this.state.imageUrl} />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Price</label>
+                                <label className="control-label">Цена</label>
                                 <input defaultValue={item.price} ref={this.inputPriceRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
                                 <button onClick={(ev) => {
                                     ev.preventDefault();
                                     this.editItem();
-                                }} className="btn btn-primary" >Save</button>
+                                }} className="btn btn-primary" >Сохранить</button>
                             </div>
                         </form>
                     </div>
@@ -74,7 +75,7 @@ export default class Edit extends Component {
 
                         this.setTypePage("Index");
                     }
-                    }>Back to list</a>
+                    }>Вернуться к списку</a>
                 </div>
             </div>
 
@@ -110,7 +111,7 @@ export default class Edit extends Component {
             this.setState({ item: data, loading: false, imageUrl: data.imgUrl });
         } else {
 
-            Layout.setMessage('Error get storage device: ' + response.statusText);
+            Layout.setMessage('ошибка при получении запоминающего устройства: ' + response.status);
         }
     }
 
@@ -126,10 +127,10 @@ export default class Edit extends Component {
         if (response.status == 200) {
 
             this.setTypePage("Index");
-            Layout.setMessage('Storage device was edited: ' + response.statusText);
+            Layout.setMessage('Запоминающее устройство изменено!');
         }
         else {
-            Layout.setMessage('Error edit storage device! ');
+            Layout.setMessage('Ошибка при изменении запоминающего устройства: ' + response.status);
         }
     }
 }

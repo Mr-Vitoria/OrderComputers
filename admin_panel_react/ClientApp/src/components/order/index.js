@@ -22,19 +22,19 @@ export default class Index extends Component {
                 <thead>
                     <tr>
                         <th>
-                            User
+                            Пользователь
                         </th>
                         <th>
-                            Type order
+                            Тип заказа
                         </th>
                         <th>
-                            Order date
+                            Дата заказа
                         </th>
                         <th>
-                            Status
+                            Статус
                         </th>
                         <th>
-                            Total price
+                            Итоговая цена
                         </th>
                         <th></th>
                     </tr>
@@ -62,13 +62,13 @@ export default class Index extends Component {
                             <td>
                                 <a onClick={(ev) => {
                                     this.setTypePage("Edit", item.id);
-                                }}>Edit</a> |
+                                }}>Изменить</a> |
                                 <a onClick={(ev) => {
                                     this.setTypePage("Detail", item.id);
-                                }}>Detail</a> |
+                                }}>Подробнее</a> |
                                 <a onClick={(ev) => {
                                     this.deleteItem(item.id);
-                                }}>Delete</a>
+                                }}>Удалить</a>
                             </td>
                         </tr>
                     )}
@@ -100,7 +100,7 @@ export default class Index extends Component {
 
                         this.setTypePage("Create");
                     }
-                    }>Add order</a>
+                    }>Добавить заказ</a>
                 </p>
                 {contents}
             </div>
@@ -115,7 +115,7 @@ export default class Index extends Component {
             this.setState({ items: data, loading: false });
         } else {
 
-            Layout.setMessage('Error get order list: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении списка заказов: ' + response.status);
         }
     }
 
@@ -123,12 +123,12 @@ export default class Index extends Component {
         const response = await fetch('orders/delete?id=' + Id);
         if (response.status == 200) {
 
-            Layout.setMessage('Order was deleted! ');
+            Layout.setMessage('Заказ удален! ');
             this.getItems();
 
         } else {
 
-            Layout.setMessage('Error delete order: ' + response.statusText);
+            Layout.setMessage('Ошибка при удалении заказа: ' + response.status);
         }
 
     }

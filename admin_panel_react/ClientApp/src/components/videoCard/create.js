@@ -23,7 +23,6 @@ export default class Create extends Component {
         this.setTypePage = props.setTypePage;
     }
 
-
     render() {
         return (
             <div>
@@ -31,27 +30,27 @@ export default class Create extends Component {
                     <div className="col-md-4">
                         <form method="post">
                             <div className="form-group">
-                                <label className="control-label">Name</label>
+                                <label className="control-label">Название</label>
                                 <input ref={this.inputNameRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Producer</label>
+                                <label className="control-label">Производитель</label>
                                 <input ref={this.inputProducerRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Family</label>
+                                <label className="control-label">Семейство</label>
                                 <input ref={this.inputFamilyRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Generation</label>
+                                <label className="control-label">Поколение</label>
                                 <input ref={this.inputGenerationRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Series</label>
+                                <label className="control-label">Серия</label>
                                 <input ref={this.inputSeriesRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Type</label>
+                                <label className="control-label">Тип памяти</label>
                                 <select ref={this.inputTypeRef} className="form-control">
                                     <option value="GDDR2">GDDR2</option>
                                     <option value="GDDR3">GDDR3</option>
@@ -61,25 +60,26 @@ export default class Create extends Component {
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Count(Mb)</label>
+                                <label className="control-label">Объем(Mb)</label>
                                 <input ref={this.inputCountRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">ImageUrl</label>
-                                <input onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
+                                <label className="control-label">URL изображения</label>
+                                <input onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }}
+                                 className="form-control" type="url" />
                             </div>
                             <div className="form-group">
                                 <img src={this.state.imageUrl} />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Price</label>
+                                <label className="control-label">Цена</label>
                                 <input ref={this.inputPriceRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
                                 <button onClick={(ev) => {
                                     ev.preventDefault();
                                     this.createItem();
-                                }} className="btn btn-primary">Add</button>
+                                }} className="btn btn-primary">Добавить</button>
                             </div>
                         </form>
                     </div>
@@ -89,7 +89,7 @@ export default class Create extends Component {
 
                         this.setTypePage("Index");
                     }
-                    }>Back to list</a>
+                    }>Вернуться к списку</a>
                 </div>
             </div>
         );
@@ -109,10 +109,10 @@ export default class Create extends Component {
         if (response.status == 200) {
 
             this.setTypePage("Index");
-            Layout.setMessage('Video card was added! ');
+            Layout.setMessage('Видеокарта добавлена! ');
         } else {
 
-            Layout.setMessage('Error add video card: ' + response.statusText);
+            Layout.setMessage('Ошибка при добавлении видеокарты: ' + response.status);
         }
     }
 }

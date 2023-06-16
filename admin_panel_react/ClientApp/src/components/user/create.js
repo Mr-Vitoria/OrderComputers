@@ -21,7 +21,6 @@ export default class Create extends Component {
         this.setTypePage = props.setTypePage;
     }
 
-
     render() {
         return (
             <div>
@@ -29,11 +28,11 @@ export default class Create extends Component {
                     <div className="col-md-4">
                         <form>
                             <div className="form-group">
-                                <label className="control-label">Name</label>
+                                <label className="control-label">Имя</label>
                                 <input ref={this.inputNameRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Login</label>
+                                <label className="control-label">Логин</label>
                                 <input ref={this.inputLoginRef} className="form-control" />
                             </div>
                             <div className="form-group">
@@ -41,32 +40,33 @@ export default class Create extends Component {
                                 <input ref={this.inputEmailRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Phone</label>
+                                <label className="control-label">Телефон</label>
                                 <input ref={this.inputPhoneRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Password</label>
+                                <label className="control-label">Пароль</label>
                                 <input ref={this.inputPasswordRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">ImageUrl</label>
-                                <input onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
+                                <label className="control-label">URL изображения</label>
+                                <input onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }}
+                                 className="form-control" type="url" />
                             </div>
                             <div className="form-group">
                                 <img src={this.state.imageUrl} />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Type User</label>
+                                <label className="control-label">Тип аккаунта</label>
                                 <select ref={this.inputTypeRef} className="form-control">
-                                    <option value="Common">Common</option>
-                                    <option value="Admin">Admin</option>
+                                    <option value="Common">Обычный</option>
+                                    <option value="Admin">Администратор</option>
                                 </select>
                             </div>
                             <div className="form-group">
                                 <button onClick={(ev) => {
                                     ev.preventDefault();
                                     this.createItem();
-                                }} className="btn btn-primary">Add</button>
+                                }} className="btn btn-primary">Добавить</button>
                             </div>
                         </form>
                     </div>
@@ -76,7 +76,7 @@ export default class Create extends Component {
 
                         this.setTypePage("Index");
                     }
-                    }>Back to list</a>
+                    }>Вернуться к списку</a>
                 </div>
             </div>
         );
@@ -95,10 +95,10 @@ export default class Create extends Component {
         if (response.status == 200) {
 
             this.setTypePage("Index");
-            Layout.setMessage('User was added! ');
+            Layout.setMessage('Пользователь добавлен! ');
         } else {
 
-            Layout.setMessage('Error add user: ' + response.statusText);
+            Layout.setMessage('Ошибка при добавлении пользователя: ' + response.status);
         }
     }
 }

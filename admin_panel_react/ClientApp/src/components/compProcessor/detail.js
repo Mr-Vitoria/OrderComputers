@@ -18,69 +18,68 @@ export default class Detail extends Component {
     }
 
     renderItem(item) {
-        console.log(item);
         return (
             <>
                 <div>
-                    <h4>Detail computer processor</h4>
+                    <h4>Процессор</h4>
                     <hr />
                     <dl className="row">
                         <dt className="col-sm-2">
-                            Image
+                            Изображение
                         </dt>
                         <dd className="col-sm-10">
                             <img src={item.imgUrl} />
                         </dd>
                         <dt className="col-sm-2">
-                        Name
+                        Название
                         </dt>
                         <dd className="col-sm-10">
                             {item.name }
                         </dd>
                         <dt className="col-sm-2">
-                            Producer
+                            Производитель
                         </dt>
                         <dd className="col-sm-10">
                             {item.producer}
                         </dd>
                         <dt className="col-sm-2">
-                            Socket
+                            Сокет
                         </dt>
                         <dd className="col-sm-10">
                             {item.socket }
                         </dd>
                         <dt className="col-sm-2">
-                            CountCores
+                            Количество ядер
                         </dt>
                         <dd className="col-sm-10">
                             {item.countCores }
                         </dd>
                         <dt className="col-sm-2">
-                            CountThreads
+                            Количество потоков
                         </dt>
                         <dd className="col-sm-10">
                             {item.countThreads }
                         </dd>
                         <dt className="col-sm-2">
-                            Frequency
+                            Частота(Мгц)
                         </dt>
                         <dd className="col-sm-10">
                             {item.frequency }
                         </dd>
                         <dt className="col-sm-2">
-                            TypeRam
+                            Тип поддерживаемой RAM
                         </dt>
                         <dd className="col-sm-10">
                             {item.typeRam }
                         </dd>
                         <dt className="col-sm-2">
-                            HaveVideoCard
+                            Наличие встроенного видеоядра
                         </dt>
                         <dd className="col-sm-10">
                             {item.haveVideoCard+"" }
                         </dd>
                         <dt className="col-sm-2">
-                            Price
+                            Цена
                         </dt>
                         <dd className="col-sm-10">
                             {item.price }
@@ -90,10 +89,10 @@ export default class Detail extends Component {
                 <div>
                     <a onClick={(ev) => {
                         this.setTypePage("Edit", item.id);
-                    } }>Edit</a> |
+                    } }>Изменить</a> |
                     <a onClick={(ev) => {
                         this.setTypePage("Index");
-                    }}>Back</a>
+                    }}>Вернуться</a>
                 </div>
             </>
 
@@ -131,7 +130,7 @@ export default class Detail extends Component {
         }
         else {
 
-            Layout.setMessage('Error get computer processor: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении данных о процессоре: ' + response.status);
         }
     }
 }

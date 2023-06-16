@@ -16,14 +16,14 @@ export class Home extends Component {
     renderItem(item) {
         return (
             <div>
-                <h1>Hello, { item.name}!</h1>
+                <h1>Добрый день, { item.name}!</h1>
             </div>
         );
     }
 
     render() {
         let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
+            ? <p><em>Загрузка...</em></p>
             : this.renderItem(this.state.item);
         return (
             <div>

@@ -18,7 +18,6 @@ export default class Create extends Component {
         this.setTypePage = props.setTypePage;
     }
 
-
     render() {
         return (
             <div>
@@ -26,34 +25,34 @@ export default class Create extends Component {
                     <div className="col-md-4">
                         <form >
                             <div className="form-group">
-                                <label className="control-label">Name</label>
+                                <label className="control-label">Название</label>
                                 <input ref={this.inputNameRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Type</label>
+                                <label className="control-label">Тип</label>
                                 <select ref={this.inputTypeRef} className="form-control">
-                                    <option value="Monitor">Monitor</option>
-                                    <option value="Speaker/Headphones">Speaker/Headphones</option>
-                                    <option value="Mouse">Computer mouse</option>
-                                    <option value="Keyboard">Keyboard</option>
+                                    <option value="Monitor">Монитор</option>
+                                    <option value="Speaker/Headphones">Динамики/наушники</option>
+                                    <option value="Mouse">Компьютерная мышь</option>
+                                    <option value="Keyboard">Клавиатура</option>
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label className="control-label">ImageUrl</label>
+                                <label className="control-label">URL изображения</label>
                                 <input onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
                             </div>
                             <div className="form-group">
                                 <img src={this.state.imageUrl} />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Price</label>
+                                <label className="control-label">Цена</label>
                                 <input ref={this.inputPriceRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
                                 <button onClick={(ev) => {
                                     ev.preventDefault();
                                     this.createItem();
-                                }} className="btn btn-primary">Add</button>
+                                }} className="btn btn-primary">Добавить</button>
                             </div>
                         </form>
                     </div>
@@ -63,7 +62,7 @@ export default class Create extends Component {
 
                         this.setTypePage("Index");
                     }
-                    }>Back to list</a>
+                    }>Вернуться к списку</a>
                 </div>
             </div>
         );
@@ -78,10 +77,10 @@ export default class Create extends Component {
         if (response.status == 200) {
 
             this.setTypePage("Index");
-            Layout.setMessage('Periphery was added! ');
+            Layout.setMessage('Периферия была добавлена! ');
         } else {
 
-            Layout.setMessage('Error add Periphery: ' + response.statusText);
+            Layout.setMessage('Ошибка при добавлении периферии: ' + response.status);
         }
     }
 }

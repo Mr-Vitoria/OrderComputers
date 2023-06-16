@@ -22,13 +22,13 @@ export default class Index extends Component {
                 <thead>
                     <tr>
                         <th>
-                            User
+                            Пользователь
                         </th>
                         <th>
-                            Text
+                            Сообщение
                         </th>
                         <th>
-                            Date
+                            Дата
                         </th>
                         <th></th>
                     </tr>
@@ -50,13 +50,13 @@ export default class Index extends Component {
                             <td>
                                 <a onClick={(ev) => {
                                     this.setTypePage("Edit", item.id);
-                                }}>Edit</a> |
+                                }}>Изменить</a> |
                                 <a onClick={(ev) => {
                                     this.setTypePage("Detail", item.id);
-                                }}>Detail</a> |
+                                }}>Подробнее</a> |
                                 <a onClick={(ev) => {
                                     this.deleteItem(item.id);
-                                }}>Delete</a>
+                                }}>Удалить</a>
                             </td>
                         </tr>
                     )}
@@ -88,7 +88,7 @@ export default class Index extends Component {
 
                         this.setTypePage("Create");
                     }
-                    }>Add feedback</a>
+                    }>Добавить отзыв</a>
                 </p>
                 {contents}
             </div>
@@ -104,7 +104,7 @@ export default class Index extends Component {
         }
         else {
 
-            Layout.setMessage('Error get feedbacks: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении отзывов: ' + response.status);
         }
 
     }
@@ -113,7 +113,7 @@ export default class Index extends Component {
         const response = await fetch('feedbacks/delete?id=' + Id);
         if (response.status == 200) {
 
-            Layout.setMessage('Feedback was deleted! ');
+            Layout.setMessage('Отзыв удален! ');
             this.getItems();
         }
 

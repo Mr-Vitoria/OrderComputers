@@ -36,56 +36,55 @@ export class NavMenu extends Component {
                 <div className="header_toggle"> </div>
                 <div className="header_img"> <img src={item.imgUrl ?? 'https://cdn.onlinewebfonts.com/svg/img_266351.png'} alt="" /> </div>
             </header>
-
             <div ref={this.headerRef} className="l-navbar show" id="nav-bar">
                 <nav className="nav">
                    <div>
                         <a href="/" className="nav_logo"><span className="nav_logo-name">OuTouch</span> </a>
                         <div className="nav_list">
                             <a href="/" className={"nav_link" + (window.location.pathname == "/" ? " active" : "")}>
-                                <span className="nav_name">Main</span>
+                                <span className="nav_name">Главное меню</span>
                             </a>
 
                             <a href="/compBodyPanel" className={"nav_link" + (window.location.pathname == "/compBodyPanel" ? " active" : "")}>
-                                <span className="nav_name">Computer body</span>
+                                <span className="nav_name">Корпусы</span>
                             </a>
                             <a href="/compProcessorPanel" className={"nav_link" + (window.location.pathname == "/compProcessorPanel" ? " active" : "")}>
-                                <span className="nav_name">Computer processors</span>
+                                <span className="nav_name">Процессоры</span>
                             </a>
                             <a href="/motherCardPanel" className={"nav_link" + (window.location.pathname == "/motherCardPanel" ? " active" : "")}>
-                                <span className="nav_name">Mother cards</span>
+                                <span className="nav_name">Материнские платы</span>
                             </a>
                             <a href="/powerSupplyUnitPanel" className={"nav_link" + (window.location.pathname == "/powerSupplyUnitPanel" ? " active" : "")}>
-                                <span className="nav_name">Power supply units</span>
+                                <span className="nav_name">Блоки питания</span>
                             </a>
                             <a href="/ramMemoryPanel" className={"nav_link" + (window.location.pathname == "/ramMemoryPanel" ? " active" : "")}>
-                                <span className="nav_name">RAM memory</span>
+                                <span className="nav_name">Оперативная память</span>
                             </a>
                             <a href="/storagedevicePanel" className={"nav_link" + (window.location.pathname == "/storagedevicePanel" ? " active" : "")}>
-                                <span className="nav_name">Storage device</span>
+                                <span className="nav_name">Запоминающие устройства</span>
                             </a>
                             <a href="/videoCardPanel" className={"nav_link" + (window.location.pathname == "/videoCardPanel" ? " active" : "")}>
-                                <span className="nav_name">Video card</span>
+                                <span className="nav_name">Видеокарты</span>
                             </a>
                             <a href="/peripheryPanel" className={"nav_link" + (window.location.pathname == "/peripheryPanel" ? " active" : "")}>
-                                <span className="nav_name">Peripheries</span>
+                                <span className="nav_name">Периферия</span>
                             </a>
                             <a href="/compAssemblyPanel" className={"nav_link" + (window.location.pathname == "/compAssemblyPanel" ? " active" : "")}>
-                                <span className="nav_name">Computer assemblies</span>
+                                <span className="nav_name">Сборки ПК</span>
                             </a>
                             <a href="/userPanel" className={"nav_link" + (window.location.pathname == "/userPanel" ? " active" : "")}>
-                                <span className="nav_name">Users</span>
+                                <span className="nav_name">Пользователи</span>
                             </a>
                             <a href="/orderPanel" className={"nav_link" + (window.location.pathname == "/orderPanel" ? " active" : "")}>
-                                <span className="nav_name">Orders</span>
+                                <span className="nav_name">Заказы</span>
                             </a>
                             <a href="/feedbackPanel" className={"nav_link" + (window.location.pathname == "/feedbackPanel" ? " active" : "")}>
-                                <span className="nav_name">Feedbacks</span>
+                                <span className="nav_name">Отзывы</span>
                             </a>
                         </div>
                     </div> <a onClick={(ev) => {
                         Layout.setTypePage("SignOut")
-                    }} className="nav_link"> <i className='bx bx-log-out nav_icon'></i> <span className="nav_name">Sign Out</span> </a>
+                    }} className="nav_link"> <i className='bx bx-log-out nav_icon'></i> <span className="nav_name">Выход</span> </a>
                 </nav>
             </div>
         </div>

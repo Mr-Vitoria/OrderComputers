@@ -16,64 +16,64 @@ export default class Detail extends Component {
     componentDidMount() {
         this.getItem(this.state.itemId);
     }
-
+    
     renderItem(item) {
         return (
             <>
                 <div>
-                    <h4>Detail video card</h4>
+                    <h4>Видеокарта</h4>
                     <hr />
                     <dl className="row">
                         <dt className="col-sm-2">
-                            Image
+                            Изображение
                         </dt>
                         <dd className="col-sm-10">
                             <img src={item.imgUrl} />
                         </dd>
                         <dt classNameName="col-sm-2">
-                            Name
+                            Название
                         </dt>
                         <dd className="col-sm-10">
                             {item.name }
                         </dd>
                         <dt classNameName="col-sm-2">
-                            Producer
+                            Производитель
                         </dt>
                         <dd className="col-sm-10">
                             {item.producer}
                         </dd>
                         <dt classNameName="col-sm-2">
-                            Family
+                            Семейство
                         </dt>
                         <dd className="col-sm-10">
                             {item.family}
                         </dd>
                         <dt classNameName="col-sm-2">
-                            Generation
+                            Поколение
                         </dt>
                         <dd className="col-sm-10">
                             {item.generation}
                         </dd>
                         <dt classNameName="col-sm-2">
-                            Series
+                            Серия
                         </dt>
                         <dd className="col-sm-10">
                             {item.series}
                         </dd>
                         <dt className="col-sm-2">
-                            Type
+                            Тип памяти
                         </dt>
                         <dd className="col-sm-10">
                             {item.type}
                         </dd>
                         <dt className="col-sm-2">
-                            Count
+                            Объем(Мб)
                         </dt>
                         <dd className="col-sm-10">
-                            {item.frequency}
+                            {item.count}
                         </dd>
                         <dt className="col-sm-2">
-                            Price
+                            Цена
                         </dt>
                         <dd className="col-sm-10">
                             {item.price }
@@ -83,10 +83,10 @@ export default class Detail extends Component {
                 <div>
                     <a onClick={(ev) => {
                         this.setTypePage("Edit", item.id);
-                    } }>Edit</a> |
+                    } }>Изменить</a> |
                     <a onClick={(ev) => {
                         this.setTypePage("Index");
-                    }}>Back</a>
+                    }}>Вернуться</a>
                 </div>
             </>
 
@@ -119,11 +119,10 @@ export default class Detail extends Component {
         if (response.status == 200) {
 
             const data = await response.json();
-            console.log(data);
             this.setState({ item: data, loading: false });
         } else {
 
-            Layout.setMessage('Error get video card: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении видеокарты: ' + response.status);
         }
     }
 }

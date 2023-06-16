@@ -34,22 +34,21 @@ export default class Edit extends Component {
                             <form>
                                 <input ref={this.inputIdRef} type="hidden" defaultValue={item.id}></input>
                                 <div className="form-group">
-                                    <label className="control-label">Name</label>
+                                    <label className="control-label">Название</label>
                                     <input defaultValue={item.name} ref={this.inputNameRef} className="form-control" />
                                 </div>
                                 <div className="form-group">
-                                    <label className="control-label">Form factor</label>
+                                    <label className="control-label">Форм фактор</label>
                                     <select defaultValue={item.formFactor} ref={this.inputFormFactorRef} className="form-control">
                                         <option value="Super/Ultra Tower">Super/Ultra Tower</option>
                                         <option value="Full Tower">Full Tower</option>
                                         <option value="Mid Tower">Mid Tower</option>
                                         <option value="Mini Tower">Mini Tower</option>
                                         <option value="Small form factor">Small form factor</option>
-                                        <option value="HTPC">HTPC</option>
                                     </select>
                                 </div>
                                 <div className="form-group">
-                                    <label className="control-label">ImageUrl</label>
+                                    <label className="control-label">URL изображения</label>
                                     <input defaultValue={this.state.imageUrl} onChange={(ev) => {
                                         this.setState({
                                             imageUrl: ev.target.value
@@ -60,14 +59,14 @@ export default class Edit extends Component {
                                     <img src={this.state.imageUrl} />
                                 </div>
                                 <div className="form-group">
-                                    <label className="control-label">Price</label>
+                                    <label className="control-label">Цена</label>
                                     <input defaultValue={item.price} ref={this.inputPriceRef} className="form-control" type="number" />
                                 </div>
                                 <div className="form-group">
                                     <button onClick={(ev) => {
                                         ev.preventDefault();
                                         this.editItem();
-                                    }} className="btn btn-dark" >Save</button>
+                                    }} className="btn btn-dark" >Сохранить</button>
                                 </div>
                             </form>
                         </div>
@@ -78,7 +77,7 @@ export default class Edit extends Component {
 
                             this.setTypePage("Index");
                         }
-                        }>Back to list</a>
+                        }>Вернуться к списку</a>
                     </div>
                 </div>
             </>
@@ -120,7 +119,7 @@ export default class Edit extends Component {
         }
         else {
 
-            Layout.setMessage('Error get computer body: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении информации: ' + response.status);
         }
     }
 
@@ -133,11 +132,11 @@ export default class Edit extends Component {
 
         if (response.status == 200) {
 
-            Layout.setMessage('Computer body is edited');
+            Layout.setMessage('Корпус был изменен');
             this.setTypePage("Index");
         }
         else {
-            Layout.setMessage('Error: ' + response.statusText);
+            Layout.setMessage('Ошибка: ' + response.status);
         }
     }
 }

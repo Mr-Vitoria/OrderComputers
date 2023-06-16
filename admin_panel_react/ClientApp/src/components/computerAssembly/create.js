@@ -36,12 +36,12 @@ export default class Create extends Component {
                     <div className="col-md-4">
                         <form>
                             <div className="form-group">
-                                <label className="control-label">Name assembly</label>
+                                <label className="control-label">Название</label>
                                 <input type="text" ref={this.inputNameRef} className="form-control" />
                             </div>
 
                             <div className="form-group">
-                                <label className="control-label">Computer body</label>
+                                <label className="control-label">Корпус</label>
                                 <select ref={this.inputBodyIdRef} className="form-control" >
                                     {data.compBodies.map((item, index) => {
                                         return <option key={index} value={item.value}>{ item.text}</option>;
@@ -50,7 +50,7 @@ export default class Create extends Component {
                             </div>
 
                             <div className="form-group">
-                            <label className="control-label">Computer processor</label>
+                            <label className="control-label">Процессор</label>
                             <select ref={this.inputProcIdeRef} className="form-control" >
                                 {data.compProcessors.map((item, index) => {
                                     return <option key={index} value={item.value}>{item.text}</option>;
@@ -59,7 +59,7 @@ export default class Create extends Component {
                             </div>
 
                             <div className="form-group">
-                            <label className="control-label">Mother card</label>
+                            <label className="control-label">Материнская плата</label>
                             <select ref={this.inputMotherIdRef} className="form-control" >
                                 {data.motherCards.map((item, index) => {
                                     return <option key={index} value={item.value}>{item.text}</option>;
@@ -68,7 +68,7 @@ export default class Create extends Component {
                             </div>
 
                             <div className="form-group">
-                            <label className="control-label">Power supply unit</label>
+                            <label className="control-label">Блок питания</label>
                             <select ref={this.inputPowerIdRef} className="form-control" >
                                 {data.powerSupplyUnits.map((item, index) => {
                                     return <option key={index} value={item.value}>{item.text}</option>;
@@ -77,7 +77,7 @@ export default class Create extends Component {
                             </div>
 
                             <div className="form-group">
-                            <label className="control-label">RAM memory</label>
+                            <label className="control-label">Оперативная память</label>
                             <select ref={this.inputRAMIdRef} className="form-control" >
                                 {data.ramMemories.map((item, index) => {
                                     return <option key={index} value={item.value}>{item.text}</option>;
@@ -87,7 +87,7 @@ export default class Create extends Component {
 
 
                             <div className="form-group">
-                            <label className="control-label">Storage device</label>
+                            <label className="control-label">Запоминающее устройство</label>
                             <select ref={this.inputStorageIdRef} className="form-control" >
                                 {data.storageDevices.map((item, index) => {
                                     return <option key={index} value={item.value}>{item.text}</option>;
@@ -96,9 +96,9 @@ export default class Create extends Component {
                             </div>
 
                             <div className="form-group">
-                            <label className="control-label">Video card</label>
+                            <label className="control-label">Видеокарта</label>
                             <select ref={this.inputVideoIdRef} className="form-control" >
-                                <option value="-1">NONE</option>
+                                <option value="-1">Без видеокарты</option>
                                 {data.videoCards.map((item, index) => {
                                     return <option key={index} value={item.value}>{item.text}</option>;
                                 })}
@@ -106,17 +106,17 @@ export default class Create extends Component {
                             </div>
 
                             <div className="form-group">
-                                <label className="control-label">Type computer assembly</label>
+                                <label className="control-label">Тип сборки</label>
                                 <select ref={this.inputTypeRef} className="form-control">
-                                    <option value="Game">Game</option>
-                                    <option value="Office">Office</option>
-                                    <option value="Common">Common</option>
-                                    <option value="User">User</option>
+                                    <option value="Игровые">Игровая</option>
+                                    <option value="Офисные">Офисная</option>
+                                    <option value="Повседневные">Повседневная</option>
+                                    <option value="Пользовательские">Пользовательская</option>
                                 </select>
                             </div>
 
                             <div className="form-group">
-                                <label className="control-label">ImageUrl</label>
+                                <label className="control-label">URL изображения</label>
                                 <input onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
                             </div>
                             <div className="form-group">
@@ -124,7 +124,7 @@ export default class Create extends Component {
                             </div>
 
                             <div className="form-group">
-                                <label className="control-label">Cost price</label>
+                                <label className="control-label">Стоимость сборки</label>
                                 <input ref={this.inputCostPriceRef} className="form-control" type="number" />
                             </div>
 
@@ -133,7 +133,7 @@ export default class Create extends Component {
                                 <button onClick={(ev) => {
                                     ev.preventDefault();
                                     this.createItem();
-                                }} className="btn btn-primary" >Add</button>
+                                }} className="btn btn-primary" >Добавить</button>
                             </div>
                         </form>
                     </div>
@@ -143,7 +143,7 @@ export default class Create extends Component {
 
                         this.setTypePage("Index");
                     }
-                    }>Back to list</a>
+                    }>Вернуться</a>
                 </div>
             </div>
         );
@@ -178,7 +178,7 @@ export default class Create extends Component {
         }
         else {
 
-            Layout.setMessage('Error get computer assembly data: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении данных: ' + response.status);
         }
     }
 
@@ -199,12 +199,12 @@ export default class Create extends Component {
 
         if (response.status == 200) {
 
-            Layout.setMessage('Computer assembly was created! ');
+            Layout.setMessage('Сборка добавлена! ');
             this.setTypePage("Index");
         }
         else {
 
-            Layout.setMessage('Error create computer assembly: ' + response.statusText);
+            Layout.setMessage('Ошибка при создании сборки: ' + response.status);
         }
     }
 }

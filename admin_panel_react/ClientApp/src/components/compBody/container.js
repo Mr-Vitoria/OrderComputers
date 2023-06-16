@@ -27,8 +27,7 @@ export class CompBodyContainer extends Component {
 
         return (
             <div>
-                <h1 id="tableLabel">Computer bodies</h1>
-
+                <h1 id="tableLabel">Компьютерные корпусы</h1>
 
                 {this.state.page == "Index" ?
                     <Index setTypePage={this.setTypePage} />

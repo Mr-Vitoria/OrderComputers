@@ -30,7 +30,7 @@ export default class Create extends Component {
                         <form>
 
                             <div className="form-group">
-                                <label className="control-label">User</label>
+                                <label className="control-label">Пользователь</label>
                                 <select ref={this.inputUserIdRef} className="form-control" >
                                     {data.users.map((item, index) => {
                                         return <option key={index} value={item.value}>{item.text}</option>;
@@ -38,14 +38,14 @@ export default class Create extends Component {
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Text</label>
+                                <label className="control-label">Сообщение</label>
                                 <textarea className="form-control" ref={this.inputTextRef}>
 
                                 </textarea>
                             </div>
 
                             <div className="form-group">
-                                <label className="control-label">Date</label>
+                                <label className="control-label">Дата</label>
                                 <input ref={this.inputDateRef} className="form-control" type="date" />
                             </div>
 
@@ -53,7 +53,7 @@ export default class Create extends Component {
                                 <button onClick={(ev) => {
                                     ev.preventDefault();
                                     this.createItem();
-                                }} className="btn btn-primary" >Add</button>
+                                }} className="btn btn-primary" >Добавить</button>
                             </div>
                         </form>
                     </div>
@@ -63,7 +63,7 @@ export default class Create extends Component {
 
                         this.setTypePage("Index");
                     }
-                    }>Back to list</a>
+                    }>Вернуться к списку</a>
                 </div>
             </div>
         );
@@ -98,7 +98,7 @@ export default class Create extends Component {
         }
         else {
 
-            Layout.setMessage('Error get feedback data: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении данных: ' + response.status);
         }
     }
 
@@ -111,12 +111,12 @@ export default class Create extends Component {
 
         if (response.status == 200) {
 
-            Layout.setMessage('Feedback was created! ');
+            Layout.setMessage('Отзыв добавлен! ');
             this.setTypePage("Index");
         }
         else {
 
-            Layout.setMessage('Error create feedback: ' + response.statusText);
+            Layout.setMessage('Ошибка при добавлении отзыва: ' + response.statusText);
         }
     }
 }

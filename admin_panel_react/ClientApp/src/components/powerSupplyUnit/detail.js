@@ -16,40 +16,40 @@ export default class Detail extends Component {
     componentDidMount() {
         this.getItem(this.state.itemId);
     }
-
+    
     renderItem(item) {
         return (
             <>
                 <div>
-                    <h4>Detail power supply units</h4>
+                    <h4>Блок питания</h4>
                     <hr />
                     <dl className="row">
                         <dt className="col-sm-2">
-                            Image
+                            Изображение
                         </dt>
                         <dd className="col-sm-10">
                             <img src={item.imgUrl} />
                         </dd>
                         <dt className="col-sm-2">
-                            Name
+                            Название
                         </dt>
                         <dd className="col-sm-10">
                             {item.name }
                         </dd>
                         <dt className="col-sm-2">
-                            Form factor
+                            Форм фактор
                         </dt>
                         <dd className="col-sm-10">
                             {item.formFactor}
                         </dd>
                         <dt className="col-sm-2">
-                            Power
+                            Мощность(Вт)
                         </dt>
                         <dd className="col-sm-10">
                             {item.power }
                         </dd>
                         <dt className="col-sm-2">
-                            Price
+                            Цена
                         </dt>
                         <dd className="col-sm-10">
                             {item.price }
@@ -59,10 +59,10 @@ export default class Detail extends Component {
                 <div>
                     <a onClick={(ev) => {
                         this.setTypePage("Edit", item.id);
-                    } }>Edit</a> |
+                    } }>Изменить</a> |
                     <a onClick={(ev) => {
                         this.setTypePage("Index");
-                    }}>Back</a>
+                    }}>Вернуться</a>
                 </div>
             </>
 
@@ -99,7 +99,7 @@ export default class Detail extends Component {
 
         } else {
 
-            Layout.setMessage('Error get power supply unit: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении данных: ' + response.status);
         }
     }
 }

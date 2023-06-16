@@ -27,7 +27,7 @@ export class ComputerAssemblyContainer extends Component {
 
         return (
             <div>
-                <h1 id="tableLabel">Computer assembly</h1>
+                <h1 id="tableLabel">Сборки ПК</h1>
 
 
                 {this.state.page == "Index" ?

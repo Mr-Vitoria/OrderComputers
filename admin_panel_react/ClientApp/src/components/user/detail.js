@@ -16,34 +16,34 @@ export default class Detail extends Component {
     componentDidMount() {
         this.getItem(this.state.itemId);
     }
-
+    
     renderItem(item) {
         return (
             <>
                 <div>
-                    <h4>Detail user</h4>
+                    <h4>Пользователь</h4>
                     <hr />
                     <dl className="row">
                         <dt className="col-sm-2">
-                            Image
+                            Изображение
                         </dt>
                         <dd className="col-sm-10">
                             <img src={item.imgUrl} />
                         </dd>
                         <dt className="col-sm-2">
-                            Name
+                            Имя
                         </dt>
                         <dd className="col-sm-10">
                             {item.name }
                         </dd>
                         <dt className="col-sm-2">
-                            Login
+                            Логин
                         </dt>
                         <dd className="col-sm-10">
                             {item.login}
                         </dd>
                         <dt className="col-sm-2">
-                            Phone
+                            Телефон
                         </dt>
                         <dd className="col-sm-10">
                             {item.phone }
@@ -55,19 +55,13 @@ export default class Detail extends Component {
                             {item.email }
                         </dd>
                         <dt className="col-sm-2">
-                            Password
+                            Пароль
                         </dt>
                         <dd className="col-sm-10">
                             {item.password}
                         </dd>
                         <dt className="col-sm-2">
-                            Img url
-                        </dt>
-                        <dd className="col-sm-10">
-                            {item.imgUrl}
-                        </dd>
-                        <dt className="col-sm-2">
-                            Type user
+                            Тип аккаунта
                         </dt>
                         <dd className="col-sm-10">
                             {item.typeUser }
@@ -77,10 +71,10 @@ export default class Detail extends Component {
                 <div>
                     <a onClick={(ev) => {
                         this.setTypePage("Edit", item.id);
-                    } }>Edit</a> |
+                    } }>Изменить</a> |
                     <a onClick={(ev) => {
                         this.setTypePage("Index");
-                    }}>Back</a>
+                    }}>Вернуться</a>
                 </div>
             </>
 
@@ -116,7 +110,7 @@ export default class Detail extends Component {
             this.setState({ item: data, loading: false });
         } else {
 
-            Layout.setMessage('Error get user: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении пользователя: ' + response.status);
         }
     }
 }

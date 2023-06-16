@@ -22,12 +22,11 @@ export class PeripheryContainer extends Component {
             itemId: keepItemId
         });
     }
-
     render() {
 
         return (
             <div>
-                <h1 id="tableLabel">Periphery</h1>
+                <h1 id="tableLabel">Периферия</h1>
 
 
                 {this.state.page == "Index" ?

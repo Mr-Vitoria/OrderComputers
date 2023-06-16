@@ -27,7 +27,7 @@ export default class Edit extends Component {
         this.getItem(this.state.itemId);
 
     }
-
+    
     renderItem(item) {
         return (
             <div>
@@ -35,11 +35,11 @@ export default class Edit extends Component {
                     <div className="col-md-4">
                         <form method="post">
                             <div className="form-group">
-                                <label className="control-label">Name</label>
+                                <label className="control-label">Имя</label>
                                 <input defaultValue={ item.name} ref={this.inputNameRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Login</label>
+                                <label className="control-label">Логин</label>
                                 <input defaultValue={item.login} ref={this.inputLoginRef} className="form-control" />
                             </div>
                             <div className="form-group">
@@ -47,32 +47,32 @@ export default class Edit extends Component {
                                 <input defaultValue={item.email}  ref={this.inputEmailRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Phone</label>
+                                <label className="control-label">Телефон</label>
                                 <input defaultValue={item.phone}  ref={this.inputPhoneRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Password</label>
+                                <label className="control-label">Пароль</label>
                                 <input defaultValue={item.password}  ref={this.inputPasswordRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">ImageUrl</label>
+                                <label className="control-label">URL изображения</label>
                                 <input defaultValue={this.state.imageUrl} onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
                             </div>
                             <div className="form-group">
                                 <img src={this.state.imageUrl} />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Type User</label>
+                                <label className="control-label">Тип аккаунта</label>
                                 <select defaultValue={item.typeUser} ref={this.inputTypeRef} className="form-control">
-                                    <option value="Common">Common</option>
-                                    <option value="Admin">Admin</option>
+                                    <option value="Common">Обычный</option>
+                                    <option value="Admin">Администратор</option>
                                 </select>
                             </div>
                             <div className="form-group">
                                 <button onClick={(ev) => {
                                     ev.preventDefault();
                                     this.editItem();
-                                }} className="btn btn-primary">Save</button>
+                                }} className="btn btn-primary">Сохранить</button>
                             </div>
                         </form>
                     </div>
@@ -83,7 +83,7 @@ export default class Edit extends Component {
 
                         this.setTypePage("Index");
                     }
-                    }>Back to list</a>
+                    }>Вернуться к списку</a>
                 </div>
             </div>
 
@@ -119,7 +119,7 @@ export default class Edit extends Component {
             this.setState({ item: data, loading: false, imageUrl: data.imgUrl });
         } else {
 
-            Layout.setMessage('Error get user: ' + response.statusText);
+            Layout.setMessage('Ошибка получения пользователя: ' + response.status);
         }
     }
 
@@ -136,10 +136,10 @@ export default class Edit extends Component {
         if (response.status == 200) {
 
             this.setTypePage("Index");
-            Layout.setMessage('User was edited: ' + response.statusText);
+            Layout.setMessage('Пользователь изменен! ');
         } else {
 
-            Layout.setMessage('Error edit user: ' + response.statusText);
+            Layout.setMessage('Ошибка при изменении пользователя: ' + response.status);
         }
     }
 }

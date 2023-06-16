@@ -40,31 +40,31 @@ export default class Edit extends Component {
                             <form>
                                 <input ref={this.inputIdRef} type="hidden" defaultValue={item.id}></input>
                                 <div className="form-group">
-                                    <label className="control-label">Name</label>
+                                    <label className="control-label">Название</label>
                                     <input ref={this.inputNameRef} className="form-control" defaultValue={item.name } />
                                 </div>
                                 <div className="form-group">
-                                    <label className="control-label">Producer</label>
+                                    <label className="control-label">Производитель</label>
                                     <input ref={this.inputProducerRef} className="form-control" defaultValue={item.producer} />
                                 </div>
                                 <div className="form-group">
-                                    <label className="control-label">Socket</label>
+                                    <label className="control-label">Сокет</label>
                                     <input ref={this.inputSocketRef} className="form-control" defaultValue={item.socket} />
                                 </div>
                                 <div className="form-group">
-                                    <label className="control-label">Count cores</label>
+                                    <label className="control-label">Количество ядер</label>
                                     <input ref={this.inputCoresRef} className="form-control" type="number" defaultValue={item.countCores} />
                                 </div>
                                 <div className="form-group">
-                                    <label className="control-label">Count threads</label>
+                                    <label className="control-label">Количество потоков</label>
                                     <input ref={this.inputThreadsRef} className="form-control" type="number" defaultValue={item.countThreads} />
                                 </div>
                                 <div className="form-group">
-                                    <label className="control-label">Frequency(MGz)</label>
+                                    <label className="control-label">Частота(MGz)</label>
                                     <input ref={this.inputFrequencyRef} className="form-control" type="number" defaultValue={item.frequency} />
                                 </div>
                                 <div className="form-group">
-                                    <label className="control-label">Type of RAM</label>
+                                    <label className="control-label">Тип поддерживаемой RAM</label>
                                     <select ref={this.inputRamRef} className="form-control" defaultValue={item.typeRam}>
                                         <option value="DDR2">DDR2</option>
                                         <option value="DDR3">DDR3</option>
@@ -74,12 +74,12 @@ export default class Edit extends Component {
                                 </div>
                                 <div className="form-group form-check">
                                     <label className="form-check-label">
-                                        <input className="form-check-input" type="checkbox" ref={this.inputVideoCardRef} defaultChecked={item.haveVideoCard} /> Have video card?
+                                        <input className="form-check-input" type="checkbox" ref={this.inputVideoCardRef} defaultChecked={item.haveVideoCard} /> Имеет встроенное видеоядро?
                                     </label>
                                 </div>
 
                                 <div className="form-group">
-                                    <label className="control-label">ImageUrl</label>
+                                    <label className="control-label">URL изображения</label>
                                     <input defaultValue={this.state.imageUrl} onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
                                 </div>
                                 <div className="form-group">
@@ -87,14 +87,14 @@ export default class Edit extends Component {
                                 </div>
 
                                 <div className="form-group">
-                                    <label className="control-label">Price</label>
+                                    <label className="control-label">Цена</label>
                                     <input ref={this.inputPriceRef} className="form-control" defaultValue={item.price} />
                                 </div>
                                 <div className="form-group">
                                     <button onClick={(ev) => {
                                         ev.preventDefault();
                                         this.editItem();
-                                    }} className="btn btn-dark" >Save</button>
+                                    }} className="btn btn-dark" >Сохранить</button>
                                 </div>
                             </form>
                         </div>
@@ -105,7 +105,7 @@ export default class Edit extends Component {
 
                             this.setTypePage("Index");
                         }
-                        }>Back to list</a>
+                        }>Вернуться к списку процессоров</a>
                     </div>
                 </div>
             </>
@@ -143,7 +143,7 @@ export default class Edit extends Component {
         }
         else {
 
-            Layout.setMessage('Error get computer processor: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении данных о процессоре: ' + response.status);
         }
     }
 
@@ -163,12 +163,12 @@ export default class Edit extends Component {
 
         if (response.status == 200) {
 
+            Layout.setMessage('Процессор был изменен!');
             this.setTypePage("Index");
-            Layout.setMessage('Computer processor is edited: ' + response.statusText);
         }
         else {
 
-            Layout.setMessage('Error edit computer processor: ' + response.statusText);
+            Layout.setMessage('Ошибка при изменении процессора: ' + response.status);
         }
     }
 }
