@@ -135,8 +135,8 @@ namespace order_computers_system_react.Controllers
             await _context.ComputerAssemblies.LoadAsync();
             await _context.OrderPeripheries.LoadAsync();
 
-
-            return await _context.Orders.Where(or => or.UserId == id).OrderBy(or=>or.Id).Reverse().ToListAsync();
+            var orders = await _context.Orders.Where(or => or.UserId == id).OrderBy(or => or.Id).Reverse().ToListAsync();
+            return orders;
         }
 
         [HttpGet]
@@ -166,8 +166,8 @@ namespace order_computers_system_react.Controllers
             , int bodyId, int processorId
             ,int motherCardId, int powerSupplyId
             ,int ramId, int storageId
-            ,int videoId, string peripheryIds
-            , DateOnly orderDate)
+            ,int videoId, string? peripheryIds
+            ,DateOnly orderDate)
         {
             Order order = new Order()
             {
@@ -181,7 +181,7 @@ namespace order_computers_system_react.Controllers
                     PowerSupplyUnitId = powerSupplyId,
                     RAMMemoryId = ramId,
                     StorageDeviceId = storageId,
-                    VideoCardId = videoId,
+                    VideoCardId = (videoId == -1 ? null : videoId),
                     TypeComputerAssembly = "Order",
                     CostPrice = assemblyPrice,
                     ImgUrl = ""
@@ -191,16 +191,20 @@ namespace order_computers_system_react.Controllers
                 OrderDate = orderDate.ToString()
             };
 
-            int[] peripheries = JsonSerializer.Deserialize<int[]>(peripheryIds);
-
-            foreach (int periipheryId in peripheries)
+            if (peripheryIds != null)
             {
-                await _context.OrderPeripheries.AddAsync(new OrderPeriphery()
+                int[] peripheries = JsonSerializer.Deserialize<int[]>(peripheryIds);
+
+                foreach (int periipheryId in peripheries)
                 {
-                    Order = order,
-                    PeripheryId = periipheryId
-                });
+                    await _context.OrderPeripheries.AddAsync(new OrderPeriphery()
+                    {
+                        Order = order,
+                        PeripheryId = periipheryId
+                    });
+                }
             }
+            
 
             await _context.AddAsync(order);
             await _context.SaveChangesAsync();
