@@ -28,7 +28,7 @@ export class Header extends Component {
                             <img className="profileIcon" src={this.state.userImg ?? "https://www.pinclipart.com/picdir/big/178-1789203_user-icon-png-white-printer-logic-client-download.png"} />
                         </a>
                         <a href="/">Главная</a>
-                        <a href="/assemblyList">Модели</a>
+                        <a href="/models">Модели</a>
                         <a href="/configuration">Конфигуратор</a>
                         <a href="/profile">Профиль</a>
                         {this.state.userImg != null ? <a href="/history">Заказы</a> : null}
@@ -45,7 +45,7 @@ export class Header extends Component {
                         </a>
                     </div>
                     <div className="linksContainer">
-                        <a href="/assemblyList">Модели</a>
+                        <a href="/models">Модели</a>
                         <a href="/configuration">Конфигуратор</a>
                         {/*<a href="#">Поддержка</a>*/}
                     </div>
@@ -75,7 +75,7 @@ export class Header extends Component {
     async getUser() {
 
         const cookies = new Cookies();
-        const response = await fetch('ordersystem/getuserbyid?id=' + cookies.get('userId'));
+        const response = await fetch('users/getuserbyid?id=' + cookies.get('userId'));
         if (response.status == 200) {
 
             const data = await response.json();

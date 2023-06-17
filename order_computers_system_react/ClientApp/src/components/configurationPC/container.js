@@ -390,7 +390,7 @@ export class ConfigurationPCContainer extends Component {
         ].filter((item) => item != null));
         if (this.state.typeConfiguration == "Full")
         {
-            await fetch('ordersystem/createorder?userId=' + userId
+            await fetch('orders/createorder?userId=' + userId
                 + '&assemblyPrice=' + this.state.amountAssembly
                 + '&totalPrice=' + this.state.totalAmount
 
@@ -408,7 +408,7 @@ export class ConfigurationPCContainer extends Component {
                 + '&peripheryIds=' + peripheryString);
         }
         else if (this.state.typeConfiguration == "Price") {
-            await fetch('ordersystem/createorderbyprice?userId=' + userId
+            await fetch('orders/createorderbyprice?userId=' + userId
                 + '&budjet=' + this.budjetInputRef.current.value
                 + '&comment=' + (this.commentInputRef.current.value??" ")
                 + '&totalPrice=' + this.state.totalAmount

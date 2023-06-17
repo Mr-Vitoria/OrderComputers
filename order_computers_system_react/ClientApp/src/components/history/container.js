@@ -90,7 +90,7 @@ export class HistoryContainer extends Component {
 
 
     async getModel() {
-        const response = await fetch('ordersystem/gethistoryuser?id=' + this.state.userId);
+        const response = await fetch('users/gethistoryuser?id=' + this.state.userId);
         const data = await response.json();
         this.setState({ model: data, loading: false });
     }

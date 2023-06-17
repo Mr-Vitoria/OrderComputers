@@ -14,7 +14,7 @@ export default class Registration extends Component {
         this.setTypePage = props.setTypePage;
     }
     async createUser() {
-        const response = await fetch('ordersystem/createuser?phone=' + this.inputPhoneRef.current.value
+        const response = await fetch('users/createuser?phone=' + this.inputPhoneRef.current.value
             + '&login=' + this.inputLoginRef.current.value
             + '&name=' + this.inputNameRef.current.value
             + '&password=' + this.inputPasswordRef.current.value
@@ -27,7 +27,7 @@ export default class Registration extends Component {
                 this.setTypePage("Login");
             }
             else {
-                Layout.changeMessage('Ошибка! Проверьте правильность ввода данных и попробуйте еще раз');
+                Layout.changeMessage('Ошибка: '+data.message);
             }
         } else {
             Layout.changeMessage('Не удалось создать пользователя. Повторите попытку похже');

@@ -10,16 +10,16 @@ export default class OrderBlock extends Component {
     }
 
     async deleteOrder() {
-        await fetch('ordersystem/deleteorder?orderId=' + this.state.item.id);
+        await fetch('orders/deleteorder?orderId=' + this.state.item.id);
         window.location.reload();
     }
 
     async repeatOrder() {
-        await fetch('ordersystem/repeatorder?orderId=' + this.state.item.id);
+        await fetch('orders/repeatorder?orderId=' + this.state.item.id);
         window.location.reload();
     }
     async cancelOrder() {
-        await fetch('ordersystem/cancelorder?orderId=' + this.state.item.id);
+        await fetch('orders/cancelorder?orderId=' + this.state.item.id);
         window.location.reload();
     }
 
@@ -69,6 +69,14 @@ export default class OrderBlock extends Component {
                                     <p>{this.state.item.computerAssembly.compBody.name} - {this.state.item.computerAssembly.compBody.price} руб.</p>
                                 </>
                                     : null}
+                            </div>
+                        </div>
+                        : null}
+                    {this.state.item.typeOrder == 'Price' ?
+                        <div className="assemblyContainer">
+                            <h3>Комментарий:</h3>
+                            <div>
+                                <p>{this.state.item.comment}</p>
                             </div>
                         </div>
                         : null}

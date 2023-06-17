@@ -37,7 +37,7 @@ export class IndexContainer extends Component {
     }
     async addOrder() {
         let totalAmount = Math.trunc(this.state.descriptionItem.costPrice * 100) / 100;
-        await fetch('ordersystem/createorder?userId=' + this.state.user.id
+        await fetch('orders/createorder?userId=' + this.state.user.id
             + '&assemblyPrice=' + this.state.descriptionItem.costPrice
             + '&totalPrice=' + totalAmount
 
@@ -336,7 +336,7 @@ export class IndexContainer extends Component {
     async getUser() {
 
         const cookies = new Cookies();
-        const response = await fetch('ordersystem/getuserbyid?id=' + cookies.get('userId'));
+        const response = await fetch('users/getuserbyid?id=' + cookies.get('userId'));
         if (response.status == 200) {
 
             const data = await response.json();

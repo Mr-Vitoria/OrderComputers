@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using order_computers_system_react.Models;
+using order_computers_system_react.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSqlConnection"));
 });
 
+builder.Services.AddTransient<IOrderService, OrderService>();
+builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IAssemblyListService, AssemblyListService>();
+builder.Services.AddTransient<IOrderSystemService, OrderSystemService>();
 
 var app = builder.Build();
 
