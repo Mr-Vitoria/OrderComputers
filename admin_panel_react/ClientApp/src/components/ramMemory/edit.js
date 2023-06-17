@@ -26,7 +26,7 @@ export default class Edit extends Component {
         this.getItem(this.state.itemId);
 
     }
-
+    
     renderItem(item) {
         return (
             <div>
@@ -35,11 +35,11 @@ export default class Edit extends Component {
                         <form method="post">
                             <input defaultValue={item.id } ref={this.inputIdRef} type="hidden" className="form-control" />
                             <div className="form-group">
-                                <label className="control-label">Name</label>
+                                <label className="control-label">Название</label>
                                 <input defaultValue={item.name} ref={this.inputNameRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Type</label>
+                                <label className="control-label">Тип</label>
                                 <select defaultValue={item.type} ref={this.inputTypeRef} className="form-control">
                                     <option value="DDR2">DDR2</option>
                                     <option value="DDR3">DDR3</option>
@@ -48,29 +48,29 @@ export default class Edit extends Component {
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Count(Mb)</label>
+                                <label className="control-label">Объем(Mb)</label>
                                 <input defaultValue={item.count} ref={this.inputCountRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Frequency(MGz)</label>
+                                <label className="control-label">Частота(MGz)</label>
                                 <input defaultValue={item.frequency} ref={this.inputFrequencyRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">ImageUrl</label>
+                                <label className="control-label">URl изображения</label>
                                 <input defaultValue={this.state.imageUrl} onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
                             </div>
                             <div className="form-group">
                                 <img src={this.state.imageUrl} />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Price</label>
+                                <label className="control-label">Цена</label>
                                 <input defaultValue={item.price} ref={this.inputPriceRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
                                 <button onClick={(ev) => {
                                     ev.preventDefault();
                                     this.editItem();
-                                }} className="btn btn-primary">Save</button>
+                                }} className="btn btn-primary">Сохранить</button>
                             </div>
                         </form>
                     </div>
@@ -81,7 +81,7 @@ export default class Edit extends Component {
 
                         this.setTypePage("Index");
                     }
-                    }>Back to list</a>
+                    }>Вернуться к списку</a>
                 </div>
             </div>
 
@@ -117,7 +117,7 @@ export default class Edit extends Component {
             this.setState({ item: data, loading: false, imageUrl: data.imgUrl });
         } else {
 
-            Layout.setMessage('Error get RAM: ' + response.statusText);
+            Layout.setMessage('Ошибка получения RAM: ' + response.status);
         }
     }
 
@@ -133,10 +133,10 @@ export default class Edit extends Component {
         if (response.status == 200) {
 
             this.setTypePage("Index");
-            Layout.setMessage('RAM was edited! ');
+            Layout.setMessage('RAM изменена! ');
         } else {
 
-            Layout.setMessage('Error edit RAM: ' + response.statusText);
+            Layout.setMessage('Ошибка при изменении RAM: ' + response.status);
         }
     }
 }

@@ -480,3 +480,13 @@ main {
     width: 140px;
     z-index:-1;
 }
+
+.container {
+    padding-bottom: 50px;
+}
+.container a{
+    font-size:1.1em;
+}
+    .container a:hover {
+        color:gray !important;
+    }

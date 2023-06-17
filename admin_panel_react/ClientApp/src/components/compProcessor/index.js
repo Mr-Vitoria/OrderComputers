@@ -19,31 +19,28 @@ export default class Index extends Component {
                 <thead>
                     <tr>
                         <th>
-                        Name
+                        Название
                         </th>
                         <th>
-                            Producer
+                            Производитель
                         </th>
                         <th>
-                            Socket
+                            Сокет
                         </th>
                         <th>
-                            CountCores
+                            Количество ядер
                         </th>
                         <th>
-                            CountThreads
+                            Количество потоков
                         </th>
                         <th>
-                            Frequency
+                            Частота(Мгц)
                         </th>
                         <th>
-                            TypeRam
+                            Тип поддерживаемой RAM
                         </th>
                         <th>
-                            HaveVideoCard
-                        </th>
-                        <th>
-                            Price
+                            Цена
                         </th>
                         <th></th>
                     </tr>
@@ -72,21 +69,18 @@ export default class Index extends Component {
                                 {item.typeRam}
                             </td>
                             <td>
-                                {item.haveVideoCard+""}
-                            </td>
-                            <td>
                                 {item.price}
                             </td>
                             <td>
                                 <a onClick={(ev) => {
                                     this.setTypePage("Edit", item.id);
-                                }}>Edit</a> |
+                                }}>Изменить</a> |
                                 <a onClick={(ev) => {
                                     this.setTypePage("Detail", item.id);
-                                }}>Detail</a> |
+                                }}>Подробнее</a> |
                                 <a onClick={(ev) => {
                                     this.deleteItem(item.id);
-                                }}>Delete</a>
+                                }}>Удалить</a>
                             </td>
                         </tr>
                     )}
@@ -118,7 +112,7 @@ export default class Index extends Component {
 
                         this.setTypePage("Create");
                     }
-                    }>Add computer processor</a>
+                    }>Добавить новый процессор</a>
                 </p>
                 {contents}
             </div>
@@ -134,7 +128,7 @@ export default class Index extends Component {
         }
         else {
 
-            Layout.setMessage('Error get computer processor list: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении процессоров: ' + response.status);
         }
     }
 
@@ -142,12 +136,12 @@ export default class Index extends Component {
         const response = await fetch('compprocessors/delete?id=' + Id);
         if (response.status == 200) {
 
-            Layout.setMessage('Computer processor was deleted! ');
+            Layout.setMessage('Процессор был удален! ');
             this.getItems();
         }
         else {
 
-            Layout.setMessage('Error delete computer processor: ' + response.statusText);
+            Layout.setMessage('Ошибка при удалении процессора: ' + response.status);
         }
 
 

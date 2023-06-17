@@ -21,29 +21,29 @@ export default class Detail extends Component {
         return (
             <>
                 <div>
-                    <h4>Detail computer body</h4>
+                    <h4>Корпус компьютера</h4>
                     <hr />
                     <dl className="row">
                         <dt className="col-sm-2">
-                        Image
+                        Изображение
                         </dt>
                         <dd className="col-sm-10">
                             <img src={item.imgUrl} />
                         </dd>
                         <dt className="col-sm-2">
-                            Name
+                            Название
                         </dt>
                         <dd className="col-sm-10">
                             {item.name}
                         </dd>
                         <dt className="col-sm-2">
-                            Form factor
+                            Форм фактор
                         </dt>
                         <dd className="col-sm-10">
                             {item.formFactor}
                         </dd>
                         <dt className="col-sm-2">
-                            Price
+                            Цена
                         </dt>
                         <dd className="col-sm-10">
                             {item.price}
@@ -53,10 +53,10 @@ export default class Detail extends Component {
                 <div>
                     <a onClick={(ev) => {
                         this.setTypePage("Edit", item.id);
-                    } }>Edit</a> |
+                    } }>Изменить</a> |
                     <a onClick={(ev) => {
                         this.setTypePage("Index");
-                    }}>Back</a>
+                    }}>Вернуться</a>
                 </div>
             </>
 
@@ -86,13 +86,13 @@ export default class Detail extends Component {
 
     async getItem(Id) {
         const response = await fetch('compbodies/detail?id=' + Id);
-        if (response.status != 200) {
+        if (response.status == 200) {
 
-            Layout.setMessage('Error: ' + response.statusText);
-        }
-        else {
             const data = await response.json();
             this.setState({ item: data, loading: false });
+        }
+        else {
+            Layout.setMessage('Ошибка: ' + response.status);
         }
 
 

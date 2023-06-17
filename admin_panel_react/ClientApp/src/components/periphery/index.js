@@ -22,13 +22,13 @@ export default class Index extends Component {
                 <thead>
                     <tr>
                         <th>
-                            Name
+                            Название
                         </th>
                         <th>
-                            Type
+                            Тип
                         </th>
                         <th>
-                            Price
+                            Цена
                         </th>
                         <th></th>
                     </tr>
@@ -49,13 +49,13 @@ export default class Index extends Component {
                             <td>
                                 <a onClick={(ev) => {
                                     this.setTypePage("Edit", item.id);
-                                }}>Edit</a> |
+                                }}>Изменить</a> |
                                 <a onClick={(ev) => {
                                     this.setTypePage("Detail", item.id);
-                                }}>Detail</a> |
+                                }}>Подробнее</a> |
                                 <a onClick={(ev) => {
                                     this.deleteItem(item.id);
-                                }}>Delete</a>
+                                }}>Удалить</a>
                             </td>
                         </tr>
                     )}
@@ -87,7 +87,7 @@ export default class Index extends Component {
 
                         this.setTypePage("Create");
                     }
-                    }>Add Periphery</a>
+                    }>Добавить периферию</a>
                 </p>
                 {contents}
             </div>
@@ -102,7 +102,7 @@ export default class Index extends Component {
             this.setState({ items: data, loading: false });
         } else {
 
-            Layout.setMessage('Error get Periphery: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении списка периферий: ' + response.status);
         }
     }
 
@@ -110,11 +110,11 @@ export default class Index extends Component {
         const response = await fetch('peripheries/delete?id=' + Id);
         if (response.status == 200) {
 
-            Layout.setMessage('Periphery was deleted! ');
+            Layout.setMessage('Периферия удалена! ');
             this.getItems();
         } else {
 
-            Layout.setMessage('Error deleted Periphery: ' + response.statusText);
+            Layout.setMessage('Ошибка при удалении периферии: ' + response.status);
         }
 
     }

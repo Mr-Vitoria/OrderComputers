@@ -13,7 +13,7 @@ export default class Login extends Component {
         this.setTypePage = props.setTypePage;
     }
     async checkUser() {
-        const response = await fetch('ordersystem/getuser?phone=' + this.inputPhoneRef.current.value);
+        const response = await fetch('users/getuser?phone=' + this.inputPhoneRef.current.value);
         if (response.status == 200) {
 
             const data = await response.json();

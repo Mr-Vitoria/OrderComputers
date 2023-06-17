@@ -22,12 +22,12 @@ export class UserContainer extends Component {
             itemId: keepItemId
         });
     }
-
+    
     render() {
 
         return (
             <div>
-                <h1 id="tableLabel">Users</h1>
+                <h1 id="tableLabel">Пользователи</h1>
 
 
                 {this.state.page == "Index" ?

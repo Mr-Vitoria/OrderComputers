@@ -27,7 +27,7 @@ export class OrderContainer extends Component {
 
         return (
             <div>
-                <h1 id="tableLabel">Order</h1>
+                <h1 id="tableLabel">Заказы</h1>
 
 
                 {this.state.page == "Index" ?

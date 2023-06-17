@@ -34,36 +34,36 @@ export default class Edit extends Component {
                         <form>
                             <input defaultValue={item.id } ref={this.inputIdRef} type="hidden" className="form-control" />
                             <div className="form-group">
-                                <label className="control-label">Name</label>
+                                <label className="control-label">Название</label>
                                 <input defaultValue={item.name} ref={this.inputNameRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Form factor</label>
+                                <label className="control-label">Форм фактор</label>
                                 <select defaultValue={item.formFactor} ref={this.inputFormFactorRef} className="form-control">
                                     <option value="ATX">ATX</option>
                                     <option value="SFX">SFX</option>
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Power(Vt)</label>
+                                <label className="control-label">Мощность(Vt)</label>
                                 <input defaultValue={item.power} ref={this.inputPowerRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">ImageUrl</label>
+                                <label className="control-label">URL изображения</label>
                                 <input defaultValue={this.state.imageUrl} onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
                             </div>
                             <div className="form-group">
                                 <img src={this.state.imageUrl} />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Price</label>
+                                <label className="control-label">Цена</label>
                                 <input defaultValue={item.price} ref={this.inputPriceRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
                                 <button onClick={(ev) => {
                                     ev.preventDefault();
                                     this.editItem();
-                                }} className="btn btn-primary" >Save</button>
+                                }} className="btn btn-primary" >Сохранить</button>
                             </div>
                         </form>
                     </div>
@@ -74,7 +74,7 @@ export default class Edit extends Component {
 
                         this.setTypePage("Index");
                     }
-                    }>Back to list</a>
+                    }>Вернуться к списку</a>
                 </div>
             </div>
 
@@ -110,7 +110,7 @@ export default class Edit extends Component {
             this.setState({ item: data, loading: false, imageUrl: data.imgUrl });
         } else {
 
-            Layout.setMessage('Error get power supply unit: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении данных: ' + response.status);
         }
     }
 
@@ -125,10 +125,10 @@ export default class Edit extends Component {
         if (response.status == 200) {
 
             this.setTypePage("Index");
-            Layout.setMessage('Power supply unit was edited: ' + response.statusText);
+            Layout.setMessage('Блок питания изменен: ' + response.status);
         } else {
 
-            Layout.setMessage('Error edit power supply unit: ' + response.statusText);
+            Layout.setMessage('Ошибка при изменении блока питания: ' + response.status);
         }
     }
 }

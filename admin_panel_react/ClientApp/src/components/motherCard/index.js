@@ -22,22 +22,16 @@ export default class Index extends Component {
                 <thead>
                     <tr>
                         <th>
-                            Name
+                            Название
                         </th>
                         <th>
-                            Size
+                            Размер
                         </th>
                         <th>
-                            Socket
+                            Сокет
                         </th>
                         <th>
-                            HaveWiFiModul
-                        </th>
-                        <th>
-                            HaveBluetoothModul
-                        </th>
-                        <th>
-                            Price
+                            Цена
                         </th>
                         <th></th>
                     </tr>
@@ -56,24 +50,18 @@ export default class Index extends Component {
                                 {item.socket }
                             </td>
                             <td>
-                                {item.haveWiFiModul +''}
-                            </td>
-                            <td>
-                                {item.haveBluetoothModul+'' }
-                            </td>
-                            <td>
                                 {item.price }
                             </td>
                             <td>
                                 <a onClick={(ev) => {
                                     this.setTypePage("Edit", item.id);
-                                }}>Edit</a> |
+                                }}>Изменить</a> |
                                 <a onClick={(ev) => {
                                     this.setTypePage("Detail", item.id);
-                                }}>Detail</a> |
+                                }}>Подробнее</a> |
                                 <a onClick={(ev) => {
                                     this.deleteItem(item.id);
-                                }}>Delete</a>
+                                }}>Удалить</a>
                             </td>
                         </tr>
                     )}
@@ -105,7 +93,7 @@ export default class Index extends Component {
 
                         this.setTypePage("Create");
                     }
-                    }>Add mother card</a>
+                    }>Добавить материнскую плату</a>
                 </p>
                 {contents}
             </div>
@@ -121,7 +109,7 @@ export default class Index extends Component {
         }
         else {
 
-            Layout.setMessage('Error get mother card: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении материнской платы: ' + response.statusText);
         }
 
     }
@@ -130,11 +118,11 @@ export default class Index extends Component {
         const response = await fetch('mothercards/delete?id=' + Id);
         if (response.status == 200) {
 
-            Layout.setMessage('Mother card was deleted: ');
+            Layout.setMessage('Материнская плата удалена!');
             this.getItems();
         } else {
 
-            Layout.setMessage('Error delete mother card: ' + response.statusText);
+            Layout.setMessage('Ошибка при удалении материнской платы: ' + response.status);
         }
 
     }

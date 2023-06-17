@@ -30,7 +30,6 @@ export default class Edit extends Component {
     }
 
     renderItem(item) {
-        console.log(item);
         return (
             <div>
                 <div className="row">
@@ -38,11 +37,11 @@ export default class Edit extends Component {
                         <form>
                             <input defaultValue={ item.id} ref={this.inputIdRef} type="hidden" className="form-control" />
                             <div className="form-group">
-                                <label className="control-label">Name</label>
+                                <label className="control-label">Название</label>
                                 <input ref={this.inputNameRef} defaultValue={item.name } className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Size</label>
+                                <label className="control-label">Размер</label>
                                 <select ref={this.inputSizeRef} defaultValue={item.size} className="form-control" >
                                     <option value="E-ATX">E-ATX</option>
                                     <option value="Micro-ATX">Micro-ATX</option>
@@ -52,35 +51,38 @@ export default class Edit extends Component {
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Socket</label>
+                                <label className="control-label">Сокет</label>
                                 <input ref={this.inputSocketRef} defaultValue={item.socket} className="form-control" />
                             </div>
                             <div className="form-group form-check">
                                 <label className="form-check-label">
-                                    <input className="form-check-input" type="checkbox" defaultChecked={item.haveWiFiModul} ref={this.inputWiFiRef} /> Have WiFi modul
+                                    <input className="form-check-input" type="checkbox" 
+                                    defaultChecked={item.haveWiFiModul} ref={this.inputWiFiRef} /> Имеет WiFi модуль?
                                 </label>
                             </div>
                             <div className="form-group form-check">
                                 <label className="form-check-label">
-                                    <input className="form-check-input" type="checkbox" defaultChecked={item.haveBluetoothModul} ref={this.inputBluetoothRef} /> Have bluetooth model
+                                    <input className="form-check-input" type="checkbox" 
+                                    defaultChecked={item.haveBluetoothModul} ref={this.inputBluetoothRef} /> Имеет bluetooth модуль?
                                 </label>
                             </div>
                             <div className="form-group">
-                                <label className="control-label">ImageUrl</label>
-                                <input defaultValue={this.state.imageUrl} onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
+                                <label className="control-label">URL изображения</label>
+                                <input defaultValue={this.state.imageUrl} 
+                                onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
                             </div>
                             <div className="form-group">
                                 <img src={this.state.imageUrl} />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Price</label>
+                                <label className="control-label">Цена</label>
                                 <input ref={this.inputPriceRef} defaultValue={item.price} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
                                 <button onClick={(ev) => {
                                     ev.preventDefault();
                                     this.editItem();
-                                }} className="btn btn-primary">Save</button>
+                                }} className="btn btn-primary">Сохранить</button>
                             </div>
                         </form>
                     </div>
@@ -91,7 +93,7 @@ export default class Edit extends Component {
 
                         this.setTypePage("Index");
                     }
-                    }>Back to list</a>
+                    }>Вернуться к списку</a>
                 </div>
             </div>
 
@@ -128,7 +130,7 @@ export default class Edit extends Component {
         }
         else {
 
-            Layout.setMessage('Error get mother card: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении материнской платы: ' + response.status);
         }
     }
 
@@ -145,12 +147,12 @@ export default class Edit extends Component {
 
         if (response.status == 200) {
 
-            Layout.setMessage('Mother card was edited! ');
+            Layout.setMessage('Материнская плата изменена! ');
             this.setTypePage("Index");
         }
         else {
 
-            Layout.setMessage('Error edit mother card: ' + response.statusText);
+            Layout.setMessage('Ошибка при изменении материнской платы: ' + response.status);
         }
     }
 }

@@ -21,22 +21,22 @@ export default class Detail extends Component {
         return (
             <>
                 <div>
-                    <h4>Feedback</h4>
+                    <h4>Отзыв</h4>
                     <hr />
                     <dt className="col-sm-2">
-                        User
+                        Пользователь
                     </dt>
                     <dd className="col-sm-10">
-                        {item.user.name}
+                        {item.user.login}
                     </dd>
                     <dt className="col-sm-2">
-                        Text
+                        Сообщение
                     </dt>
                     <dd className="col-sm-10">
                         {item.text}
                     </dd>
                     <dt className="col-sm-2">
-                        Date
+                        Дата
                     </dt>
                     <dd className="col-sm-10">
                         {item.date}
@@ -45,10 +45,10 @@ export default class Detail extends Component {
                 <div>
                     <a onClick={(ev) => {
                         this.setTypePage("Edit", item.id);
-                    } }>Edit</a> |
+                    } }>Изменить</a> |
                     <a onClick={(ev) => {
                         this.setTypePage("Index");
-                    }}>Back</a>
+                    }}>Вернуться</a>
                 </div>
             </>
 
@@ -85,7 +85,7 @@ export default class Detail extends Component {
         }
         else {
 
-            Layout.setMessage('Error get feedback: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении отзыва: ' + response.statusText);
         }
     }
 }

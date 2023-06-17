@@ -21,70 +21,70 @@ export default class Detail extends Component {
         return (
             <>
                 <div>
-                    <h4>Computer assembly</h4>
+                    <h4>Сборка ПК</h4>
                     <hr />
                     <dt className="col-sm-2">
-                        Image
+                        Изображение
                     </dt>
                     <dd className="col-sm-10">
                         <img style={{ width: '400px', height: '300px', objectFit: 'cover' }} src={item.imgUrl} alt="Please, change image" />
                     </dd>
                     <dt className="col-sm-2">
-                        Name
+                        Название
                     </dt>
                     <dd className="col-sm-10">
                         {item.name}
                     </dd>
                     <dt className="col-sm-2">
-                    Computer body
+                        Корпус
                     </dt>
                     <dd className="col-sm-10">
-                        {item.compBody != null ? item.compBody.name:"Null"}
+                        {item.compBody != null ? item.compBody.name : "Не добавлен"}
                     </dd>
                     <dt className="col-sm-2">
-                        Computer processor
+                        Процессор
                     </dt>
                     <dd className="col-sm-10">
-                        {item.compProcessor != null ?item.compProcessor.name:"Null"}
+                        {item.compProcessor != null ? item.compProcessor.name : "Не добавлен"}
                     </dd>
                     <dt className="col-sm-2">
-                        Mother card
+                        Материнская плата
                     </dt>
                     <dd className="col-sm-10">
-                        {item.motherCard != null ?item.motherCard.name:"Null"}
+                        {item.motherCard != null ? item.motherCard.name : "Не добавлен"}
                     </dd>
                     <dt className="col-sm-2">
-                        Power Supply Unit
+                        Блок питания
                     </dt>
                     <dd className="col-sm-10">
-                        {item.powerSupplyUnit != null ?item.powerSupplyUnit.name:"Null"}
+                        {item.powerSupplyUnit != null ? item.powerSupplyUnit.name : "Не добавлен"}
                     </dd>
                     <dt className="col-sm-2">
-                        RAM memory
+                        Оперативная память
                     </dt>
                     <dd className="col-sm-10">
-                        {item.ramMemory != null ?item.ramMemory.name:"Null"}
+                        {item.ramMemory != null ? item.ramMemory.name : "Не добавлен"}
                     </dd>
                     <dt className="col-sm-2">
-                        Storage device
+                        Запоминающее устройство
                     </dt>
                     <dd className="col-sm-10">
-                        {item.storageDevice != null ?item.storageDevice.name:"Null"}
+                        {item.storageDevice != null ? item.storageDevice.name : "Не добавлен"}
                     </dd>
                     <dt className="col-sm-2">
-                        Video card
+                        Видеокарта
                     </dt>
                     <dd className="col-sm-10">
-                        {item.videoCard != null?item.videoCard.name:null}
+                        {item.videoCard != null ? item.videoCard.name : "Не добавлен"}
                     </dd>
                     <dt className="col-sm-2">
-                        Type computer assembly
+                        Тип сборки
                     </dt>
                     <dd className="col-sm-10">
                         {item.typeComputerAssembly}
                     </dd>
                     <dt className="col-sm-2">
-                        Cost price
+                        Цена
                     </dt>
                     <dd className="col-sm-10">
                         {item.costPrice}
@@ -93,10 +93,10 @@ export default class Detail extends Component {
                 <div>
                     <a onClick={(ev) => {
                         this.setTypePage("Edit", item.id);
-                    } }>Edit</a> |
+                    }}>Изменить</a> |
                     <a onClick={(ev) => {
                         this.setTypePage("Index");
-                    }}>Back</a>
+                    }}>Вернуться</a>
                 </div>
             </>
 
@@ -133,7 +133,7 @@ export default class Detail extends Component {
         }
         else {
 
-            Layout.setMessage('Error get computer assembly: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении данных: ' + response.status);
         }
     }
 }

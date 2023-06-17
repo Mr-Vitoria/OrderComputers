@@ -19,7 +19,6 @@ export default class Create extends Component {
         this.inputBudjetRef = React.createRef();
         this.inputCommentRef = React.createRef();
 
-
         this.inputMonitorIdRef = React.createRef();
         this.inputKeyboardIdRef = React.createRef();
         this.inputMouseRef = React.createRef();
@@ -39,7 +38,7 @@ export default class Create extends Component {
                     <div className="col-md-4">
                         <form>
                             <div className="form-group">
-                                <label className="control-label">User</label>
+                                <label className="control-label">Пользователь</label>
                                 <select ref={this.inputUserIdRef} className="form-control" >
                                     {data.users.map((item, index) => {
                                         return <option key={index} value={item.value}>{item.text}</option>;
@@ -47,20 +46,20 @@ export default class Create extends Component {
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Computer assembly</label>
+                                <label className="control-label">Тип заказа</label>
                                 <select onChange={(ev) => {
                                     this.setState({
                                         typeOrder: ev.target.value
                                     });
                                 }} className="form-control" >
-                                    <option value="Full">Full order</option>
-                                    <option value="Price">Order by price</option>
+                                    <option value="Full">Полный заказ</option>
+                                    <option value="Price">Заказ на определенный бюджет</option>
                                 </select>
                             </div>
                             {this.state.typeOrder == "Full" ?
                                 <>
                                     <div className="form-group">
-                                        <label className="control-label">Computer assembly</label>
+                                        <label className="control-label">Сборка ПК</label>
                                         <select ref={this.inputCompAssemblerIdRef} className="form-control" >
                                             {data.computerAssemblies.map((item, index) => {
                                                 return <option key={index} value={item.value}>{item.text}</option>;
@@ -73,19 +72,19 @@ export default class Create extends Component {
 
 
                                     <div className="form-group">
-                                        <label className="control-label">Budjet</label>
+                                        <label className="control-label">Бюджет</label>
                                         <input ref={this.inputBudjetRef} className="form-control" type="number" />
                                     </div>
 
                                     <div className="form-group">
-                                        <label className="control-label">Comment</label>
+                                        <label className="control-label">Комментарий</label>
                                         <textarea ref={this.inputCommentRef} className="form-control" ></textarea>
                                     </div>
                                 </>
                             }
 
                             <div className="form-group">
-                                <label className="control-label">Monitor</label>
+                                <label className="control-label">Монитор</label>
                                 <select ref={this.inputMonitorIdRef} className="form-control" >
                                     <option value={-1}>NONE</option>
                                     {data.monitors.map((item, index) => {
@@ -95,7 +94,7 @@ export default class Create extends Component {
                             </div>
 
                             <div className="form-group">
-                                <label className="control-label">Keyboard</label>
+                                <label className="control-label">Клавиатура</label>
                                 <select ref={this.inputKeyboardIdRef} className="form-control" >
                                     <option value={-1}>NONE</option>
                                     {data.keyboards.map((item, index) => {
@@ -105,7 +104,7 @@ export default class Create extends Component {
                             </div>
 
                             <div className="form-group">
-                                <label className="control-label">Mouse</label>
+                                <label className="control-label">Компютерная мышка</label>
                                 <select ref={this.inputMouseRef} className="form-control" >
                                     <option value={-1}>NONE</option>
                                     {data.mouses.map((item, index) => {
@@ -115,7 +114,7 @@ export default class Create extends Component {
                             </div>
 
                             <div className="form-group">
-                                <label className="control-label">Speaker</label>
+                                <label className="control-label">Динамики/наушники</label>
                                 <select ref={this.inputSpeakerIdRef} className="form-control" >
                                     <option value={-1}>NONE</option>
                                     {data.speakers.map((item, index) => {
@@ -125,22 +124,22 @@ export default class Create extends Component {
                             </div>
 
                             <div className="form-group">
-                                <label className="control-label">Status</label>
+                                <label className="control-label">Статус</label>
                                 <select ref={this.inputStatusRef} className="form-control" >
-                                    <option value="Активен">Active</option>
-                                    <option value="Закончен">Complete</option>
-                                    <option value="Отменен">Cancel</option>
-                                    <option value="В сборке">Being collected</option>
+                                    <option value="Активен">Активен</option>
+                                    <option value="Закончен">Закончен</option>
+                                    <option value="Отменен">Отменен</option>
+                                    <option value="В сборке">В сборке</option>
                                 </select>
                             </div>
 
                             <div className="form-group">
-                                <label className="control-label">Order date</label>
+                                <label className="control-label">Дата заказа</label>
                                 <input ref={this.inputOrderDateRef} className="form-control" type="date" />
                             </div>
 
                             <div className="form-group">
-                                <label className="control-label">Total price</label>
+                                <label className="control-label">Итоговая цена</label>
                                 <input ref={this.inputTotalPriceRef} className="form-control" type="number" />
                             </div>
 
@@ -149,7 +148,7 @@ export default class Create extends Component {
                                 <button onClick={(ev) => {
                                     ev.preventDefault();
                                     this.createItem();
-                                }} className="btn btn-primary" >Add</button>
+                                }} className="btn btn-primary" >Добавить</button>
                             </div>
                         </form>
                     </div>
@@ -159,7 +158,7 @@ export default class Create extends Component {
 
                         this.setTypePage("Index");
                     }
-                    }>Back to list</a>
+                    }>Вернуться к списку</a>
                 </div>
             </div>
         );
@@ -196,7 +195,7 @@ export default class Create extends Component {
             });
         } else {
 
-            Layout.setMessage('Error get data order: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении данных: ' + response.statusText);
         }
 
     }
@@ -230,10 +229,10 @@ export default class Create extends Component {
         if (response.status == 200) {
 
             this.setTypePage("Index");
-            Layout.setMessage('Order was added! ');
+            Layout.setMessage('Заказ добавлен! ');
         } else {
 
-            Layout.setMessage('Error add order: ' + response.statusText);
+            Layout.setMessage('Ошибка при добавлении заказа: ' + response.status);
         }
     }
 }

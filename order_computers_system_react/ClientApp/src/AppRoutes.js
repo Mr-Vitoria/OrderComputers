@@ -22,7 +22,7 @@ const AppRoutes = [
         element: <HistoryContainer />
     },
     {
-        path: '/assemblyList',
+        path: '/models',
         element: <AssemblyListContainer />
     }
 ];

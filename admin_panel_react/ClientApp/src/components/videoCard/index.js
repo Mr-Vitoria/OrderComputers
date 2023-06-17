@@ -15,35 +15,26 @@ export default class Index extends Component {
     componentDidMount() {
         this.getItems();
     }
-
+    
     renderItemsTable(items) {
         return (
             <table className="table">
                 <thead>
                     <tr>
                         <th>
-                            Name
+                            Название
                         </th>
                         <th>
-                            Producer
+                            Производитель
                         </th>
                         <th>
-                            Family
+                            Тип памяти
                         </th>
                         <th>
-                            Generation
+                            Объем(Мб)
                         </th>
                         <th>
-                            Series
-                        </th>
-                        <th>
-                            Type
-                        </th>
-                        <th>
-                            Count
-                        </th>
-                        <th>
-                            Price
+                            Цена
                         </th>
                         <th></th>
                     </tr>
@@ -59,15 +50,6 @@ export default class Index extends Component {
                                 {item.producer}
                             </td>
                             <td>
-                                {item.family}
-                            </td>
-                            <td>
-                                {item.generation}
-                            </td>
-                            <td>
-                                {item.series}
-                            </td>
-                            <td>
                                 {item.type }
                             </td>
                             <td>
@@ -79,13 +61,13 @@ export default class Index extends Component {
                             <td>
                                 <a onClick={(ev) => {
                                     this.setTypePage("Edit", item.id);
-                                }}>Edit</a> |
+                                }}>Изменить</a> |
                                 <a onClick={(ev) => {
                                     this.setTypePage("Detail", item.id);
-                                }}>Detail</a> |
+                                }}>Подробнее</a> |
                                 <a onClick={(ev) => {
                                     this.deleteItem(item.id);
-                                }}>Delete</a>
+                                }}>Удалить</a>
                             </td>
                         </tr>
                     )}
@@ -117,7 +99,7 @@ export default class Index extends Component {
 
                         this.setTypePage("Create");
                     }
-                    }>Add video card</a>
+                    }>Добавить видеокарту</a>
                 </p>
                 {contents}
             </div>
@@ -132,7 +114,7 @@ export default class Index extends Component {
             this.setState({ items: data, loading: false });
         } else {
 
-            Layout.setMessage('Error get video card: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении списка видеокарт: ' + response.status);
         }
     }
 
@@ -140,11 +122,11 @@ export default class Index extends Component {
         const response = await fetch('videocards/delete?id=' + Id);
         if (response.status == 200) {
 
-            Layout.setMessage('Video card was deleted! ');
+            Layout.setMessage('Видеокарта удалена! ');
             this.getItems();
         } else {
 
-            Layout.setMessage('Error delete video card: ' + response.statusText);
+            Layout.setMessage('Ошибка при удалении видеокарты: ' + response.status);
         }
 
     }

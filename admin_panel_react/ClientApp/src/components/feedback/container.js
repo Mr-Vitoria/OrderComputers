@@ -27,8 +27,7 @@ export class FeedbackContainer extends Component {
 
         return (
             <div>
-                <h1 id="tableLabel">Feedback</h1>
-
+                <h1 id="tableLabel">Отзывы</h1>
 
                 {this.state.page == "Index" ?
                     <Index setTypePage={this.setTypePage} />

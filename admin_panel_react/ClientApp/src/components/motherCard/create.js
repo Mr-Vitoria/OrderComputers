@@ -30,11 +30,11 @@ export default class Create extends Component {
                     <div className="col-md-4">
                         <form>
                             <div className="form-group">
-                                <label className="control-label">Name</label>
+                                <label className="control-label">Название</label>
                                 <input ref={this.inputNameRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Size</label>
+                                <label className="control-label">Размер</label>
                                 <select ref={this.inputSizeRef} className="form-control" >
                                     <option value="E-ATX">E-ATX</option>
                                     <option value="Micro-ATX">Micro-ATX</option>
@@ -44,35 +44,35 @@ export default class Create extends Component {
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Socket</label>
+                                <label className="control-label">Сокет</label>
                                 <input ref={this.inputSocketRef} className="form-control" />
                             </div>
                             <div className="form-group form-check">
                                 <label className="form-check-label">
-                                    <input className="form-check-input" type="checkbox" ref={this.inputWiFiRef} /> Have WiFi modul
+                                    <input className="form-check-input" type="checkbox" ref={this.inputWiFiRef} /> Имеет WiFi модуль?
                                 </label>
                             </div>
                             <div className="form-group form-check">
                                 <label className="form-check-label">
-                                    <input className="form-check-input" type="checkbox" ref={this.inputBluetoothRef} /> Have bluetooth model
+                                    <input className="form-check-input" type="checkbox" ref={this.inputBluetoothRef} /> Имеет bluetooth модуль?
                                 </label>
                             </div>
                             <div className="form-group">
-                                <label className="control-label">ImageUrl</label>
+                                <label className="control-label">URL изобржения</label>
                                 <input onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
                             </div>
                             <div className="form-group">
                                 <img src={this.state.imageUrl} />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Price</label>
+                                <label className="control-label">Цена</label>
                                 <input ref={this.inputPriceRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
                                 <button onClick={(ev) => {
                                     ev.preventDefault();
                                     this.createItem();
-                                }} className="btn btn-primary">Add</button>
+                                }} className="btn btn-primary">Добавить</button>
                             </div>
                         </form>
                     </div>
@@ -82,7 +82,7 @@ export default class Create extends Component {
 
                         this.setTypePage("Index");
                     }
-                    }>Back to list</a>
+                    }>Вернуться к списку</a>
                 </div>
             </div>
         );
@@ -100,11 +100,11 @@ export default class Create extends Component {
 
         if (response.status == 200) {
             this.setTypePage("Index");
-            Layout.setMessage('Mother card was added! ');
+            Layout.setMessage('Материнская плата добавлена! ');
         }
         else {
 
-            Layout.setMessage('Error add mother card: ' + response.statusText);
+            Layout.setMessage('Ошибка при добавлении материнской платы: ' + response.status);
         }
     }
 }

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import Cookies from 'universal-cookie';
 import AssemblyBlock from './assemblyBlock'
 import '../../public/css/assemblyList.css';
 import SortBlock from './sortBlock';
+
+import { Layout } from '../Layout';
 
 export class AssemblyListContainer extends Component {
     static displayName = AssemblyListContainer.name;
@@ -12,11 +15,14 @@ export class AssemblyListContainer extends Component {
             sortItems: null,
             defaultItems: null,
             loading: true,
-            descriptionItem: null
+            descriptionItem: null,
+            userId: null
         };
 
         this.changeSortItems = this.changeSortItems.bind(this);
         this.setDescriptionItem = this.setDescriptionItem.bind(this);
+
+        this.addOrder = this.addOrder.bind(this);
     }
 
     componentDidMount() {
@@ -32,6 +38,28 @@ export class AssemblyListContainer extends Component {
 
     setDescriptionItem(Item) {
         this.setState({ descriptionItem: Item });
+    }
+
+
+    async addOrder() {
+        let totalAmount = Math.trunc(this.state.descriptionItem.costPrice * 100) / 100;
+        await fetch('orders/createorder?userId=' + this.state.userId
+            + '&assemblyPrice=' + this.state.descriptionItem.costPrice
+            + '&totalPrice=' + totalAmount
+
+
+            + '&bodyId=' + this.state.descriptionItem.compBody.id
+            + '&processorId=' + this.state.descriptionItem.compProcessor.id
+            + '&motherCardId=' + this.state.descriptionItem.motherCard.id
+            + '&powerSupplyId=' + this.state.descriptionItem.powerSupplyUnit.id
+            + '&storageId=' + this.state.descriptionItem.storageDevice.id
+            + '&videoId=' + (this.state.descriptionItem.videoCard != null ? this.state.descriptionItem.videoCard.id : -1)
+            + '&ramId=' + this.state.descriptionItem.ramMemory.id
+
+            + '&orderDate=' + new Date().toISOString().substring(0, 10));
+
+        Layout.changeMessage('Вы успешно сделали заказ');
+        window.location.reload();
     }
 
     renderModel(model) {
@@ -117,6 +145,11 @@ export class AssemblyListContainer extends Component {
                                 }
                             </div>
                             <div className="modal-footer">
+                                {(this.state.descriptionItem != null && this.state.userId != null) ? <>
+                                    <button type="button" className="btn btn-secondary" onClick={(ev) => { this.addOrder(); }} data-bs-dismiss="modal">Заказать</button>
+                                </>
+                                    : null
+                                }
                                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
                             </div>
                         </div>
@@ -203,9 +236,26 @@ export class AssemblyListContainer extends Component {
 
 
     async getAssemblies() {
-        const response = await fetch('ordersystem/getassemblylist');
+        const response = await fetch('assemblyList/getassemblylist');
         const data = await response.json();
         this.setState({ defaultItems: data, sortItems: data, loading: false });
+        this.getUser();
+    }
+
+    async getUser() {
+
+        const cookies = new Cookies();
+        const response = await fetch('users/getuserbyid?id=' + cookies.get('userId'));
+        if (response.status == 200) {
+
+            const data = await response.json();
+
+            this.setState({
+                userId: data.id
+            });
+        } else {
+            console.log('Error get user info: ');
+        }
     }
 }
 

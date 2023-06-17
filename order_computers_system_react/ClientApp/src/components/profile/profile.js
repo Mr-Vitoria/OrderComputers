@@ -19,7 +19,7 @@ export default class Profile extends Component {
     async getUser() {
         const cookies = new Cookies();
         
-        const response = await fetch('ordersystem/getuserbyid?id=' + cookies.get('userId'));
+        const response = await fetch('users/getuserbyid?id=' + cookies.get('userId'));
         if (response.status == 200) {
 
             const data = await response.json();
@@ -36,7 +36,7 @@ export default class Profile extends Component {
     async changeUserInfo() {
         const cookies = new Cookies();
         
-        const response = await fetch('ordersystem/changeuserinfo?id=' + cookies.get('userId')
+        const response = await fetch('users/changeuserinfo?id=' + cookies.get('userId')
             + '&imgUrl=' + this.inputImgRef.current.value);
         if (response.status == 200) {
 
@@ -51,7 +51,7 @@ export default class Profile extends Component {
     async getInforamtion() {
         const cookies = new Cookies();
         
-        const response = await fetch('ordersystem/getuserbyid?id=' + cookies.get('userId'));
+        const response = await fetch('users/getuserbyid?id=' + cookies.get('userId'));
         if (response.status == 200) {
 
             const data = await response.json();

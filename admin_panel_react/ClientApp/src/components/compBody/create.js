@@ -25,26 +25,25 @@ export default class Create extends Component {
                     <div className="col-md-4">
                         <form>
                             <div className="form-group">
-                                <label className="control-label">Name</label>
+                                <label className="control-label">Название</label>
                                 <input ref={this.inputNameRef} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Form factor</label>
+                                <label className="control-label">Форм фактор</label>
                                 <select ref={this.inputFormFactorRef} className="form-control">
                                     <option value="Super/Ultra Tower">Super/Ultra Tower</option>
                                     <option value="Full Tower">Full Tower</option>
                                     <option value="Mid Tower">Mid Tower</option>
                                     <option value="Mini Tower">Mini Tower</option>
                                     <option value="Small form factor">Small form factor</option>
-                                    <option value="HTPC">HTPC</option>
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Price</label>
+                                <label className="control-label">Цена</label>
                                 <input ref={this.inputPriceRef} className="form-control" type="number" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">ImageUrl</label>
+                                <label className="control-label">URL изображения</label>
                                 <input onChange={(ev) => { this.setState({ imageUrl: ev.target.value }) }} className="form-control" type="url" />
                             </div>
                             <div className="form-group">
@@ -54,7 +53,7 @@ export default class Create extends Component {
                                 <button onClick={(ev) => {
                                     ev.preventDefault();
                                     this.createItem();
-                                }} className="btn btn-dark" >Add</button>
+                                }} className="btn btn-dark" >Добавить</button>
                             </div>
                         </form>
                     </div>
@@ -77,13 +76,13 @@ export default class Create extends Component {
             + '&imgUrl=' + this.state.imageUrl
             + '&formFactor=' + this.inputFormFactorRef.current.value);
 
-        if (response.statusText == "OK") {
+        if (response.status == 200) {
 
             this.setTypePage("Index");
-            Layout.setMessage('Computer body is added');
+            Layout.setMessage('Новый корпус был добавлен');
         }
         else {
-            Layout.setMessage('Error: ' + response.statusText);
+            Layout.setMessage('Ошибка: ' + response.status);
 
         }
     }

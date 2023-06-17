@@ -236,7 +236,7 @@ export default class SortBlock extends Component {
 
     resetSort() {
 
-        //this.state.changeSortItems(this.state.defaultItems);
+        /*this.state.changeSortItems(this.state.defaultItems);*/
         window.location.reload();
     }
 
@@ -654,7 +654,7 @@ export default class SortBlock extends Component {
     }
 
     async getSelectOption() {
-        const response = await fetch('ordersystem/getselectoption');
+        const response = await fetch('assemblyList/getsortoption');
         const data = await response.json();
         this.setState({
             selectOption: data,

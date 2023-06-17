@@ -22,6 +22,7 @@ export class IndexContainer extends Component {
         this.inputTextFeedbackRef = React.createRef();
 
         this.addFeedback = this.addFeedback.bind(this);
+        this.addOrder = this.addOrder.bind(this);
     }
 
     componentDidMount() {
@@ -30,10 +31,29 @@ export class IndexContainer extends Component {
 
     async addFeedback() {
 
-
         await fetch('ordersystem/addFeedback?userId=' + this.state.user.id
-            +'&text=' + this.inputTextFeedbackRef.current.value
+            + '&text=' + this.inputTextFeedbackRef.current.value
             + '&date=' + new Date().toISOString().substring(0, 10));
+    }
+    async addOrder() {
+        let totalAmount = Math.trunc(this.state.descriptionItem.costPrice * 100) / 100;
+        await fetch('orders/createorder?userId=' + this.state.user.id
+            + '&assemblyPrice=' + this.state.descriptionItem.costPrice
+            + '&totalPrice=' + totalAmount
+
+
+            + '&bodyId=' + this.state.descriptionItem.compBody.id
+            + '&processorId=' + this.state.descriptionItem.compProcessor.id
+            + '&motherCardId=' + this.state.descriptionItem.motherCard.id
+            + '&powerSupplyId=' + this.state.descriptionItem.powerSupplyUnit.id
+            + '&storageId=' + this.state.descriptionItem.storageDevice.id
+            + '&videoId=' + (this.state.descriptionItem.videoCard!=null ? this.state.descriptionItem.videoCard.id : -1)
+            + '&ramId=' + this.state.descriptionItem.ramMemory.id
+
+            + '&orderDate=' + new Date().toISOString().substring(0, 10));
+
+        Layout.changeMessage('Вы успешно сделали заказ');
+        window.location.reload();
     }
 
     renderModel(model) {
@@ -117,6 +137,11 @@ export class IndexContainer extends Component {
                                 }
                             </div>
                             <div className="modal-footer">
+                                {(this.state.descriptionItem != null && this.state.user != null) ? <>
+                                    <button type="button" className="btn btn-secondary" onClick={(ev) => { this.addOrder(); }} data-bs-dismiss="modal">Заказать</button>
+                                </>
+                                    : null
+                                }
                                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
                             </div>
                         </div>
@@ -311,7 +336,7 @@ export class IndexContainer extends Component {
     async getUser() {
 
         const cookies = new Cookies();
-        const response = await fetch('ordersystem/getuserbyid?id=' + cookies.get('userId'));
+        const response = await fetch('users/getuserbyid?id=' + cookies.get('userId'));
         if (response.status == 200) {
 
             const data = await response.json();

@@ -22,12 +22,12 @@ export class StorageDeviceContainer extends Component {
             itemId: keepItemId
         });
     }
-
+    
     render() {
 
         return (
             <div>
-                <h1 id="tableLabel">Storage device</h1>
+                <h1 id="tableLabel">Запоминающие устройства</h1>
 
 
                 {this.state.page == "Index" ?

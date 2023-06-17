@@ -34,7 +34,7 @@ export default class Edit extends Component {
                         <form>
                             <input defaultValue={item.id } ref={this.inputIdRef} type="hidden" className="form-control" />
                             <div className="form-group">
-                                <label className="control-label">User</label>
+                                <label className="control-label">Пользователь</label>
                                 <select defaultValue={ item.user.id } ref={this.inputUserIdRef} className="form-control" >
                                     {data.users.map((item, index) => {
                                         return <option key={index} value={item.value}>{item.text}</option>;
@@ -42,14 +42,14 @@ export default class Edit extends Component {
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Text</label>
+                                <label className="control-label">Сообщение</label>
                                 <textarea defaultValue={item.text} className="form-control" ref={this.inputTextRef}>
 
                                 </textarea>
                             </div>
 
                             <div className="form-group">
-                                <label className="control-label">Date</label>
+                                <label className="control-label">Дата</label>
                                 <input defaultValue={
                                     item.date
                                 } ref={this.inputDateRef} className="form-control" type="date" />
@@ -59,7 +59,7 @@ export default class Edit extends Component {
                                 <button onClick={(ev) => {
                                     ev.preventDefault();
                                     this.editItem();
-                                }} className="btn btn-primary">Save</button>
+                                }} className="btn btn-primary">Сохранить</button>
                             </div>
                         </form>
                     </div>
@@ -70,7 +70,7 @@ export default class Edit extends Component {
 
                         this.setTypePage("Index");
                     }
-                    }>Back to list</a>
+                    }>Вернуться к списку</a>
                 </div>
             </div>
 
@@ -109,7 +109,8 @@ export default class Edit extends Component {
         }
         else {
 
-            Layout.setMessage('Error get feedback ');
+            Layout.setMessage('Ошибка при получении отзыва: ' + response.status
+                            +'\n Ошибка при получении данных: '+ responseSelectList.status);
         }
     }
 
@@ -123,10 +124,10 @@ export default class Edit extends Component {
         if (response.status == 200) {
 
             this.setTypePage("Index");
-            Layout.setMessage('Feedback was edited! ');
+            Layout.setMessage('Отзыв изменен! ');
         }
         else {
-            Layout.setMessage('Error edit feedback: ' + response.statusText);
+            Layout.setMessage('Ошибка при изменении отзыва: ' + response.statusText);
         }
     }
 }

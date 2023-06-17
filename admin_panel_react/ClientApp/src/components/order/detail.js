@@ -21,16 +21,16 @@ export default class Detail extends Component {
         return (
             <>
                 <div>
-                    <h4>Order</h4>
+                    <h4>Заказ</h4>
                     <hr />
                     <dt className="col-sm-2">
-                    User
+                        Пользователь
                     </dt>
                     <dd className="col-sm-10">
                         {item.user.name}
                     </dd>
                     <dt className="col-sm-2">
-                        Type order
+                        Тип заказа
                     </dt>
                     <dd className="col-sm-10">
                         {item.typeOrder}
@@ -38,7 +38,7 @@ export default class Detail extends Component {
                     {item.typeOrder == "Full" ?
                         <>
                             <dt className="col-sm-2">
-                                Computer assembly
+                                Сборка ПК
                             </dt>
                             <dd className="col-sm-10">
                                 {item.computerAssembly.name}
@@ -47,13 +47,13 @@ export default class Detail extends Component {
                         :
                         <>
                             <dt className="col-sm-2">
-                                Budjet
+                                Бюджет
                             </dt>
                             <dd className="col-sm-10">
                                 {item.budjet}
                             </dd>
                             <dt className="col-sm-2">
-                                Comment
+                                Комментарий
                             </dt>
                             <dd className="col-sm-10">
                                 {item.comment}
@@ -61,19 +61,19 @@ export default class Detail extends Component {
                         </>
                     }
                     <dt className="col-sm-2">
-                        Order date
+                        Дата заказа
                     </dt>
                     <dd className="col-sm-10">
                         {item.orderDate}
                     </dd>
                     <dt className="col-sm-2">
-                        Status
+                        Статус
                     </dt>
                     <dd className="col-sm-10">
                         {item.status}
                     </dd>
                     <dt className="col-sm-2">
-                        Peripheries
+                        Периферия
                     </dt>
                     {item.orderPeripheries.map((orderPeriphery, index) => {
                         return <dd key={index} className="col-sm-10">
@@ -81,7 +81,7 @@ export default class Detail extends Component {
                         </dd>
                     })}
                     <dt className="col-sm-2">
-                        Total price
+                        Итоговая цена
                     </dt>
                     <dd className="col-sm-10">
                         {item.totalPrice}
@@ -90,10 +90,10 @@ export default class Detail extends Component {
                 <div>
                     <a onClick={(ev) => {
                         this.setTypePage("Edit", item.id);
-                    } }>Edit</a> |
+                    } }>Изменить</a> |
                     <a onClick={(ev) => {
                         this.setTypePage("Index");
-                    }}>Back</a>
+                    }}>Вернуться</a>
                 </div>
             </>
 
@@ -130,7 +130,7 @@ export default class Detail extends Component {
         }
         else {
 
-            Layout.setMessage('Error get order: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении заказа: ' + response.status);
         }
     }
 }

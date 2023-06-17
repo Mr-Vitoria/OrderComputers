@@ -22,12 +22,12 @@ export class MotherCardContainer extends Component {
             itemId: keepItemId
         });
     }
-
+    
     render() {
 
         return (
             <div>
-                <h1 id="tableLabel">Mother cards</h1>
+                <h1 id="tableLabel">Материнские платы</h1>
 
 
                 {this.state.page == "Index" ?

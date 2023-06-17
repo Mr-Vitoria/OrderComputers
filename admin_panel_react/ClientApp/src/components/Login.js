@@ -26,16 +26,16 @@ export class Login extends Component {
                     return;
                 } else {
 
-                    Layout.setMessage('Error user dont have Admin status: ' + response.statusText);
+                    Layout.setMessage('У вас нет прав доступа к этому сайту: ' + response.statusText);
                 }
             }
             else {
 
-                Layout.setMessage('Password or login ercorrect: ' + response.statusText);
+                Layout.setMessage('Пожалуйста, проверьте правильность ввода данных для входа.');
             }
         } else {
 
-            Layout.setMessage('Error get user info: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении информации с сервера: ' + response.status);
         }
         
 
@@ -46,20 +46,19 @@ export class Login extends Component {
         return (
             <div>
                 <section className="loginSection">
-
-                    <h2>Login</h2>
+                    <h2>Вход</h2>
                     <form>
-                        <label htmlFor="userPhone">Phone:</label>
+                        <label htmlFor="userPhone">Телефон</label>
                         <input type="tel" ref={this.inputPhoneRef} id="userPhone" />
 
 
-                        <label htmlFor="userPassword">Password:</label>
+                        <label htmlFor="userPassword">Пароль:</label>
                         <input type="password" ref={this.inputPasswordRef} id="userPassword" />
 
                         <button onClick={(ev) => {
                             ev.preventDefault();
                             this.checkUser();
-                        }} type="submit">Enter</button>
+                        }} type="submit">Войти</button>
                     </form>
                 </section>
             </div>

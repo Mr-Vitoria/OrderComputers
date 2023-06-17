@@ -22,12 +22,12 @@ export class PowerSupplyUnitContainer extends Component {
             itemId: keepItemId
         });
     }
-
+    
     render() {
 
         return (
             <div>
-                <h1 id="tableLabel">Power supply unit</h1>
+                <h1 id="tableLabel">Блоки питания</h1>
 
 
                 {this.state.page == "Index" ?

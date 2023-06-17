@@ -27,8 +27,7 @@ export class CompProcessorContainer extends Component {
 
         return (
             <div>
-                <h1 id="tableLabel">Computer processors</h1>
-
+                <h1 id="tableLabel">Процессоры</h1>
 
                 {this.state.page == "Index" ?
                     <Index setTypePage={this.setTypePage} />

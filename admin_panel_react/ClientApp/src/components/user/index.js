@@ -15,29 +15,26 @@ export default class Index extends Component {
     componentDidMount() {
         this.getItems();
     }
-
+    
     renderItemsTable(items) {
         return (
             <table className="table">
                 <thead>
                     <tr>
                         <th>
-                            Name
+                            Имя
                         </th>
                         <th>
-                            Login
+                            Логин
                         </th>
                         <th>
                             Email
                         </th>
                         <th>
-                            Phone
+                            Телефон
                         </th>
                         <th>
-                            Img url
-                        </th>
-                        <th>
-                            Type user
+                            Тип аккаунта
                         </th>
                         <th></th>
                     </tr>
@@ -59,21 +56,18 @@ export default class Index extends Component {
                                 {item.phone}
                             </td>
                             <td>
-                                {item.imgUrl}
-                            </td>
-                            <td>
                                 {item.typeUser}
                             </td>
                             <td>
                                 <a onClick={(ev) => {
                                     this.setTypePage("Edit", item.id);
-                                }}>Edit</a> |
+                                }}>Изменить</a> |
                                 <a onClick={(ev) => {
                                     this.setTypePage("Detail", item.id);
-                                }}>Detail</a> |
+                                }}>Подробнее</a> |
                                 <a onClick={(ev) => {
                                     this.deleteItem(item.id);
-                                }}>Delete</a>
+                                }}>Удалить</a>
                             </td>
                         </tr>
                     )}
@@ -105,7 +99,7 @@ export default class Index extends Component {
 
                         this.setTypePage("Create");
                     }
-                    }>Add user</a>
+                    }>Добавить пользователя</a>
                 </p>
                 {contents}
             </div>
@@ -120,7 +114,7 @@ export default class Index extends Component {
             this.setState({ items: data, loading: false });
         } else {
 
-            Layout.setMessage('Error get user: ' + response.statusText);
+            Layout.setMessage('Ошибка получения пользователя: ' + response.status);
         }
     }
 
@@ -128,11 +122,11 @@ export default class Index extends Component {
         const response = await fetch('users/delete?id=' + Id);
         if (response.status == 200) {
 
-            Layout.setMessage('User was deleted! ');
+            Layout.setMessage('Пользователь удален! ');
             this.getItems();
         } else {
 
-            Layout.setMessage('Error delete user: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении пользователя: ' + response.status);
         }
 
     }

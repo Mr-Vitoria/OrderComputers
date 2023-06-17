@@ -16,40 +16,40 @@ export default class Detail extends Component {
     componentDidMount() {
         this.getItem(this.state.itemId);
     }
-
+    
     renderItem(item) {
         return (
             <>
                 <div>
-                    <h4>Detail storage device</h4>
+                    <h4>Запоминающее устройство</h4>
                     <hr />
                     <dl classNameName="row">
                         <dt className="col-sm-2">
-                            Image
+                            Изображение
                         </dt>
                         <dd className="col-sm-10">
                             <img src={item.imgUrl} />
                         </dd>
                         <dt classNameName="col-sm-2">
-                            Name
+                            Название
                         </dt>
                         <dd className="col-sm-10">
                             {item.name }
                         </dd>
                         <dt className="col-sm-2">
-                            Type
+                            Тип
                         </dt>
                         <dd className="col-sm-10">
                             {item.type}
                         </dd>
                         <dt className="col-sm-2">
-                            Count
+                            Объем(Гб)
                         </dt>
                         <dd className="col-sm-10">
-                            {item.frequency}
+                            {item.count}
                         </dd>
                         <dt className="col-sm-2">
-                            Price
+                            Цена
                         </dt>
                         <dd className="col-sm-10">
                             {item.price }
@@ -59,10 +59,10 @@ export default class Detail extends Component {
                 <div>
                     <a onClick={(ev) => {
                         this.setTypePage("Edit", item.id);
-                    } }>Edit</a> |
+                    } }>Изменить</a> |
                     <a onClick={(ev) => {
                         this.setTypePage("Index");
-                    }}>Back</a>
+                    }}>Вернуться</a>
                 </div>
             </>
 
@@ -98,7 +98,7 @@ export default class Detail extends Component {
             this.setState({ items: data, loading: false });
         } else {
 
-            Layout.setMessage('Error get storage device: ' + response.statusText);
+            Layout.setMessage('Ошибка при получении запоминающего устройства: ' + response.status);
         }
     }
 }
