@@ -37,7 +37,7 @@ namespace order_computers_system_react.Controllers
         [Route("changeuserinfo")]
         public async Task<object> ChangeUserInfo(int id, string imgUrl)
         {
-            return _userService.changeUserInfo(id,imgUrl);
+            return await _userService.changeUserInfo(id,imgUrl);
         }
 
         [HttpGet]
@@ -51,7 +51,7 @@ namespace order_computers_system_react.Controllers
         [Route("gethistoryuser")]
         public async Task<object> UserOrders(int id)
         {
-            return _userService.getUserOrders(id);
+            return await _userService.getUserOrders(id);
         }
     }
 }

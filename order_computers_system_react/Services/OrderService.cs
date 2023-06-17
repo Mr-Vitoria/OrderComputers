@@ -82,7 +82,7 @@ namespace order_computers_system_react.Services
                 Budjet = budjet,
                 Comment = comment,
                 TypeOrder = "Price",
-                Status = "Активен",
+                Status = "В сборке",
                 OrderDate = orderDate.ToString()
             };
 
