@@ -8,9 +8,9 @@
 <br >
 •	СУБД: PostgreSql
 # Ссылка на сайт с выгруженным проектом
-Админ-панель: http://computersadminpanel.somee.com/
+Админ-панель: http://computersadminpanel.somee.com/ (не работает)
 <br >
-Сайт: http://ordersystem.somee.com/
+Сайт: http://ordersystem.somee.com/ (не работает)
 # Руководство пользователя
 При заходе на страницу пользователь должен сделать следующие действия:
 1.	Войти в свой аккаунт, либо зарегистрироваться.
